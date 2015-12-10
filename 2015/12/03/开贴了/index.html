@@ -92,29 +92,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo:_独立博客新玩法">Hexo: 独立博客新玩法</h1><p>首先Hexo是一款基于Node.js的静态博客，它是由台湾的一位大学生写出来的，支持很多主题和Markdown，很多人都在使用。</p>
+        <h1 id="Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5"><a href="#Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5" class="headerlink" title="Hexo: 独立博客新玩法"></a>Hexo: 独立博客新玩法</h1><p>首先Hexo是一款基于Node.js的静态博客，它是由台湾的一位大学生写出来的，支持很多主题和Markdown，很多人都在使用。</p>
 <p>我的理解，按照MarkDown的语法规则，免费的将自己网页部署到代码托管网站上去。Hexo就是这样一套自动生成网页的框架。<br>对于喜欢写独立博客的来说，是一个福音。不需要域名，服务器，备案等，就可以拥有自己的网站。</p>
 <p>我记得以前是用jeklly托管到github上，我弄过，但是没坚持下来。<br>当知道有Hexo的时候，也写过一些。但是由于众所周知的原因，github经常打不开，导致部署常常出错，所以也没有坚持下来。<br>前段时间发现上github速度又可以了，打算重新在弄弄，坚持写下去。</p>
-<h2 id="1-_本地搭建">1. 本地搭建</h2><p>几条命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br><span class="line">$ mkdir Hexo</span><br><span class="line">$ <span class="built_in">cd</span> Hexo</span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br><span class="line">```  </span><br><span class="line">这样就安装完成了，NodeJs的安装，网上有很多的资料。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2. Start Server</span></span><br><span class="line">在/Hexo下执行</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl + c to stop.</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-__u672C_u5730_u642D_u5EFA"><a href="#1-__u672C_u5730_u642D_u5EFA" class="headerlink" title="1. 本地搭建"></a>1. 本地搭建</h2><p>几条命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br><span class="line">$ mkdir Hexo</span><br><span class="line">$ <span class="built_in">cd</span> Hexo</span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br><span class="line">```  </span><br><span class="line">这样就安装完成了，NodeJs的安装，网上有很多的资料。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2. Start Server</span></span><br><span class="line">在/Hexo下执行</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl + c to stop.</span><br></pre></td></tr></table></figure></p>
 <p>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>, 你就可以看到生成的博客了。</p>
-<h2 id="3-_Create_a_new_post">3. Create a new post</h2><p>在/Hexo下执行</p>
+<h2 id="3-_Create_a_new_post"><a href="#3-_Create_a_new_post" class="headerlink" title="3. Create a new post"></a>3. Create a new post</h2><p>在/Hexo下执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"your article name"</span></span><br><span class="line">[info] File Created at \Hexo\<span class="built_in">source</span>\_posts\your-article-name.md</span><br></pre></td></tr></table></figure>
-<h2 id="4-_Generate_static_files">4. Generate static files</h2><pre><code><span class="variable">$ </span>hexo generate
+<h2 id="4-_Generate_static_files"><a href="#4-_Generate_static_files" class="headerlink" title="4. Generate static files"></a>4. Generate static files</h2><pre><code>$ hexo generate
 </code></pre><p>it will generate file at the folder \Hexo\public\</p>
-<h2 id="5-_Edit_files">5. Edit files</h2><p>如果要更改文件，到\Hexo\source_posts 用markdown 语法编辑一下。<br>如果要删除，到这个目录下删除不想要的文章。<br>然后更新</p>
+<h2 id="5-_Edit_files"><a href="#5-_Edit_files" class="headerlink" title="5. Edit files"></a>5. Edit files</h2><p>如果要更改文件，到\Hexo\source_posts 用markdown 语法编辑一下。<br>如果要删除，到这个目录下删除不想要的文章。<br>然后更新</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate &lt;!--生成--&gt;</span><br><span class="line">hexo s == hexo server &lt;!--启动服务来预览--&gt;</span><br><span class="line">hexo d == hexo deploy &lt;!--部署--&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="6-_Deploy_to_github">6. Deploy to github</h2><h3 id="1-建立与你用户名对应的仓库，仓库名必须为［your_user_name-github-io］">1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］</h3><h3 id="2-SSH">2.SSH</h3><p>请参照 <a href="http://segmentfault.com/q/1010000000164925" target="_blank" rel="external">hexo重置ssh</a></p>
-<h3 id="3-配置config-yml">3.配置config.yml</h3><p>部署到Github前需要配置_config.yml文件，首先找到下面的内容</p>
+<h2 id="6-_Deploy_to_github"><a href="#6-_Deploy_to_github" class="headerlink" title="6. Deploy to github"></a>6. Deploy to github</h2><h3 id="1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D"><a href="#1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D" class="headerlink" title="1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］"></a>1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］</h3><h3 id="2-SSH"><a href="#2-SSH" class="headerlink" title="2.SSH"></a>2.SSH</h3><p>请参照 <a href="http://segmentfault.com/q/1010000000164925" target="_blank" rel="external">hexo重置ssh</a></p>
+<h3 id="3-_u914D_u7F6Econfig-yml"><a href="#3-_u914D_u7F6Econfig-yml" class="headerlink" title="3.配置config.yml"></a>3.配置config.yml</h3><p>部署到Github前需要配置_config.yml文件，首先找到下面的内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Deployment</span></span><br><span class="line"><span class="comment">##Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>:</span><br><span class="line">``` </span><br><span class="line">然后将它们修改为</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: github</span><br><span class="line">  repository: git@github.com:snake/snake.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>NOTE1:</p>
 <p>Repository：必须是SSH形式的url（git@github.com:snake/snake.github.io.git），而不能是HTTPS形式的url（<a href="https://github.com/snake/snake.github.io.git），否则会出现错误。" target="_blank" rel="external">https://github.com/snake/snake.github.io.git），否则会出现错误。</a></p>
 <p>NOTE2:</p>
 <p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。</p>
-<h3 id="4-_Deploy">4. Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="7-_测试">7. 测试</h2><p>当部署完成后，在浏览器中打开<a href="http://snake.github.io/（https://snake.github.io/）" target="_blank" rel="external">http://snake.github.io/（https://snake.github.io/）</a> ，正常显示网页，表明部署成功。</p>
-<h2 id="8-_总结：部署步骤">8. 总结：部署步骤</h2><p>每次部署的步骤，可按以下三步来进行。</p>
+<h3 id="4-_Deploy"><a href="#4-_Deploy" class="headerlink" title="4. Deploy"></a>4. Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h2 id="7-__u6D4B_u8BD5"><a href="#7-__u6D4B_u8BD5" class="headerlink" title="7. 测试"></a>7. 测试</h2><p>当部署完成后，在浏览器中打开<a href="http://snake.github.io/（https://snake.github.io/）" target="_blank" rel="external">http://snake.github.io/（https://snake.github.io/）</a> ，正常显示网页，表明部署成功。</p>
+<h2 id="8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4"><a href="#8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4" class="headerlink" title="8. 总结：部署步骤"></a>8. 总结：部署步骤</h2><p>每次部署的步骤，可按以下三步来进行。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="9-_总结：本地调试">9. 总结：本地调试</h2><p>在执行下面的命令后，</p>
+<h2 id="9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5"><a href="#9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5" class="headerlink" title="9. 总结：本地调试"></a>9. 总结：本地调试</h2><p>在执行下面的命令后，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment">#生成</span></span><br><span class="line">$ hexo s <span class="comment">#启动本地服务，进行文章预览调试</span></span><br></pre></td></tr></table></figure>
 <p>浏览器输入<a href="http://localhost:4000，查看搭建效果。此后的每次变更_config.yml" target="_blank" rel="external">http://localhost:4000，查看搭建效果。此后的每次变更_config.yml</a> 文件或者新建文件都可以先用此命令调试，尤其是当你想调试新添加的主题时。</p>
 <p>可以用简化的一条命令<br><code>hexo s -g</code></p>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://snake.me/2015/12/03/开贴了/" data-id="cihwyu8vt0001od2dmppcvpux" class="article-share-link">Share</a>
+      <a data-url="http://snake.me/2015/12/03/开贴了/" data-id="cihzt530c0004zv2d3m6m69cd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/建站日记/">建站日记</a></li></ul>
@@ -133,6 +133,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/12/10/换主题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          更换主题
+        
+      </div>
+    </a>
   
   
     <a href="/2015/12/02/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -155,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/建站日记/">建站日记</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/建站日记/">建站日记</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -173,7 +182,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -183,6 +192,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/10/换主题/">更换主题</a>
+          </li>
         
           <li>
             <a href="/2015/12/03/开贴了/">小试牛刀</a>
