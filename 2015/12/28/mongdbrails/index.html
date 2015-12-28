@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="rails, mongo," />
 
 
 
@@ -51,25 +51,31 @@
 
 
 
-<meta name="description" content="默认的主题太大众了。我打算选一个iceman,简单简约。iceman
-更多主题 https://github.com/hexojs/hexo/wiki/Themes
-英文说明是：
-1234567891011121314151617181920Install: 这里注意下你执行命令的文件夹，首先需要在cd themes 中执行clone$ git clone https://github.com/w">
+<meta name="description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
+安装
+1Brew install mongodb
+然后1which mongo
+来找到mongo的安装路径添加环境变量：
+123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="更换主题">
-<meta property="og:url" content="http://snake.me/2015/12/10/换主题/index.html">
+<meta property="og:title" content="mongodbrails">
+<meta property="og:url" content="http://snake.me/2015/12/28/mongdbrails/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="默认的主题太大众了。我打算选一个iceman,简单简约。iceman
-更多主题 https://github.com/hexojs/hexo/wiki/Themes
-英文说明是：
-1234567891011121314151617181920Install: 这里注意下你执行命令的文件夹，首先需要在cd themes 中执行clone$ git clone https://github.com/w">
-<meta property="og:updated_time" content="2015-12-14T10:22:55.000Z">
+<meta property="og:description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
+安装
+1Brew install mongodb
+然后1which mongo
+来找到mongo的安装路径添加环境变量：
+123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
+<meta property="og:updated_time" content="2015-12-28T10:03:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="更换主题">
-<meta name="twitter:description" content="默认的主题太大众了。我打算选一个iceman,简单简约。iceman
-更多主题 https://github.com/hexojs/hexo/wiki/Themes
-英文说明是：
-1234567891011121314151617181920Install: 这里注意下你执行命令的文件夹，首先需要在cd themes 中执行clone$ git clone https://github.com/w">
+<meta name="twitter:title" content="mongodbrails">
+<meta name="twitter:description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
+安装
+1Brew install mongodb
+然后1which mongo
+来找到mongo的安装路径添加环境变量：
+123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
 
 
 
@@ -81,7 +87,7 @@
   };
 </script>
 
-  <title> 更换主题 | Snake's Home </title>
+  <title> mongodbrails | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -201,7 +207,7 @@
             
             
               
-                更换主题
+                mongodbrails
               
             
           </h1>
@@ -210,34 +216,19 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-10T10:46:50+08:00" content="2015-12-10">
-              2015-12-10
+            <time itemprop="dateCreated" datetime="2015-12-28T14:17:38+08:00" content="2015-12-28">
+              2015-12-28
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/建站/" itemprop="url" rel="index">
-                    <span itemprop="name">建站</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/10/换主题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/10/换主题/" itemprop="commentsCount"></span>
+                <a href="/2015/12/28/mongdbrails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/mongdbrails/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -256,53 +247,66 @@
       
 
       
-        <span itemprop="articleBody"><p>默认的主题太大众了。<br>我打算选一个iceman,简单简约。<a href="https://github.com/wizicer/iceman" target="_blank" rel="external">iceman</a></p>
-<p>更多主题 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a></p>
-<p>英文说明是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Install: 这里注意下你执行命令的文件夹，首先需要在<span class="built_in">cd</span> themes 中执行<span class="built_in">clone</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/wizicer/iceman.git themes/iceman</span><br><span class="line"></span><br><span class="line">Install dependence</span><br><span class="line">$ npm install hexo-renderer-ejs --save</span><br><span class="line">$ npm install hexo-renderer-stylus --save</span><br><span class="line">$ npm install hexo-renderer-marked --save</span><br><span class="line"></span><br><span class="line">Iceman requires Hexo <span class="number">2.4</span>.<span class="number">5</span> and above.</span><br><span class="line">Enable: Modify  theme  setting <span class="keyword">in</span> blog folder _config.yml  to  iceman .</span><br><span class="line"></span><br><span class="line">Update:</span><br><span class="line"><span class="built_in">cd</span> themes/iceman</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">please backup your  _config.yml  file before update. </span><br><span class="line"></span><br><span class="line">Configuration:</span><br><span class="line"></span><br><span class="line">Modify settings <span class="keyword">in</span>  /themes/iceman/_config.yml .</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>将Git Shell 切到Hexo目录下，然后执行下面的命令，将pacman下载到 themes/pacman 目录下。<br><code>$ git clone https://github.com/A-limon/pacman.git themes/pacman</code></p>
-</li>
-<li><p>修改你的博客根目录/D/Hexo下的config.yml配置文件中的theme属性，将其设置为pacman。</p>
-</li>
-<li><p>更新pacman主题</p>
-</li>
-</ol>
-<p><code>cd themes/pacman</code></p>
-<p><code>git pull</code></p>
-<p>NOTE：先备份_config.yml 文件后再升级</p>
-<p>换过几个主题，最后选择了 next<br><a href="http://www.jianshu.com/p/f66103553c45" target="_blank" rel="external">参照</a></p>
-<p><a href="http://theme-next.iissnan.com" target="_blank" rel="external">Next|官网</a></p>
-<p><a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">Next|主题设定</a></p>
-<p><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="external">Next|第三方服务</a></p>
-<p><strong>其他</strong></p>
-<p>md文件发布问题</p>
-<p>在md文件中写中文，发布后会出现乱码的情况，另存为时改为“UTF-8”即可。</p>
-<p>图片</p>
-<p>对于本地图片，需要在source目录下面新建一个目录images，然后把图片放到目录中。</p>
-<p>Markdown语法</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="link_label">这是一张图片</span>](<span class="link_url">/images/fens.me.png</span>)</span><br></pre></td></tr></table></figure></span>
+        <span itemprop="articleBody"><p>要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。<br>自己折腾了下，总结过程如下：</p>
+<p><strong><em>安装</em></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Brew install mongodb</span><br></pre></td></tr></table></figure>
+<p>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> mongo</span><br></pre></td></tr></table></figure></p>
+<p>来找到mongo的安装路径<br>添加环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi .bahs_profile</span><br><span class="line">Export /usr/ocal/cellar/mongodb/<span class="number">3.0</span>.<span class="number">7</span>/bin:<span class="variable">$PATH</span>;</span><br><span class="line">Source .bash_profile</span><br></pre></td></tr></table></figure>
+<p>然后启动mongo 服务：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
+<p>敲上mongo就可以操作数据库了</p>
+<p><strong><em>与rails结合</em></strong></p>
+<p>在Gemfile中添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line">gem <span class="string">"mongoid"</span>, <span class="string">"~&gt; 4.0.0"</span></span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bundle </span>install</span><br></pre></td></tr></table></figure>
+<p>再执行：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">rails</span> <span class="tag">g</span> <span class="tag">mongoid</span><span class="pseudo">:config</span></span><br></pre></td></tr></table></figure>
+<p>将会出现：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure></p>
+<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
+<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
+<p>和<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
+<p>这两行，再添加以下几行：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"require "action_mailer/railtie"# require "active_resource/railtie" # Comment this line for Rails 4.0+require "rails/test_unit/railtie"require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
+<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
+<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>使用</em></strong></p>
+<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Person  include Mongoid::Document  field :first_name, type: String  field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>就ok了</p>
+<p><strong>相关Gems</strong></p>
+<p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
+<p>• 使用mongoid-rails可以防止query的注入</p>
+<p>• 因为在替换成mongoid之后，默认的migratetion就已经不能用来了，所以可以用mongoid_rails_migrations来实现针对mongodb的数据迁移功能。</p>
+<p>参考：</p>
+<p><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a></p>
+<p><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rails-mongo/" rel="tag">#rails, mongo</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/03/开贴了/" rel="next" title="小试牛刀">
-                <i class="fa fa-chevron-left"></i> 小试牛刀
+              <a href="/2015/12/10/换主题/" rel="next" title="更换主题">
+                <i class="fa fa-chevron-left"></i> 更换主题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/28/mongdbrails/" rel="prev" title="mongodbrails">
-                mongodbrails <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -341,10 +345,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/10/换主题/"
-     data-title="更换主题"
+        <div class="ds-share flat" data-thread-key="2015/12/28/mongdbrails/"
+     data-title="mongodbrails"
      data-content=""
-     data-url="http://snake.me/2015/12/10/换主题/">
+     data-url="http://snake.me/2015/12/28/mongdbrails/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -375,8 +379,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/10/换主题/"
-           data-title="更换主题" data-url="http://snake.me/2015/12/10/换主题/">
+      <div class="ds-thread" data-thread-key="2015/12/28/mongdbrails/"
+           data-title="mongodbrails" data-url="http://snake.me/2015/12/28/mongdbrails/">
       </div>
     
   </div>
