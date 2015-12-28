@@ -273,23 +273,20 @@
 <p>将会出现：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure></p>
 <p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
 <p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
+<p>和<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
 <p>这两行，再添加以下几行：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"require "action_mailer/railtie"# require "active_resource/railtie" # Comment this line for Rails 4.0+require "rails/test_unit/railtie"require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
 <p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
 <p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong><em>使用</em></strong></p>
-<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Person  include Mongoid::Document  field :first_name, type: String  field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Documentfield :first_name, type: Stringfield :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>就ok了</p>
 <p><strong>相关Gems</strong></p>
 <p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
 <p>• 使用mongoid-rails可以防止query的注入</p>
 <p>• 因为在替换成mongoid之后，默认的migratetion就已经不能用来了，所以可以用mongoid_rails_migrations来实现针对mongodb的数据迁移功能。</p>
-<p>参考：</p>
-<p><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a></p>
-<p><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
+<p>参考：<br><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a><br><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
 
             
           </span>
