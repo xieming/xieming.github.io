@@ -177,15 +177,106 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/05/ImageMagick/" itemprop="url">
+                  ImageMagick
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
+        
+          <span itemprop="articleBody">
+            
+              <p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
+<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
+<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
+<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
+<p>然后自己本地尝试了一下，也成功了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
+<p>回头继续研究一下。<br>未完待续。。。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
     
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -978,7 +1069,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -992,7 +1083,7 @@
 
           <div class="site-state-item site-state-tags">
             
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               
           </div>

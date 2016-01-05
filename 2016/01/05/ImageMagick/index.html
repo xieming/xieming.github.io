@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="rails," />
+  <meta name="keywords" content="Picture," />
 
 
 
@@ -51,22 +51,22 @@
 
 
 
-<meta name="description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
+<meta name="description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
+但是执行起来老报错：1Error while running convert: convert: unable to read font
+网上搜了 一下，有解决方案：1$ brew insta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="railsupload">
-<meta property="og:url" content="http://snake.me/2016/01/05/railsupload/index.html">
+<meta property="og:title" content="ImageMagick">
+<meta property="og:url" content="http://snake.me/2016/01/05/ImageMagick/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
-<meta property="og:updated_time" content="2016-01-05T08:52:10.000Z">
+<meta property="og:description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
+但是执行起来老报错：1Error while running convert: convert: unable to read font
+网上搜了 一下，有解决方案：1$ brew insta">
+<meta property="og:updated_time" content="2016-01-05T09:46:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="railsupload">
-<meta name="twitter:description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
+<meta name="twitter:title" content="ImageMagick">
+<meta name="twitter:description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
+但是执行起来老报错：1Error while running convert: convert: unable to read font
+网上搜了 一下，有解决方案：1$ brew insta">
 
 
 
@@ -78,7 +78,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
   };
 </script>
 
-  <title> railsupload | Snake's Home </title>
+  <title> ImageMagick | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -198,7 +198,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
             
             
               
-                railsupload
+                ImageMagick
               
             
           </h1>
@@ -207,7 +207,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T16:43:01+08:00" content="2016-01-05">
+            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
               2016-01-05
             </time>
           </span>
@@ -218,8 +218,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/05/railsupload/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/railsupload/" itemprop="commentsCount"></span>
+                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -238,28 +238,13 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
       
 
       
-        <span itemprop="articleBody"><p>最近一直在折腾上传，对mongo的上传搞伤脑经。</p>
-<p>rails 上传主要是一个gem carrierwave<br>先生成一个项目，然后对Gemfile做点修改,如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'mongoid'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line">gem <span class="string">'carrierwave-mongoid'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span>, <span class="string">'0.6.2'</span></span><br><span class="line">gem <span class="string">'mini_magick'</span> <span class="comment">#不使用rmagick，占内存</span></span><br><span class="line">gem <span class="string">'fog'</span>  <span class="comment">#用来在生产环境中上传图片</span></span><br></pre></td></tr></table></figure>
-<p>然后安装</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="operator"><span class="keyword">install</span></span><br><span class="line">rails <span class="keyword">g</span> mongoid:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require <span class="string">"action_controller/railtie"</span></span><br><span class="line">require <span class="string">"action_mailer/railtie"</span></span><br><span class="line"><span class="comment"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span></span><br><span class="line">require <span class="string">"rails/test_unit/railtie"</span></span><br><span class="line">require <span class="string">"sprockets/railtie"</span> <span class="comment"># Uncomment this line for Rails 3.1+</span></span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>生成一个scaffold</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rails generate scaffold <span class="keyword">User</span> <span class="title">name</span>:<span class="type">string</span> nick:<span class="type">string</span> avatar:<span class="type">string</span></span><br><span class="line"></span><br><span class="line">rails generate uploader Avatar</span><br></pre></td></tr></table></figure>
-<p>未完待续。。。</p>
+        <span itemprop="articleBody"><p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
+<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
+<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
+<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
+<p>然后自己本地尝试了一下，也成功了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
+<p>回头继续研究一下。<br>未完待续。。。</p>
 </span>
       
     </div>
@@ -268,7 +253,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
       
         <div class="post-tags">
           
-            <a href="/tags/rails/" rel="tag">#rails</a>
+            <a href="/tags/Picture/" rel="tag">#Picture</a>
           
         </div>
       
@@ -277,17 +262,13 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/Nginx-Passenger-Rails/" rel="next" title="Nginx+Passenger+Rails">
-                <i class="fa fa-chevron-left"></i> Nginx+Passenger+Rails
+              <a href="/2016/01/05/railsupload/" rel="next" title="railsupload">
+                <i class="fa fa-chevron-left"></i> railsupload
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/05/ImageMagick/" rel="prev" title="ImageMagick">
-                ImageMagick <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -326,10 +307,10 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/05/railsupload/"
-     data-title="railsupload"
+        <div class="ds-share flat" data-thread-key="2016/01/05/ImageMagick/"
+     data-title="ImageMagick"
      data-content=""
-     data-url="http://snake.me/2016/01/05/railsupload/">
+     data-url="http://snake.me/2016/01/05/ImageMagick/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -360,8 +341,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/05/railsupload/"
-           data-title="railsupload" data-url="http://snake.me/2016/01/05/railsupload/">
+      <div class="ds-thread" data-thread-key="2016/01/05/ImageMagick/"
+           data-title="ImageMagick" data-url="http://snake.me/2016/01/05/ImageMagick/">
       </div>
     
   </div>
