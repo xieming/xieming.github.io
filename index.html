@@ -177,15 +177,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -262,7 +253,7 @@
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please specify <span class="operator">a</span> prefix <span class="built_in">directory</span> [/opt/nginx]: /usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
 <p>当询问nginx的安装路径的时候，个人建议安装到/usr/local/nginx下</p>
 <p>当安装完成后，会在console中提示如何配置Nginx<br>Passenger会自动帮你将下面两行添加到Nginx的配置文件中/usr/local/nginx/conf/nginx.conf（很人性化）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	http &#123;  		...  		passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;  		passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;  		...&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;  		listen 80;  		server_name www.yourhost.com;  		root /somewhere/public;   # &lt;--- be sure to point to 'public'!  		passenger_enabled on;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http &#123;  		...  	passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;  	passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;  		...&#125;</span><br><span class="line"></span><br><span class="line">server &#123;  	listen 80;  	server_name www.yourhost.com;  	root /somewhere/public;   # &lt;--- be sure to point to 'public'!  	passenger_enabled on;&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>2.配置Nginx + Passenger + Rails</strong><br>修改hosts文件，给你的项目一个本地域名, 比如awesome_project.local</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/hosts<span class="number">127.0</span>.<span class="number">0.1</span> awesome_project.local</span><br></pre></td></tr></table></figure>
 <p>测试hosts</p>
