@@ -200,6 +200,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/05/Nginx-Passenger-Rails/" itemprop="url">
+                  Nginx+Passenger+Rails
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T11:37:09+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/Nginx-Passenger-Rails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/Nginx-Passenger-Rails/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。</p>
+<p>假设已经配置好了ruby,rails等环境。</p>
+<p><strong>1.安装Passenger + Nginx</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gem install passenger</span><br><span class="line">$ passenger-install-nginx-module</span><br><span class="line"></span><br><span class="line">Whichever you choose, <span class="keyword">if</span> you already have an existing Nginx configuration file,</span><br><span class="line"><span class="keyword">then</span> it will be preserved.</span><br><span class="line">Enter your choice (<span class="number">1</span> or <span class="number">2</span>) or press Ctrl-C to abort:</span><br></pre></td></tr></table></figure>
+<p>这里建议选择1</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please specify <span class="operator">a</span> prefix <span class="built_in">directory</span> [/opt/nginx]: /usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
+<p>当询问nginx的安装路径的时候，个人建议安装到/usr/local/nginx下</p>
+<p>当安装完成后，会在console中提示如何配置Nginx<br>Passenger会自动帮你将下面两行添加到Nginx的配置文件中/usr/local/nginx/conf/nginx.conf（很人性化）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http &#123;  ...  passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;  passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;  ...&#125;</span><br><span class="line"></span><br><span class="line">server &#123;  listen 80;  server_name www.yourhost.com;  root /somewhere/public;   # &lt;--- be sure to point to 'public'!  passenger_enabled on;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.配置Nginx + Passenger + Rails</strong><br>修改hosts文件，给你的项目一个本地域名, 比如awesome_project.local</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/hosts<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> awesome_project.local</span><br></pre></td></tr></table></figure>
+<p>测试hosts</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ping</span> awesome_project.<span class="keyword">local</span><span class="built_in">PING</span> awesome_project.<span class="keyword">local</span> (<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>): <span class="number">56</span> data bytes</span><br></pre></td></tr></table></figure>
+<p>继续配置Nginx, 这里我给出一个最小可运行的Nginx配置文件</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">worker_processes  1;</span><br><span class="line">events </span><span class="expression">&#123;  <span class="variable">worker</span>_<span class="variable">connections</span>  1024;&#125;</span><span class="xml"></span><br><span class="line">http </span><span class="expression">&#123;  <span class="variable">passenger</span>_<span class="variable">root</span> <span class="end-block">/Users</span><span class="end-block">/Daniel</span><span class="end-block">/.rvm</span><span class="end-block">/gems</span><span class="end-block">/ruby-</span>1<span class="variable">.</span>9<span class="variable">.</span>2<span class="variable">-p</span>290<span class="end-block">/gems</span><span class="end-block">/passenger-</span>3<span class="variable">.</span>0<span class="variable">.</span>10;  <span class="variable">passenger</span>_<span class="variable">ruby</span> <span class="end-block">/Users</span><span class="end-block">/Daniel</span><span class="end-block">/.rvm</span><span class="end-block">/wrappers</span><span class="end-block">/ruby-</span>1<span class="variable">.</span>9<span class="variable">.</span>2<span class="variable">-p</span>290<span class="end-block">/ruby</span>;</span><br><span class="line"><span class="variable">include</span>       <span class="variable">mime.types</span>;  <span class="variable"><span class="keyword">default</span></span>_<span class="variable">type</span>  <span class="variable">application</span><span class="end-block">/octet-stream</span>;  <span class="variable">sendfile</span>      <span class="variable">on</span>;  <span class="variable">keepalive</span>_<span class="variable">timeout</span>  65;</span><br><span class="line"><span class="variable">server</span> &#123;    <span class="variable">listen</span> 80;    <span class="variable">server</span>_<span class="variable">name</span> <span class="variable">awesome</span>_<span class="variable">project.local</span>;    <span class="variable">root</span> <span class="end-block">/Users</span><span class="end-block">/Daniel</span><span class="end-block">/awesome</span>_<span class="variable">project</span><span class="end-block">/public</span>;    <span class="variable">passenger</span>_<span class="variable">enabled</span> <span class="variable">on</span>;    <span class="variable">rails</span>_<span class="variable">env</span> <span class="variable">development</span>;  &#125;</span><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>测试Nginx的配置文件语法是否正确</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx -tnginx: the configuration <span class="keyword">file</span> /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span> <span class="keyword">syntax</span> is oknginx: configuration <span class="keyword">file</span> /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span> <span class="keyword">test</span> is successful</span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo nginx</span><br></pre></td></tr></table></figure>
+<p>如何在修改Nginx的配置文件后，让Nginx载入新配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> reload</span><br></pre></td></tr></table></figure>
+<p>如何停止Nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> stop</span><br></pre></td></tr></table></figure>
+<p>如何在不停Nginx的情况下，重新启动Passenger</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd path<span class="regexp">/to/y</span>our<span class="regexp">/awesome/</span><span class="keyword">project</span>$ touch tmp<span class="regexp">/restart.txt</span></span><br></pre></td></tr></table></figure>
+<p>好了，这个时候你可以打开浏览器，访问你的awesome_project网站了</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//awesome_project.local</span></span><br></pre></td></tr></table></figure>
+<p>有时候，需要到  /usr/local/nginx/sbin/<br>执行：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Sudo</span> ./nginx</span><br></pre></td></tr></table></figure>
+<p>问题来了，启动后一直显示”welcome to nginx”<br>解决方案：在conf文件里注释掉</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># location / &#123;</span></span><br><span class="line"><span class="preprocessor">#     root   html;</span></span><br><span class="line"><span class="preprocessor">#    index  index.html index.htm;</span></span><br><span class="line"><span class="preprocessor"># &#125;</span></span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/05/Android速成/" itemprop="url">
                   Android速成
                 </a>
@@ -725,7 +850,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -739,7 +864,7 @@
 
           <div class="site-state-item site-state-tags">
             
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               
           </div>
