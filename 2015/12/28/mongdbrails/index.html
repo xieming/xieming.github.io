@@ -67,7 +67,7 @@
 然后1which mongo
 来找到mongo的安装路径添加环境变量：
 123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
-<meta property="og:updated_time" content="2015-12-28T10:13:29.000Z">
+<meta property="og:updated_time" content="2016-01-05T14:02:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodbrails">
 <meta name="twitter:description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
@@ -268,12 +268,12 @@
 <p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
 <p>和<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
 <p>这两行，再添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"require "action_mailer/railtie"# require "active_resource/railtie" # Comment this line for Rails 4.0+require "rails/test_unit/railtie"require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"</span><br><span class="line">require "action_mailer/railtie"</span><br><span class="line"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span><br><span class="line">require "rails/test_unit/railtie"</span><br><span class="line">require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
 <p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
 <p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong><em>使用</em></strong></p>
-<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Documentfield :first_name, type: Stringfield :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Document</span><br><span class="line">field :first_name, type: String</span><br><span class="line">field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>就ok了</p>
 <p><strong>相关Gems</strong></p>
 <p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
