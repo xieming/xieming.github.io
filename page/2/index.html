@@ -177,6 +177,144 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/10/换主题/" itemprop="url">
+                  更换主题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-10T10:46:50+08:00" content="2015-12-10">
+              2015-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/建站/" itemprop="url" rel="index">
+                    <span itemprop="name">建站</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/10/换主题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/10/换主题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>默认的主题太大众了。<br>我打算选一个iceman,简单简约。<a href="https://github.com/wizicer/iceman" target="_blank" rel="external">iceman</a></p>
+<p>更多主题 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a></p>
+<p>英文说明是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Install: 这里注意下你执行命令的文件夹，首先需要在<span class="built_in">cd</span> themes 中执行<span class="built_in">clone</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/wizicer/iceman.git themes/iceman</span><br><span class="line"></span><br><span class="line">Install dependence</span><br><span class="line">$ npm install hexo-renderer-ejs --save</span><br><span class="line">$ npm install hexo-renderer-stylus --save</span><br><span class="line">$ npm install hexo-renderer-marked --save</span><br><span class="line"></span><br><span class="line">Iceman requires Hexo <span class="number">2.4</span>.<span class="number">5</span> and above.</span><br><span class="line">Enable: Modify  theme  setting <span class="keyword">in</span> blog folder _config.yml  to  iceman .</span><br><span class="line"></span><br><span class="line">Update:</span><br><span class="line"><span class="built_in">cd</span> themes/iceman</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">please backup your  _config.yml  file before update. </span><br><span class="line"></span><br><span class="line">Configuration:</span><br><span class="line"></span><br><span class="line">Modify settings <span class="keyword">in</span>  /themes/iceman/_config.yml .</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>将Git Shell 切到Hexo目录下，然后执行下面的命令，将pacman下载到 themes/pacman 目录下。<br><code>$ git clone https://github.com/A-limon/pacman.git themes/pacman</code></p>
+</li>
+<li><p>修改你的博客根目录/D/Hexo下的config.yml配置文件中的theme属性，将其设置为pacman。</p>
+</li>
+<li><p>更新pacman主题</p>
+</li>
+</ol>
+<p><code>cd themes/pacman</code></p>
+<p><code>git pull</code></p>
+<p>NOTE：先备份_config.yml 文件后再升级</p>
+<p>换过几个主题，最后选择了 next<br><a href="http://www.jianshu.com/p/f66103553c45" target="_blank" rel="external">参照</a></p>
+<p><a href="http://theme-next.iissnan.com" target="_blank" rel="external">Next|官网</a></p>
+<p><a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">Next|主题设定</a></p>
+<p><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="external">Next|第三方服务</a></p>
+<p><strong>其他</strong></p>
+<p>md文件发布问题</p>
+<p>在md文件中写中文，发布后会出现乱码的情况，另存为时改为“UTF-8”即可。</p>
+<p>图片</p>
+<p>对于本地图片，需要在source目录下面新建一个目录images，然后把图片放到目录中。</p>
+<p>Markdown语法</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="link_label">这是一张图片</span>](<span class="link_url">/images/fens.me.png</span>)</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -363,7 +501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
