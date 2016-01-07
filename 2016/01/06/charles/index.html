@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="rails," />
+  <meta name="keywords" content="Tools," />
 
 
 
@@ -51,25 +51,31 @@
 
 
 
-<meta name="description" content="当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。
-假设已经配置好了ruby,rails等环境。
-1.安装Passenger + Nginx
-123456$ gem install passenger$ passenger-install-nginx-moduleWhichever you choose,">
+<meta name="description" content="公司一直都在用charles抓包，我却只用了其中很少的一部分功能。
+网上搜了一下，打算更深入了解其中的奥妙：
+charles使用教程指南
+http调试工具Charles Proxy用法详解
+charles系列教程
+似乎还有接口自动化录制功能等，得好好研究研究。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx+Passenger+Rails">
-<meta property="og:url" content="http://snake.me/2016/01/05/Nginx-Passenger-Rails/index.html">
+<meta property="og:title" content="charles">
+<meta property="og:url" content="http://snake.me/2016/01/06/charles/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。
-假设已经配置好了ruby,rails等环境。
-1.安装Passenger + Nginx
-123456$ gem install passenger$ passenger-install-nginx-moduleWhichever you choose,">
-<meta property="og:updated_time" content="2016-01-05T13:57:32.000Z">
+<meta property="og:description" content="公司一直都在用charles抓包，我却只用了其中很少的一部分功能。
+网上搜了一下，打算更深入了解其中的奥妙：
+charles使用教程指南
+http调试工具Charles Proxy用法详解
+charles系列教程
+似乎还有接口自动化录制功能等，得好好研究研究。">
+<meta property="og:updated_time" content="2016-01-06T15:46:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx+Passenger+Rails">
-<meta name="twitter:description" content="当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。
-假设已经配置好了ruby,rails等环境。
-1.安装Passenger + Nginx
-123456$ gem install passenger$ passenger-install-nginx-moduleWhichever you choose,">
+<meta name="twitter:title" content="charles">
+<meta name="twitter:description" content="公司一直都在用charles抓包，我却只用了其中很少的一部分功能。
+网上搜了一下，打算更深入了解其中的奥妙：
+charles使用教程指南
+http调试工具Charles Proxy用法详解
+charles系列教程
+似乎还有接口自动化录制功能等，得好好研究研究。">
 
 
 
@@ -81,7 +87,7 @@
   };
 </script>
 
-  <title> Nginx+Passenger+Rails | Snake's Home </title>
+  <title> charles | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -201,7 +207,7 @@
             
             
               
-                Nginx+Passenger+Rails
+                charles
               
             
           </h1>
@@ -210,8 +216,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T11:37:09+08:00" content="2016-01-05">
-              2016-01-05
+            <time itemprop="dateCreated" datetime="2016-01-06T23:28:24+08:00" content="2016-01-06">
+              2016-01-06
             </time>
           </span>
 
@@ -221,8 +227,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/05/Nginx-Passenger-Rails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/Nginx-Passenger-Rails/" itemprop="commentsCount"></span>
+                <a href="/2016/01/06/charles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/charles/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -241,42 +247,12 @@
       
 
       
-        <span itemprop="articleBody"><p>当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。</p>
-<p>假设已经配置好了ruby,rails等环境。</p>
-<p><strong>1.安装Passenger + Nginx</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gem install passenger</span><br><span class="line">$ passenger-install-nginx-module</span><br><span class="line"></span><br><span class="line">Whichever you choose, <span class="keyword">if</span> you already have an existing Nginx configuration file,</span><br><span class="line"><span class="keyword">then</span> it will be preserved.</span><br><span class="line">Enter your choice (<span class="number">1</span> or <span class="number">2</span>) or press Ctrl-C to abort:</span><br></pre></td></tr></table></figure>
-<p>这里建议选择1</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please specify <span class="operator">a</span> prefix <span class="built_in">directory</span> [/opt/nginx]: /usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
-<p>当询问nginx的安装路径的时候，个人建议安装到/usr/local/nginx下</p>
-<p>当安装完成后，会在console中提示如何配置Nginx<br>Passenger会自动帮你将下面两行添加到Nginx的配置文件中/usr/local/nginx/conf/nginx.conf（很人性化）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">...</span><br><span class="line">    passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;</span><br><span class="line">    passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.yourhost.com;</span><br><span class="line">    root /somewhere/public;   # &lt;--- be sure to point to 'public'!</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2.配置Nginx + Passenger + Rails</strong><br>修改hosts文件，给你的项目一个本地域名, 比如awesome_project.local</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/hosts</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span> awesome_project.local</span><br></pre></td></tr></table></figure>
-<p>测试hosts</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ping awesome_project.local</span><br><span class="line">PING awesome_project.local (<span class="number">127.0</span>.<span class="number">0.1</span>): <span class="number">56</span> data bytes</span><br></pre></td></tr></table></figure>
-<p>继续配置Nginx, 这里我给出一个最小可运行的Nginx配置文件</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line">events &#123;</span><br><span class="line">  worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">  passenger_root /Users/Daniel/.rvm/gems/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/gems/passenger-<span class="number">3.0</span><span class="number">.10</span>;</span><br><span class="line">  passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/ruby;</span><br><span class="line">include       mime.types;</span><br><span class="line">  default_type  application/octet-stream;</span><br><span class="line">  sendfile      on;</span><br><span class="line">  keepalive_timeout  <span class="number">65</span>;</span><br><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name awesome_project.local;</span><br><span class="line">    root /Users/Daniel/awesome_project/public;</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">    rails_env development;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试Nginx的配置文件语法是否正确</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx -t</span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
-<p>启动Nginx</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo nginx</span><br></pre></td></tr></table></figure>
-<p>如何在修改Nginx的配置文件后，让Nginx载入新配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> reload</span><br></pre></td></tr></table></figure>
-<p>如何停止Nginx</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> stop</span><br></pre></td></tr></table></figure>
-<p>如何在不停Nginx的情况下，重新启动Passenger</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/your/awesome/project</span><br><span class="line">$ touch tmp/restart.txt</span><br></pre></td></tr></table></figure>
-<p>好了，这个时候你可以打开浏览器，访问你的awesome_project网站了</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//awesome_project.local</span></span><br></pre></td></tr></table></figure>
-<p>有时候，需要到  /usr/local/nginx/sbin/<br>执行：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Sudo</span> ./nginx</span><br></pre></td></tr></table></figure>
-<p>问题来了，启动后一直显示”welcome to nginx”<br>解决方案：在conf文件里注释掉</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># location / &#123;</span></span><br><span class="line"><span class="preprocessor">#     root   html;</span></span><br><span class="line"><span class="preprocessor">#    index  index.html index.htm;</span></span><br><span class="line"><span class="preprocessor"># &#125;</span></span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<p><a href="http://www.jianshu.com/p/b773becdc5dd" target="_blank" rel="external">通过Nginx在一台服务器上部署两个Rails项目</a></p>
-<p><a href="https://ruby-china.org/wiki/mac-nginx-passenger-rails" target="_blank" rel="external">如何在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境</a></p>
-<p><a href="http://www.zgxue.com/nclass/10/" target="_blank" rel="external">Ruby专题</a></p>
+        <span itemprop="articleBody"><p>公司一直都在用charles抓包，我却只用了其中很少的一部分功能。</p>
+<p>网上搜了一下，打算更深入了解其中的奥妙：</p>
+<p><a href="http://drops.wooyun.org/tips/2423" target="_blank" rel="external">charles使用教程指南</a></p>
+<p><a href="http://www.veryhuo.com/a/view/98081.html" target="_blank" rel="external">http调试工具Charles Proxy用法详解</a></p>
+<p><a href="http://blog.163.com/benita_0/blog/#m=0&amp;t=1&amp;c=fks_084069086083087071085087086095086083081069084094081069" target="_blank" rel="external">charles系列教程</a></p>
+<p>似乎还有接口自动化录制功能等，得好好研究研究。</p>
 </span>
       
     </div>
@@ -285,7 +261,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/rails/" rel="tag">#rails</a>
+            <a href="/tags/Tools/" rel="tag">#Tools</a>
           
         </div>
       
@@ -294,16 +270,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/Android速成/" rel="next" title="Android速成">
-                <i class="fa fa-chevron-left"></i> Android速成
+              <a href="/2016/01/06/gradle/" rel="next" title="gradle 入门">
+                <i class="fa fa-chevron-left"></i> gradle 入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/05/railsupload/" rel="prev" title="railsupload">
-                railsupload <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/06/recordautomation/" rel="prev" title="录制自动化">
+                录制自动化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -343,10 +319,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/05/Nginx-Passenger-Rails/"
-     data-title="Nginx+Passenger+Rails"
+        <div class="ds-share flat" data-thread-key="2016/01/06/charles/"
+     data-title="charles"
      data-content=""
-     data-url="http://snake.me/2016/01/05/Nginx-Passenger-Rails/">
+     data-url="http://snake.me/2016/01/06/charles/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -377,8 +353,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/05/Nginx-Passenger-Rails/"
-           data-title="Nginx+Passenger+Rails" data-url="http://snake.me/2016/01/05/Nginx-Passenger-Rails/">
+      <div class="ds-thread" data-thread-key="2016/01/06/charles/"
+           data-title="charles" data-url="http://snake.me/2016/01/06/charles/">
       </div>
     
   </div>
