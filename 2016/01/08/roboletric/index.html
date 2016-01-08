@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="imagemagick,图像处理," />
+  <meta name="keywords" content="Android,Robolectric," />
 
 
 
@@ -51,26 +51,28 @@
 
 
 
-<meta name="description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
-但是执行起来老报错：1Error while running convert: convert: unable to read font
-网上搜了 一下，有解决方案：1$ brew insta">
+<meta name="description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
+用Robolectric来做Android unit testing
+
+Robolectric 环境搭建(Android Studio + Gradle)
+在Android Studio中使用Roboletric和Espresso">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ImageMagick">
-<meta property="og:url" content="http://snake.me/2016/01/05/ImageMagick/index.html">
+<meta property="og:title" content="roboletric">
+<meta property="og:url" content="http://snake.me/2016/01/08/roboletric/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
-但是执行起来老报错：1Error while running convert: convert: unable to read font
-网上搜了 一下，有解决方案：1$ brew insta">
-<meta property="og:image" content="http://snake.me/images/snake.jpg">
-<meta property="og:image" content="http://snake.me/images/helloworld.jpg">
-<meta property="og:image" content="http://snake.me/images/1112.png">
-<meta property="og:image" content="http://snake.me/images/snake111.png">
-<meta property="og:updated_time" content="2016-01-07T13:56:24.000Z">
+<meta property="og:description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
+用Robolectric来做Android unit testing
+
+Robolectric 环境搭建(Android Studio + Gradle)
+在Android Studio中使用Roboletric和Espresso">
+<meta property="og:updated_time" content="2016-01-08T06:20:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ImageMagick">
-<meta name="twitter:description" content="最近看了一下ImageMagick, 感觉很强大的。因为有IOS app用了这个来区分环境，版本。打算好好研究一下。我是在 Mac 上用 brew 安装的：1brew install imagemagick
-但是执行起来老报错：1Error while running convert: convert: unable to read font
-网上搜了 一下，有解决方案：1$ brew insta">
+<meta name="twitter:title" content="roboletric">
+<meta name="twitter:description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
+用Robolectric来做Android unit testing
+
+Robolectric 环境搭建(Android Studio + Gradle)
+在Android Studio中使用Roboletric和Espresso">
 
 
 
@@ -82,7 +84,7 @@
   };
 </script>
 
-  <title> ImageMagick | Snake's Home </title>
+  <title> roboletric | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -222,7 +224,7 @@
             
             
               
-                ImageMagick
+                roboletric
               
             
           </h1>
@@ -231,8 +233,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
-              2016-01-05
+            <time itemprop="dateCreated" datetime="2016-01-08T14:15:11+08:00" content="2016-01-08">
+              2016-01-08
             </time>
           </span>
 
@@ -257,8 +259,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
+                <a href="/2016/01/08/roboletric/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/roboletric/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -277,16 +279,11 @@
       
 
       
-        <span itemprop="articleBody"><p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
-<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
-<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
-<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
-<p>然后自己本地尝试了一下，也成功了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
-<p>ImageMagick 主要的命令还是 convert<br><img src="/images/snake.jpg" alt="初始图像"><br>尝试了几个命令：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -fill black -pointsize <span class="number">10</span> -<span class="attribute">font</span> helvetica -draw <span class="string">'text 10,10 "Hello, World!"'</span>  snake<span class="class">.jpg</span>  helloworld.jpg</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/helloworld.jpg" alt="效果"><br>在图像的10,10 位置采用10磅的全黑Helvetica字体写上 Hello, World!<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert snake.png -<span class="built_in">fill</span> <span class="built_in">red</span> -pointsize <span class="number">13</span> -<span class="title">draw</span> <span class="string">"text 10,15 'snake'"</span> <span class="number">1112.</span>png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/1112.png" alt="效果"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -<span class="attribute">background</span> <span class="string">'#0008'</span> -fill white -gravity center  <span class="tag">caption</span>:<span class="string">"debug"</span>  snake<span class="class">.png</span> +swap -gravity south -composite snake111.png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/snake111.png" alt="效果"><br>更多的命令：<br><a href="http://blog.chinaunix.net/uid-16979052-id-3374027.html" target="_blank" rel="external">ImageMagick之convert命令大全</a><br>回头继续研究一下。<br>未完待续。。。</p>
+        <span itemprop="articleBody"><p>看到了公司项目用了Robolectric, 打算周末来实践一把。</p>
+<p><a href="http://segmentfault.com/a/1190000002904944" target="_blank" rel="external">用Robolectric来做Android unit testing</a></p>
+<p><a href="http://www.xuxu1988.com/2015/05/23/robolectric-01/?utm_source=tuicool" target="_blank" rel="external"></a></p>
+<p><a href="http://www.xuxu1988.com/2015/05/23/robolectric-01/?utm_source=tuicool" target="_blank" rel="external">Robolectric 环境搭建(Android Studio + Gradle)</a></p>
+<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0605/2999.html" target="_blank" rel="external">在Android Studio中使用Roboletric和Espresso</a></p>
 </span>
       
     </div>
@@ -295,9 +292,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/imagemagick/" rel="tag">#imagemagick</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
-            <a href="/tags/图像处理/" rel="tag">#图像处理</a>
+            <a href="/tags/Robolectric/" rel="tag">#Robolectric</a>
           
         </div>
       
@@ -306,17 +303,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/railsupload/" rel="next" title="railsupload">
-                <i class="fa fa-chevron-left"></i> railsupload
+              <a href="/2016/01/08/用户行为分析/" rel="next" title="用户行为分析">
+                <i class="fa fa-chevron-left"></i> 用户行为分析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/06/gradle/" rel="prev" title="gradle 入门">
-                gradle 入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -355,10 +348,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/05/ImageMagick/"
-     data-title="ImageMagick"
+        <div class="ds-share flat" data-thread-key="2016/01/08/roboletric/"
+     data-title="roboletric"
      data-content=""
-     data-url="http://snake.me/2016/01/05/ImageMagick/">
+     data-url="http://snake.me/2016/01/08/roboletric/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -389,8 +382,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/05/ImageMagick/"
-           data-title="ImageMagick" data-url="http://snake.me/2016/01/05/ImageMagick/">
+      <div class="ds-thread" data-thread-key="2016/01/08/roboletric/"
+           data-title="roboletric" data-url="http://snake.me/2016/01/08/roboletric/">
       </div>
     
   </div>
