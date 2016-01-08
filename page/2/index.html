@@ -51,15 +51,15 @@
 
 
 
-<meta name="description" content="I love Andy and Sally">
+<meta name="description" content="不要被困难击倒，除非你躺着睡大觉">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Snake's Home">
 <meta property="og:url" content="http://snake.me/page/2/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="I love Andy and Sally">
+<meta property="og:description" content="不要被困难击倒，除非你躺着睡大觉">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Snake's Home">
-<meta name="twitter:description" content="I love Andy and Sally">
+<meta name="twitter:description" content="不要被困难击倒，除非你躺着睡大觉">
 
 
 
@@ -136,6 +136,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -152,6 +162,16 @@
               <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
             关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -200,6 +220,272 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/05/Nginx-Passenger-Rails/" itemprop="url">
+                  Nginx+Passenger+Rails
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T11:37:09+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/Nginx-Passenger-Rails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/Nginx-Passenger-Rails/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。</p>
+<p>假设已经配置好了ruby,rails等环境。</p>
+<p><strong>1.安装Passenger + Nginx</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gem install passenger</span><br><span class="line">$ passenger-install-nginx-module</span><br><span class="line"></span><br><span class="line">Whichever you choose, <span class="keyword">if</span> you already have an existing Nginx configuration file,</span><br><span class="line"><span class="keyword">then</span> it will be preserved.</span><br><span class="line">Enter your choice (<span class="number">1</span> or <span class="number">2</span>) or press Ctrl-C to abort:</span><br></pre></td></tr></table></figure>
+<p>这里建议选择1</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please specify <span class="operator">a</span> prefix <span class="built_in">directory</span> [/opt/nginx]: /usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
+<p>当询问nginx的安装路径的时候，个人建议安装到/usr/local/nginx下</p>
+<p>当安装完成后，会在console中提示如何配置Nginx<br>Passenger会自动帮你将下面两行添加到Nginx的配置文件中/usr/local/nginx/conf/nginx.conf（很人性化）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">...</span><br><span class="line">    passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;</span><br><span class="line">    passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.yourhost.com;</span><br><span class="line">    root /somewhere/public;   # &lt;--- be sure to point to 'public'!</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.配置Nginx + Passenger + Rails</strong><br>修改hosts文件，给你的项目一个本地域名, 比如awesome_project.local</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/hosts</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span> awesome_project.local</span><br></pre></td></tr></table></figure>
+<p>测试hosts</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ping awesome_project.local</span><br><span class="line">PING awesome_project.local (<span class="number">127.0</span>.<span class="number">0.1</span>): <span class="number">56</span> data bytes</span><br></pre></td></tr></table></figure>
+<p>继续配置Nginx, 这里我给出一个最小可运行的Nginx配置文件</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line">events &#123;</span><br><span class="line">  worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">  passenger_root /Users/Daniel/.rvm/gems/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/gems/passenger-<span class="number">3.0</span><span class="number">.10</span>;</span><br><span class="line">  passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/ruby;</span><br><span class="line">include       mime.types;</span><br><span class="line">  default_type  application/octet-stream;</span><br><span class="line">  sendfile      on;</span><br><span class="line">  keepalive_timeout  <span class="number">65</span>;</span><br><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name awesome_project.local;</span><br><span class="line">    root /Users/Daniel/awesome_project/public;</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">    rails_env development;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试Nginx的配置文件语法是否正确</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx -t</span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo nginx</span><br></pre></td></tr></table></figure>
+<p>如何在修改Nginx的配置文件后，让Nginx载入新配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> reload</span><br></pre></td></tr></table></figure>
+<p>如何停止Nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> stop</span><br></pre></td></tr></table></figure>
+<p>如何在不停Nginx的情况下，重新启动Passenger</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/your/awesome/project</span><br><span class="line">$ touch tmp/restart.txt</span><br></pre></td></tr></table></figure>
+<p>好了，这个时候你可以打开浏览器，访问你的awesome_project网站了</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//awesome_project.local</span></span><br></pre></td></tr></table></figure>
+<p>有时候，需要到  /usr/local/nginx/sbin/<br>执行：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Sudo</span> ./nginx</span><br></pre></td></tr></table></figure>
+<p>问题来了，启动后一直显示”welcome to nginx”<br>解决方案：在conf文件里注释掉</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># location / &#123;</span></span><br><span class="line"><span class="preprocessor">#     root   html;</span></span><br><span class="line"><span class="preprocessor">#    index  index.html index.htm;</span></span><br><span class="line"><span class="preprocessor"># &#125;</span></span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a href="http://www.jianshu.com/p/b773becdc5dd" target="_blank" rel="external">通过Nginx在一台服务器上部署两个Rails项目</a></p>
+<p><a href="https://ruby-china.org/wiki/mac-nginx-passenger-rails" target="_blank" rel="external">如何在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境</a></p>
+<p><a href="http://www.zgxue.com/nclass/10/" target="_blank" rel="external">Ruby专题</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/05/Android速成/" itemprop="url">
+                  Android速成
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T10:33:37+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Develop/" itemprop="url" rel="index">
+                    <span itemprop="name">Develop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/Android速成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/Android速成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>今天跟小昭聊天，然后就知道了：</p>
+<p><strong>HockeyApp</strong> 提供了一套移动开发工具包，可为开发者提供实时崩溃分析报告、用户反馈、测试版分发平台以及测试分析等功能，支持 Android、iOS 以及 Windows Phone 等流行的移动操作系统。</p>
+<p>微软收购 HockeyApp 后微软将会把前者的工具包集成到 Visual Studio Online 的Application Insights服务当中，以便将 Application Insights 的支持扩展到 iOS 和 Android 平台。</p>
+<p>Twitter 1年 前收购了崩溃分析服务商 Crashlytics。</p>
+<p>今年2月，苹果就收购了移动测试平台 TestFlight 的开发商 Burstly，不过被苹果收购后 TestFlight 旋即停止了对其他平台的支持。</p>
+<p>而 Google 刚刚推出了自己的Android Studio，不过这这个 IDE 只支持 Android，且测试工具还有待完善。</p>
+<p>接着还搜到了：</p>
+<p><strong>hockeykit</strong></p>
+<p><strong>Crashlytics</strong></p>
+<p><a href="http://www.cnblogs.com/huwei0814/p/3796659.html" target="_blank" rel="external">个性化控件(View)</a></p>
+<p><a href="http://www.cnblogs.com/huwei0814/p/3796670.html" target="_blank" rel="external">工具库</a></p>
+<p><a href="http://www.cnblogs.com/huwei0814/p/3796673.html" target="_blank" rel="external">优秀项目</a></p>
+<p><a href="http://www.cnblogs.com/huwei0814/p/3796678.html" target="_blank" rel="external">开发测试工具</a></p>
+<p>慢慢消化消化。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/28/mongdbrails/" itemprop="url">
                   mongodbrails
                 </a>
@@ -216,6 +502,21 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DB/" itemprop="url" rel="index">
+                    <span itemprop="name">DB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -405,6 +706,7 @@
 <p><a href="http://theme-next.iissnan.com" target="_blank" rel="external">Next|官网</a></p>
 <p><a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">Next|主题设定</a></p>
 <p><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="external">Next|第三方服务</a></p>
+<p><a href="https://github.com/iissnan/hexo-theme-next/wiki" target="_blank" rel="external">Next|github</a></p>
 <p><strong>其他</strong></p>
 <p>md文件发布问题</p>
 <p>在md文件中写中文，发布后会出现乱码的情况，另存为时改为“UTF-8”即可。</p>
@@ -618,27 +920,27 @@
           <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Snake</p>
         </div>
-        <p class="site-description motion-element" itemprop="description">I love Andy and Sally</p>
+        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">1</span>
+            <a href="/categories">
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
-            
-              <span class="site-state-item-count">6</span>
+            <a href="/tags">
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
-              
+              </a>
           </div>
 
         </nav>
@@ -683,7 +985,19 @@
             <p class="site-author-name">Links</p>
             
               <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/" target="_blank">jianshu</a>
+                <a href="http://www.jianshu.com/" target="_blank">简书</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://testerhome.com" target="_blank">Testerhome</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.imooc.com" target="_blank">幕客网</a>
               </span>
             
           
