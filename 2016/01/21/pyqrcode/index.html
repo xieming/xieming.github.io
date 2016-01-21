@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,Robolectric," />
+  <meta name="keywords" content="qrcode," />
 
 
 
@@ -51,28 +51,34 @@
 
 
 
-<meta name="description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
-用Robolectric来做Android unit testing
-
-Robolectric 环境搭建(Android Studio + Gradle)
-在Android Studio中使用Roboletric和Espresso">
+<meta name="description" content="最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。先是Python使用QRCode模块生成二维码
+但是他的安装方法已经失效。我去官网看了一下qrcode|python
+我的安装方法很简单：
+12sudo easy_install pillowsudo easy_install qrcode
+一下就安装成功了。
+简单用法
+123456789101112131415161718">
 <meta property="og:type" content="article">
-<meta property="og:title" content="roboletric">
-<meta property="og:url" content="http://snake.me/2016/01/08/roboletric/index.html">
+<meta property="og:title" content="pyqrcode">
+<meta property="og:url" content="http://snake.me/2016/01/21/pyqrcode/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
-用Robolectric来做Android unit testing
-
-Robolectric 环境搭建(Android Studio + Gradle)
-在Android Studio中使用Roboletric和Espresso">
-<meta property="og:updated_time" content="2016-01-08T06:20:01.000Z">
+<meta property="og:description" content="最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。先是Python使用QRCode模块生成二维码
+但是他的安装方法已经失效。我去官网看了一下qrcode|python
+我的安装方法很简单：
+12sudo easy_install pillowsudo easy_install qrcode
+一下就安装成功了。
+简单用法
+123456789101112131415161718">
+<meta property="og:updated_time" content="2016-01-21T08:18:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="roboletric">
-<meta name="twitter:description" content="看到了公司项目用了Robolectric, 打算周末来实践一把。
-用Robolectric来做Android unit testing
-
-Robolectric 环境搭建(Android Studio + Gradle)
-在Android Studio中使用Roboletric和Espresso">
+<meta name="twitter:title" content="pyqrcode">
+<meta name="twitter:description" content="最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。先是Python使用QRCode模块生成二维码
+但是他的安装方法已经失效。我去官网看了一下qrcode|python
+我的安装方法很简单：
+12sudo easy_install pillowsudo easy_install qrcode
+一下就安装成功了。
+简单用法
+123456789101112131415161718">
 
 
 
@@ -84,7 +90,7 @@ Robolectric 环境搭建(Android Studio + Gradle)
   };
 </script>
 
-  <title> roboletric | Snake's Home </title>
+  <title> pyqrcode | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +230,7 @@ Robolectric 环境搭建(Android Studio + Gradle)
             
             
               
-                roboletric
+                pyqrcode
               
             
           </h1>
@@ -233,8 +239,8 @@ Robolectric 环境搭建(Android Studio + Gradle)
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-08T14:15:11+08:00" content="2016-01-08">
-              2016-01-08
+            <time itemprop="dateCreated" datetime="2016-01-21T15:53:39+08:00" content="2016-01-21">
+              2016-01-21
             </time>
           </span>
 
@@ -243,8 +249,8 @@ Robolectric 环境搭建(Android Studio + Gradle)
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -259,8 +265,8 @@ Robolectric 环境搭建(Android Studio + Gradle)
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/08/roboletric/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/roboletric/" itemprop="commentsCount"></span>
+                <a href="/2016/01/21/pyqrcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/pyqrcode/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -279,11 +285,19 @@ Robolectric 环境搭建(Android Studio + Gradle)
       
 
       
-        <span itemprop="articleBody"><p>看到了公司项目用了Robolectric, 打算周末来实践一把。</p>
-<p><a href="http://segmentfault.com/a/1190000002904944" target="_blank" rel="external">用Robolectric来做Android unit testing</a></p>
-<p><a href="http://www.xuxu1988.com/2015/05/23/robolectric-01/?utm_source=tuicool" target="_blank" rel="external"></a></p>
-<p><a href="http://www.xuxu1988.com/2015/05/23/robolectric-01/?utm_source=tuicool" target="_blank" rel="external">Robolectric 环境搭建(Android Studio + Gradle)</a></p>
-<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0605/2999.html" target="_blank" rel="external">在Android Studio中使用Roboletric和Espresso</a></p>
+        <span itemprop="articleBody"><p>最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。<br>先是<a href="http://blog.chinaunix.net/uid-21633169-id-5566663.html" target="_blank" rel="external">Python使用QRCode模块生成二维码</a></p>
+<p>但是他的安装方法已经失效。<br>我去官网看了一下<a href="https://pypi.python.org/pypi/qrcode" target="_blank" rel="external">qrcode|python</a></p>
+<p>我的安装方法很简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install pillow</span><br><span class="line">sudo easy_install qrcode</span><br></pre></td></tr></table></figure>
+<p>一下就安装成功了。</p>
+<p>简单用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">img = qrcode.make(<span class="string">'hello, qrcode'</span>)</span><br><span class="line">img.save(<span class="string">'test.png'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">高级用法</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">qr = qrcode.QRCode(     </span><br><span class="line">    version=<span class="number">1</span>,     </span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,     </span><br><span class="line">    box_size=<span class="number">10</span>,     </span><br><span class="line">    border=<span class="number">4</span>, </span><br><span class="line">) </span><br><span class="line">qr.add_data(<span class="string">'hello, qrcode'</span>) </span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)  </span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'123.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>参数含义：<br>version：值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。</p>
+<p>error_correction：控制二维码的错误纠正功能。可取值下列4个常量。<br>　　ERROR_CORRECT_L：大约7%或更少的错误能被纠正。<br>　　ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。<br>　　ROR_CORRECT_H：大约30%或更少的错误能被纠正。</p>
+<p>box_size：控制二维码中每个小格子包含的像素数。</p>
+<p>border：控制边框（二维码与图片边界的距离）包含的格子数（默认为4，是相关标准规定的最小值）<br>尝试了一下带图标的，没有成功，先不管了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install image</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jb51.net/article/58579.htm" target="_blank" rel="external">qrcode|图标</a></p>
 </span>
       
     </div>
@@ -292,9 +306,7 @@ Robolectric 环境搭建(Android Studio + Gradle)
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
-          
-            <a href="/tags/Robolectric/" rel="tag">#Robolectric</a>
+            <a href="/tags/qrcode/" rel="tag">#qrcode</a>
           
         </div>
       
@@ -303,17 +315,13 @@ Robolectric 环境搭建(Android Studio + Gradle)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/08/用户行为分析/" rel="next" title="用户行为分析">
-                <i class="fa fa-chevron-left"></i> 用户行为分析
+              <a href="/2016/01/08/roboletric/" rel="next" title="roboletric">
+                <i class="fa fa-chevron-left"></i> roboletric
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/21/pyqrcode/" rel="prev" title="pyqrcode">
-                pyqrcode <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -352,10 +360,10 @@ Robolectric 环境搭建(Android Studio + Gradle)
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/08/roboletric/"
-     data-title="roboletric"
+        <div class="ds-share flat" data-thread-key="2016/01/21/pyqrcode/"
+     data-title="pyqrcode"
      data-content=""
-     data-url="http://snake.me/2016/01/08/roboletric/">
+     data-url="http://snake.me/2016/01/21/pyqrcode/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -386,8 +394,8 @@ Robolectric 环境搭建(Android Studio + Gradle)
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/08/roboletric/"
-           data-title="roboletric" data-url="http://snake.me/2016/01/08/roboletric/">
+      <div class="ds-thread" data-thread-key="2016/01/21/pyqrcode/"
+           data-title="pyqrcode" data-url="http://snake.me/2016/01/21/pyqrcode/">
       </div>
     
   </div>

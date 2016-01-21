@@ -220,6 +220,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/21/pyqrcode/" itemprop="url">
+                  pyqrcode
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T15:53:39+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/21/pyqrcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/pyqrcode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。<br>先是<a href="http://blog.chinaunix.net/uid-21633169-id-5566663.html" target="_blank" rel="external">Python使用QRCode模块生成二维码</a></p>
+<p>但是他的安装方法已经失效。<br>我去官网看了一下<a href="https://pypi.python.org/pypi/qrcode" target="_blank" rel="external">qrcode|python</a></p>
+<p>我的安装方法很简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install pillow</span><br><span class="line">sudo easy_install qrcode</span><br></pre></td></tr></table></figure>
+<p>一下就安装成功了。</p>
+<p>简单用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">img = qrcode.make(<span class="string">'hello, qrcode'</span>)</span><br><span class="line">img.save(<span class="string">'test.png'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">高级用法</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">qr = qrcode.QRCode(     </span><br><span class="line">    version=<span class="number">1</span>,     </span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,     </span><br><span class="line">    box_size=<span class="number">10</span>,     </span><br><span class="line">    border=<span class="number">4</span>, </span><br><span class="line">) </span><br><span class="line">qr.add_data(<span class="string">'hello, qrcode'</span>) </span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)  </span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'123.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>参数含义：<br>version：值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。</p>
+<p>error_correction：控制二维码的错误纠正功能。可取值下列4个常量。<br>　　ERROR_CORRECT_L：大约7%或更少的错误能被纠正。<br>　　ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。<br>　　ROR_CORRECT_H：大约30%或更少的错误能被纠正。</p>
+<p>box_size：控制二维码中每个小格子包含的像素数。</p>
+<p>border：控制边框（二维码与图片边界的距离）包含的格子数（默认为4，是相关标准规定的最小值）<br>尝试了一下带图标的，没有成功，先不管了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install image</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jb51.net/article/58579.htm" target="_blank" rel="external">qrcode|图标</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/08/roboletric/" itemprop="url">
                   roboletric
                 </a>
@@ -1294,124 +1415,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/ImageMagick/" itemprop="url">
-                  ImageMagick
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
-<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
-<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
-<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
-<p>然后自己本地尝试了一下，也成功了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
-<p>ImageMagick 主要的命令还是 convert<br><img src="/images/snake.jpg" alt="初始图像"><br>尝试了几个命令：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -fill black -pointsize <span class="number">10</span> -<span class="attribute">font</span> helvetica -draw <span class="string">'text 10,10 "Hello, World!"'</span>  snake<span class="class">.jpg</span>  helloworld.jpg</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/helloworld.jpg" alt="效果"><br>在图像的10,10 位置采用10磅的全黑Helvetica字体写上 Hello, World!<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert snake.png -<span class="built_in">fill</span> <span class="built_in">red</span> -pointsize <span class="number">13</span> -<span class="title">draw</span> <span class="string">"text 10,15 'snake'"</span> <span class="number">1112.</span>png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/1112.png" alt="效果"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -<span class="attribute">background</span> <span class="string">'#0008'</span> -fill white -gravity center  <span class="tag">caption</span>:<span class="string">"debug"</span>  snake<span class="class">.png</span> +swap -gravity south -composite snake111.png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/snake111.png" alt="效果"><br>更多的命令：<br><a href="http://blog.chinaunix.net/uid-16979052-id-3374027.html" target="_blank" rel="external">ImageMagick之convert命令大全</a><br>回头继续研究一下。<br>未完待续。。。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1458,21 +1461,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
