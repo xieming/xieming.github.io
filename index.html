@@ -220,6 +220,703 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/22/python-report/" itemprop="url">
+                  python-report
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T00:07:32+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/22/python-report/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-report/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>python 生成报告， ReportLab 实践</p>
+<p>先是文档：</p>
+<p><a href="http://www.reportlab.com/docs/reportlab-userguide.pdf" target="_blank" rel="external">http://www.reportlab.com/docs/reportlab-userguide.pdf</a></p>
+<p>然后照着文档，加上 <a href="http://blog.csdn.net/youyudehexie/article/details/7918402" target="_blank" rel="external">http://blog.csdn.net/youyudehexie/article/details/7918402</a></p>
+<p>写成了一个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> Drawing  </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.barcharts <span class="keyword">import</span> VerticalBarChart  </span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlopen    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> *    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.lineplots <span class="keyword">import</span> LinePlot    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.textlabels <span class="keyword">import</span> Label    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics <span class="keyword">import</span> renderPDF  </span><br><span class="line">drawing = Drawing(<span class="number">400</span>, <span class="number">200</span>)  </span><br><span class="line">data = [(<span class="number">13</span>, <span class="number">5</span>, <span class="number">20</span>),(<span class="number">14</span>, <span class="number">6</span>, <span class="number">21</span>)]  </span><br><span class="line">bc = VerticalBarChart()  </span><br><span class="line">bc.x = <span class="number">50</span>  </span><br><span class="line">bc.y = <span class="number">50</span>  </span><br><span class="line">bc.height = <span class="number">125</span>  </span><br><span class="line">bc.width = <span class="number">300</span>  </span><br><span class="line">bc.data = data  </span><br><span class="line">bc.strokeColor = colors.black  </span><br><span class="line">bc.valueAxis.valueMin = <span class="number">0</span>  </span><br><span class="line">bc.valueAxis.valueMax = <span class="number">50</span>  </span><br><span class="line">bc.valueAxis.valueStep = <span class="number">10</span>  </span><br><span class="line">bc.categoryAxis.labels.boxAnchor =<span class="string">'ne'</span>  </span><br><span class="line">bc.categoryAxis.labels.dx = <span class="number">8</span>  </span><br><span class="line">bc.categoryAxis.labels.dy = -<span class="number">2</span>  </span><br><span class="line">bc.categoryAxis.labels.angle = <span class="number">30</span>  </span><br><span class="line">bc.categoryAxis.categoryNames = [<span class="string">'Jan-99'</span>,<span class="string">'Feb-99'</span>,<span class="string">'Mar-99'</span>]  </span><br><span class="line">drawing.add(bc)  </span><br><span class="line">  </span><br><span class="line">drawing.add(String(<span class="number">250</span>,<span class="number">150</span>,<span class="string">"ss"</span>, fontSize=<span class="number">14</span>,fillColor=colors.red))        </span><br><span class="line">renderPDF.drawToFile(drawing,<span class="string">'report2.pdf'</span>,<span class="string">'API'</span>)</span><br></pre></td></tr></table></figure>
+<p>然后按照：<br><a href="http://www.jb51.net/article/53233.htm" target="_blank" rel="external">http://www.jb51.net/article/53233.htm</a></p>
+<p>学习了下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="keyword">import</span> subprocess  </span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="keyword">from</span> reportlab.lib.units <span class="keyword">import</span> inch  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_report</span><span class="params">()</span>:</span>  </span><br><span class="line">    p = os.popen(<span class="string">"df -h"</span>)  </span><br><span class="line"><span class="comment">#   print p.stdout.readlines()  </span></span><br><span class="line">    <span class="keyword">return</span> p.readlines()  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pdf</span><span class="params">(input, output=<span class="string">"disk_report.pdf"</span>)</span>:</span>  </span><br><span class="line">    now = datetime.datetime.today()  </span><br><span class="line">    date = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)  </span><br><span class="line">    c = canvas.Canvas(output)  </span><br><span class="line">    textobject = c.beginText()  </span><br><span class="line">    textobject.setTextOrigin(inch, <span class="number">11</span>*inch)  </span><br><span class="line">    textobject.textLines(<span class="string">'''''Disk Capcity Report: %s'''</span> %date)  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> input:  </span><br><span class="line">        textobject.textLine(line.strip())  </span><br><span class="line">    c.drawText(textobject)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">report = disk_report()  </span><br><span class="line">create_pdf(report)</span><br></pre></td></tr></table></figure>
+<p>再练习：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>  </span><br><span class="line">    c = canvas.Canvas(<span class="string">"helloworld.pdf"</span>)  </span><br><span class="line">    c.drawString(<span class="number">100</span>,<span class="number">100</span>,<span class="string">"Hello,World"</span>)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/22/python-build/" itemprop="url">
+                  python-build
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T00:03:09+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/22/python-build/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-build/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>花了些时间完成的自动化打包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> walk <span class="keyword">as</span> oswalk  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> chdir <span class="keyword">as</span> oschdir  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> popen <span class="keyword">as</span> ospopen  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> exists <span class="keyword">as</span> pathexists  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> join <span class="keyword">as</span> pathjoin  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfile <span class="keyword">as</span> shcopy  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> rmtree <span class="keyword">as</span> shrmtree  </span><br><span class="line"><span class="keyword">import</span> shutil  </span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#consts  </span></span><br><span class="line">LIBRARY = <span class="string">"library"</span>  </span><br><span class="line">TRUNK = <span class="string">"trunk"</span>  </span><br><span class="line">CIRCLE = <span class="string">"Circle"</span>  </span><br><span class="line">PROJECT_PROPERTY = <span class="string">"project.properties"</span>  </span><br><span class="line">BIN = <span class="string">"bin"</span>  </span><br><span class="line">OBJ = <span class="string">"obj"</span>  </span><br><span class="line">APK = <span class="string">"Circle-debug.apk"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXX\build\android"</span>  </span><br><span class="line">local_path=<span class="string">r"D:\dailyAPK"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidBuilder</span>:</span>  </span><br><span class="line">    __base_path = <span class="string">""</span>  </span><br><span class="line">    __output_path = <span class="string">""</span>  </span><br><span class="line">    __use_ndk = <span class="keyword">False</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base_path, output_path, use_ndk)</span>:</span>  </span><br><span class="line">        self.__base_path = base_path  </span><br><span class="line">        self.__output_path = output_path  </span><br><span class="line">        self.__use_ndk = use_ndk  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__execmd</span><span class="params">(self, cmd)</span>:</span>  </span><br><span class="line">        ret = ospopen(cmd).readlines()  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> ret:  </span><br><span class="line">            print(line)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_native</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"re-build shared objects"</span>)  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(OBJ)):  </span><br><span class="line">            shrmtree(OBJ)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build clean"</span>)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build"</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__move_qrcode</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        zxing_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"qrcode"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>, <span class="string">"zxing"</span>)  </span><br><span class="line">        dest_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"src"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,dest_path  </span><br><span class="line">        shutil.copy(zxing_path, dest_path)  </span><br><span class="line">        <span class="comment">#shutil.copy2(zxing_path, dest_path)  </span></span><br><span class="line">        <span class="comment">#shutil.copytree(zxing_path, dest_path,True)  </span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"wo cao"</span>  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(dest_path)):  </span><br><span class="line">            shrmtree(dest_path)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ccc"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ddd"</span>,dest_path  </span><br><span class="line">        shcopy(zxing_path, dest_path)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_ant</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        idx = <span class="number">0</span>  </span><br><span class="line">        project_properties = <span class="string">"target=android-19\n\n"</span>  </span><br><span class="line">        <span class="keyword">for</span> dirpath, dirname, filename <span class="keyword">in</span> oswalk(pathjoin(self.__base_path, LIBRARY)):  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">"------------------"</span>,dirname  </span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> dirname:  </span><br><span class="line">                print(<span class="string">"re-ant project %s"</span> % (dir))  </span><br><span class="line">                oschdir(pathjoin(self.__base_path, LIBRARY, dir))  </span><br><span class="line">                idx += <span class="number">1</span>  </span><br><span class="line">                project_properties += <span class="string">"android.library.reference.%d=../../%s/%s\n"</span> % (idx, LIBRARY, dir)  </span><br><span class="line">                self.__execmd(<span class="string">"android update project -n %s -p . -t android-19"</span> % (dir))  </span><br><span class="line">                self.__execmd(<span class="string">"ant clean"</span>)  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">        print(<span class="string">"re-ant project Circle"</span>)  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        self.__execmd(<span class="string">"android update project -n Circle -p . -t android-19"</span>)  </span><br><span class="line">        property_file = open(PROJECT_PROPERTY, <span class="string">"w"</span>)  </span><br><span class="line">        property_file.write(project_properties)  </span><br><span class="line">        property_file.flush()  </span><br><span class="line">        property_file.close()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_apk</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        self.__re_ant()  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        <span class="keyword">if</span> (self.__use_ndk == <span class="keyword">True</span>):  </span><br><span class="line">            self.__re_native()  </span><br><span class="line">        print(<span class="string">"build apk"</span>)  </span><br><span class="line">        <span class="comment">#self.__move_qrcode()  </span></span><br><span class="line">        self.__execmd(<span class="string">"ant debug"</span>)  </span><br><span class="line">        apk_path = pathjoin(self.__base_path, TRUNK, CIRCLE, BIN, APK)  </span><br><span class="line">        <span class="keyword">if</span> pathexists(apk_path):  </span><br><span class="line">            shcopy(apk_path, pathjoin(self.__output_path, APK))  </span><br><span class="line">            print(<span class="string">"Build completed.!"</span>)  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            print(<span class="string">"Build failed."</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_remote</span><span class="params">(self, base_path, output_path,oldname)</span>:</span>  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,base_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,output_path  </span><br><span class="line">        base_file = base_path + <span class="string">'\\'</span>+oldname  </span><br><span class="line">        output_file=output_path+ <span class="string">'\\'</span>+oldname  </span><br><span class="line">        <span class="keyword">print</span> base_file  </span><br><span class="line">        shutil.copy2(base_file, output_file)  </span><br><span class="line">        now1 = time.strftime(<span class="string">'%Y-%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line">        newfname=<span class="string">"%sCircle-debug.apk"</span>%(now1)  </span><br><span class="line">        newfpath=<span class="string">"%s/%s"</span>%(output_path,newfname)   </span><br><span class="line">        oldfpath=<span class="string">"%s/%s"</span>%(output_path,oldname)  </span><br><span class="line">        os.rename(oldfpath, newfpath)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_help</span><span class="params">()</span>:</span>  </span><br><span class="line">    print(<span class="string">"usage:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py &lt;base_path&gt; &lt;output_path&gt; &lt;use-ndk&gt;"</span>)  </span><br><span class="line">    print(<span class="string">"    path must be absolute path, do NOT accept relative path"</span>)  </span><br><span class="line">    print(<span class="string">"sample:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py /home/yiban/android /home/yiban/Desktop true"</span>)  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">4</span>:  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    <span class="comment"># base_path, output_path  </span></span><br><span class="line">    base_path = sys.argv[<span class="number">1</span>]  </span><br><span class="line">    output_path = sys.argv[<span class="number">2</span>]  </span><br><span class="line">    use_ndk = sys.argv[<span class="number">3</span>]  </span><br><span class="line">    <span class="keyword">if</span> (base_path.startswith(<span class="string">"."</span>) <span class="keyword">or</span> output_path.startswith(<span class="string">"."</span>)):  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    ab = AndroidBuilder(base_path, output_path, use_ndk == <span class="string">"true"</span>)  </span><br><span class="line">    ab.make_apk()  </span><br><span class="line">    ab.move_remote(local_path, remote_path, APK)</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/21/python-monkey/" itemprop="url">
+                  python-monkey
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T23:56:55+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/21/python-monkey/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/python-monkey/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>曾今花了点时间研究的 monkey 测试：</p>
+<p>可以直接用： </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.model</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.build</span><span class="class">.version</span><span class="class">.releasel</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.brand</span>"</span><br></pre></td></tr></table></figure>
+<p>来获<br>/system/build.prop  里面的信息。（何老师教的。）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> re  </span><br><span class="line">  </span><br><span class="line">packageName=<span class="string">"com.XXX.app"</span>  </span><br><span class="line">logdir=<span class="string">r"d:\jenkins"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXXX\build\android"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#os.popen('adb shell cat /system/build.prop &gt;D:\jenkins\phone.text')  </span></span><br><span class="line">os.system(<span class="string">'adb shell cat /system/build.prop &gt;D:\jenkins\phone.text'</span>)  </span><br><span class="line">  </span><br><span class="line">f = <span class="string">r"D:\jenkins\phone.text"</span>   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcmd</span><span class="params">(cmd)</span>:</span>  </span><br><span class="line">    f = open(cmd,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">          </span><br><span class="line">        line=line.split(<span class="string">'='</span>)  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.build.version.release'</span>):  </span><br><span class="line">            version = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.model'</span>):  </span><br><span class="line">            model = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.brand'</span>):  </span><br><span class="line">            brand = line[<span class="number">1</span>]  </span><br><span class="line">    <span class="keyword">return</span> version,model,brand  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">version,model,brand=getcmd(f)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> version,model,brand  </span><br><span class="line">os.remove(f)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print "使用Logcat清空Phone中log"  </span></span><br><span class="line">os.popen(<span class="string">"adb logcat -c"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"暂停2秒..."  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"wait"</span>  </span><br><span class="line">time.sleep(<span class="number">2</span>)  </span><br><span class="line"><span class="comment">#os.popen("adb shell monkey -p com.yiban.app -s 500 -v -v 1000")  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"强制关闭准备测试的APP"  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"a"</span>  </span><br><span class="line"><span class="comment">#commd="adb shell am force-stop %s" %(packageName)  </span></span><br><span class="line"><span class="comment">#os.popen(commd)      </span></span><br><span class="line">now1 = time.strftime(<span class="string">'%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line"><span class="comment">#newfname="%sCircle-debug.apk"%(now1)  </span></span><br><span class="line"><span class="comment">#newfpath="%s/%s"%(output_path,newfname)   </span></span><br><span class="line"><span class="comment">#oldfpath="%s/%s"%(output_path,oldname)  </span></span><br><span class="line"><span class="comment">#os.rename(oldfpath, newfpath)  </span></span><br><span class="line"><span class="comment">#print"开始执行Monkey命令"  </span></span><br><span class="line">  </span><br><span class="line">monkeylogname=logdir+<span class="string">"\\"</span>+now1+<span class="string">"monkey.log"</span>  </span><br><span class="line"><span class="keyword">print</span> monkeylogname  </span><br><span class="line">cmd=<span class="string">"adb shell monkey -p com.yiban.app -s 500 --ignore-timeouts --monitor-native-crashes -v -v 10000 &gt;&gt;%s"</span> %(monkeylogname)  </span><br><span class="line">os.popen(cmd)     </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"手机截屏"  </span></span><br><span class="line">  </span><br><span class="line">os.popen(<span class="string">"adb shell screencap -p /sdcard/monkey_run.png"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"拷贝截屏图片至电脑"  </span></span><br><span class="line">  </span><br><span class="line">cmd1=<span class="string">"adb pull /sdcard/monkey_run.png %s"</span> %(logdir)  </span><br><span class="line">os.popen(cmd1)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">"gai ming"</span>  </span><br><span class="line">oldname=logdir+<span class="string">"\\"</span>+<span class="string">r"monkey_run.png"</span>  </span><br><span class="line"><span class="keyword">if</span> (os.path.exists(oldname)):  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file is exist"</span>  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file isn't exist"</span>  </span><br><span class="line"><span class="keyword">print</span> oldname  </span><br><span class="line">newname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"monkey.png"</span>  </span><br><span class="line"><span class="keyword">print</span> newname  </span><br><span class="line">os.rename(oldname, newname)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"使用Logcat导出日志"  </span></span><br><span class="line">  </span><br><span class="line">logcatname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"logcat.log"</span>  </span><br><span class="line">cmd2=<span class="string">"adb logcat -d &gt;%s"</span> %(logcatname)  </span><br><span class="line">os.popen(cmd2)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"导出traces文件"  </span></span><br><span class="line">  </span><br><span class="line">tracesname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"traces.log"</span>  </span><br><span class="line">cmd3=<span class="string">"adb shell cat /data/anr/traces.txt&gt;%s"</span> %(tracesname)  </span><br><span class="line">os.popen(cmd3)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line"><span class="comment">#获取error  </span></span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line">  </span><br><span class="line">NullPointer=<span class="string">"java.lang.NullPointerException"</span>  </span><br><span class="line">IllegalState=<span class="string">"java.lang.IllegalStateException"</span>  </span><br><span class="line">IllegalArgument=<span class="string">"java.lang.IllegalArgumentException"</span>  </span><br><span class="line">ArrayIndexOutOfBounds=<span class="string">"java.lang.ArrayIndexOutOfBoundsException"</span>  </span><br><span class="line">RuntimeException=<span class="string">"java.lang.RuntimeException"</span>  </span><br><span class="line">SecurityException=<span class="string">"java.lang.SecurityException"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">geterror</span><span class="params">()</span>:</span>  </span><br><span class="line">    f = open(logcatname,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    errfile=<span class="string">"%s\error.log"</span> %(remote_path)  </span><br><span class="line">    fr = open(errfile,<span class="string">"a"</span>)  </span><br><span class="line">    fr.write(now1)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(version)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(model)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(brand)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">      </span><br><span class="line">    count=<span class="number">0</span>  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">    <span class="keyword">if</span> ( re.findall(NullPointer,line) <span class="keyword">or</span> re.findall(IllegalState,line) <span class="keyword">or</span> re.findall(IllegalArgument,line) <span class="keyword">or</span> re.findall(ArrayIndexOutOfBounds,line) <span class="keyword">or</span> re.findall(RuntimeException,line) <span class="keyword">or</span> re.findall(SecurityException,line) ):  </span><br><span class="line">            a=lines.index(line)  </span><br><span class="line">            count +=<span class="number">1</span>  </span><br><span class="line">            <span class="keyword">for</span> var <span class="keyword">in</span> range(a,a+<span class="number">22</span>):  </span><br><span class="line">                <span class="keyword">print</span> lines[var]  </span><br><span class="line">                fr.write(lines[var])  </span><br><span class="line">            fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    f.close()  </span><br><span class="line">    fr.close()  </span><br><span class="line">    <span class="keyword">return</span> count  </span><br><span class="line">  </span><br><span class="line">      </span><br><span class="line">number=geterror()  </span><br><span class="line"><span class="keyword">print</span> number</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/21/python-sql/" itemprop="url">
+                  python-sql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T23:49:02+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/21/python-sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/python-sql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>以下代码跑成功了的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'ming.xiesh'</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="comment">#coding=utf-8  </span></span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> pymssql  </span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver  </span><br><span class="line">  </span><br><span class="line">cf = ConfigParser.ConfigParser()  </span><br><span class="line"><span class="comment">#read config  </span></span><br><span class="line">cf.read(<span class="string">"ini.conf"</span>)  </span><br><span class="line">hostcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"host"</span>)  </span><br><span class="line">usercf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"user"</span>)  </span><br><span class="line">passwordcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"password"</span>)  </span><br><span class="line">databasecf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"database"</span>)  </span><br><span class="line">  </span><br><span class="line">print(hostcf)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">try</span>:  </span><br><span class="line">    conn = pymssql.connect(host=hostcf,user=usercf,password=passwordcf, database=databasecf)  </span><br><span class="line"><span class="keyword">except</span> pymssql.OperationalError, msg:  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"error: Could not Connection SQL Server!please check your dblink configure!"</span>  </span><br><span class="line">    sys.exit()  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    cur = conn.cursor()  </span><br><span class="line">  </span><br><span class="line">query=<span class="string">"SELECT TOP 10 * FROM ET_Main.dbo.Members WHERE username = 'cengage3'"</span>  </span><br><span class="line">cur.execute(query)  </span><br><span class="line">conn.commit  </span><br><span class="line">rows = cur.fetchall()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> (<span class="string">'-----result------- '</span>)  </span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> rows:  </span><br><span class="line">    <span class="keyword">print</span> id[<span class="number">0</span>]  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> (<span class="string">'-----result!------- '</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">cur.close()  </span><br><span class="line">conn.close()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">browser = webdriver.Chrome() <span class="comment"># Get local session of firefox  </span></span><br><span class="line">browser.get(<span class="string">"http://"</span>)  </span><br><span class="line">browser.close()</span><br></pre></td></tr></table></figure>
+<p>ini.cof<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dbsetting]  </span><br><span class="line">host =  </span><br><span class="line">user =   </span><br><span class="line">password =  </span><br><span class="line">database =</span><br></pre></td></tr></table></figure></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/21/python-cmd/" itemprop="url">
+                  python-cmd
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T23:41:52+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/21/python-cmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/python-cmd/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在用python编写脚本对android操作时，有时需要通过cmd命令直接对app操作。这样的好处是，如果你想对一页界面操作，不用一步一步的进行界面跳转，可以从主界面一下子调到你想要操作的界面。<br>通过os.popen()方法打开一个cmd命令</p>
+<p>1、os.popen(“adb wait-for devices”)：等待连接设备</p>
+<p>2、os.popen(“adb shell screencap -p /data/local/tmp.png”)：截屏后将图片以.png格式放在 /data/local/文件夹下</p>
+<p>3、os.popen(“adb shell pull /data/local/“ +PATH(path+”/“ +timestamp + “.png”))：将手机/data/local/文件夹下文件传到手机文件夹下，并对图片以当时时间命名</p>
+<p>4、os.popen(“adb shell am start -n com.xxx.xxx/com.xxx.xxx.plugins.PluginCenterActicity”)：直接跳转并打开com.xxx.xxx下的com.xxx.xxx.plugins.PluginCenterActicity界面</p>
+<p>下边是手机截屏并上传到电脑中的代码：</p>
+<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">screenshot</span><span class="params">(self)</span>:</span>
+        path = PATH(os.getcwd()+<span class="string">"/output/pic"</span>)
+        timestamp = time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))
+        os.popen(<span class="string">"adb wait-for-device"</span>)
+        os.popen(<span class="string">"adb shell screencap -p /data/local/tmp.png"</span>)
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(PATH(os.getcwd()+<span class="string">"/output/pic"</span>)):
+            os.makedirs(path)
+        os.popen(<span class="string">"adb pull /data/local/tmp.png "</span> + PATH(path + <span class="string">"/"</span> + timestamp + <span class="string">".png"</span>))
+        os.popen(<span class="string">"adb shell rm /data/local/tmp.png"</span>)
+        <span class="keyword">print</span> <span class="string">"success"</span>
+</code></pre>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/21/python-json/" itemprop="url">
+                  python-json
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T23:06:42+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/21/python-json/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/python-json/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>曾今对 python 很着迷，现在将以前练习过的一些代码贴上来，没事的时候温故一下。</p>
+<p><strong>1. python 解析 json</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2  </span><br><span class="line"><span class="keyword">import</span> json  </span><br><span class="line">  </span><br><span class="line">html = urllib2.urlopen(<span class="string">r'http://api.douban.com/v2/book/isbn/9787218087351'</span>)  </span><br><span class="line">  </span><br><span class="line">hjson = json.loads(heml.read())  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'rating'</span>]  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'images'</span>][<span class="string">'large'</span>]  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'summary'</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>2. python 中文乱码的解决：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys,codecs, types  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code</span><span class="params">()</span>:</span>  </span><br><span class="line">    var1 = <span class="string">"nihao"</span>  </span><br><span class="line">    var2 = <span class="string">"你好"</span>  </span><br><span class="line">    <span class="keyword">print</span> var1  </span><br><span class="line">    <span class="keyword">print</span> var2  </span><br><span class="line">    var2 = var2.decode(<span class="string">'utf-8'</span>).encode(<span class="string">'gbk'</span>)  </span><br><span class="line">    <span class="keyword">print</span> var2  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    code()</span><br></pre></td></tr></table></figure>
+<p>程序中“你好”默认用UTF-8 编码，程序中先将var2以UTF-8解码再以gbk编码，就可以输出正确的中文</p>
+<p><strong>3. python 用httplib发送请求</strong></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#httplib是Python的http协议的内置，实现模块，使用它可以很简洁的实现http发送请求。   </span></span><br><span class="line"><span class="keyword">import</span> httplib  </span><br><span class="line"><span class="keyword">import</span> urllib  </span><br><span class="line">   </span><br><span class="line"><span class="comment">#连接服务器    </span></span><br><span class="line">   </span><br><span class="line">conn=httplib.<span class="type">HTTPConnection</span>('www.python.org')    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#发送HTTP请求    </span></span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">GET</span>','url')    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#得到结果    </span></span><br><span class="line">   </span><br><span class="line"><span class="literal">result</span>=conn.getresponse()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#获取HTTP请求结果值。200为成功    </span></span><br><span class="line">   </span><br><span class="line">resultStatus=<span class="literal">result</span>.status    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#获取请求的页面内容    </span></span><br><span class="line">   </span><br><span class="line">content=<span class="literal">result</span>.read()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#关闭连接    </span></span><br><span class="line">   </span><br><span class="line">conn.close()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#如果要模拟客户端进行请求，可以发送HTTP请求头    </span></span><br><span class="line">   </span><br><span class="line">headers=&#123;<span class="string">"Content-Type"</span>:<span class="string">"text/html;charset=gb2312"</span>&#125;    </span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">POST</span>','url',headers=headers)    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#带参数传送    </span></span><br><span class="line">   </span><br><span class="line">params = urllib.urlencode(&#123;'pname':'pvalue'&#125;);    </span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">POST</span>','url',body=params)</span><br></pre></td></tr></table></figure>
+<p>发送get 请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="comment">#coding=utf8  </span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> httplib  </span><br><span class="line">   </span><br><span class="line">httpClient = <span class="keyword">None</span>  </span><br><span class="line">   </span><br><span class="line"><span class="keyword">try</span>:  </span><br><span class="line">    httpClient = httplib.HTTPConnection(<span class="string">'localhost'</span>, <span class="number">80</span>, timeout=<span class="number">30</span>)  </span><br><span class="line">    httpClient.request(<span class="string">'GET'</span>, <span class="string">'/test.php'</span>)  </span><br><span class="line">   </span><br><span class="line">    <span class="comment">#response是HTTPResponse对象  </span></span><br><span class="line">    response = httpClient.getresponse()  </span><br><span class="line">    <span class="keyword">print</span> response.status  </span><br><span class="line">    <span class="keyword">print</span> response.reason  </span><br><span class="line">    <span class="keyword">print</span> response.read()  </span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> e  </span><br><span class="line"><span class="keyword">finally</span>:  </span><br><span class="line">    <span class="keyword">if</span> httpClient:  </span><br><span class="line">        httpClient.close()</span><br></pre></td></tr></table></figure>
+<p>发送post请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="comment">#coding=utf8  </span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> httplib, urllib  </span><br><span class="line">   </span><br><span class="line">httpClient = <span class="keyword">None</span>  </span><br><span class="line"><span class="keyword">try</span>:  </span><br><span class="line">    params = urllib.urlencode(&#123;<span class="string">'name'</span>: <span class="string">'tom'</span>, <span class="string">'age'</span>: <span class="number">22</span>&#125;)  </span><br><span class="line">    headers = &#123;<span class="string">"Content-type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>  </span><br><span class="line">                    , <span class="string">"Accept"</span>: <span class="string">"text/plain"</span>&#125;  </span><br><span class="line">   </span><br><span class="line">    httpClient = httplib.HTTPConnection(<span class="string">"localhost"</span>, <span class="number">80</span>, timeout=<span class="number">30</span>)  </span><br><span class="line">    httpClient.request(<span class="string">"POST"</span>, <span class="string">"/test.php"</span>, params, headers)  </span><br><span class="line">   </span><br><span class="line">    response = httpClient.getresponse()  </span><br><span class="line">    <span class="keyword">print</span> response.status  </span><br><span class="line">    <span class="keyword">print</span> response.reason  </span><br><span class="line">    <span class="keyword">print</span> response.read()  </span><br><span class="line">    <span class="keyword">print</span> response.getheaders() <span class="comment">#获取头信息  </span></span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> e  </span><br><span class="line"><span class="keyword">finally</span>:  </span><br><span class="line">    <span class="keyword">if</span> httpClient:  </span><br><span class="line">        httpClient.close()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/21/pyqrcode/" itemprop="url">
                   pyqrcode
                 </a>
@@ -669,758 +1366,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/07/appupgrade/" itemprop="url">
-                  appupgrade
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T17:56:57+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/appupgrade/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/appupgrade/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>今天跟anglia聊天，聊到app的升级问题。<br>然后聊到某厂签名不一致，导致升级变成两个app.</p>
-<p>首先，android是有签名的， 在发布时，要用MD5检验一下，签名是否一致。</p>
-<p>IOS是由开发者证书控制的，所以没有不一致的情况，所以这块是不需要测试的。</p>
-<p>然后网上搜了几个升级的实现，有时间的时候自己也折腾一下。</p>
-<p><a href="http://blog.csdn.net/yipanbo/article/details/30051267" target="_blank" rel="external">ios app实现自动升级</a></p>
-<p><a href="http://jingyan.baidu.com/article/335530da8b1e0419cb41c305.html" target="_blank" rel="external">ios开发App如何实现自动更新</a></p>
-<p><a href="http://www.zhihu.com/question/20834413?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="external">ios app 测试需要注意</a></p>
-<p><a href="http://www.cnblogs.com/hxsyl/archive/2014/05/14/3727291.html" target="_blank" rel="external">Android检测版本更新</a></p>
-<p><a href="http://blog.csdn.net/jdsjlzx/article/details/46356013" target="_blank" rel="external">Android后台实现App版本更新</a></p>
-<p>未完待续。。。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/07/acralyzer/" itemprop="url">
-                  acralyzer监控你的App
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T15:25:13+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android-test/" itemprop="url" rel="index">
-                    <span itemprop="name">android_test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/acralyzer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/acralyzer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>开发一个手机应用有如此多的限制，比如硬件限制（CPU，内存，电池等等）。如果你的代码不是足够合理，那就准备迎接世界上最严重的问题吧：Crash。根据研究所示：</p>
-<p>应用崩溃是手机app用户抱怨最多的额问题</p>
-<p>更严重的：</p>
-<p>如果一个应用连续崩溃3次，大概一半的用户会卸载这个应用</p>
-<p>崩溃追踪系统，让开发者能够从用户的设备上收集到每一个导致崩溃的细节，专门用来解决这种应用崩溃问题。目前最流行的2个流行崩溃追踪系统是 Crashlytics 和 Parse Crash Reporting，这两个服务都是免费的，开发者可以免费集成他们到你的app。当应用奔溃，整个跟踪报告就会发送到他们的后端，开发者可以及时快捷的修复这些严重的问题，这样，你就可以在很短的时间内奉上一个“无Crash”的应用。</p>
-<p>然而，这些服务的提供商会收集这些数据，对于对用户隐私敏感的公司还是有些顾虑的。</p>
-<p>那么。。。是否有那种允许我们在自己服务器部署的崩溃追踪系统？当然有！！并且会非常容易创建，下面有请Application Crash Reporting on Android (ACRA) 一个允许Android应用自动发送崩溃报告到自己服务器的库。</p>
-<p><a href="http://blog.csdn.net/chen52671/article/details/44751347" target="_blank" rel="external">[翻译]如何安装ACRA</a></p>
-<p><a href="http://inthecheesefactory.com/blog/how-to-install-and-use-acra-android/en" target="_blank" rel="external">How to setup ACRA</a></p>
-<p><a href="https://github.com/ACRA/acralyzer" target="_blank" rel="external">git地址</a></p>
-<p>以上都是在ubuntu上安装的步骤，我在Mac上实现了安装。</p>
-<p><strong>1. 安装couchdb数据库</strong></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Brew </span>install couchdb</span><br></pre></td></tr></table></figure>
-<p>安装完成后，用如下指令来检验是否成功</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  couchdb</span><br><span class="line">Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//127.0.0.1:5984/</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.108.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET / <span class="number">200</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.102.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET /favicon.ico <span class="number">200</span></span><br></pre></td></tr></table></figure>
-<p>在浏览器中敲上 <a href="http://127.0.0.1:5984" target="_blank" rel="external">http://127.0.0.1:5984</a><br>你得到如此信息：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;"<span class="attribute">couchdb</span>":<span class="value"><span class="string">"Welcome"</span></span>,"<span class="attribute">uuid</span>":<span class="value"><span class="string">"eba00733b63aab8847a954c2df76f432"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1"</span></span>,"<span class="attribute">vendor</span>":<span class="value">&#123;"<span class="attribute">name</span>":<span class="value"><span class="string">"Homebrew"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1_4"</span></span>&#125;</span>&#125;</span><br></pre></td></tr></table></figure></p>
-<p>恭喜你，数据库安装成功了。</p>
-<p><strong>2. 配置couchdb数据库</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  <span class="built_in">which</span> couchdb</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/couchdb</span><br><span class="line">➜  ~  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin	</span><br><span class="line">➜  ~  subl couch-config</span><br></pre></td></tr></table></figure>
-<p>读读这个文件，大致知道文件都在啥位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	staticdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/share/couchdb"</span></span><br><span class="line">	erlanglibdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/lib/couchdb/erlang/lib"</span></span><br><span class="line">	couchversion=<span class="string">"1.6.1"</span></span><br><span class="line">	dbdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	viewdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	confdir=<span class="string">"/usr/local/etc/couchdb"</span></span><br><span class="line">	urifile=<span class="string">"/usr/local/var/run/couchdb/couch.uri"</span></span><br><span class="line">	logdir=<span class="string">"/usr/local/var/log/couchdb"</span></span><br><span class="line">	erlangversion=<span class="string">"18"</span></span><br><span class="line">erlangbin=<span class="string">"/usr/local/opt/erlang/bin/erl"</span></span><br></pre></td></tr></table></figure>
-<p>得到有用的信息：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">confdir=<span class="value"><span class="string">"/usr/local/etc/couchdb"</span></span></span></span><br></pre></td></tr></table></figure>
-<p>编辑/usr/local/etc/couchdb/local.ini 文件来允许我们通过外部IP来访问CouchDB（默认只能通关127.0.0.1来访问）。只需要把下面两行的注释去掉即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subl local.ini</span><br><span class="line">	;port = <span class="number">5984</span></span><br><span class="line">	;<span class="built_in">bind</span>_address = <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
-<p>然后修改为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">port = <span class="number">5984</span></span><br><span class="line">bind_address = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在这个文件里，你还应该添加一个用户名/密码来作为管理员账户，找到这一行（一般是在文件末尾）：</span><br><span class="line"></span><br><span class="line">[admins]</span><br><span class="line"></span><br><span class="line">在它的下一行添加一个 username=password形式的内容。例如：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">admin= <span class="number">12345</span></span><br><span class="line">	</span><br><span class="line">; changing <span class="keyword">this</span>.</span><br><span class="line">[admins]</span><br><span class="line">admin = <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>不用担心在这里写明文密码会不会有问题，一旦CouchDB重启后，你的密码会被自动哈希加密，并且是不可读的<br>保存文件，通过下面的语句来重启CouchDB：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~  couchdb</span><br><span class="line">	Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">	Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//0.0.0.0:5984/</span></span><br></pre></td></tr></table></figure>
-<p>现在，你就可以通过浏览器来访问CouchDB了，网页服务被称为Futon—CouchDB的界面后端。通过以下地址来打开浏览器：<br><a href="http://localhost:5984/_utils/" target="_blank" rel="external">http://localhost:5984/_utils/</a></p>
-<p>多了两数据库。</p>
-<p><img src="/images/CouchDB.png" alt="CouchDB"></p>
-<p><strong>3. 配置couchdb本地数据库</strong></p>
-<p>首先，你需要通过之前设定的管理员账户来登录系统</p>
-<p>否则,后面的操作会出现如下错误：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[error] <span class="annotation">[&lt;0.408.0&gt;]</span> httpd <span class="number">500</span> error response:</span><br><span class="line"> &#123;<span class="string">"error"</span>:<span class="string">"unauthorized"</span>,<span class="string">"reason"</span>:<span class="string">"unauthorized to access or create database acra-myapp"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>现在我们要安装一个acro-storage（Acralyzer的存储端）。通过右侧的菜单，点击Replicator(复制器)，并填写表单的from Remote Database和from Remote Database类似如下所示：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acra-storage" target="_blank" rel="external">http://get.acralyzer.com/distrib-acra-storage</a></p>
-<p>to Local Database: acra-myapp</p>
-<p>然后点击Replicate，等待它完成。</p>
-<p>成功后出现如下界面</p>
-<p><img src="/images/acro-storage.png" alt="acro-storage"></p>
-<p>然后使用类似的方法安装Acralyzer：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acralyzer" target="_blank" rel="external">http://get.acralyzer.com/distrib-acralyzer</a></p>
-<p>to Local Database: acralyzer</p>
-<p>如果你上面做的都对的话，你会发现系统里多了2个数据库—-acra-myapp 和 acralyzer.</p>
-<p><img src="/images/dbs.png" alt="dbs"></p>
-<p>离成功很近了，下一步，我们要创建用户，打开浏览器，转到这个网址：</p>
-<p><a href="http://localhost:5984/acralyzer/_design/acralyzer/index.html" target="_blank" rel="external">http://localhost:5984/acralyzer/_design/acralyzer/index.html</a></p>
-<p>进入 Admin 页并点击 Users,</p>
-<p><img src="/images/users.png" alt="users"></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/06/jmeter/" itemprop="url">
-                  jmeter
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T23:50:25+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/jmeter/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/jmeter/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近搞Jmeter快上火了，主要是我们的请求都是Json格式的，基本上没啥资料。</p>
-<p>“踏破铁鞋无觅处，得来全不费功夫”</p>
-<p>看到了这个blog:</p>
-<p><a href="http://blog.163.com/benita_0/blog/#m=0&amp;t=1&amp;c=fks_084075083083084068084083083095086083081069084094081069" target="_blank" rel="external">米粒儿的日志</a></p>
-<p>心中顿时就有底了。</p>
-<p>Come on.</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/06/recordautomation/" itemprop="url">
-                  录制自动化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T23:48:18+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/recordautomation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/recordautomation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>网上有教程说用按键精灵，录制自动化，有时间去看看。</p>
-<p>缺点：</p>
-<p>1.只能做简单的功能回归性测试、UI测试</p>
-<p>2.坐标点击操作，可复用性差</p>
-<p>优点：</p>
-<p>1.操作简单易学无需写脚本，适合初学者</p>
-<p>2.操作工具小型易安装</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/06/charles/" itemprop="url">
-                  charles
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T23:28:24+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/charles/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/charles/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>公司一直都在用charles抓包，我却只用了其中很少的一部分功能。</p>
-<p>网上搜了一下，打算更深入了解其中的奥妙：</p>
-<p><a href="http://drops.wooyun.org/tips/2423" target="_blank" rel="external">charles使用教程指南</a></p>
-<p><a href="http://www.veryhuo.com/a/view/98081.html" target="_blank" rel="external">http调试工具Charles Proxy用法详解</a></p>
-<p><a href="http://blog.163.com/benita_0/blog/#m=0&amp;t=1&amp;c=fks_084069086083087071085087086095086083081069084094081069" target="_blank" rel="external">charles系列教程</a></p>
-<p>似乎还有接口自动化录制功能等，得好好研究研究。</p>
-<p>三.网速模拟</p>
-<p>Proxy–&gt;Throttling Setting，可以模拟各种情况下的网络速度，从而可以在低速情况查看APP的使用情况<br>部分设置含义，Bandwidth（带宽）、Utilistation（利用百分比）、Round-trip（往返延迟）、MTU（字节）</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/06/gradle/" itemprop="url">
-                  gradle 入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T10:41:45+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/gradle/" itemprop="url" rel="index">
-                    <span itemprop="name">gradle</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/gradle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/gradle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近想了解gradle，网上搜了一些教程，容我慢慢熟悉。</p>
-<p><strong>1. stormzhang 的教程：</strong></p>
-<p><a href="http://stormzhang.com/devtools/2014/11/25/android-studio-tutorial1/" target="_blank" rel="external">Android Studio–下载与安装</a></p>
-<p><a href="http://stormzhang.com/devtools/2014/11/28/android-studio-tutorial2/" target="_blank" rel="external">Android Studio–基本设置与运行</a></p>
-<p><a href="http://stormzhang.com/devtools/2014/12/09/android-studio-tutorial3/" target="_blank" rel="external">Android Studio–快捷键</a></p>
-<p><a href="http://stormzhang.com/devtools/2014/12/18/android-studio-tutorial4/" target="_blank" rel="external">Android Studio–Gradle基础</a></p>
-<p><a href="http://stormzhang.com/devtools/2015/01/05/android-studio-tutorial5/" target="_blank" rel="external">Android Studio–Gradle命令详解与导入第三方包</a></p>
-<p><strong>2. Wayne’s blog</strong></p>
-<p><a href="http://blog.waynell.com/2015/04/03/gradle-use-01/" target="_blank" rel="external">Gradle的基本使用（一)</a></p>
-<p><a href="http://blog.waynell.com/2015/04/08/gradle-use-02/" target="_blank" rel="external">Gradle的基本使用（二)</a></p>
-<p><a href="http://blog.waynell.com/2015/04/13/gradle-use-03/" target="_blank" rel="external">Gradle的基本使用（三)</a></p>
-<p><strong>3. 书籍</strong></p>
-<p><a href="https://dongchuan.gitbooks.io/gradle-user-guide-/content/overview/features.html" target="_blank" rel="external">Gradle User Guide 中文版</a></p>
-<p><a href="https://lippiouyang.gitbooks.io/gradle-in-action-cn/content/" target="_blank" rel="external">Gradle In Action(Gradle 实战)中文版</a></p>
-<p><strong>4. 其他</strong></p>
-<p><a href="http://coolshell.info/blog/2015/03/android-studio-prefrence.html" target="_blank" rel="external">Android Studio多渠道打包和代码混淆教程</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1461,7 +1412,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1475,7 +1426,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
