@@ -220,6 +220,115 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/22/python-build/" itemprop="url">
+                  python-build
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T00:03:09+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/22/python-build/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-build/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>花了些时间完成的自动化打包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> walk <span class="keyword">as</span> oswalk  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> chdir <span class="keyword">as</span> oschdir  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> popen <span class="keyword">as</span> ospopen  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> exists <span class="keyword">as</span> pathexists  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> join <span class="keyword">as</span> pathjoin  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfile <span class="keyword">as</span> shcopy  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> rmtree <span class="keyword">as</span> shrmtree  </span><br><span class="line"><span class="keyword">import</span> shutil  </span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#consts  </span></span><br><span class="line">LIBRARY = <span class="string">"library"</span>  </span><br><span class="line">TRUNK = <span class="string">"trunk"</span>  </span><br><span class="line">CIRCLE = <span class="string">"Circle"</span>  </span><br><span class="line">PROJECT_PROPERTY = <span class="string">"project.properties"</span>  </span><br><span class="line">BIN = <span class="string">"bin"</span>  </span><br><span class="line">OBJ = <span class="string">"obj"</span>  </span><br><span class="line">APK = <span class="string">"Circle-debug.apk"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXX\build\android"</span>  </span><br><span class="line">local_path=<span class="string">r"D:\dailyAPK"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidBuilder</span>:</span>  </span><br><span class="line">    __base_path = <span class="string">""</span>  </span><br><span class="line">    __output_path = <span class="string">""</span>  </span><br><span class="line">    __use_ndk = <span class="keyword">False</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base_path, output_path, use_ndk)</span>:</span>  </span><br><span class="line">        self.__base_path = base_path  </span><br><span class="line">        self.__output_path = output_path  </span><br><span class="line">        self.__use_ndk = use_ndk  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__execmd</span><span class="params">(self, cmd)</span>:</span>  </span><br><span class="line">        ret = ospopen(cmd).readlines()  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> ret:  </span><br><span class="line">            print(line)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_native</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"re-build shared objects"</span>)  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(OBJ)):  </span><br><span class="line">            shrmtree(OBJ)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build clean"</span>)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build"</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__move_qrcode</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        zxing_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"qrcode"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>, <span class="string">"zxing"</span>)  </span><br><span class="line">        dest_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"src"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,dest_path  </span><br><span class="line">        shutil.copy(zxing_path, dest_path)  </span><br><span class="line">        <span class="comment">#shutil.copy2(zxing_path, dest_path)  </span></span><br><span class="line">        <span class="comment">#shutil.copytree(zxing_path, dest_path,True)  </span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"wo cao"</span>  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(dest_path)):  </span><br><span class="line">            shrmtree(dest_path)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ccc"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ddd"</span>,dest_path  </span><br><span class="line">        shcopy(zxing_path, dest_path)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_ant</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        idx = <span class="number">0</span>  </span><br><span class="line">        project_properties = <span class="string">"target=android-19\n\n"</span>  </span><br><span class="line">        <span class="keyword">for</span> dirpath, dirname, filename <span class="keyword">in</span> oswalk(pathjoin(self.__base_path, LIBRARY)):  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">"------------------"</span>,dirname  </span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> dirname:  </span><br><span class="line">                print(<span class="string">"re-ant project %s"</span> % (dir))  </span><br><span class="line">                oschdir(pathjoin(self.__base_path, LIBRARY, dir))  </span><br><span class="line">                idx += <span class="number">1</span>  </span><br><span class="line">                project_properties += <span class="string">"android.library.reference.%d=../../%s/%s\n"</span> % (idx, LIBRARY, dir)  </span><br><span class="line">                self.__execmd(<span class="string">"android update project -n %s -p . -t android-19"</span> % (dir))  </span><br><span class="line">                self.__execmd(<span class="string">"ant clean"</span>)  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">        print(<span class="string">"re-ant project Circle"</span>)  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        self.__execmd(<span class="string">"android update project -n Circle -p . -t android-19"</span>)  </span><br><span class="line">        property_file = open(PROJECT_PROPERTY, <span class="string">"w"</span>)  </span><br><span class="line">        property_file.write(project_properties)  </span><br><span class="line">        property_file.flush()  </span><br><span class="line">        property_file.close()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_apk</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        self.__re_ant()  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        <span class="keyword">if</span> (self.__use_ndk == <span class="keyword">True</span>):  </span><br><span class="line">            self.__re_native()  </span><br><span class="line">        print(<span class="string">"build apk"</span>)  </span><br><span class="line">        <span class="comment">#self.__move_qrcode()  </span></span><br><span class="line">        self.__execmd(<span class="string">"ant debug"</span>)  </span><br><span class="line">        apk_path = pathjoin(self.__base_path, TRUNK, CIRCLE, BIN, APK)  </span><br><span class="line">        <span class="keyword">if</span> pathexists(apk_path):  </span><br><span class="line">            shcopy(apk_path, pathjoin(self.__output_path, APK))  </span><br><span class="line">            print(<span class="string">"Build completed.!"</span>)  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            print(<span class="string">"Build failed."</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_remote</span><span class="params">(self, base_path, output_path,oldname)</span>:</span>  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,base_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,output_path  </span><br><span class="line">        base_file = base_path + <span class="string">'\\'</span>+oldname  </span><br><span class="line">        output_file=output_path+ <span class="string">'\\'</span>+oldname  </span><br><span class="line">        <span class="keyword">print</span> base_file  </span><br><span class="line">        shutil.copy2(base_file, output_file)  </span><br><span class="line">        now1 = time.strftime(<span class="string">'%Y-%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line">        newfname=<span class="string">"%sCircle-debug.apk"</span>%(now1)  </span><br><span class="line">        newfpath=<span class="string">"%s/%s"</span>%(output_path,newfname)   </span><br><span class="line">        oldfpath=<span class="string">"%s/%s"</span>%(output_path,oldname)  </span><br><span class="line">        os.rename(oldfpath, newfpath)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_help</span><span class="params">()</span>:</span>  </span><br><span class="line">    print(<span class="string">"usage:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py &lt;base_path&gt; &lt;output_path&gt; &lt;use-ndk&gt;"</span>)  </span><br><span class="line">    print(<span class="string">"    path must be absolute path, do NOT accept relative path"</span>)  </span><br><span class="line">    print(<span class="string">"sample:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py /home/yiban/android /home/yiban/Desktop true"</span>)  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">4</span>:  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    <span class="comment"># base_path, output_path  </span></span><br><span class="line">    base_path = sys.argv[<span class="number">1</span>]  </span><br><span class="line">    output_path = sys.argv[<span class="number">2</span>]  </span><br><span class="line">    use_ndk = sys.argv[<span class="number">3</span>]  </span><br><span class="line">    <span class="keyword">if</span> (base_path.startswith(<span class="string">"."</span>) <span class="keyword">or</span> output_path.startswith(<span class="string">"."</span>)):  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    ab = AndroidBuilder(base_path, output_path, use_ndk == <span class="string">"true"</span>)  </span><br><span class="line">    ab.make_apk()  </span><br><span class="line">    ab.move_remote(local_path, remote_path, APK)</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/21/python-monkey/" itemprop="url">
                   python-monkey
                 </a>
@@ -1256,165 +1365,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/07/acralyzer/" itemprop="url">
-                  acralyzer监控你的App
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T15:25:13+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android-test/" itemprop="url" rel="index">
-                    <span itemprop="name">android_test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/acralyzer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/acralyzer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>开发一个手机应用有如此多的限制，比如硬件限制（CPU，内存，电池等等）。如果你的代码不是足够合理，那就准备迎接世界上最严重的问题吧：Crash。根据研究所示：</p>
-<p>应用崩溃是手机app用户抱怨最多的额问题</p>
-<p>更严重的：</p>
-<p>如果一个应用连续崩溃3次，大概一半的用户会卸载这个应用</p>
-<p>崩溃追踪系统，让开发者能够从用户的设备上收集到每一个导致崩溃的细节，专门用来解决这种应用崩溃问题。目前最流行的2个流行崩溃追踪系统是 Crashlytics 和 Parse Crash Reporting，这两个服务都是免费的，开发者可以免费集成他们到你的app。当应用奔溃，整个跟踪报告就会发送到他们的后端，开发者可以及时快捷的修复这些严重的问题，这样，你就可以在很短的时间内奉上一个“无Crash”的应用。</p>
-<p>然而，这些服务的提供商会收集这些数据，对于对用户隐私敏感的公司还是有些顾虑的。</p>
-<p>那么。。。是否有那种允许我们在自己服务器部署的崩溃追踪系统？当然有！！并且会非常容易创建，下面有请Application Crash Reporting on Android (ACRA) 一个允许Android应用自动发送崩溃报告到自己服务器的库。</p>
-<p><a href="http://blog.csdn.net/chen52671/article/details/44751347" target="_blank" rel="external">[翻译]如何安装ACRA</a></p>
-<p><a href="http://inthecheesefactory.com/blog/how-to-install-and-use-acra-android/en" target="_blank" rel="external">How to setup ACRA</a></p>
-<p><a href="https://github.com/ACRA/acralyzer" target="_blank" rel="external">git地址</a></p>
-<p>以上都是在ubuntu上安装的步骤，我在Mac上实现了安装。</p>
-<p><strong>1. 安装couchdb数据库</strong></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Brew </span>install couchdb</span><br></pre></td></tr></table></figure>
-<p>安装完成后，用如下指令来检验是否成功</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  couchdb</span><br><span class="line">Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//127.0.0.1:5984/</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.108.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET / <span class="number">200</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.102.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET /favicon.ico <span class="number">200</span></span><br></pre></td></tr></table></figure>
-<p>在浏览器中敲上 <a href="http://127.0.0.1:5984" target="_blank" rel="external">http://127.0.0.1:5984</a><br>你得到如此信息：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;"<span class="attribute">couchdb</span>":<span class="value"><span class="string">"Welcome"</span></span>,"<span class="attribute">uuid</span>":<span class="value"><span class="string">"eba00733b63aab8847a954c2df76f432"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1"</span></span>,"<span class="attribute">vendor</span>":<span class="value">&#123;"<span class="attribute">name</span>":<span class="value"><span class="string">"Homebrew"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1_4"</span></span>&#125;</span>&#125;</span><br></pre></td></tr></table></figure></p>
-<p>恭喜你，数据库安装成功了。</p>
-<p><strong>2. 配置couchdb数据库</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  <span class="built_in">which</span> couchdb</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/couchdb</span><br><span class="line">➜  ~  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin	</span><br><span class="line">➜  ~  subl couch-config</span><br></pre></td></tr></table></figure>
-<p>读读这个文件，大致知道文件都在啥位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	staticdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/share/couchdb"</span></span><br><span class="line">	erlanglibdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/lib/couchdb/erlang/lib"</span></span><br><span class="line">	couchversion=<span class="string">"1.6.1"</span></span><br><span class="line">	dbdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	viewdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	confdir=<span class="string">"/usr/local/etc/couchdb"</span></span><br><span class="line">	urifile=<span class="string">"/usr/local/var/run/couchdb/couch.uri"</span></span><br><span class="line">	logdir=<span class="string">"/usr/local/var/log/couchdb"</span></span><br><span class="line">	erlangversion=<span class="string">"18"</span></span><br><span class="line">erlangbin=<span class="string">"/usr/local/opt/erlang/bin/erl"</span></span><br></pre></td></tr></table></figure>
-<p>得到有用的信息：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">confdir=<span class="value"><span class="string">"/usr/local/etc/couchdb"</span></span></span></span><br></pre></td></tr></table></figure>
-<p>编辑/usr/local/etc/couchdb/local.ini 文件来允许我们通过外部IP来访问CouchDB（默认只能通关127.0.0.1来访问）。只需要把下面两行的注释去掉即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subl local.ini</span><br><span class="line">	;port = <span class="number">5984</span></span><br><span class="line">	;<span class="built_in">bind</span>_address = <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
-<p>然后修改为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">port = <span class="number">5984</span></span><br><span class="line">bind_address = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在这个文件里，你还应该添加一个用户名/密码来作为管理员账户，找到这一行（一般是在文件末尾）：</span><br><span class="line"></span><br><span class="line">[admins]</span><br><span class="line"></span><br><span class="line">在它的下一行添加一个 username=password形式的内容。例如：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">admin= <span class="number">12345</span></span><br><span class="line">	</span><br><span class="line">; changing <span class="keyword">this</span>.</span><br><span class="line">[admins]</span><br><span class="line">admin = <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>不用担心在这里写明文密码会不会有问题，一旦CouchDB重启后，你的密码会被自动哈希加密，并且是不可读的<br>保存文件，通过下面的语句来重启CouchDB：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~  couchdb</span><br><span class="line">	Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">	Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//0.0.0.0:5984/</span></span><br></pre></td></tr></table></figure>
-<p>现在，你就可以通过浏览器来访问CouchDB了，网页服务被称为Futon—CouchDB的界面后端。通过以下地址来打开浏览器：<br><a href="http://localhost:5984/_utils/" target="_blank" rel="external">http://localhost:5984/_utils/</a></p>
-<p>多了两数据库。</p>
-<p><img src="/images/CouchDB.png" alt="CouchDB"></p>
-<p><strong>3. 配置couchdb本地数据库</strong></p>
-<p>首先，你需要通过之前设定的管理员账户来登录系统</p>
-<p>否则,后面的操作会出现如下错误：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[error] <span class="annotation">[&lt;0.408.0&gt;]</span> httpd <span class="number">500</span> error response:</span><br><span class="line"> &#123;<span class="string">"error"</span>:<span class="string">"unauthorized"</span>,<span class="string">"reason"</span>:<span class="string">"unauthorized to access or create database acra-myapp"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>现在我们要安装一个acro-storage（Acralyzer的存储端）。通过右侧的菜单，点击Replicator(复制器)，并填写表单的from Remote Database和from Remote Database类似如下所示：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acra-storage" target="_blank" rel="external">http://get.acralyzer.com/distrib-acra-storage</a></p>
-<p>to Local Database: acra-myapp</p>
-<p>然后点击Replicate，等待它完成。</p>
-<p>成功后出现如下界面</p>
-<p><img src="/images/acro-storage.png" alt="acro-storage"></p>
-<p>然后使用类似的方法安装Acralyzer：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acralyzer" target="_blank" rel="external">http://get.acralyzer.com/distrib-acralyzer</a></p>
-<p>to Local Database: acralyzer</p>
-<p>如果你上面做的都对的话，你会发现系统里多了2个数据库—-acra-myapp 和 acralyzer.</p>
-<p><img src="/images/dbs.png" alt="dbs"></p>
-<p>离成功很近了，下一步，我们要创建用户，打开浏览器，转到这个网址：</p>
-<p><a href="http://localhost:5984/acralyzer/_design/acralyzer/index.html" target="_blank" rel="external">http://localhost:5984/acralyzer/_design/acralyzer/index.html</a></p>
-<p>进入 Admin 页并点击 Users,</p>
-<p><img src="/images/users.png" alt="users"></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1461,7 +1411,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1475,7 +1425,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

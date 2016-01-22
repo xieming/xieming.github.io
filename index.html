@@ -220,6 +220,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/22/python-csv/" itemprop="url">
+                  python csv模块介绍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T11:44:19+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/22/python-csv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-csv/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>文章转自<a href="http://www.xgezhang.com/python_csv.html" target="_blank" rel="external">xge博客</a></p>
+<p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
+<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。这里简单介绍一下最简单的读写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure>
+<p>参数：</p>
+<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
+<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
+<p>使用例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
+<p>writer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
+<pre><code class="python">writer.writerow([<span class="string">"121"</span>,<span class="string">"121"</span>])
+</code></pre>
+<p>传入2维list</p>
+<pre><code class="python">writer.writerows([[<span class="string">"121"</span>,<span class="string">"121"</span>],[<span class="string">"345"</span>,<span class="string">""</span><span class="number">345</span><span class="string">"]])</span>
+</code></pre>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/22/java-read/" itemprop="url">
                   读取sd卡
                 </a>
@@ -1337,115 +1462,6 @@ print table.row_values(i)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/22/python-build/" itemprop="url">
-                  python-build
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-22T00:03:09+08:00" content="2016-01-22">
-              2016-01-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/22/python-build/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-build/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>花了些时间完成的自动化打包</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> walk <span class="keyword">as</span> oswalk  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> chdir <span class="keyword">as</span> oschdir  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> popen <span class="keyword">as</span> ospopen  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> exists <span class="keyword">as</span> pathexists  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> join <span class="keyword">as</span> pathjoin  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfile <span class="keyword">as</span> shcopy  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> rmtree <span class="keyword">as</span> shrmtree  </span><br><span class="line"><span class="keyword">import</span> shutil  </span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#consts  </span></span><br><span class="line">LIBRARY = <span class="string">"library"</span>  </span><br><span class="line">TRUNK = <span class="string">"trunk"</span>  </span><br><span class="line">CIRCLE = <span class="string">"Circle"</span>  </span><br><span class="line">PROJECT_PROPERTY = <span class="string">"project.properties"</span>  </span><br><span class="line">BIN = <span class="string">"bin"</span>  </span><br><span class="line">OBJ = <span class="string">"obj"</span>  </span><br><span class="line">APK = <span class="string">"Circle-debug.apk"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXX\build\android"</span>  </span><br><span class="line">local_path=<span class="string">r"D:\dailyAPK"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidBuilder</span>:</span>  </span><br><span class="line">    __base_path = <span class="string">""</span>  </span><br><span class="line">    __output_path = <span class="string">""</span>  </span><br><span class="line">    __use_ndk = <span class="keyword">False</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base_path, output_path, use_ndk)</span>:</span>  </span><br><span class="line">        self.__base_path = base_path  </span><br><span class="line">        self.__output_path = output_path  </span><br><span class="line">        self.__use_ndk = use_ndk  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__execmd</span><span class="params">(self, cmd)</span>:</span>  </span><br><span class="line">        ret = ospopen(cmd).readlines()  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> ret:  </span><br><span class="line">            print(line)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_native</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"re-build shared objects"</span>)  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(OBJ)):  </span><br><span class="line">            shrmtree(OBJ)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build clean"</span>)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build"</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__move_qrcode</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        zxing_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"qrcode"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>, <span class="string">"zxing"</span>)  </span><br><span class="line">        dest_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"src"</span>, <span class="string">"com"</span>, <span class="string">"yiban"</span>)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,dest_path  </span><br><span class="line">        shutil.copy(zxing_path, dest_path)  </span><br><span class="line">        <span class="comment">#shutil.copy2(zxing_path, dest_path)  </span></span><br><span class="line">        <span class="comment">#shutil.copytree(zxing_path, dest_path,True)  </span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"wo cao"</span>  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(dest_path)):  </span><br><span class="line">            shrmtree(dest_path)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ccc"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ddd"</span>,dest_path  </span><br><span class="line">        shcopy(zxing_path, dest_path)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_ant</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        idx = <span class="number">0</span>  </span><br><span class="line">        project_properties = <span class="string">"target=android-19\n\n"</span>  </span><br><span class="line">        <span class="keyword">for</span> dirpath, dirname, filename <span class="keyword">in</span> oswalk(pathjoin(self.__base_path, LIBRARY)):  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">"------------------"</span>,dirname  </span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> dirname:  </span><br><span class="line">                print(<span class="string">"re-ant project %s"</span> % (dir))  </span><br><span class="line">                oschdir(pathjoin(self.__base_path, LIBRARY, dir))  </span><br><span class="line">                idx += <span class="number">1</span>  </span><br><span class="line">                project_properties += <span class="string">"android.library.reference.%d=../../%s/%s\n"</span> % (idx, LIBRARY, dir)  </span><br><span class="line">                self.__execmd(<span class="string">"android update project -n %s -p . -t android-19"</span> % (dir))  </span><br><span class="line">                self.__execmd(<span class="string">"ant clean"</span>)  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">        print(<span class="string">"re-ant project Circle"</span>)  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        self.__execmd(<span class="string">"android update project -n Circle -p . -t android-19"</span>)  </span><br><span class="line">        property_file = open(PROJECT_PROPERTY, <span class="string">"w"</span>)  </span><br><span class="line">        property_file.write(project_properties)  </span><br><span class="line">        property_file.flush()  </span><br><span class="line">        property_file.close()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_apk</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        self.__re_ant()  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        <span class="keyword">if</span> (self.__use_ndk == <span class="keyword">True</span>):  </span><br><span class="line">            self.__re_native()  </span><br><span class="line">        print(<span class="string">"build apk"</span>)  </span><br><span class="line">        <span class="comment">#self.__move_qrcode()  </span></span><br><span class="line">        self.__execmd(<span class="string">"ant debug"</span>)  </span><br><span class="line">        apk_path = pathjoin(self.__base_path, TRUNK, CIRCLE, BIN, APK)  </span><br><span class="line">        <span class="keyword">if</span> pathexists(apk_path):  </span><br><span class="line">            shcopy(apk_path, pathjoin(self.__output_path, APK))  </span><br><span class="line">            print(<span class="string">"Build completed.!"</span>)  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            print(<span class="string">"Build failed."</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_remote</span><span class="params">(self, base_path, output_path,oldname)</span>:</span>  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,base_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,output_path  </span><br><span class="line">        base_file = base_path + <span class="string">'\\'</span>+oldname  </span><br><span class="line">        output_file=output_path+ <span class="string">'\\'</span>+oldname  </span><br><span class="line">        <span class="keyword">print</span> base_file  </span><br><span class="line">        shutil.copy2(base_file, output_file)  </span><br><span class="line">        now1 = time.strftime(<span class="string">'%Y-%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line">        newfname=<span class="string">"%sCircle-debug.apk"</span>%(now1)  </span><br><span class="line">        newfpath=<span class="string">"%s/%s"</span>%(output_path,newfname)   </span><br><span class="line">        oldfpath=<span class="string">"%s/%s"</span>%(output_path,oldname)  </span><br><span class="line">        os.rename(oldfpath, newfpath)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_help</span><span class="params">()</span>:</span>  </span><br><span class="line">    print(<span class="string">"usage:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py &lt;base_path&gt; &lt;output_path&gt; &lt;use-ndk&gt;"</span>)  </span><br><span class="line">    print(<span class="string">"    path must be absolute path, do NOT accept relative path"</span>)  </span><br><span class="line">    print(<span class="string">"sample:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py /home/yiban/android /home/yiban/Desktop true"</span>)  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">4</span>:  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    <span class="comment"># base_path, output_path  </span></span><br><span class="line">    base_path = sys.argv[<span class="number">1</span>]  </span><br><span class="line">    output_path = sys.argv[<span class="number">2</span>]  </span><br><span class="line">    use_ndk = sys.argv[<span class="number">3</span>]  </span><br><span class="line">    <span class="keyword">if</span> (base_path.startswith(<span class="string">"."</span>) <span class="keyword">or</span> output_path.startswith(<span class="string">"."</span>)):  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    ab = AndroidBuilder(base_path, output_path, use_ndk == <span class="string">"true"</span>)  </span><br><span class="line">    ab.make_apk()  </span><br><span class="line">    ab.move_remote(local_path, remote_path, APK)</span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1492,7 +1508,7 @@ print table.row_values(i)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1506,7 +1522,7 @@ print table.row_values(i)
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

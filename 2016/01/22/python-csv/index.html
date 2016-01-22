@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="carrierwave," />
+  <meta name="keywords" content="csv," />
 
 
 
@@ -51,22 +51,19 @@
 
 
 
-<meta name="description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
+<meta name="description" content="文章转自xge博客
+csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符">
 <meta property="og:type" content="article">
-<meta property="og:title" content="railsupload">
-<meta property="og:url" content="http://snake.me/2016/01/05/railsupload/index.html">
+<meta property="og:title" content="python csv模块介绍">
+<meta property="og:url" content="http://snake.me/2016/01/22/python-csv/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
-<meta property="og:updated_time" content="2016-01-07T13:43:17.000Z">
+<meta property="og:description" content="文章转自xge博客
+csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符">
+<meta property="og:updated_time" content="2016-01-22T03:48:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="railsupload">
-<meta name="twitter:description" content="最近一直在折腾上传，对mongo的上传搞伤脑经。
-rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfile做点修改,如下：
-1234567source &apos;https://ruby.taobao.org&apos;gem &apos;mongoid&apos;, &apos;~&amp;gt; 4.0.0&apos;gem &apos;carrierwave-mongoid&apos;gem &apos;carrierwave&apos;, &apos;0.6.2&apos;ge">
+<meta name="twitter:title" content="python csv模块介绍">
+<meta name="twitter:description" content="文章转自xge博客
+csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符">
 
 
 
@@ -78,7 +75,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
   };
 </script>
 
-  <title> railsupload | Snake's Home </title>
+  <title> python csv模块介绍 | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -218,7 +215,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
             
             
               
-                railsupload
+                python csv模块介绍
               
             
           </h1>
@@ -227,8 +224,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T16:43:01+08:00" content="2016-01-05">
-              2016-01-05
+            <time itemprop="dateCreated" datetime="2016-01-22T11:44:19+08:00" content="2016-01-22">
+              2016-01-22
             </time>
           </span>
 
@@ -237,8 +234,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/rails/" itemprop="url" rel="index">
-                    <span itemprop="name">rails</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -253,8 +250,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/05/railsupload/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/railsupload/" itemprop="commentsCount"></span>
+                <a href="/2016/01/22/python-csv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-csv/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -273,28 +270,23 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
       
 
       
-        <span itemprop="articleBody"><p>最近一直在折腾上传，对mongo的上传搞伤脑经。</p>
-<p>rails 上传主要是一个gem carrierwave<br>先生成一个项目，然后对Gemfile做点修改,如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'mongoid'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line">gem <span class="string">'carrierwave-mongoid'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span>, <span class="string">'0.6.2'</span></span><br><span class="line">gem <span class="string">'mini_magick'</span> <span class="comment">#不使用rmagick，占内存</span></span><br><span class="line">gem <span class="string">'fog'</span>  <span class="comment">#用来在生产环境中上传图片</span></span><br></pre></td></tr></table></figure>
-<p>然后安装</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="operator"><span class="keyword">install</span></span><br><span class="line">rails <span class="keyword">g</span> mongoid:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require <span class="string">"action_controller/railtie"</span></span><br><span class="line">require <span class="string">"action_mailer/railtie"</span></span><br><span class="line"><span class="comment"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span></span><br><span class="line">require <span class="string">"rails/test_unit/railtie"</span></span><br><span class="line">require <span class="string">"sprockets/railtie"</span> <span class="comment"># Uncomment this line for Rails 3.1+</span></span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>生成一个scaffold</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rails generate scaffold <span class="keyword">User</span> <span class="title">name</span>:<span class="type">string</span> nick:<span class="type">string</span> avatar:<span class="type">string</span></span><br><span class="line"></span><br><span class="line">rails generate uploader Avatar</span><br></pre></td></tr></table></figure>
-<p>未完待续。。。</p>
+        <span itemprop="articleBody"><p>文章转自<a href="http://www.xgezhang.com/python_csv.html" target="_blank" rel="external">xge博客</a></p>
+<p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
+<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。这里简单介绍一下最简单的读写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure>
+<p>参数：</p>
+<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
+<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
+<p>使用例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
+<p>writer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
+<pre><code class="python">writer.writerow([<span class="string">"121"</span>,<span class="string">"121"</span>])
+</code></pre>
+<p>传入2维list</p>
+<pre><code class="python">writer.writerows([[<span class="string">"121"</span>,<span class="string">"121"</span>],[<span class="string">"345"</span>,<span class="string">""</span><span class="number">345</span><span class="string">"]])</span>
+</code></pre>
 </span>
       
     </div>
@@ -303,7 +295,7 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
       
         <div class="post-tags">
           
-            <a href="/tags/carrierwave/" rel="tag">#carrierwave</a>
+            <a href="/tags/csv/" rel="tag">#csv</a>
           
         </div>
       
@@ -312,17 +304,13 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/Nginx-Passenger-Rails/" rel="next" title="Nginx+Passenger+Rails">
-                <i class="fa fa-chevron-left"></i> Nginx+Passenger+Rails
+              <a href="/2016/01/22/java-read/" rel="next" title="读取sd卡">
+                <i class="fa fa-chevron-left"></i> 读取sd卡
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/05/ImageMagick/" rel="prev" title="ImageMagick">
-                ImageMagick <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -361,10 +349,10 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/05/railsupload/"
-     data-title="railsupload"
+        <div class="ds-share flat" data-thread-key="2016/01/22/python-csv/"
+     data-title="python csv模块介绍"
      data-content=""
-     data-url="http://snake.me/2016/01/05/railsupload/">
+     data-url="http://snake.me/2016/01/22/python-csv/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -395,8 +383,8 @@ rails 上传主要是一个gem carrierwave先生成一个项目，然后对Gemfi
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/05/railsupload/"
-           data-title="railsupload" data-url="http://snake.me/2016/01/05/railsupload/">
+      <div class="ds-thread" data-thread-key="2016/01/22/python-csv/"
+           data-title="python csv模块介绍" data-url="http://snake.me/2016/01/22/python-csv/">
       </div>
     
   </div>
