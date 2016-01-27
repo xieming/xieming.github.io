@@ -220,6 +220,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/07/appupgrade/" itemprop="url">
+                  appupgrade
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-07T17:56:57+08:00" content="2016-01-07">
+              2016-01-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/07/appupgrade/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/appupgrade/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>今天跟anglia聊天，聊到app的升级问题。<br>然后聊到某厂签名不一致，导致升级变成两个app.</p>
+<p>首先，android是有签名的， 在发布时，要用MD5检验一下，签名是否一致。</p>
+<p>IOS是由开发者证书控制的，所以没有不一致的情况，所以这块是不需要测试的。</p>
+<p>然后网上搜了几个升级的实现，有时间的时候自己也折腾一下。</p>
+<p><a href="http://blog.csdn.net/yipanbo/article/details/30051267" target="_blank" rel="external">ios app实现自动升级</a></p>
+<p><a href="http://jingyan.baidu.com/article/335530da8b1e0419cb41c305.html" target="_blank" rel="external">ios开发App如何实现自动更新</a></p>
+<p><a href="http://www.zhihu.com/question/20834413?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="external">ios app 测试需要注意</a></p>
+<p><a href="http://www.cnblogs.com/hxsyl/archive/2014/05/14/3727291.html" target="_blank" rel="external">Android检测版本更新</a></p>
+<p><a href="http://blog.csdn.net/jdsjlzx/article/details/46356013" target="_blank" rel="external">Android后台实现App版本更新</a></p>
+<p>未完待续。。。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/07/acralyzer/" itemprop="url">
                   acralyzer监控你的App
                 </a>
@@ -1342,147 +1460,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/28/mongdbrails/" itemprop="url">
-                  mongodbrails
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-28T14:17:38+08:00" content="2015-12-28">
-              2015-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DB/" itemprop="url" rel="index">
-                    <span itemprop="name">DB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/28/mongdbrails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/mongdbrails/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。<br>自己折腾了下，总结过程如下：</p>
-<p><strong><em>安装</em></strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Brew install mongodb</span><br></pre></td></tr></table></figure>
-<p>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> mongo</span><br></pre></td></tr></table></figure></p>
-<p>来找到mongo的安装路径<br>添加环境变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi .bahs_profile</span><br><span class="line">Export /usr/ocal/cellar/mongodb/<span class="number">3.0</span>.<span class="number">7</span>/bin:<span class="variable">$PATH</span>;</span><br><span class="line">Source .bash_profile</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo 服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>敲上mongo就可以操作数据库了</p>
-<p><strong><em>与rails结合</em></strong></p>
-<p>在Gemfile中添加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line">gem <span class="string">"mongoid"</span>, <span class="string">"~&gt; 4.0.0"</span></span><br></pre></td></tr></table></figure>
-<p>然后</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bundle </span>install</span><br></pre></td></tr></table></figure>
-<p>再执行：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">rails</span> <span class="tag">g</span> <span class="tag">mongoid</span><span class="pseudo">:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure></p>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"</span><br><span class="line">require "action_mailer/railtie"</span><br><span class="line"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span><br><span class="line">require "rails/test_unit/railtie"</span><br><span class="line">require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong><em>使用</em></strong></p>
-<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Document</span><br><span class="line">field :first_name, type: String</span><br><span class="line">field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>就ok了</p>
-<p><strong>相关Gems</strong></p>
-<p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
-<p>• 使用mongoid-rails可以防止query的注入</p>
-<p>• 因为在替换成mongoid之后，默认的migratetion就已经不能用来了，所以可以用mongoid_rails_migrations来实现针对mongodb的数据迁移功能。</p>
-<p>参考：<br><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a><br><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1529,7 +1506,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1543,7 +1520,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

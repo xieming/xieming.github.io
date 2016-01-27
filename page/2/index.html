@@ -220,6 +220,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/22/python-report/" itemprop="url">
+                  python-report
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T00:07:32+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/22/python-report/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/python-report/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>python 生成报告， ReportLab 实践</p>
+<p>先是文档：</p>
+<p><a href="http://www.reportlab.com/docs/reportlab-userguide.pdf" target="_blank" rel="external">http://www.reportlab.com/docs/reportlab-userguide.pdf</a></p>
+<p>然后照着文档，加上 <a href="http://blog.csdn.net/youyudehexie/article/details/7918402" target="_blank" rel="external">http://blog.csdn.net/youyudehexie/article/details/7918402</a></p>
+<p>写成了一个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> Drawing  </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.barcharts <span class="keyword">import</span> VerticalBarChart  </span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlopen    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> *    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.lineplots <span class="keyword">import</span> LinePlot    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.textlabels <span class="keyword">import</span> Label    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics <span class="keyword">import</span> renderPDF  </span><br><span class="line">drawing = Drawing(<span class="number">400</span>, <span class="number">200</span>)  </span><br><span class="line">data = [(<span class="number">13</span>, <span class="number">5</span>, <span class="number">20</span>),(<span class="number">14</span>, <span class="number">6</span>, <span class="number">21</span>)]  </span><br><span class="line">bc = VerticalBarChart()  </span><br><span class="line">bc.x = <span class="number">50</span>  </span><br><span class="line">bc.y = <span class="number">50</span>  </span><br><span class="line">bc.height = <span class="number">125</span>  </span><br><span class="line">bc.width = <span class="number">300</span>  </span><br><span class="line">bc.data = data  </span><br><span class="line">bc.strokeColor = colors.black  </span><br><span class="line">bc.valueAxis.valueMin = <span class="number">0</span>  </span><br><span class="line">bc.valueAxis.valueMax = <span class="number">50</span>  </span><br><span class="line">bc.valueAxis.valueStep = <span class="number">10</span>  </span><br><span class="line">bc.categoryAxis.labels.boxAnchor =<span class="string">'ne'</span>  </span><br><span class="line">bc.categoryAxis.labels.dx = <span class="number">8</span>  </span><br><span class="line">bc.categoryAxis.labels.dy = -<span class="number">2</span>  </span><br><span class="line">bc.categoryAxis.labels.angle = <span class="number">30</span>  </span><br><span class="line">bc.categoryAxis.categoryNames = [<span class="string">'Jan-99'</span>,<span class="string">'Feb-99'</span>,<span class="string">'Mar-99'</span>]  </span><br><span class="line">drawing.add(bc)  </span><br><span class="line">  </span><br><span class="line">drawing.add(String(<span class="number">250</span>,<span class="number">150</span>,<span class="string">"ss"</span>, fontSize=<span class="number">14</span>,fillColor=colors.red))        </span><br><span class="line">renderPDF.drawToFile(drawing,<span class="string">'report2.pdf'</span>,<span class="string">'API'</span>)</span><br></pre></td></tr></table></figure>
+<p>然后按照：<br><a href="http://www.jb51.net/article/53233.htm" target="_blank" rel="external">http://www.jb51.net/article/53233.htm</a></p>
+<p>学习了下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="keyword">import</span> subprocess  </span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="keyword">from</span> reportlab.lib.units <span class="keyword">import</span> inch  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_report</span><span class="params">()</span>:</span>  </span><br><span class="line">    p = os.popen(<span class="string">"df -h"</span>)  </span><br><span class="line"><span class="comment">#   print p.stdout.readlines()  </span></span><br><span class="line">    <span class="keyword">return</span> p.readlines()  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pdf</span><span class="params">(input, output=<span class="string">"disk_report.pdf"</span>)</span>:</span>  </span><br><span class="line">    now = datetime.datetime.today()  </span><br><span class="line">    date = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)  </span><br><span class="line">    c = canvas.Canvas(output)  </span><br><span class="line">    textobject = c.beginText()  </span><br><span class="line">    textobject.setTextOrigin(inch, <span class="number">11</span>*inch)  </span><br><span class="line">    textobject.textLines(<span class="string">'''''Disk Capcity Report: %s'''</span> %date)  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> input:  </span><br><span class="line">        textobject.textLine(line.strip())  </span><br><span class="line">    c.drawText(textobject)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">report = disk_report()  </span><br><span class="line">create_pdf(report)</span><br></pre></td></tr></table></figure>
+<p>再练习：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>  </span><br><span class="line">    c = canvas.Canvas(<span class="string">"helloworld.pdf"</span>)  </span><br><span class="line">    c.drawString(<span class="number">100</span>,<span class="number">100</span>,<span class="string">"Hello,World"</span>)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/22/python-build/" itemprop="url">
                   python-build
                 </a>
@@ -1247,124 +1366,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/07/appupgrade/" itemprop="url">
-                  appupgrade
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T17:56:57+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/appupgrade/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/appupgrade/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>今天跟anglia聊天，聊到app的升级问题。<br>然后聊到某厂签名不一致，导致升级变成两个app.</p>
-<p>首先，android是有签名的， 在发布时，要用MD5检验一下，签名是否一致。</p>
-<p>IOS是由开发者证书控制的，所以没有不一致的情况，所以这块是不需要测试的。</p>
-<p>然后网上搜了几个升级的实现，有时间的时候自己也折腾一下。</p>
-<p><a href="http://blog.csdn.net/yipanbo/article/details/30051267" target="_blank" rel="external">ios app实现自动升级</a></p>
-<p><a href="http://jingyan.baidu.com/article/335530da8b1e0419cb41c305.html" target="_blank" rel="external">ios开发App如何实现自动更新</a></p>
-<p><a href="http://www.zhihu.com/question/20834413?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="external">ios app 测试需要注意</a></p>
-<p><a href="http://www.cnblogs.com/hxsyl/archive/2014/05/14/3727291.html" target="_blank" rel="external">Android检测版本更新</a></p>
-<p><a href="http://blog.csdn.net/jdsjlzx/article/details/46356013" target="_blank" rel="external">Android后台实现App版本更新</a></p>
-<p>未完待续。。。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1411,7 +1412,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1425,7 +1426,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
