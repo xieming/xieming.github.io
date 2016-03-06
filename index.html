@@ -341,7 +341,7 @@
               
                 
                 <a class="post-title-link" href="/2016/03/04/ceshi/" itemprop="url">
-                  30 多岁转开发还来得及吗？
+                  30多岁转开发还来得及吗？
                 </a>
               
             
@@ -356,6 +356,21 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -385,7 +400,22 @@
         
           <span itemprop="articleBody">
             
-              <p>最近搞得心累。办公室里面斗去的。我也不免牵涉其中，无法逃掉。<br>主</p>
+              <p>最近搞得心累，跟各个部门撕逼。测试是个弱势群体。脏活，累活都要干，干的最多，还拿得最少。</p>
+<p>你要想保证质量，就得push别人干活，坑少埋点。</p>
+<p>太极是中国人发明的，都会玩。</p>
+<p>当然也会被管进度的人压得不行。</p>
+<p>在他们看来，一个破功能，点点就可以了，还要那么多时间测试。</p>
+<p>但是，很多时候是被block住的。</p>
+<p>所以，测试成了整个流程线上最忙，最苦逼的人。</p>
+<p>到处吃力不讨好，还处处得罪人。</p>
+<p>很多时候好想安安静静地写写代码，像一个开发一样。没有那么多纷纷扰扰，各方面还不错。</p>
+<p>有的时候想想，当时Android,IOS兴起的时候，我在做啥呢？怎么没自学，或者报个培训班啥的。可能是生活安逸，不想改变？或者没有技术敏感度，错过机会了。</p>
+<p>老问题又来了：“30多岁转开发还来得及吗？” 中午吃饭的时候，跟几个开发讨论。</p>
+<p>几个Android开发都是半道出家的，不是本专业。</p>
+<p>有个家伙说，“来不及了，都这么大年纪了，拼不过小年轻。”</p>
+<p>有个老道一点的说官话了，“干啥跟年龄无关，只要你想做。”</p>
+<p>是啊，只要你想做，什么时候都不晚。</p>
+<p>不能拿他当谋饭吃，就当一兴趣吧。</p>
 
             
           </span>
@@ -551,7 +581,7 @@
               
                 
                 <a class="post-title-link" href="/2016/02/14/dockeronmac/" itemprop="url">
-                  docker
+                  Docker manage STF on IOS
                 </a>
               
             
@@ -561,11 +591,26 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-02-14T13:52:29+08:00" content="2016-02-14">
+            <time itemprop="dateCreated" datetime="2016-02-14T23:52:29+08:00" content="2016-02-14">
               2016-02-14
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -595,7 +640,31 @@
         
           <span itemprop="articleBody">
             
-              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it ubuntu bash</span><br></pre></td></tr></table></figure>
+              <p>之前看到过有人安装了STF, 但是他们的步骤太多，太复杂了。</p>
+<p>我想能不能用dockfile来管理那些步骤，做成image.</p>
+<p>这样就简单多了。</p>
+<p>还好，在github上找到了dockerfile.</p>
+<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。<br><figure class="highlight"><figcaption><span>install boot2docker```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#21551;&#21160;docker:</span><br></pre></td></tr></table></figure></p>
+<p>boot2docker init<br>boot2docker start<br>boot2docker shellinit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最后执行：</span><br></pre></td></tr></table></figure></p>
+<p>eval “$(boot2docker shellinit)”<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。</span><br></pre></td></tr></table></figure></p>
+<p>boot2docker status<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建立一个文件夹：</span><br></pre></td></tr></table></figure></p>
+<p>mkdir stf<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">然后创建： Dockerfile</span><br><span class="line">将下面的贴上去。</span><br></pre></td></tr></table></figure></p>
+<p>FROM openstf/base:v1.0.6</p>
+<h1 id="Sneak_the_stf_executable_into__24PATH"><a href="#Sneak_the_stf_executable_into__24PATH" class="headerlink" title="Sneak the stf executable into $PATH."></a>Sneak the stf executable into $PATH.</h1><p>ENV PATH /app/bin:$PATH</p>
+<h1 id="Work_in_app_dir_by_default"><a href="#Work_in_app_dir_by_default" class="headerlink" title="Work in app dir by default."></a>Work in app dir by default.</h1><p>WORKDIR /app</p>
+<h1 id="Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do"><a href="#Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do" class="headerlink" title="Export default app port, not enough for all processes but it should do"></a>Export default app port, not enough for all processes but it should do</h1><h1 id="for_now"><a href="#for_now" class="headerlink" title="for now."></a>for now.</h1><p>EXPOSE 3000</p>
+<h1 id="Copy_app_source"><a href="#Copy_app_source" class="headerlink" title="Copy app source."></a>Copy app source.</h1><p>COPY . /tmp/build/</p>
+<h1 id="Give_permissions_to_our_build_user"><a href="#Give_permissions_to_our_build_user" class="headerlink" title="Give permissions to our build user."></a>Give permissions to our build user.</h1><p>RUN mkdir -p /app &amp;&amp; \<br>    chown -R stf-build:stf-build /tmp/build /app</p>
+<h1 id="Switch_over_to_the_build_user"><a href="#Switch_over_to_the_build_user" class="headerlink" title="Switch over to the build user."></a>Switch over to the build user.</h1><p>USER stf-build</p>
+<h1 id="Run_the_build"><a href="#Run_the_build" class="headerlink" title="Run the build."></a>Run the build.</h1><p>RUN set -x &amp;&amp; \<br>    cd /tmp/build &amp;&amp; \<br>    export PATH=$PWD/node_modules/.bin:$PATH &amp;&amp; \<br>    npm install –loglevel http &amp;&amp; \<br>    npm pack &amp;&amp; \<br>    tar xzf stf-<em>.tgz –strip-components 1 -C /app &amp;&amp; \<br>    bower cache clean &amp;&amp; \<br>    npm prune –production &amp;&amp; \<br>    mv node_modules /app &amp;&amp; \<br>    npm cache clean &amp;&amp; \<br>    rm -rf ~/.node-gyp &amp;&amp; \<br>    cd /app &amp;&amp; \<br>    rm -rf /tmp/</em></p>
+<h1 id="Switch_to_the_app_user"><a href="#Switch_to_the_app_user" class="headerlink" title="Switch to the app user."></a>Switch to the app user.</h1><p>USER stf</p>
+<h1 id="Show_help_by_default"><a href="#Show_help_by_default" class="headerlink" title="Show help by default."></a>Show help by default.</h1><p>CMD stf –help<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后编译</span><br></pre></td></tr></table></figure></p>
+<p>docker build -t “stf/v1.0” .<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后查看镜像，新的镜像应该在里面了。</span><br></pre></td></tr></table></figure></p>
+<p>docker ps<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">就可以运行了：</span><br></pre></td></tr></table></figure></p>
+<p>docker run “stf/v1.0”<br>```</p>
+<p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
+<p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
+<p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
 
             
           </span>
@@ -1249,6 +1318,9 @@
 <p>去了下西门汀，日据时代日本人的聚集地。现在还有很多日本人在那居住。<br>台湾的日本人很多，台湾人根本不排斥日本人。台湾处处有日本的痕迹。<br>就像在台北故宫参观。大陆游客都是走马观花，日本人韩国人却能很规矩的一个一个欣赏，认真听讲解。</p>
 <p>台湾跟大陆同宗同源，去台湾，就跟去香港差不多。没有语言 ，文化上的差异。很多传统，在台湾都有保留。比如儒家的那套“仁，义，礼，智，信，忠，孝，廉，耻”在台湾就有很好的保留和发扬，从道路命名就可以看出来。</p>
 <p>整个行程很短暂，留下的都是些美好记忆。</p>
+<blockquote>
+<p>有机会，世界各地多走走。<br>行千里路，读万卷书。。。</p>
+</blockquote>
 
             
           </span>
@@ -1459,7 +1531,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
