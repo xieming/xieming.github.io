@@ -473,6 +473,122 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/23/xueche/" itemprop="url">
+                  学车
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-23T20:21:04+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/23/xueche/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/23/xueche/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>终于通过了大路考。考试并没有平时训练时那么难。可能教练怕我们不过，可以磨练我们吧。</p>
+<p>虽然所有考试都是一次性通过的。但是学车过程是很艰辛的。</p>
+<p>下雨下雪都得去，每次被骂得狗血淋头。</p>
+<p>记忆最深刻的是： 忘记了动作要领，被骂得不敢上车了。</p>
+<p>后面自己慢慢总结了一下，在要领的地方特别注意了一下，后面就少犯错了。</p>
+<p>感受最深的是： <strong>不必过于谨慎，看好了，就放开手脚去做。</strong><br>刚开始在大路上跑的时候，相当的谨慎，导致动作一直没做到位，或者时机不合适。<br>越是胆小慎微，患得患失，越被骂得惨。<br>后面索性豁出去了。就按照教练说的来，在保证安全的前提下，自由发挥，动作麻利，不脱泥带水。</p>
+<p>果然长进多了，基本上不被骂了。</p>
+<p>工作上也是，<strong>掌握到了要领，看清了方向，不必过于拘谨，放开手脚去做。<br>啥事都不可能十分完美。</strong><br>不可能不犯错，只要不是大错，原则性的错误。 犯错是不可避免的。过度的谨慎，反而束缚了手脚。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/14/dockeronmac/" itemprop="url">
                   Docker manage STF on IOS
                 </a>
@@ -537,24 +653,20 @@
 <p>我想能不能用dockfile来管理那些步骤，做成image.</p>
 <p>这样就简单多了。</p>
 <p>还好，在github上找到了dockerfile.</p>
-<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。<br><figure class="highlight"><figcaption><span>install boot2docker```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#21551;&#21160;docker:</span><br></pre></td></tr></table></figure></p>
-<p>boot2docker init<br>boot2docker start<br>boot2docker shellinit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最后执行：</span><br></pre></td></tr></table></figure></p>
-<p>eval “$(boot2docker shellinit)”<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。</span><br></pre></td></tr></table></figure></p>
-<p>boot2docker status<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建立一个文件夹：</span><br></pre></td></tr></table></figure></p>
-<p>mkdir stf<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">然后创建： Dockerfile</span><br><span class="line">将下面的贴上去。</span><br></pre></td></tr></table></figure></p>
-<p>FROM openstf/base:v1.0.6</p>
-<h1 id="Sneak_the_stf_executable_into__24PATH"><a href="#Sneak_the_stf_executable_into__24PATH" class="headerlink" title="Sneak the stf executable into $PATH."></a>Sneak the stf executable into $PATH.</h1><p>ENV PATH /app/bin:$PATH</p>
-<h1 id="Work_in_app_dir_by_default"><a href="#Work_in_app_dir_by_default" class="headerlink" title="Work in app dir by default."></a>Work in app dir by default.</h1><p>WORKDIR /app</p>
-<h1 id="Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do"><a href="#Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do" class="headerlink" title="Export default app port, not enough for all processes but it should do"></a>Export default app port, not enough for all processes but it should do</h1><h1 id="for_now"><a href="#for_now" class="headerlink" title="for now."></a>for now.</h1><p>EXPOSE 3000</p>
-<h1 id="Copy_app_source"><a href="#Copy_app_source" class="headerlink" title="Copy app source."></a>Copy app source.</h1><p>COPY . /tmp/build/</p>
-<h1 id="Give_permissions_to_our_build_user"><a href="#Give_permissions_to_our_build_user" class="headerlink" title="Give permissions to our build user."></a>Give permissions to our build user.</h1><p>RUN mkdir -p /app &amp;&amp; \<br>    chown -R stf-build:stf-build /tmp/build /app</p>
-<h1 id="Switch_over_to_the_build_user"><a href="#Switch_over_to_the_build_user" class="headerlink" title="Switch over to the build user."></a>Switch over to the build user.</h1><p>USER stf-build</p>
-<h1 id="Run_the_build"><a href="#Run_the_build" class="headerlink" title="Run the build."></a>Run the build.</h1><p>RUN set -x &amp;&amp; \<br>    cd /tmp/build &amp;&amp; \<br>    export PATH=$PWD/node_modules/.bin:$PATH &amp;&amp; \<br>    npm install –loglevel http &amp;&amp; \<br>    npm pack &amp;&amp; \<br>    tar xzf stf-<em>.tgz –strip-components 1 -C /app &amp;&amp; \<br>    bower cache clean &amp;&amp; \<br>    npm prune –production &amp;&amp; \<br>    mv node_modules /app &amp;&amp; \<br>    npm cache clean &amp;&amp; \<br>    rm -rf ~/.node-gyp &amp;&amp; \<br>    cd /app &amp;&amp; \<br>    rm -rf /tmp/</em></p>
-<h1 id="Switch_to_the_app_user"><a href="#Switch_to_the_app_user" class="headerlink" title="Switch to the app user."></a>Switch to the app user.</h1><p>USER stf</p>
-<h1 id="Show_help_by_default"><a href="#Show_help_by_default" class="headerlink" title="Show help by default."></a>Show help by default.</h1><p>CMD stf –help<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后编译</span><br></pre></td></tr></table></figure></p>
-<p>docker build -t “stf/v1.0” .<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后查看镜像，新的镜像应该在里面了。</span><br></pre></td></tr></table></figure></p>
-<p>docker ps<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">就可以运行了：</span><br></pre></td></tr></table></figure></p>
-<p>docker run “stf/v1.0”<br>```</p>
+<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install boot2docker</span><br></pre></td></tr></table></figure>
+<p>启动docker:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boot2docker init</span><br><span class="line">boot2docker start</span><br><span class="line">boot2docker shellinit</span><br></pre></td></tr></table></figure>
+<p>最后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(boot2docker shellinit)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boot2docker </span>status</span><br></pre></td></tr></table></figure></p>
+<p>建立一个文件夹：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> stf</span><br></pre></td></tr></table></figure></p>
+<p>然后创建： Dockerfile<br>将下面的贴上去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">FROM openstf/base:v1.<span class="number">0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sneak the stf executable into $PATH.</span></span><br><span class="line">ENV PATH /app/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work in app dir by default.</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Export default app port, not enough for all processes but it should do</span></span><br><span class="line"><span class="comment"># for now.</span></span><br><span class="line">EXPOSE <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy app source.</span></span><br><span class="line">COPY . /tmp/build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Give permissions to our build user.</span></span><br><span class="line">RUN mkdir -p /app &amp;&amp; \</span><br><span class="line">    chown -R stf-build:stf-build /tmp/build /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch over to the build user.</span></span><br><span class="line">USER stf-build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the build.</span></span><br><span class="line">RUN <span class="built_in">set</span> -x &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /tmp/build &amp;&amp; \</span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/node_modules/.bin:<span class="variable">$PATH</span> &amp;&amp; \</span><br><span class="line">    npm install --loglevel http &amp;&amp; \</span><br><span class="line">    npm pack &amp;&amp; \</span><br><span class="line">    tar xzf stf-*.tgz --strip-components <span class="number">1</span> -C /app &amp;&amp; \</span><br><span class="line">    bower cache clean &amp;&amp; \</span><br><span class="line">    npm prune --production &amp;&amp; \</span><br><span class="line">    mv node_modules /app &amp;&amp; \</span><br><span class="line">    npm cache clean &amp;&amp; \</span><br><span class="line">    rm -rf ~/.node-gyp &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /app &amp;&amp; \</span><br><span class="line">    rm -rf /tmp/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to the app user.</span></span><br><span class="line">USER stf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show help by default.</span></span><br><span class="line">CMD stf --help</span><br></pre></td></tr></table></figure>
+<p>然后编译<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t <span class="string">"stf/v1.0"</span> .</span><br></pre></td></tr></table></figure></p>
+<p>然后查看镜像，新的镜像应该在里面了。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> ps</span><br></pre></td></tr></table></figure></p>
+<p>就可以运行了：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="string">"stf/v1.0"</span></span><br></pre></td></tr></table></figure>
 <p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
 <p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
 <p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
@@ -1001,6 +1113,134 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/28/testtime/" itemprop="url">
+                  测试估时
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-28T22:47:15+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/职业/" itemprop="url" rel="index">
+                    <span itemprop="name">职业</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/28/testtime/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/testtime/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>原文链接：<br><a href="http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/" target="_blank" rel="external">http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/</a></p>
+<p>产品的成功与否，离不开测试。而测试中估时是非常重要。<br>现在大部分公司都实行敏捷模式，开发需要估时，测试也需要估时，不然会影响整个项目周期。<br>估时的原则是： 实际，精确。<br>这里不讨论测试估时的具体实施，只是讨论一下如何让测试估时更加实际，更加精确。</p>
+<p><strong>1）给自己留有余地</strong></p>
+<p>估时的时候需要给自己留一点风险时间，留有余地。任何事情都不是理想状态的，留有余地的话确保在不利的情况下也有时间对付。</p>
+<p><strong>2）充分考虑公司的流程</strong></p>
+<p>有的公司流程制定，留给测试的时间非常少。那么，需要做哪些测试，哪些有更高的优先级。出现问题怎么解决，这些都是在测试前就预估好的。<br>比如有些公司一个发布过程，要走开发环境，测试环境，生产环境。但是服务器都不稳定，有可能就会block。</p>
+<p><strong>3）并行测试</strong></p>
+<p>有些story没有太大的依赖，是不是可以一起测了。或者在开发刚开始的时候，是不是可以把一些准备工作给做了，比如创建帐号，准备testcase,准备一些自动化脚本等。</p>
+<p><strong>4）随时关注进度，重估时间</strong></p>
+<p>因为有很多不可预见的因素，项目没有预期进行。或者开始估计就有偏差，那么随时要校正预估时间。</p>
+<p><strong>5）考虑下过去的经验</strong></p>
+<p>过去的经验，能让你预计可能的风险，和应对策略，让估时更加精确，实际。</p>
+<p><strong>6）目标明确</strong></p>
+<p>很多时候，并不是需要把所有的bug都要解决了，一个release的范围是什么？产品需求的细节是啥？心里都要很清楚。不然就会偏差很大，引起delay, 或者加班。</p>
+<p><strong>7)了解你的团队</strong></p>
+<p>如果你是team leader, 你需要很明白你团队的战斗力，谁的专长是啥，谁做哪块会更好。</p>
+<p><strong>8）了解你的资源</strong></p>
+<p>估时的时候，都是要以现有的资源为依托，不要相信领导说的，在某个时段招个人。很多时候，招人并不能起到显著的效果。而且招人也没有那么迅速成长；或者领导，HR只是说说而已。</p>
+<p><strong>9) 取决于你，你的公司，你的领导</strong></p>
+<p>根据公司，领导对测试的重视程度不一样，给测试的时间也会不一样。有的时候，要从产品质量的方面考虑，争取一些时间。有的时候，测试估的时间多了，项管肯定不干。<br>如果不争取，估计会被压得很厉害，天天加班，团队不稳定。或者产品的质量更本没法保证。<br>有的时候，别的部门会认为测试很简单，分分钟就能搞定，不就是点点鼠标吗？质量深入人心很重要。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/28/mongdbrails/" itemprop="url">
                   mongodb+rails
                 </a>
@@ -1241,129 +1481,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/22/python-config/" itemprop="url">
-                  Python中的config配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-07-22T10:37:55+08:00" content="2015-07-22">
-              2015-07-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/22/python-config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/22/python-config/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Python中有ConfigParser类，可以很方便的从配置文件中读取数据（如DB的配置，路径的配置），所以可以自己写一个函数，实现读取config配置。</p>
-<p>config文件的写法比较简单，[section]下配置key=value，一下是例子：db.conf</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置数据库  </span></span><br><span class="line">[database]  </span><br><span class="line">dbhost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  </span><br><span class="line">dbport=<span class="number">3366</span>  </span><br><span class="line">dbname=test  </span><br><span class="line">dbuser=test  </span><br><span class="line">dbpassword=test  </span><br><span class="line">dbcharset=utf8</span><br></pre></td></tr></table></figure>
-<p>接着写一个读取config的方法模块</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="comment">#name:mod_config.py  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取config配置文件  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getConfig</span><span class="params">(section, key)</span>:</span>  </span><br><span class="line">    config = ConfigParser.ConfigParser()  </span><br><span class="line">    path = os.path.split(os.path.realpath(__file__))[<span class="number">0</span>] + <span class="string">'/db.conf'</span>  </span><br><span class="line">    config.read(path)  </span><br><span class="line">    <span class="keyword">return</span> config.get(section, key)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#其中 os.path.split(os.path.realpath(__file__))[0] 得到的是当前文件模块的目录</span></span><br></pre></td></tr></table></figure>
-<p>ConfigParser 是Python自带的模块， 用来读写配置文件， 用法及其简单。 直接上代码，不解释，不多说。</p>
-<p>配置文件的格式是： []包含的叫section,    section 下有option=value这样的键值<br>配置文件：test.conf</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[section1]  </span><br><span class="line">name = anderson  </span><br><span class="line">sex = male  </span><br><span class="line">  </span><br><span class="line">[section2]  </span><br><span class="line">ip = <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span>  </span><br><span class="line">port = <span class="number">8080</span></span><br></pre></td></tr></table></figure>
-<p>读写</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -    </span></span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line">  </span><br><span class="line">conf = ConfigParser.ConfigParser()  </span><br><span class="line">conf.read(<span class="string">"c:\\test.conf"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 获取指定的section， 指定的option的值  </span></span><br><span class="line">name = conf.get(<span class="string">"section1"</span>, <span class="string">"name"</span>)  </span><br><span class="line">print(name)  </span><br><span class="line">age = conf.get(<span class="string">"section1"</span>, <span class="string">"age"</span>)  </span><br><span class="line"><span class="keyword">print</span> age  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取所有的section  </span></span><br><span class="line">sections = conf.sections()  </span><br><span class="line"><span class="keyword">print</span> sections  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#写配置文件  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 更新指定section, option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"port"</span>, <span class="string">"8081"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写入指定section, 增加新option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"IEPort"</span>, <span class="string">"80"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 添加新的 section  </span></span><br><span class="line">conf.add_section(<span class="string">"new_section"</span>)  </span><br><span class="line">conf.set(<span class="string">"new_section"</span>, <span class="string">"new_option"</span>, <span class="string">"http://xieming.github.io"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写回配置文件  </span></span><br><span class="line">conf.write(open(<span class="string">"c:\\test.conf"</span>,<span class="string">"w"</span>))</span><br></pre></td></tr></table></figure>
-<p>数据库配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dbsetting]</span><br><span class="line">host = <span class="number">10.128</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">user = BOSTON\anderson</span><br><span class="line">password = Good</span><br><span class="line">database = ET_Main</span><br></pre></td></tr></table></figure>
-<p>数据库操作：</p>
-<p>连接的是sqlserver，要安装pymssql这个模块。<br>mac上操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> pymssql</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> pymssql</span><br><span class="line"><span class="keyword">import</span> ConfigParser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cf = ConfigParser.ConfigParser()</span><br><span class="line"><span class="comment">#read config</span></span><br><span class="line">cf.read(<span class="string">"ini.conf"</span>)</span><br><span class="line">hostcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"host"</span>)</span><br><span class="line">usercf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"user"</span>)</span><br><span class="line">passwordcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"password"</span>)</span><br><span class="line">databasecf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"database"</span>)</span><br><span class="line"></span><br><span class="line">print(hostcf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execdb</span><span class="params">(query,querystr)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">	    conn = pymssql.connect(host=hostcf,user=usercf,password=passwordcf, database=databasecf)</span><br><span class="line">	<span class="keyword">except</span> pymssql.OperationalError, msg:</span><br><span class="line">	    <span class="keyword">print</span> <span class="string">"error: Could not Connection SQL Server!please check your dblink configure!"</span></span><br><span class="line">	    sys.exit()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	    cur = conn.cursor()</span><br><span class="line"></span><br><span class="line">	<span class="comment">#query="SELECT TOP 10 * FROM dbo.Members WHERE username = user"</span></span><br><span class="line">	<span class="keyword">print</span> query</span><br><span class="line">	cur.execute(query)</span><br><span class="line">	conn.commit</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1410,21 +1527,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

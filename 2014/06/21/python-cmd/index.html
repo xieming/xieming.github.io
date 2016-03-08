@@ -61,7 +61,7 @@
 <meta property="og:description" content="在用python编写脚本对android操作时，有时需要通过cmd命令直接对app操作。这样的好处是，如果你想对一页界面操作，不用一步一步的进行界面跳转，可以从主界面一下子调到你想要操作的界面。通过os.popen()方法打开一个cmd命令
 1、os.popen(“adb wait-for devices”)：等待连接设备
 2、os.popen(“adb shell screencap -p /d">
-<meta property="og:updated_time" content="2016-03-05T13:19:24.000Z">
+<meta property="og:updated_time" content="2016-03-08T11:21:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cmd中之行adb ">
 <meta name="twitter:description" content="在用python编写脚本对android操作时，有时需要通过cmd命令直接对app操作。这样的好处是，如果你想对一页界面操作，不用一步一步的进行界面跳转，可以从主界面一下子调到你想要操作的界面。通过os.popen()方法打开一个cmd命令
@@ -279,16 +279,96 @@
 <p>3、os.popen(“adb shell pull /data/local/“ +PATH(path+”/“ +timestamp + “.png”))：将手机/data/local/文件夹下文件传到手机文件夹下，并对图片以当时时间命名</p>
 <p>4、os.popen(“adb shell am start -n com.xxx.xxx/com.xxx.xxx.plugins.PluginCenterActicity”)：直接跳转并打开com.xxx.xxx下的com.xxx.xxx.plugins.PluginCenterActicity界面</p>
 <p>下边是手机截屏并上传到电脑中的代码：</p>
-<pre><code class="python"><span class="function"><span class="keyword">def</span> <span class="title">screenshot</span><span class="params">(self)</span>:</span>
-        path = PATH(os.getcwd()+<span class="string">"/output/pic"</span>)
-        timestamp = time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))
-        os.popen(<span class="string">"adb wait-for-device"</span>)
-        os.popen(<span class="string">"adb shell screencap -p /data/local/tmp.png"</span>)
-        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(PATH(os.getcwd()+<span class="string">"/output/pic"</span>)):
+<pre><code class="python"><span class="comment">#!/usr/bin/pyton</span>
+<span class="comment">#encoding=utf-8</span>
+<span class="keyword">import</span> time
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> os
+
+
+timestamp = time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))
+
+type = <span class="string">"""
+    1. screenshot
+    2. logcat
+    3. tracefile
+    4. device information
+"""</span>
+<span class="keyword">print</span> type
+yourtype = raw_input(<span class="string">"Please choose type: "</span>)
+
+<span class="function"><span class="keyword">def</span> <span class="title">getlogcat</span><span class="params">()</span>:</span>
+        path = os.getcwd()+<span class="string">"/output/logcat"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
             os.makedirs(path)
-        os.popen(<span class="string">"adb pull /data/local/tmp.png "</span> + PATH(path + <span class="string">"/"</span> + timestamp + <span class="string">".png"</span>))
-        os.popen(<span class="string">"adb shell rm /data/local/tmp.png"</span>)
+        logcatname=path+<span class="string">"/"</span>+timestamp+<span class="string">r"logcat.log"</span>
+        cmdlogcat=<span class="string">"adb logcat -d &gt;%s"</span> %(logcatname)  
+        os.popen(cmdlogcat)   
+
+<span class="function"><span class="keyword">def</span> <span class="title">gettracefile</span><span class="params">()</span>:</span>  
+        path = os.getcwd()+<span class="string">"/output/trace"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
+            os.makedirs(path)
+        tracename = path+<span class="string">"/"</span>+timestamp+<span class="string">r"trace.log"</span>
+        cmd=<span class="string">"adb shell cat /data/anr/traces.txt&gt;%s"</span> %(tracename)
+        os.popen(cmd) 
+
+<span class="function"><span class="keyword">def</span> <span class="title">screenshot</span><span class="params">()</span>:</span>
+        path = os.getcwd()+<span class="string">"/output/pic"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
+            os.makedirs(path)
+
+
+        os.popen(<span class="string">"adb shell screencap -p /sdcard/monkey_run.png"</span>)
+
+        cmd=<span class="string">"adb pull /sdcard/monkey_run.png %s"</span> %(path)
+        os.popen(cmd)  
+        os.popen(<span class="string">"adb shell rm /sdcard/monkey_run.png"</span>)
+        oldname = path+<span class="string">"/"</span> + <span class="string">"monkey_run.png"</span>
+        newname= path+<span class="string">"/"</span> + timestamp +<span class="string">r".png"</span>
+        os.rename(oldname, newname)
+
         <span class="keyword">print</span> <span class="string">"success"</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">getdeviceinfo</span><span class="params">()</span>:</span>
+        cmd = <span class="string">'adb shell cat /system/build.prop'</span>
+        deviceinfo = os.popen(cmd)
+        infoList = deviceinfo.readlines()
+        <span class="comment">#print infoList</span>
+
+        dict ={}
+
+        param = [<span class="string">'ro.product.manufacturer'</span>,<span class="string">'ro.build.version.release'</span>,<span class="string">'ro.build.version.sdk'</span>,<span class="string">'ro.product.model'</span>,<span class="string">'ro.product.brand'</span>,<span class="string">'ro.product.locale.language'</span>,<span class="string">'ro.product.locale.region'</span>]
+
+        <span class="keyword">for</span> info <span class="keyword">in</span> infoList:
+            <span class="keyword">for</span> each_param <span class="keyword">in</span> param:
+                <span class="keyword">if</span> str(each_param) <span class="keyword">in</span> str(info):
+                    k = info.split(<span class="string">'='</span>)[<span class="number">0</span>]
+                    s = k.split(<span class="string">'.'</span>)
+                    dict[s[<span class="number">-1</span>]] = info.split(<span class="string">'='</span>)[<span class="number">1</span>].strip()
+        <span class="keyword">print</span> dict.items()
+
+
+deviceText = os.popen(<span class="string">'adb devices'</span>)
+textList = deviceText.readlines()
+deviceName = textList[<span class="number">1</span>].split()[<span class="number">0</span>]
+
+<span class="keyword">if</span> deviceName == <span class="string">''</span>:
+    <span class="keyword">print</span> <span class="string">"please connect devices!"</span>
+
+<span class="keyword">else</span>:
+
+    <span class="keyword">if</span> yourtype == <span class="string">'1'</span>:
+        screenshot()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'2'</span>:
+        getlogcat()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'3'</span>:
+        gettracefile()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'4'</span>:
+        getdeviceinfo()
 </code></pre>
 </span>
       
@@ -435,21 +515,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

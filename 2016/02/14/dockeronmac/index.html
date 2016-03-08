@@ -55,7 +55,9 @@
 我想能不能用dockfile来管理那些步骤，做成image.
 这样就简单多了。
 还好，在github上找到了dockerfile.
-在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。install boot2docker```1&amp;#10;&amp;#21">
+在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。
+1brew install boot2docker
+启动doc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker manage STF on IOS">
 <meta property="og:url" content="http://snake.me/2016/02/14/dockeronmac/index.html">
@@ -64,15 +66,19 @@
 我想能不能用dockfile来管理那些步骤，做成image.
 这样就简单多了。
 还好，在github上找到了dockerfile.
-在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。install boot2docker```1&amp;#10;&amp;#21">
-<meta property="og:updated_time" content="2016-03-06T08:04:03.000Z">
+在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。
+1brew install boot2docker
+启动doc">
+<meta property="og:updated_time" content="2016-03-07T14:44:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker manage STF on IOS">
 <meta name="twitter:description" content="之前看到过有人安装了STF, 但是他们的步骤太多，太复杂了。
 我想能不能用dockfile来管理那些步骤，做成image.
 这样就简单多了。
 还好，在github上找到了dockerfile.
-在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。install boot2docker```1&amp;#10;&amp;#21">
+在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。安装boot2docker可以用brew安装。
+1brew install boot2docker
+启动doc">
 
 
 
@@ -283,24 +289,20 @@
 <p>我想能不能用dockfile来管理那些步骤，做成image.</p>
 <p>这样就简单多了。</p>
 <p>还好，在github上找到了dockerfile.</p>
-<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。<br><figure class="highlight"><figcaption><span>install boot2docker```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#21551;&#21160;docker:</span><br></pre></td></tr></table></figure></p>
-<p>boot2docker init<br>boot2docker start<br>boot2docker shellinit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最后执行：</span><br></pre></td></tr></table></figure></p>
-<p>eval “$(boot2docker shellinit)”<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。</span><br></pre></td></tr></table></figure></p>
-<p>boot2docker status<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建立一个文件夹：</span><br></pre></td></tr></table></figure></p>
-<p>mkdir stf<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">然后创建： Dockerfile</span><br><span class="line">将下面的贴上去。</span><br></pre></td></tr></table></figure></p>
-<p>FROM openstf/base:v1.0.6</p>
-<h1 id="Sneak_the_stf_executable_into__24PATH"><a href="#Sneak_the_stf_executable_into__24PATH" class="headerlink" title="Sneak the stf executable into $PATH."></a>Sneak the stf executable into $PATH.</h1><p>ENV PATH /app/bin:$PATH</p>
-<h1 id="Work_in_app_dir_by_default"><a href="#Work_in_app_dir_by_default" class="headerlink" title="Work in app dir by default."></a>Work in app dir by default.</h1><p>WORKDIR /app</p>
-<h1 id="Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do"><a href="#Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do" class="headerlink" title="Export default app port, not enough for all processes but it should do"></a>Export default app port, not enough for all processes but it should do</h1><h1 id="for_now"><a href="#for_now" class="headerlink" title="for now."></a>for now.</h1><p>EXPOSE 3000</p>
-<h1 id="Copy_app_source"><a href="#Copy_app_source" class="headerlink" title="Copy app source."></a>Copy app source.</h1><p>COPY . /tmp/build/</p>
-<h1 id="Give_permissions_to_our_build_user"><a href="#Give_permissions_to_our_build_user" class="headerlink" title="Give permissions to our build user."></a>Give permissions to our build user.</h1><p>RUN mkdir -p /app &amp;&amp; \<br>    chown -R stf-build:stf-build /tmp/build /app</p>
-<h1 id="Switch_over_to_the_build_user"><a href="#Switch_over_to_the_build_user" class="headerlink" title="Switch over to the build user."></a>Switch over to the build user.</h1><p>USER stf-build</p>
-<h1 id="Run_the_build"><a href="#Run_the_build" class="headerlink" title="Run the build."></a>Run the build.</h1><p>RUN set -x &amp;&amp; \<br>    cd /tmp/build &amp;&amp; \<br>    export PATH=$PWD/node_modules/.bin:$PATH &amp;&amp; \<br>    npm install –loglevel http &amp;&amp; \<br>    npm pack &amp;&amp; \<br>    tar xzf stf-<em>.tgz –strip-components 1 -C /app &amp;&amp; \<br>    bower cache clean &amp;&amp; \<br>    npm prune –production &amp;&amp; \<br>    mv node_modules /app &amp;&amp; \<br>    npm cache clean &amp;&amp; \<br>    rm -rf ~/.node-gyp &amp;&amp; \<br>    cd /app &amp;&amp; \<br>    rm -rf /tmp/</em></p>
-<h1 id="Switch_to_the_app_user"><a href="#Switch_to_the_app_user" class="headerlink" title="Switch to the app user."></a>Switch to the app user.</h1><p>USER stf</p>
-<h1 id="Show_help_by_default"><a href="#Show_help_by_default" class="headerlink" title="Show help by default."></a>Show help by default.</h1><p>CMD stf –help<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后编译</span><br></pre></td></tr></table></figure></p>
-<p>docker build -t “stf/v1.0” .<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后查看镜像，新的镜像应该在里面了。</span><br></pre></td></tr></table></figure></p>
-<p>docker ps<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">就可以运行了：</span><br></pre></td></tr></table></figure></p>
-<p>docker run “stf/v1.0”<br>```</p>
+<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install boot2docker</span><br></pre></td></tr></table></figure>
+<p>启动docker:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boot2docker init</span><br><span class="line">boot2docker start</span><br><span class="line">boot2docker shellinit</span><br></pre></td></tr></table></figure>
+<p>最后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(boot2docker shellinit)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boot2docker </span>status</span><br></pre></td></tr></table></figure></p>
+<p>建立一个文件夹：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> stf</span><br></pre></td></tr></table></figure></p>
+<p>然后创建： Dockerfile<br>将下面的贴上去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">FROM openstf/base:v1.<span class="number">0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sneak the stf executable into $PATH.</span></span><br><span class="line">ENV PATH /app/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work in app dir by default.</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Export default app port, not enough for all processes but it should do</span></span><br><span class="line"><span class="comment"># for now.</span></span><br><span class="line">EXPOSE <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy app source.</span></span><br><span class="line">COPY . /tmp/build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Give permissions to our build user.</span></span><br><span class="line">RUN mkdir -p /app &amp;&amp; \</span><br><span class="line">    chown -R stf-build:stf-build /tmp/build /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch over to the build user.</span></span><br><span class="line">USER stf-build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the build.</span></span><br><span class="line">RUN <span class="built_in">set</span> -x &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /tmp/build &amp;&amp; \</span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/node_modules/.bin:<span class="variable">$PATH</span> &amp;&amp; \</span><br><span class="line">    npm install --loglevel http &amp;&amp; \</span><br><span class="line">    npm pack &amp;&amp; \</span><br><span class="line">    tar xzf stf-*.tgz --strip-components <span class="number">1</span> -C /app &amp;&amp; \</span><br><span class="line">    bower cache clean &amp;&amp; \</span><br><span class="line">    npm prune --production &amp;&amp; \</span><br><span class="line">    mv node_modules /app &amp;&amp; \</span><br><span class="line">    npm cache clean &amp;&amp; \</span><br><span class="line">    rm -rf ~/.node-gyp &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /app &amp;&amp; \</span><br><span class="line">    rm -rf /tmp/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to the app user.</span></span><br><span class="line">USER stf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show help by default.</span></span><br><span class="line">CMD stf --help</span><br></pre></td></tr></table></figure>
+<p>然后编译<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t <span class="string">"stf/v1.0"</span> .</span><br></pre></td></tr></table></figure></p>
+<p>然后查看镜像，新的镜像应该在里面了。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> ps</span><br></pre></td></tr></table></figure></p>
+<p>就可以运行了：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="string">"stf/v1.0"</span></span><br></pre></td></tr></table></figure>
 <p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
 <p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
 <p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
@@ -449,21 +451,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -540,7 +542,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sneak_the_stf_executable_into__24PATH"><span class="nav-number">1.</span> <span class="nav-text">Sneak the stf executable into $PATH.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Work_in_app_dir_by_default"><span class="nav-number">2.</span> <span class="nav-text">Work in app dir by default.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Export_default_app_port_2C_not_enough_for_all_processes_but_it_should_do"><span class="nav-number">3.</span> <span class="nav-text">Export default app port, not enough for all processes but it should do</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for_now"><span class="nav-number">4.</span> <span class="nav-text">for now.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Copy_app_source"><span class="nav-number">5.</span> <span class="nav-text">Copy app source.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Give_permissions_to_our_build_user"><span class="nav-number">6.</span> <span class="nav-text">Give permissions to our build user.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Switch_over_to_the_build_user"><span class="nav-number">7.</span> <span class="nav-text">Switch over to the build user.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run_the_build"><span class="nav-number">8.</span> <span class="nav-text">Run the build.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Switch_to_the_app_user"><span class="nav-number">9.</span> <span class="nav-text">Switch to the app user.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Show_help_by_default"><span class="nav-number">10.</span> <span class="nav-text">Show help by default.</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

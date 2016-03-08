@@ -225,6 +225,129 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/22/python-config/" itemprop="url">
+                  Python中的config配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-07-22T10:37:55+08:00" content="2015-07-22">
+              2015-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/22/python-config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/22/python-config/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>Python中有ConfigParser类，可以很方便的从配置文件中读取数据（如DB的配置，路径的配置），所以可以自己写一个函数，实现读取config配置。</p>
+<p>config文件的写法比较简单，[section]下配置key=value，一下是例子：db.conf</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置数据库  </span></span><br><span class="line">[database]  </span><br><span class="line">dbhost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  </span><br><span class="line">dbport=<span class="number">3366</span>  </span><br><span class="line">dbname=test  </span><br><span class="line">dbuser=test  </span><br><span class="line">dbpassword=test  </span><br><span class="line">dbcharset=utf8</span><br></pre></td></tr></table></figure>
+<p>接着写一个读取config的方法模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="comment">#name:mod_config.py  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取config配置文件  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getConfig</span><span class="params">(section, key)</span>:</span>  </span><br><span class="line">    config = ConfigParser.ConfigParser()  </span><br><span class="line">    path = os.path.split(os.path.realpath(__file__))[<span class="number">0</span>] + <span class="string">'/db.conf'</span>  </span><br><span class="line">    config.read(path)  </span><br><span class="line">    <span class="keyword">return</span> config.get(section, key)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#其中 os.path.split(os.path.realpath(__file__))[0] 得到的是当前文件模块的目录</span></span><br></pre></td></tr></table></figure>
+<p>ConfigParser 是Python自带的模块， 用来读写配置文件， 用法及其简单。 直接上代码，不解释，不多说。</p>
+<p>配置文件的格式是： []包含的叫section,    section 下有option=value这样的键值<br>配置文件：test.conf</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[section1]  </span><br><span class="line">name = anderson  </span><br><span class="line">sex = male  </span><br><span class="line">  </span><br><span class="line">[section2]  </span><br><span class="line">ip = <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span>  </span><br><span class="line">port = <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+<p>读写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -    </span></span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line">  </span><br><span class="line">conf = ConfigParser.ConfigParser()  </span><br><span class="line">conf.read(<span class="string">"c:\\test.conf"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 获取指定的section， 指定的option的值  </span></span><br><span class="line">name = conf.get(<span class="string">"section1"</span>, <span class="string">"name"</span>)  </span><br><span class="line">print(name)  </span><br><span class="line">age = conf.get(<span class="string">"section1"</span>, <span class="string">"age"</span>)  </span><br><span class="line"><span class="keyword">print</span> age  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取所有的section  </span></span><br><span class="line">sections = conf.sections()  </span><br><span class="line"><span class="keyword">print</span> sections  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#写配置文件  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 更新指定section, option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"port"</span>, <span class="string">"8081"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写入指定section, 增加新option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"IEPort"</span>, <span class="string">"80"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 添加新的 section  </span></span><br><span class="line">conf.add_section(<span class="string">"new_section"</span>)  </span><br><span class="line">conf.set(<span class="string">"new_section"</span>, <span class="string">"new_option"</span>, <span class="string">"http://xieming.github.io"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写回配置文件  </span></span><br><span class="line">conf.write(open(<span class="string">"c:\\test.conf"</span>,<span class="string">"w"</span>))</span><br></pre></td></tr></table></figure>
+<p>数据库配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dbsetting]</span><br><span class="line">host = <span class="number">10.128</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">user = BOSTON\anderson</span><br><span class="line">password = Good</span><br><span class="line">database = ET_Main</span><br></pre></td></tr></table></figure>
+<p>数据库操作：</p>
+<p>连接的是sqlserver，要安装pymssql这个模块。<br>mac上操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> pymssql</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> pymssql</span><br><span class="line"><span class="keyword">import</span> ConfigParser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cf = ConfigParser.ConfigParser()</span><br><span class="line"><span class="comment">#read config</span></span><br><span class="line">cf.read(<span class="string">"ini.conf"</span>)</span><br><span class="line">hostcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"host"</span>)</span><br><span class="line">usercf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"user"</span>)</span><br><span class="line">passwordcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"password"</span>)</span><br><span class="line">databasecf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"database"</span>)</span><br><span class="line"></span><br><span class="line">print(hostcf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execdb</span><span class="params">(query,querystr)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">	    conn = pymssql.connect(host=hostcf,user=usercf,password=passwordcf, database=databasecf)</span><br><span class="line">	<span class="keyword">except</span> pymssql.OperationalError, msg:</span><br><span class="line">	    <span class="keyword">print</span> <span class="string">"error: Could not Connection SQL Server!please check your dblink configure!"</span></span><br><span class="line">	    sys.exit()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	    cur = conn.cursor()</span><br><span class="line"></span><br><span class="line">	<span class="comment">#query="SELECT TOP 10 * FROM dbo.Members WHERE username = user"</span></span><br><span class="line">	<span class="keyword">print</span> query</span><br><span class="line">	cur.execute(query)</span><br><span class="line">	conn.commit</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/15/Nginx-Passenger-Rails/" itemprop="url">
                   Nginx+Passenger+Rails
                 </a>
@@ -1303,128 +1426,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/08/11/python-json/" itemprop="url">
-                  python解析json
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-08-11T23:06:42+08:00" content="2014-08-11">
-              2014-08-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/08/11/python-json/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/11/python-json/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>做接口测试的时候，就要对json请求进行解析。</p>
-<p><strong>1. python 解析 json</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2  </span><br><span class="line"><span class="keyword">import</span> json  </span><br><span class="line">  </span><br><span class="line">html = urllib2.urlopen(<span class="string">r'http://api.douban.com/v2/book/isbn/9787218087351'</span>)  </span><br><span class="line">  </span><br><span class="line">hjson = json.loads(heml.read())  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'rating'</span>]  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'images'</span>][<span class="string">'large'</span>]  </span><br><span class="line"><span class="keyword">print</span> hjson[<span class="string">'summary'</span>]</span><br></pre></td></tr></table></figure>
-<p><strong>2. python 中文乱码的解决：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys,codecs, types  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code</span><span class="params">()</span>:</span>  </span><br><span class="line">    var1 = <span class="string">"nihao"</span>  </span><br><span class="line">    var2 = <span class="string">"你好"</span>  </span><br><span class="line">    <span class="keyword">print</span> var1  </span><br><span class="line">    <span class="keyword">print</span> var2  </span><br><span class="line">    var2 = var2.decode(<span class="string">'utf-8'</span>).encode(<span class="string">'gbk'</span>)  </span><br><span class="line">    <span class="keyword">print</span> var2  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    code()</span><br></pre></td></tr></table></figure>
-<p>程序中“你好”默认用UTF-8 编码，程序中先将var2以UTF-8解码再以gbk编码，就可以输出正确的中文</p>
-<p><strong>3. python 用httplib发送请求</strong></p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#httplib是Python的http协议的内置，实现模块，使用它可以很简洁的实现http发送请求。   </span></span><br><span class="line"><span class="keyword">import</span> httplib  </span><br><span class="line"><span class="keyword">import</span> urllib  </span><br><span class="line">   </span><br><span class="line"><span class="comment">#连接服务器    </span></span><br><span class="line">   </span><br><span class="line">conn=httplib.<span class="type">HTTPConnection</span>('www.python.org')    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#发送HTTP请求    </span></span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">GET</span>','url')    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#得到结果    </span></span><br><span class="line">   </span><br><span class="line"><span class="literal">result</span>=conn.getresponse()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#获取HTTP请求结果值。200为成功    </span></span><br><span class="line">   </span><br><span class="line">resultStatus=<span class="literal">result</span>.status    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#获取请求的页面内容    </span></span><br><span class="line">   </span><br><span class="line">content=<span class="literal">result</span>.read()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#关闭连接    </span></span><br><span class="line">   </span><br><span class="line">conn.close()    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#如果要模拟客户端进行请求，可以发送HTTP请求头    </span></span><br><span class="line">   </span><br><span class="line">headers=&#123;<span class="string">"Content-Type"</span>:<span class="string">"text/html;charset=gb2312"</span>&#125;    </span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">POST</span>','url',headers=headers)    </span><br><span class="line">   </span><br><span class="line"><span class="comment">#带参数传送    </span></span><br><span class="line">   </span><br><span class="line">params = urllib.urlencode(&#123;'pname':'pvalue'&#125;);    </span><br><span class="line">   </span><br><span class="line">conn.request('<span class="type">POST</span>','url',body=params)</span><br></pre></td></tr></table></figure>
-<p>发送get 请求</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="comment">#coding=utf8  </span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> httplib  </span><br><span class="line">   </span><br><span class="line">httpClient = <span class="keyword">None</span>  </span><br><span class="line">   </span><br><span class="line"><span class="keyword">try</span>:  </span><br><span class="line">    httpClient = httplib.HTTPConnection(<span class="string">'localhost'</span>, <span class="number">80</span>, timeout=<span class="number">30</span>)  </span><br><span class="line">    httpClient.request(<span class="string">'GET'</span>, <span class="string">'/test.php'</span>)  </span><br><span class="line">   </span><br><span class="line">    <span class="comment">#response是HTTPResponse对象  </span></span><br><span class="line">    response = httpClient.getresponse()  </span><br><span class="line">    <span class="keyword">print</span> response.status  </span><br><span class="line">    <span class="keyword">print</span> response.reason  </span><br><span class="line">    <span class="keyword">print</span> response.read()  </span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> e  </span><br><span class="line"><span class="keyword">finally</span>:  </span><br><span class="line">    <span class="keyword">if</span> httpClient:  </span><br><span class="line">        httpClient.close()</span><br></pre></td></tr></table></figure>
-<p>发送post请求</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="comment">#coding=utf8  </span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> httplib, urllib  </span><br><span class="line">   </span><br><span class="line">httpClient = <span class="keyword">None</span>  </span><br><span class="line"><span class="keyword">try</span>:  </span><br><span class="line">    params = urllib.urlencode(&#123;<span class="string">'name'</span>: <span class="string">'tom'</span>, <span class="string">'age'</span>: <span class="number">22</span>&#125;)  </span><br><span class="line">    headers = &#123;<span class="string">"Content-type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>  </span><br><span class="line">                    , <span class="string">"Accept"</span>: <span class="string">"text/plain"</span>&#125;  </span><br><span class="line">   </span><br><span class="line">    httpClient = httplib.HTTPConnection(<span class="string">"localhost"</span>, <span class="number">80</span>, timeout=<span class="number">30</span>)  </span><br><span class="line">    httpClient.request(<span class="string">"POST"</span>, <span class="string">"/test.php"</span>, params, headers)  </span><br><span class="line">   </span><br><span class="line">    response = httpClient.getresponse()  </span><br><span class="line">    <span class="keyword">print</span> response.status  </span><br><span class="line">    <span class="keyword">print</span> response.reason  </span><br><span class="line">    <span class="keyword">print</span> response.read()  </span><br><span class="line">    <span class="keyword">print</span> response.getheaders() <span class="comment">#获取头信息  </span></span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> e  </span><br><span class="line"><span class="keyword">finally</span>:  </span><br><span class="line">    <span class="keyword">if</span> httpClient:  </span><br><span class="line">        httpClient.close()</span><br></pre></td></tr></table></figure>
-<p>实例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">httpget</span><span class="params">(self,url)</span>:</span></span><br><span class="line">       httpClient = <span class="keyword">None</span></span><br><span class="line">       conn = urlparse(url)</span><br><span class="line">       url=url.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">       <span class="keyword">try</span>:</span><br><span class="line">           httpClient = httplib.HTTPConnection(conn.netloc, timeout=<span class="number">10</span>)</span><br><span class="line">           httpClient.request(<span class="string">'GET'</span>, url)</span><br><span class="line"></span><br><span class="line">           response = httpClient.getresponse()</span><br><span class="line">           <span class="keyword">print</span> response</span><br><span class="line">           d0=response.read()</span><br><span class="line">           d0=d0.decode(<span class="string">'unicode_escape'</span>)</span><br><span class="line">       <span class="keyword">except</span> Exception, e:</span><br><span class="line">           <span class="keyword">print</span> e</span><br><span class="line">       <span class="keyword">finally</span>:</span><br><span class="line">           <span class="keyword">if</span> httpClient:</span><br><span class="line">               httpClient.close()</span><br><span class="line">       <span class="keyword">return</span> response.status,d0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">httppost</span><span class="params">(self,host,path,params)</span>:</span></span><br><span class="line">       httpClient = <span class="keyword">None</span></span><br><span class="line">      <span class="comment"># conn = urlparse(url)</span></span><br><span class="line">     <span class="comment">#  url=url.encode('utf-8')</span></span><br><span class="line">       <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">           body=json.dumps(params)</span><br><span class="line">           header = &#123;<span class="string">"Content-type"</span>: <span class="string">"application/json"</span>, <span class="string">"Accept"</span>: <span class="string">"text/plain"</span>&#125;</span><br><span class="line"></span><br><span class="line">           httpClient = httplib.HTTPConnection(host, timeout=<span class="number">30</span>)</span><br><span class="line">           httpClient.request(<span class="string">'POST'</span>, path, body, header)</span><br><span class="line">           response = httpClient.getresponse()</span><br><span class="line">           <span class="keyword">print</span> response.status</span><br><span class="line">           <span class="comment">#print response.read()</span></span><br><span class="line"></span><br><span class="line">           d1=response.read()</span><br><span class="line">           <span class="comment">#d1=d1.decode('unicode_escape')</span></span><br><span class="line">           d1=json.loads(d1)</span><br><span class="line">       <span class="keyword">except</span> Exception, e:</span><br><span class="line">           <span class="keyword">print</span> e</span><br><span class="line">       <span class="keyword">finally</span>:</span><br><span class="line">           <span class="keyword">if</span> httpClient:</span><br><span class="line">               httpClient.close()</span><br><span class="line">       <span class="keyword">return</span> d1</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1471,21 +1472,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
