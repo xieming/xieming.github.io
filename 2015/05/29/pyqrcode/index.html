@@ -57,7 +57,7 @@
 12sudo easy_install pillowsudo easy_install qrcode
 一下就安装成功了。
 简单用法
-123456789101112131415161718">
+1234567891011121314151617im">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pyqrcode">
 <meta property="og:url" content="http://snake.me/2015/05/29/pyqrcode/index.html">
@@ -68,8 +68,8 @@
 12sudo easy_install pillowsudo easy_install qrcode
 一下就安装成功了。
 简单用法
-123456789101112131415161718">
-<meta property="og:updated_time" content="2016-03-05T13:25:03.000Z">
+1234567891011121314151617im">
+<meta property="og:updated_time" content="2016-03-09T06:16:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pyqrcode">
 <meta name="twitter:description" content="最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。先是Python使用QRCode模块生成二维码
@@ -78,7 +78,7 @@
 12sudo easy_install pillowsudo easy_install qrcode
 一下就安装成功了。
 简单用法
-123456789101112131415161718">
+1234567891011121314151617im">
 
 
 
@@ -291,7 +291,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install pillow</span><br><span class="line">sudo easy_install qrcode</span><br></pre></td></tr></table></figure>
 <p>一下就安装成功了。</p>
 <p>简单用法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">img = qrcode.make(<span class="string">'hello, qrcode'</span>)</span><br><span class="line">img.save(<span class="string">'test.png'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">高级用法</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">qr = qrcode.QRCode(     </span><br><span class="line">    version=<span class="number">1</span>,     </span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,     </span><br><span class="line">    box_size=<span class="number">10</span>,     </span><br><span class="line">    border=<span class="number">4</span>, </span><br><span class="line">) </span><br><span class="line">qr.add_data(<span class="string">'hello, qrcode'</span>) </span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)  </span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'123.png'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">img = qrcode.make(<span class="string">'hello, qrcode'</span>)</span><br><span class="line">img.save(<span class="string">'test.png'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">import</span> qrcode</span><br><span class="line">qr = qrcode.QRCode(</span><br><span class="line">    version=<span class="number">1</span>,</span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,</span><br><span class="line">    box_size=<span class="number">10</span>,</span><br><span class="line">    border=<span class="number">4</span>,</span><br><span class="line">)</span><br><span class="line">qr.add_data(<span class="string">'xieming.github.io'</span>)</span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)</span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'andersoon.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>高级用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">qr = qrcode.QRCode(     </span><br><span class="line">    version=<span class="number">1</span>,     </span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,     </span><br><span class="line">    box_size=<span class="number">10</span>,     </span><br><span class="line">    border=<span class="number">4</span>, </span><br><span class="line">) </span><br><span class="line">qr.add_data(<span class="string">'hello, qrcode'</span>) </span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)  </span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'123.png'</span>)</span><br></pre></td></tr></table></figure>
 <p>参数含义：<br>version：值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。</p>
 <p>error_correction：控制二维码的错误纠正功能。可取值下列4个常量。<br>　　ERROR_CORRECT_L：大约7%或更少的错误能被纠正。<br>　　ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。<br>　　ROR_CORRECT_H：大约30%或更少的错误能被纠正。</p>
 <p>box_size：控制二维码中每个小格子包含的像素数。</p>
@@ -443,7 +445,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
