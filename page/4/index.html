@@ -220,6 +220,287 @@
             
               
                 
+                <a class="post-title-link" href="/2014/03/22/python-report/" itemprop="url">
+                  ReportLab 实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-03-22T00:07:32+08:00" content="2014-03-22">
+              2014-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/22/python-report/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/22/python-report/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>python 生成报告， ReportLab 实践，网上找的例子，自己实践了一把。</p>
+<p><a href="http://www.reportlab.com/docs/reportlab-userguide.pdf" target="_blank" rel="external">文档</a></p>
+<p>然后照着文档，<a href="http://blog.csdn.net/youyudehexie/article/details/7918402" target="_blank" rel="external">例子</a></p>
+<p>写成了一个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> Drawing  </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.barcharts <span class="keyword">import</span> VerticalBarChart  </span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlopen    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> *    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.lineplots <span class="keyword">import</span> LinePlot    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.textlabels <span class="keyword">import</span> Label    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics <span class="keyword">import</span> renderPDF  </span><br><span class="line">drawing = Drawing(<span class="number">400</span>, <span class="number">200</span>)  </span><br><span class="line">data = [(<span class="number">13</span>, <span class="number">5</span>, <span class="number">20</span>),(<span class="number">14</span>, <span class="number">6</span>, <span class="number">21</span>)]  </span><br><span class="line">bc = VerticalBarChart()  </span><br><span class="line">bc.x = <span class="number">50</span>  </span><br><span class="line">bc.y = <span class="number">50</span>  </span><br><span class="line">bc.height = <span class="number">125</span>  </span><br><span class="line">bc.width = <span class="number">300</span>  </span><br><span class="line">bc.data = data  </span><br><span class="line">bc.strokeColor = colors.black  </span><br><span class="line">bc.valueAxis.valueMin = <span class="number">0</span>  </span><br><span class="line">bc.valueAxis.valueMax = <span class="number">50</span>  </span><br><span class="line">bc.valueAxis.valueStep = <span class="number">10</span>  </span><br><span class="line">bc.categoryAxis.labels.boxAnchor =<span class="string">'ne'</span>  </span><br><span class="line">bc.categoryAxis.labels.dx = <span class="number">8</span>  </span><br><span class="line">bc.categoryAxis.labels.dy = -<span class="number">2</span>  </span><br><span class="line">bc.categoryAxis.labels.angle = <span class="number">30</span>  </span><br><span class="line">bc.categoryAxis.categoryNames = [<span class="string">'Jan-99'</span>,<span class="string">'Feb-99'</span>,<span class="string">'Mar-99'</span>]  </span><br><span class="line">drawing.add(bc)  </span><br><span class="line">  </span><br><span class="line">drawing.add(String(<span class="number">250</span>,<span class="number">150</span>,<span class="string">"ss"</span>, fontSize=<span class="number">14</span>,fillColor=colors.red))        </span><br><span class="line">renderPDF.drawToFile(drawing,<span class="string">'report2.pdf'</span>,<span class="string">'API'</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jb51.net/article/53233.htm" target="_blank" rel="external">然后按照</a></p>
+<p>学习了下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="keyword">import</span> subprocess  </span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="keyword">from</span> reportlab.lib.units <span class="keyword">import</span> inch  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_report</span><span class="params">()</span>:</span>  </span><br><span class="line">    p = os.popen(<span class="string">"df -h"</span>)  </span><br><span class="line"><span class="comment">#   print p.stdout.readlines()  </span></span><br><span class="line">    <span class="keyword">return</span> p.readlines()  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pdf</span><span class="params">(input, output=<span class="string">"disk_report.pdf"</span>)</span>:</span>  </span><br><span class="line">    now = datetime.datetime.today()  </span><br><span class="line">    date = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)  </span><br><span class="line">    c = canvas.Canvas(output)  </span><br><span class="line">    textobject = c.beginText()  </span><br><span class="line">    textobject.setTextOrigin(inch, <span class="number">11</span>*inch)  </span><br><span class="line">    textobject.textLines(<span class="string">'''''Disk Capcity Report: %s'''</span> %date)  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> input:  </span><br><span class="line">        textobject.textLine(line.strip())  </span><br><span class="line">    c.drawText(textobject)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">report = disk_report()  </span><br><span class="line">create_pdf(report)</span><br></pre></td></tr></table></figure>
+<p>再练习：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>  </span><br><span class="line">    c = canvas.Canvas(<span class="string">"helloworld.pdf"</span>)  </span><br><span class="line">    c.drawString(<span class="number">100</span>,<span class="number">100</span>,<span class="string">"Hello,World"</span>)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/12/python-mails/" itemprop="url">
+                  python发送mails
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-03-12T11:25:24+08:00" content="2014-03-12">
+              2014-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/12/python-mails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/12/python-mails/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在做持续集成时，有时会要用到邮件提醒，Jenkins自带的邮件功能有时满足不了需要，python中email模块使得处理邮件变得比较简单。</p>
+<p>  一、相关模块介绍</p>
+<p>   发送邮件主要用到了smtplib和email两个模块，这里首先就两个模块进行一下简单的介绍：<br>    1、smtplib模块</p>
+<pre><code>smtplib.SMTP([host[, port[, local_hostname[, timeout]]]])
+</code></pre><p>　  SMTP类构造函数，表示与SMTP服务器之间的连接，通过这个连接可以向smtp服务器发送指令，执行相关操作（如：登陆、发送邮件）。所有参数都是可选的。</p>
+<pre><code>host：smtp服务器主机名
+
+port：smtp服务的端口，默认是25；如果在创建SMTP对象的时候提供了这两个参数，在初始化的时候会自动调用connect方法去连接服务器。
+</code></pre><p>　smtplib模块还提供了SMTP_SSL类和LMTP类，对它们的操作与SMTP基本一致。</p>
+<p>　smtplib.SMTP提供的方法：</p>
+<pre><code>SMTP.set_debuglevel(level)：设置是否为调试模式。默认为False，即非调试模式，表示不输出任何调试信息。
+
+SMTP.connect([host[, port]])：连接到指定的smtp服务器。参数分别表示smpt主机和端口。注意: 也可以在host参数中指定端口号（如：smpt.yeah.net:25），这样就没必要给出port参数。
+
+SMTP.docmd(cmd[, argstring])：向smtp服务器发送指令。可选参数argstring表示指令的参数。
+
+SMTP.helo([hostname]) ：使用&quot;helo&quot;指令向服务器确认身份。相当于告诉smtp服务器“我是谁”。
+
+SMTP.has_extn(name)：判断指定名称在服务器邮件列表中是否存在。出于安全考虑，smtp服务器往往屏蔽了该指令。
+
+SMTP.verify(address) ：判断指定邮件地址是否在服务器中存在。出于安全考虑，smtp服务器往往屏蔽了该指令。
+
+SMTP.login(user, password) ：登陆到smtp服务器。现在几乎所有的smtp服务器，都必须在验证用户信息合法之后才允许发送邮件。
+
+SMTP.sendmail(from_addr, to_addrs, msg[, mail_options, rcpt_options]) ：发送邮件。这里要注意一下第三个参数，msg是字符串，表示邮件。我们知道邮件一般由标题，发信人，收件人，邮件内容，附件等构成，发送邮件的时候，要注意msg的格式。这个格式就是smtp协议中定义的格式。
+
+SMTP.quit() ：断开与smtp服务器的连接，相当于发送&quot;quit&quot;指令。（很多程序中都用到了smtp.close()，具体与quit的区别google了一下，也没找到答案。）
+</code></pre><p>   2、email模块</p>
+<pre><code>emial模块用来处理邮件消息，包括MIME和其他基于RFC 2822 的消息文档。使用这些模块来定义邮件的内容，是非常简单的。其包括的类有（更加详细的介绍可见：http://docs.python.org/library/email.mime.html）：
+
+class email.mime.base.MIMEBase(_maintype, _subtype, **_params)：这是MIME的一个基类。一般不需要在使用时创建实例。其中_maintype是内容类型，如text或者image。_subtype是内容的minor type 类型，如plain或者gif。 **_params是一个字典，直接传递给Message.add_header()。
+
+class email.mime.multipart.MIMEMultipart([_subtype[, boundary[, _subparts[, _params]]]]：MIMEBase的一个子类，多个MIME对象的集合，_subtype默认值为mixed。boundary是MIMEMultipart的边界，默认边界是可数的。
+
+class email.mime.application.MIMEApplication(_data[, _subtype[, _encoder[, **_params]]])：MIMEMultipart的一个子类。
+
+class email.mime.audio. MIMEAudio(_audiodata[, _subtype[, _encoder[, **_params]]])： MIME音频对象
+
+class email.mime.image.MIMEImage(_imagedata[, _subtype[, _encoder[, **_params]]])：MIME二进制文件对象。
+
+class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message实例，使用方法如下：
+</code></pre><p>msg=mail.Message.Message()    #一个实例<br>msg[‘to’]=’XXX@XXX.com’      #发送到哪里<br>msg[‘from’]=’YYY@YYYY.com’       #自己的邮件地址<br>msg[‘date’]=’2012-3-16’           #时间日期<br>msg[‘subject’]=’hello world’    #邮件主题 </p>
+<pre><code>class email.mime.text.MIMEText(_text[, _subtype[, _charset]])：MIME文本对象，其中_text是邮件内容，_subtype邮件类型，可以是text/plain（普通文本邮件），html/plain(html邮件),  _charset编码，可以是gb2312等等。
+</code></pre><p>二、几种邮件的具体实现代码</p>
+<p>   1、普通文本邮件</p>
+<p>   普通文本邮件发送的实现，关键是要将MIMEText中_subtype设置为plain。首先导入smtplib和mimetext。创建smtplib.smtp实例，connect邮件smtp服务器，login后发送，具体代码如下：（python2.7下实现）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送txt文本邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">import</span> smtplib  </span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText  </span><br><span class="line"><span class="comment">#mailto_list=[YYY@YYY.com]</span></span><br><span class="line">mailto_list=[<span class="string">'luck@163.com'</span>] </span><br><span class="line">mail_host=<span class="string">"smtp.XXX.cn"</span>  <span class="comment">#设置服务器</span></span><br><span class="line">mail_user=<span class="string">"anderson@XXX.cn"</span>    <span class="comment">#用户名</span></span><br><span class="line">mail_pass=<span class="string">"123456"</span>   <span class="comment">#口令 </span></span><br><span class="line">mail_postfix=<span class="string">"XXX.cn"</span>  <span class="comment">#发件箱的后缀</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(to_list,sub,content)</span>:</span>  </span><br><span class="line">    me=<span class="string">"hello"</span>+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span>  </span><br><span class="line">    msg = MIMEText(content,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'gb2312'</span>)  </span><br><span class="line">    msg[<span class="string">'Subject'</span>] = sub  </span><br><span class="line">    msg[<span class="string">'From'</span>] = me  </span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(to_list)  </span><br><span class="line">    <span class="keyword">try</span>:  </span><br><span class="line">        server = smtplib.SMTP()  </span><br><span class="line">        server.connect(mail_host)  </span><br><span class="line">        server.login(mail_user,mail_pass)  </span><br><span class="line">        server.sendmail(me, to_list, msg.as_string())  </span><br><span class="line">        server.close()  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">    <span class="keyword">except</span> Exception, e:  </span><br><span class="line">        <span class="keyword">print</span> str(e)  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    <span class="keyword">if</span> send_mail(mailto_list,<span class="string">"hello"</span>,<span class="string">"hello world！"</span>):  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送成功"</span>  </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送失败"</span></span><br></pre></td></tr></table></figure>
+<p>2、html邮件的发送</p>
+<p>   与text邮件不同之处就是将将MIMEText中_subtype设置为html。具体代码如下：（python2.7下实现）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送html文本邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">import</span> smtplib  </span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText  </span><br><span class="line">mailto_list=[<span class="string">"luck@163.com"</span>] </span><br><span class="line">mail_host=<span class="string">"smtp.XXX.cn"</span>  <span class="comment">#设置服务器</span></span><br><span class="line">mail_user=<span class="string">"anderson@XXX.cn"</span>    <span class="comment">#用户名</span></span><br><span class="line">mail_pass=<span class="string">"123456"</span>   <span class="comment">#口令 </span></span><br><span class="line">mail_postfix=<span class="string">"XXX.cn"</span>  <span class="comment">#发件箱的后缀</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(to_list,sub,content)</span>:</span>  <span class="comment">#to_list：收件人；sub：主题；content：邮件内容</span></span><br><span class="line">    me=<span class="string">"hello"</span>+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span>   <span class="comment">#这里的hello可以任意设置，收到信后，将按照设置显示</span></span><br><span class="line">    msg = MIMEText(content,_subtype=<span class="string">'html'</span>,_charset=<span class="string">'gb2312'</span>)    <span class="comment">#创建一个实例，这里设置为html格式邮件</span></span><br><span class="line">    msg[<span class="string">'Subject'</span>] = sub    <span class="comment">#设置主题</span></span><br><span class="line">    msg[<span class="string">'From'</span>] = me  </span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(to_list)  </span><br><span class="line">    <span class="keyword">try</span>:  </span><br><span class="line">        s = smtplib.SMTP()  </span><br><span class="line">        s.connect(mail_host)  <span class="comment">#连接smtp服务器</span></span><br><span class="line">        s.login(mail_user,mail_pass)  <span class="comment">#登陆服务器</span></span><br><span class="line">        s.sendmail(me, to_list, msg.as_string())  <span class="comment">#发送邮件</span></span><br><span class="line">        s.close()  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">    <span class="keyword">except</span> Exception, e:  </span><br><span class="line">        <span class="keyword">print</span> str(e)  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    <span class="keyword">if</span> send_mail(mailto_list,<span class="string">"hello"</span>,<span class="string">u"&lt;a href='http://www.yiban.cn'&gt;链接&lt;/a&gt;"</span>):  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送成功"</span>  </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送失败"</span></span><br></pre></td></tr></table></figure>
+<p>3、发送带附件的邮件</p>
+<p>   发送带附件的邮件，首先要创建MIMEMultipart()实例，然后构造附件，如果有多个附件，可依次构造，最后利用smtplib.smtp发送。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp936 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送带附件邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建一个带附件的实例</span></span><br><span class="line">msg = MIMEMultipart()</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造附件1</span></span><br><span class="line">att1 = MIMEText(open(<span class="string">'C:\\Users\\wftang\\Desktop\\New folder\\mail1.py'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'gb2312'</span>)</span><br><span class="line">att1[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></span><br><span class="line">att1[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="123.doc"'</span><span class="comment">#这里的filename可以任意写，写什么名字，邮件中显示什么名字</span></span><br><span class="line">msg.attach(att1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造附件2</span></span><br><span class="line">att2 = MIMEText(open(<span class="string">'C:\\Users\\wftang\\Desktop\\New folder\\mail1.py'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'gb2312'</span>)</span><br><span class="line">att2[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></span><br><span class="line">att2[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="124.txt"'</span></span><br><span class="line">msg.attach(att2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加邮件头</span></span><br><span class="line">msg[<span class="string">'to'</span>] = <span class="string">'anderson@163.com'</span></span><br><span class="line">msg[<span class="string">'from'</span>] = <span class="string">'luck@163.com'</span></span><br><span class="line">msg[<span class="string">'subject'</span>] = <span class="string">'hello world'</span></span><br><span class="line"><span class="comment">#发送邮件</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    server = smtplib.SMTP()</span><br><span class="line">    server.connect(<span class="string">'smtp.163.com'</span>)</span><br><span class="line">    server.login(<span class="string">'luck@163.com'</span>,<span class="string">'****'</span>)<span class="comment">#XXX为用户名，XXXXX为密码</span></span><br><span class="line">    server.sendmail(msg[<span class="string">'from'</span>], msg[<span class="string">'to'</span>],msg.as_string())</span><br><span class="line">    server.quit()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'发送成功'</span></span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> str(e)</span><br></pre></td></tr></table></figure>
+<p>4、利用MIMEimage发送图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp936 -*-</span></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">import</span> mimetypes</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">from</span> email.mime.image <span class="keyword">import</span> MIMEImage</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AutoSendMail</span><span class="params">()</span>:</span></span><br><span class="line">    msg = MIMEMultipart()</span><br><span class="line">    msg[<span class="string">'From'</span>] = <span class="string">"luck@163.com"</span></span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">"anderson@163.com"</span></span><br><span class="line">    msg[<span class="string">'Subject'</span>] = <span class="string">"hello world"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    txt = MIMEText(<span class="string">"这是中文的邮件内容哦"</span>,<span class="string">'plain'</span>,<span class="string">'gb2312'</span>)     </span><br><span class="line">    msg.attach(txt)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    file1 = <span class="string">"C:\\Users\\anderson\\Desktop\\ssssa.jpg"</span></span><br><span class="line">    image = MIMEImage(open(file1,<span class="string">'rb'</span>).read())</span><br><span class="line">    image.add_header(<span class="string">'Content-ID'</span>,<span class="string">'&lt;image1&gt;'</span>)</span><br><span class="line">    msg.attach(image)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    server = smtplib.SMTP()</span><br><span class="line">    server.connect(<span class="string">'smtp.163.com'</span>)</span><br><span class="line">    server.login(<span class="string">'lucklly@163.com'</span>,<span class="string">'allen888'</span>)</span><br><span class="line">    server.sendmail(msg[<span class="string">'From'</span>],msg[<span class="string">'To'</span>],msg.as_string())</span><br><span class="line">    server.quit()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    AutoSendMail()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/03/05/python-monkey/" itemprop="url">
                   python尝试monkey收集crash
                 </a>
@@ -879,7 +1160,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -893,7 +1174,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

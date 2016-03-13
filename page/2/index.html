@@ -220,6 +220,252 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/05/ImageMagick/" itemprop="url">
+                  ImageMagick
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
+<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
+<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
+<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
+<p>然后自己本地尝试了一下，也成功了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
+<p>ImageMagick 主要的命令还是 convert<br><img src="/images/snake.jpg" alt="初始图像"><br>尝试了几个命令：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -fill black -pointsize <span class="number">10</span> -<span class="attribute">font</span> helvetica -draw <span class="string">'text 10,10 "Hello, World!"'</span>  snake<span class="class">.jpg</span>  helloworld.jpg</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/helloworld.jpg" alt="效果"><br>在图像的10,10 位置采用10磅的全黑Helvetica字体写上 Hello, World!<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert snake.png -<span class="built_in">fill</span> <span class="built_in">red</span> -pointsize <span class="number">13</span> -<span class="title">draw</span> <span class="string">"text 10,15 'snake'"</span> <span class="number">1112.</span>png</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/1112.png" alt="效果"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -<span class="attribute">background</span> <span class="string">'#0008'</span> -fill white -gravity center  <span class="tag">caption</span>:<span class="string">"debug"</span>  snake<span class="class">.png</span> +swap -gravity south -composite snake111.png</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/snake111.png" alt="效果"><br>更多的命令：<br><a href="http://blog.chinaunix.net/uid-16979052-id-3374027.html" target="_blank" rel="external">ImageMagick之convert命令大全</a><br>回头继续研究一下。<br>未完待续。。。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/28/testtime/" itemprop="url">
+                  测试估时
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-28T22:47:15+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/职业/" itemprop="url" rel="index">
+                    <span itemprop="name">职业</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/28/testtime/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/testtime/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>原文链接：<br><a href="http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/" target="_blank" rel="external">http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/</a></p>
+<p>产品的成功与否，离不开测试。而测试中估时是非常重要。<br>现在大部分公司都实行敏捷模式，开发需要估时，测试也需要估时，不然会影响整个项目周期。<br>估时的原则是： 实际，精确。<br>这里不讨论测试估时的具体实施，只是讨论一下如何让测试估时更加实际，更加精确。</p>
+<p><strong>1）给自己留有余地</strong></p>
+<p>估时的时候需要给自己留一点风险时间，留有余地。任何事情都不是理想状态的，留有余地的话确保在不利的情况下也有时间对付。</p>
+<p><strong>2）充分考虑公司的流程</strong></p>
+<p>有的公司流程制定，留给测试的时间非常少。那么，需要做哪些测试，哪些有更高的优先级。出现问题怎么解决，这些都是在测试前就预估好的。<br>比如有些公司一个发布过程，要走开发环境，测试环境，生产环境。但是服务器都不稳定，有可能就会block。</p>
+<p><strong>3）并行测试</strong></p>
+<p>有些story没有太大的依赖，是不是可以一起测了。或者在开发刚开始的时候，是不是可以把一些准备工作给做了，比如创建帐号，准备testcase,准备一些自动化脚本等。</p>
+<p><strong>4）随时关注进度，重估时间</strong></p>
+<p>因为有很多不可预见的因素，项目没有预期进行。或者开始估计就有偏差，那么随时要校正预估时间。</p>
+<p><strong>5）考虑下过去的经验</strong></p>
+<p>过去的经验，能让你预计可能的风险，和应对策略，让估时更加精确，实际。</p>
+<p><strong>6）目标明确</strong></p>
+<p>很多时候，并不是需要把所有的bug都要解决了，一个release的范围是什么？产品需求的细节是啥？心里都要很清楚。不然就会偏差很大，引起delay, 或者加班。</p>
+<p><strong>7)了解你的团队</strong></p>
+<p>如果你是team leader, 你需要很明白你团队的战斗力，谁的专长是啥，谁做哪块会更好。</p>
+<p><strong>8）了解你的资源</strong></p>
+<p>估时的时候，都是要以现有的资源为依托，不要相信领导说的，在某个时段招个人。很多时候，招人并不能起到显著的效果。而且招人也没有那么迅速成长；或者领导，HR只是说说而已。</p>
+<p><strong>9) 取决于你，你的公司，你的领导</strong></p>
+<p>根据公司，领导对测试的重视程度不一样，给测试的时间也会不一样。有的时候，要从产品质量的方面考虑，争取一些时间。有的时候，测试估的时间多了，项管肯定不干。<br>如果不争取，估计会被压得很厉害，天天加班，团队不稳定。或者产品的质量更本没法保证。<br>有的时候，别的部门会认为测试很简单，分分钟就能搞定，不就是点点鼠标吗？质量深入人心很重要。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/28/mongdbrails/" itemprop="url">
                   mongodb+rails
                 </a>
@@ -1224,240 +1470,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/06/Jmetertest/" itemprop="url">
-                  Jmeter 测试接口及性能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-12-06T23:27:26+08:00" content="2014-12-06">
-              2014-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/performance/" itemprop="url" rel="index">
-                    <span itemprop="name">performance</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/06/Jmetertest/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/06/Jmetertest/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>一、什么是接口测试？</p>
-<p>　　接口测试是测试系统组件间接口的一种测试。接口测试主要用于检测外部系统与系统之间以及内部各个子系统之间的交互点。测试的重点是要检查数据的交换，传递和控制管理过程，以及系统间的相互逻辑依赖关系等。<br>　　接口测试适用于为其他系统提供服务的底层框架系统和中心服务系统，主要测试这些系统对外部提供的接口，验证其正确性和稳定性。接口测试同样适用于一个上层系统中的服务层接口，越往上层，其测试的难度越大。<br>　　接口测试实施在多系统多平台的构架下，有着极为高效的成本收益比，接口测试天生为高复杂性的平台带来高效的缺陷监测和质量监督能力。平台越复杂，系统越庞大，接口测试的效果越明显。<br>　　基于接口测试的重要性，以及它比较容易自动化的特性，通过持续集成的接口监控能够及时的发现项目中存在的问题，这对持续运营的项目来说，非常重要。</p>
-<p>二、接口测试的流程</p>
-<p>　　1、 项目启动后，测试人员要尽早找到开发人员拿到接口测试文档<br>　　2、 获取接口测试文档后，就可以进行接口用例的编写和调试<br>　　3、 接口用例编写调试完成后，部署到持续集成的测试环境中，<br>　　4、 设定脚本运行频率，告警方式等基本参数，进行接口的日常监控<br>　　5、 每日进行接口脚本的维护更新，接口异常的处理</p>
-<p>三、编写接口测试脚本</p>
-<p>大部分性能工具都可以用来进行接口测试，jmeter就是一个好用的性能测试工具，他也同样可以用来进行接口测试，jmeter比较适用于CGI、webservice、DB等类型的接口测试。下面以websevice api接口为例说明如何编写接口测试用例<br>以下是我弄的一个简单的脚本。<br>每个请求都加一个响应断言来判断是否达到期望。<br>如果用命令来执行，也很简单：<br>jmeter -n -t test.jmx -l test.jtl<br>四、接口持续集成</p>
-<p>在这块卡了好久，主要是report展示。之前是不想再用其他工具(如：Ant, Maven ), 就想将jtl文件的报告展现出来，弄了很久没成功。最后还是向工具屈服，用的Ant来编译.<br>主要是配置build.xml<br>一个示例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">project</span> <span class="attribute">name</span>=<span class="value">"ant-jmeter-test"</span> <span class="attribute">default</span>=<span class="value">"all"</span> <span class="attribute">basedir</span>=<span class="value">"."</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">tstamp</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">format</span> <span class="attribute">property</span>=<span class="value">"time"</span> <span class="attribute">pattern</span>=<span class="value">"yyyyMMddhhmm"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">tstamp</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 需要改成自己本地的 Jmeter 目录--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"jmeter.home"</span> <span class="attribute">value</span>=<span class="value">"F:\xxxxx\Jmeter"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- jmeter生成jtl格式的结果报告的路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"jmeter.result.jtl.dir"</span> <span class="attribute">value</span>=<span class="value">"F:\xxxxx\resultLog\jtl"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- jmeter生成html格式的结果报告的路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"jmeter.result.html.dir"</span> <span class="attribute">value</span>=<span class="value">"F:\xxxxx\resultLog\html"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 生成的报告的前缀-&gt;</span><br><span class="line">    &lt;property name="ReportName" value="TestReport" /&gt;</span><br><span class="line">    &lt;property name="jmeter.result.jtlName" value="$&#123;jmeter.result.jtl.dir&#125;/$&#123;ReportName&#125;$&#123;time&#125;.jtl" /&gt;</span><br><span class="line">    &lt;property name="jmeter.result.htmlName" value="$&#123;jmeter.result.html.dir&#125;/$&#123;ReportName&#125;$&#123;time&#125;.html" /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;target name="all"&gt;</span><br><span class="line">        &lt;antcall target="test" /&gt;</span><br><span class="line">        &lt;antcall target="report" /&gt;</span><br><span class="line">    &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">    &lt;target name="test"&gt;</span><br><span class="line">        &lt;taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" /&gt;</span><br><span class="line">        &lt;jmeter jmeterhome="$&#123;jmeter.home&#125;" resultlog="$&#123;jmeter.result.jtlName&#125;"&gt;</span><br><span class="line">            &lt;!-- 声明要运行的脚本。"*.jmx"指包含此目录下的所有jmeter脚本--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">testplans</span> <span class="attribute">dir</span>=<span class="value">"D:\test_case_path"</span> <span class="attribute">includes</span>=<span class="value">"*.jmx"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">jmeter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"report"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">xslt</span> <span class="attribute">in</span>=<span class="value">"$&#123;jmeter.result.jtlName&#125;"</span></span><br><span class="line">              <span class="attribute">out</span>=<span class="value">"$&#123;jmeter.result.htmlName&#125;"</span></span><br><span class="line">              <span class="attribute">style</span>=<span class="value">"$&#123;jmeter.home&#125;/extras/jmeter-results-detail-report_21.xsl"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 因为上面生成报告的时候，不会将相关的图片也一起拷贝至目标目录，所以，需要手动拷贝 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">copy</span> <span class="attribute">todir</span>=<span class="value">"$&#123;jmeter.result.html.dir&#125;"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">fileset</span> <span class="attribute">dir</span>=<span class="value">"$&#123;jmeter.home&#125;/extras"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">include</span> <span class="attribute">name</span>=<span class="value">"collapse.png"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">include</span> <span class="attribute">name</span>=<span class="value">"expand.png"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">fileset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">copy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Jenkins 上安装 “Publish performance test result report” ，“Publish HTML reports” 的插件，配置一下。<br>运行。<br>之前一直出了个错：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Performance</span>: <span class="type">Recording</span> <span class="type">JMeter</span> reports '**/*.jtl'</span><br><span class="line"><span class="type">Performance</span>: no <span class="type">JMeter</span> files matching '**/*.jtl' have been found. <span class="type">Has</span> the report generated?. <span class="type">Setting</span> <span class="type">Build</span> to <span class="type">FAILURE</span></span><br><span class="line"><span class="type">Build</span> step '<span class="type">Publish</span> <span class="type">Performance</span> test <span class="literal">result</span> report' changed build <span class="literal">result</span> to <span class="type">FAILURE</span></span><br><span class="line"><span class="type">Finished</span>: <span class="type">FAILURE</span></span><br></pre></td></tr></table></figure>
-<p>导致结果出不来。后面在 Jmeter/bin 下将 jmeter.properties 中的：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#25913;&#25104;&#65306;&#10;```jmeter.save.saveservice.output_format=xml</span><br></pre></td></tr></table></figure></p>
-<p>文章发表在<a href="https://testerhome.com/topics/2580" target="_blank" rel="external">testerhome</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/01/python-unit/" itemprop="url">
-                  python unit test 的顺序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-12-01T11:06:29+08:00" content="2014-12-01">
-              2014-12-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/01/python-unit/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/01/python-unit/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>之前在IOS上，用python和appium 写case时，发现执行顺序是乱的。</p>
-<p>后面用了个程序来测试这个顺序：</p>
-<p>发现它是按照case的名字的，而不是按照先后顺序的。</p>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> HTMLTestRunner</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test_class</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"开始测试"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_ie</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.driver = webdriver.Ie()</span><br><span class="line">        self.url=<span class="string">"http://www.baidu.com"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ie"</span></span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_chrome</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.163.com"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"chrome"</span></span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_print1</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"1什么玩意"</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.sina.com.cn"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_print2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"2我到！"</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.tianya.cn"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"结束测试"</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    testsuite=unittest.TestSuite()</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_ie"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_chrome"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_print2"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_print1"</span>))</span><br><span class="line">    filename=<span class="string">"D:\\test\\result.html"</span></span><br><span class="line">    fp=file(filename,<span class="string">'wb'</span>)</span><br><span class="line">    runner=HTMLTestRunner.HTMLTestRunner(stream=fp,title=<span class="string">'Result'</span>,description=<span class="string">'Test_Report'</span>)</span><br><span class="line">    runner.run(testsuite)</span><br></pre></td></tr></table></figure>
-<p>总算解决了个问题。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1504,7 +1516,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1518,7 +1530,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
