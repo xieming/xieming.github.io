@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="multiple_threads," />
 
 
 
@@ -51,19 +51,22 @@
 
 
 
-<meta name="description" content="echarts
-1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;head&amp;#62;&amp;#10;    &amp;#60;meta charset=&amp;#34;utf-8&amp;#34;&amp;#62;&amp;#10;    &amp;#60;title&amp;#62;ECharts&amp;#60;/title&amp;#62;&amp;#10;&amp;#60;/head&amp;#62;&amp;#10;&amp;#60;body&amp;#62;&amp;#10;    &amp;#60;!-">
+<meta name="description" content="前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。
+
+目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="charts">
-<meta property="og:url" content="http://snake.me/2016/03/11/charts/index.html">
+<meta property="og:title" content="python_multiple_threads">
+<meta property="og:url" content="http://snake.me/2016/03/21/python-multiple-threads/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="echarts
-1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;head&amp;#62;&amp;#10;    &amp;#60;meta charset=&amp;#34;utf-8&amp;#34;&amp;#62;&amp;#10;    &amp;#60;title&amp;#62;ECharts&amp;#60;/title&amp;#62;&amp;#10;&amp;#60;/head&amp;#62;&amp;#10;&amp;#60;body&amp;#62;&amp;#10;    &amp;#60;!-">
-<meta property="og:updated_time" content="2016-03-11T05:19:45.000Z">
+<meta property="og:description" content="前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。
+
+目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点">
+<meta property="og:updated_time" content="2016-03-21T14:33:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="charts">
-<meta name="twitter:description" content="echarts
-1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;head&amp;#62;&amp;#10;    &amp;#60;meta charset=&amp;#34;utf-8&amp;#34;&amp;#62;&amp;#10;    &amp;#60;title&amp;#62;ECharts&amp;#60;/title&amp;#62;&amp;#10;&amp;#60;/head&amp;#62;&amp;#10;&amp;#60;body&amp;#62;&amp;#10;    &amp;#60;!-">
+<meta name="twitter:title" content="python_multiple_threads">
+<meta name="twitter:description" content="前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。
+
+目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点">
 
 
 
@@ -75,7 +78,7 @@
   };
 </script>
 
-  <title> charts | Snake's Home </title>
+  <title> python_multiple_threads | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -215,7 +218,7 @@
             
             
               
-                charts
+                python_multiple_threads
               
             
           </h1>
@@ -224,19 +227,34 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-03-11T13:16:47+08:00" content="2016-03-11">
-              2016-03-11
+            <time itemprop="dateCreated" datetime="2016-03-21T22:26:23+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/11/charts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/11/charts/" itemprop="commentsCount"></span>
+                <a href="/2016/03/21/python-multiple-threads/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-multiple-threads/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -255,30 +273,35 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="http://echarts.baidu.com/echarts2/doc/start.html" target="_blank" rel="external">echarts</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34;&#62;&#10;    &#60;title&#62;ECharts&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;!-- &#20026;ECharts&#20934;&#22791;&#19968;&#20010;&#20855;&#22791;&#22823;&#23567;&#65288;&#23485;&#39640;&#65289;&#30340;Dom --&#62;&#10;    &#60;div id=&#34;main&#34; style=&#34;height:400px&#34;&#62;&#60;/div&#62;&#10;    &#60;!-- ECharts&#21333;&#25991;&#20214;&#24341;&#20837; --&#62;&#10;    &#60;script src=&#34;http://echarts.baidu.com/build/dist/echarts.js&#34;&#62;&#60;/script&#62;&#10;    &#60;script type=&#34;text/javascript&#34;&#62;&#10;        // &#36335;&#24452;&#37197;&#32622;&#10;        require.config(&#123;&#10;            paths: &#123;&#10;                echarts: &#39;http://echarts.baidu.com/build/dist&#39;&#10;            &#125;&#10;        &#125;);&#10;        &#10;        // &#20351;&#29992;&#10;        require(&#10;            [&#10;                &#39;echarts&#39;,&#10;                &#39;echarts/chart/bar&#39; // &#20351;&#29992;&#26609;&#29366;&#22270;&#23601;&#21152;&#36733;bar&#27169;&#22359;&#65292;&#25353;&#38656;&#21152;&#36733;&#10;                 ],&#10;            function (ec) &#123;&#10;                // &#22522;&#20110;&#20934;&#22791;&#22909;&#30340;dom&#65292;&#21021;&#22987;&#21270;echarts&#22270;&#34920;&#10;                var myChart = ec.init(document.getElementById(&#39;main&#39;)); &#10;                &#10;                var option = &#123;&#10;                    tooltip: &#123;&#10;                        show: true&#10;                    &#125;,&#10;                    legend: &#123;&#10;                        data:[&#39;&#38144;&#37327;&#39;]&#10;                    &#125;,&#10;                    xAxis : [&#10;                        &#123;&#10;                            type : &#39;category&#39;,&#10;                            data : [&#34;&#34924;&#34923;&#34;,&#34;&#32650;&#27611;&#34923;&#34;,&#34;&#38634;&#32442;&#34923;&#34;,&#34;&#35044;&#23376;&#34;,&#34;&#39640;&#36319;&#38795;&#34;,&#34;&#34972;&#23376;&#34;]&#10;                        &#125;&#10;                    ],&#10;                    yAxis : [&#10;                        &#123;&#10;                            type : &#39;value&#39;&#10;                        &#125;&#10;                    ],&#10;                    series : [&#10;                        &#123;&#10;                            &#34;name&#34;:&#34;&#38144;&#37327;&#34;,&#10;                            &#34;type&#34;:&#34;bar&#34;,&#10;                            &#34;data&#34;:[5, 20, 40, 10, 10, 20]&#10;                              &#125;&#10;                    ]&#10;                &#125;;&#10;        &#10;                // &#20026;echarts&#23545;&#35937;&#21152;&#36733;&#25968;&#25454; &#10;                myChart.setOption(option); &#10;            &#125;&#10;        );&#10;    &#60;/script&#62;&#10;&#60;/body&#62;</span><br></pre></td></tr></table></figure>
-</span>
+        <span itemprop="articleBody"><blockquote>
+<p>前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。</p>
+</blockquote>
+<p>目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。<br>2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点，出现了multithreading  模块。threading模块里面主要是对一些线程的操作对象化，创建Thread的class。一般来说，使用线程有两种模式:<br>A 创建线程要执行的函数，把这个函数传递进Thread对象里，让它来执行；<br>B 继承Thread类，创建一个新的class，将要执行的代码 写到run函数里面。<br>参照：<a href="http://blog.itpub.net/22664653/viewspace-1178285/" target="_blank" rel="external">python多线程</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(nloop, nsec)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start loop'</span>, nloop, <span class="string">'at:'</span>, now()</span><br><span class="line">    sleep(nsec)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'loop'</span>, nloop, <span class="string">'done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    threadpool=[]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">        th = threading.Thread(target= test,args= (i,<span class="number">2</span>))</span><br><span class="line">        threadpool.append(th)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">        th.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">        threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading ,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span> <span class="params">(threading.Thread)</span> :</span></span><br><span class="line">      <span class="string">"""docstring for myThread"""</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nloop, nsec)</span> :</span></span><br><span class="line">          super(myThread, self).__init__()</span><br><span class="line">          self.nloop = nloop</span><br><span class="line">          self.nsec = nsec</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">          <span class="keyword">print</span> <span class="string">'start loop'</span>, self.nloop, <span class="string">'at:'</span>, ctime()</span><br><span class="line">          sleep(self.nsec)</span><br><span class="line">          <span class="keyword">print</span> <span class="string">'loop'</span>, self.nloop, <span class="string">'done at:'</span>, ctime()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">     thpool=[]</span><br><span class="line">     <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">         thpool.append(myThread(i,<span class="number">2</span>))</span><br><span class="line">         </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.start()</span><br><span class="line">   </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.join()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/multiple-threads/" rel="tag">#multiple_threads</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/06/badminton/" rel="next" title="badminton">
-                <i class="fa fa-chevron-left"></i> badminton
+              <a href="/2016/03/13/resource/" rel="next" title="淘金岛">
+                <i class="fa fa-chevron-left"></i> 淘金岛
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/12/python-paramiko/" rel="prev" title="python-paramiko">
-                python-paramiko <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -317,10 +340,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/11/charts/"
-     data-title="charts"
+        <div class="ds-share flat" data-thread-key="2016/03/21/python-multiple-threads/"
+     data-title="python_multiple_threads"
      data-content=""
-     data-url="http://snake.me/2016/03/11/charts/">
+     data-url="http://snake.me/2016/03/21/python-multiple-threads/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -351,8 +374,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/11/charts/"
-           data-title="charts" data-url="http://snake.me/2016/03/11/charts/">
+      <div class="ds-thread" data-thread-key="2016/03/21/python-multiple-threads/"
+           data-title="python_multiple_threads" data-url="http://snake.me/2016/03/21/python-multiple-threads/">
       </div>
     
   </div>
