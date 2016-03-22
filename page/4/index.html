@@ -197,6 +197,131 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/06/05/python-csv/" itemprop="url">
+                  python csv模块介绍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-06-05T11:44:19+08:00" content="2014-06-05">
+              2014-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/05/python-csv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/05/python-csv/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
+<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure></p>
+<p>参数：</p>
+<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
+<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
+<p>使用例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
+<p>writer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">writer.writerow([<span class="string">"hello"</span>,<span class="string">"anderson"</span>])</span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(file)</span>:</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please choose the type: "</span>)</span><br><span class="line">    rule = re.compile(yourtype)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">        spamreader = csv.reader(readfile)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(row)):</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writecsv</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (<span class="string">'jsonfile.csv'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    	spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</span><br><span class="line">            spamwriter.writerow(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(self, file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">       spamreader = csv.reader(readfile)</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">                line = row.split(<span class="string">','</span>)</span><br><span class="line">                <span class="keyword">for</span> each_line <span class="keyword">in</span> line:</span><br><span class="line">                    <span class="keyword">if</span> each_line != <span class="string">" "</span>:</span><br><span class="line">                        <span class="keyword">print</span> each_line</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -1289,7 +1414,7 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1303,7 +1428,7 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

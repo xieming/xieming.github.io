@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mongodb,rails," />
+  <meta name="keywords" content="spider," />
 
 
 
@@ -51,31 +51,22 @@
 
 
 
-<meta name="description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
-安装
-1Brew install mongodb
-然后1which mongo
-来找到mongo的安装路径添加环境变量：
-123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
+<meta name="description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+改进前：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongodb+rails">
-<meta property="og:url" content="http://snake.me/2015/12/28/mongdbrails/index.html">
+<meta property="og:title" content="python_spider">
+<meta property="og:url" content="http://snake.me/2016/03/21/python-spider/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
-安装
-1Brew install mongodb
-然后1which mongo
-来找到mongo的安装路径添加环境变量：
-123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
-<meta property="og:updated_time" content="2016-03-05T13:30:34.000Z">
+<meta property="og:description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+改进前：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
+<meta property="og:updated_time" content="2016-03-21T15:57:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongodb+rails">
-<meta name="twitter:description" content="要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。自己折腾了下，总结过程如下：
-安装
-1Brew install mongodb
-然后1which mongo
-来找到mongo的安装路径添加环境变量：
-123vi .bahs_profileExport /usr/ocal/cellar/mongodb/3.">
+<meta name="twitter:title" content="python_spider">
+<meta name="twitter:description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+改进前：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
 
 
 
@@ -87,7 +78,7 @@
   };
 </script>
 
-  <title> mongodb+rails | Snake's Home </title>
+  <title> python_spider | Snake's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -227,7 +218,7 @@
             
             
               
-                mongodb+rails
+                python_spider
               
             
           </h1>
@@ -236,8 +227,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-28T14:17:38+08:00" content="2015-12-28">
-              2015-12-28
+            <time itemprop="dateCreated" datetime="2016-03-21T22:43:00+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
@@ -246,8 +237,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DB/" itemprop="url" rel="index">
-                    <span itemprop="name">DB</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -262,8 +253,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/28/mongdbrails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/mongdbrails/" itemprop="commentsCount"></span>
+                <a href="/2016/03/21/python-spider/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-spider/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -282,39 +273,12 @@
       
 
       
-        <span itemprop="articleBody"><p>要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。<br>自己折腾了下，总结过程如下：</p>
-<p><strong><em>安装</em></strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Brew install mongodb</span><br></pre></td></tr></table></figure>
-<p>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> mongo</span><br></pre></td></tr></table></figure></p>
-<p>来找到mongo的安装路径<br>添加环境变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi .bahs_profile</span><br><span class="line">Export /usr/ocal/cellar/mongodb/<span class="number">3.0</span>.<span class="number">7</span>/bin:<span class="variable">$PATH</span>;</span><br><span class="line">Source .bash_profile</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo 服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>敲上mongo就可以操作数据库了</p>
-<p><strong><em>与rails结合</em></strong></p>
-<p>在Gemfile中添加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line">gem <span class="string">"mongoid"</span>, <span class="string">"~&gt; 4.0.0"</span></span><br></pre></td></tr></table></figure>
-<p>然后</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bundle </span>install</span><br></pre></td></tr></table></figure>
-<p>再执行：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">rails</span> <span class="tag">g</span> <span class="tag">mongoid</span><span class="pseudo">:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure></p>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"</span><br><span class="line">require "action_mailer/railtie"</span><br><span class="line"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span><br><span class="line">require "rails/test_unit/railtie"</span><br><span class="line">require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong><em>使用</em></strong></p>
-<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Document</span><br><span class="line">field :first_name, type: String</span><br><span class="line">field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>就ok了</p>
-<p><strong>相关Gems</strong></p>
-<p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
-<p>• 使用mongoid-rails可以防止query的注入</p>
-<p>• 因为在替换成mongoid之后，默认的migratetion就已经不能用来了，所以可以用mongoid_rails_migrations来实现针对mongodb的数据迁移功能。</p>
-<p>参考：<br><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a><br><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
+        <span itemprop="articleBody"><p>前面自娱自乐，爬了几本书。<br>发帖出来，有些改进意见。<br>用多线程，用类，啥的。</p>
+<p>改进前：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(html,type)</span>:</span></span><br><span class="line">    pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">    source = re.compile(pattern)</span><br><span class="line">    sourcelist = re.findall(source,html)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">        <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> item[<span class="number">1</span>] != <span class="string">r"在线阅读"</span>:</span><br><span class="line">            <span class="comment">#print item[0]</span></span><br><span class="line">            <span class="keyword">if</span> type <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">type = <span class="string">"""</span><br><span class="line">    1.pdf</span><br><span class="line">    2.epub</span><br><span class="line">    3.mobi"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> type</span><br><span class="line"></span><br><span class="line">html = getHtml(<span class="string">"https://testerhome.com/topics/4419"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">downtype = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> yourtype != <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">if</span> yourtype ==<span class="string">'1'</span>:</span><br><span class="line">        downtype = <span class="string">'PDF'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'2'</span>:</span><br><span class="line">        downtype = <span class="string">'EPUB'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'3'</span>:</span><br><span class="line">        downtype = <span class="string">'MOBI'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please check your choice!"</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"please choose one type!"</span>        </span><br><span class="line"></span><br><span class="line">getlink(html,downtype)</span><br></pre></td></tr></table></figure>
+<p>改进后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">get_book</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,nsec, url, types)</span> :</span></span><br><span class="line">          <span class="comment">#super(myThread, self).__init__()</span></span><br><span class="line">          self.types = types</span><br><span class="line">          self.nsec = nsec</span><br><span class="line">          self.url = url</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(self,url)</span>:</span></span><br><span class="line">        page = urllib.urlopen(self.url)</span><br><span class="line">        html = page.read()</span><br><span class="line">        <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(self,html,types)</span>:</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">        source = re.compile(pattern)</span><br><span class="line">        sourcelist = re.findall(source,html)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">            <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> self.types <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line">                sleep(self.nsec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    type = <span class="string">"""</span><br><span class="line">        1.pdf</span><br><span class="line">        2.epub</span><br><span class="line">        3.mobi"""</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> type</span><br><span class="line"></span><br><span class="line">    types = &#123;<span class="number">1</span>:<span class="string">"PDF"</span>,<span class="number">2</span>:<span class="string">"EPUB"</span>,<span class="number">3</span>:<span class="string">"MOBI"</span>&#125;</span><br><span class="line"></span><br><span class="line">    html = <span class="string">"https://testerhome.com/topics/4419"</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> int(yourtype) <span class="keyword">not</span> <span class="keyword">in</span> range (<span class="number">1</span>,<span class="number">3</span>):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please select again"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> types[int(yourtype)]</span><br><span class="line"></span><br><span class="line">        get = get_book(<span class="number">2</span>,html,types[int(yourtype)])</span><br><span class="line">        url = get.getHtml(html)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'starting at:'</span>,get.now()</span><br><span class="line">        threadpool=[]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">            th = threading.Thread(target= get.getlink,args=(url,types[int(yourtype)]))</span><br><span class="line">            threadpool.append(th)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">            th.start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">            threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'all Done at:'</span>, get.now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p>然后看看效果。</p>
 </span>
       
     </div>
@@ -323,9 +287,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mongodb/" rel="tag">#mongodb</a>
-          
-            <a href="/tags/rails/" rel="tag">#rails</a>
+            <a href="/tags/spider/" rel="tag">#spider</a>
           
         </div>
       
@@ -334,17 +296,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/31/taiwan/" rel="next" title="台湾之行">
-                <i class="fa fa-chevron-left"></i> 台湾之行
+              <a href="/2016/03/21/python-multiple-threads/" rel="next" title="python_multiple_threads">
+                <i class="fa fa-chevron-left"></i> python_multiple_threads
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/28/testtime/" rel="prev" title="测试估时">
-                测试估时 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -383,10 +341,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/28/mongdbrails/"
-     data-title="mongodb+rails"
+        <div class="ds-share flat" data-thread-key="2016/03/21/python-spider/"
+     data-title="python_spider"
      data-content=""
-     data-url="http://snake.me/2015/12/28/mongdbrails/">
+     data-url="http://snake.me/2016/03/21/python-spider/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -417,8 +375,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/28/mongdbrails/"
-           data-title="mongodb+rails" data-url="http://snake.me/2015/12/28/mongdbrails/">
+      <div class="ds-thread" data-thread-key="2016/03/21/python-spider/"
+           data-title="python_spider" data-url="http://snake.me/2016/03/21/python-spider/">
       </div>
     
   </div>
