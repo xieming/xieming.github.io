@@ -53,29 +53,29 @@
 
 <meta name="description" content="作者最近要release一个Android版本， 在网络测试时却遇到了难题。没有各种网络环境。然后网上有Facebook/atc来模拟各种网络。然后各种安装让我望而却步。
 我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。
-结果让我振奋。将过程分享一下，也许也有跟我一样遇到这种问题的。
-Mac 下 xcode 自带的 Netwo">
+结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。
+Mac 下 xcode 自带的 Net">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟各种网络环境">
 <meta property="og:url" content="http://snake.me/2016/03/27/simulaterofnet/index.html">
 <meta property="og:site_name" content="Snake's Home">
 <meta property="og:description" content="作者最近要release一个Android版本， 在网络测试时却遇到了难题。没有各种网络环境。然后网上有Facebook/atc来模拟各种网络。然后各种安装让我望而却步。
 我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。
-结果让我振奋。将过程分享一下，也许也有跟我一样遇到这种问题的。
-Mac 下 xcode 自带的 Netwo">
+结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。
+Mac 下 xcode 自带的 Net">
 <meta property="og:image" content="http://snake.me/images/network-link-conditioner-download.png">
 <meta property="og:image" content="http://snake.me/images/3.21.20.png">
 <meta property="og:image" content="http://snake.me/images/3.22.19.png">
 <meta property="og:image" content="http://snake.me/images/3.22.41.png">
 <meta property="og:image" content="http://snake.me/images/network-link-conditioner-preset.png">
 <meta property="og:image" content="http://snake.me/images/network-link-conditioner-ios.png">
-<meta property="og:updated_time" content="2016-03-27T08:00:44.000Z">
+<meta property="og:updated_time" content="2016-03-27T08:09:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟各种网络环境">
 <meta name="twitter:description" content="作者最近要release一个Android版本， 在网络测试时却遇到了难题。没有各种网络环境。然后网上有Facebook/atc来模拟各种网络。然后各种安装让我望而却步。
 我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。
-结果让我振奋。将过程分享一下，也许也有跟我一样遇到这种问题的。
-Mac 下 xcode 自带的 Netwo">
+结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。
+Mac 下 xcode 自带的 Net">
 
 
 
@@ -284,7 +284,7 @@ Mac 下 xcode 自带的 Netwo">
       
         <span itemprop="articleBody"><p>作者最近要release一个Android版本， 在网络测试时却遇到了难题。<br>没有各种网络环境。<br>然后网上有Facebook/atc来模拟各种网络。<br>然后各种安装让我望而却步。</p>
 <p>我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。</p>
-<p>结果让我振奋。将过程分享一下，也许也有跟我一样遇到这种问题的。</p>
+<p>结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。</p>
 <p><strong>Mac 下 xcode 自带的 Network Link Conditioner（NLC）</strong></p>
 <p>NLC 是 xcode 的插件，可以在 “Hardware IO Tools for Xcode” 中找到。你可以在苹果开发者页面找到这个插件<br><img src="/images/network-link-conditioner-download.png" alt="NLC"></p>
 <p>查找 “Network Link Conditioner”, 然后选择 “Hardware IO Tools for Xcode” package.<br><img src="/images/3.21.20.png" alt="NLC"></p>
@@ -292,9 +292,8 @@ Mac 下 xcode 自带的 Netwo">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EDGE</span><br><span class="line"><span class="number">3</span>G</span><br><span class="line">DSL</span><br><span class="line">WiFi</span><br><span class="line">High Latency DNS</span><br><span class="line">Very Bad Network</span><br><span class="line"><span class="number">100</span>% Loss</span><br></pre></td></tr></table></figure>
 <p>每种情况都是通过设置上载、下载的 带宽, 延迟, 和 丢包率 (如果设置为 0, 即不影响你当前的网络环境，本来网络是什么样子就是什么样子).<br><img src="/images/network-link-conditioner-preset.png" alt="NLC"></p>
 <p>你也可以自建配置一个环境，在 【Manage Profiles…】里面自定义</p>
-<p>wifi</p>
-<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），不过博主这里用的是安卓测试机，所以就通过" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），不过博主这里用的是安卓测试机，所以就通过</a> mac 的网络共享来建一个 wifi （详见：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。</p>
-<p>接下来就可以通过切换各种网络环境来测试应用了。切换功能在下面这个面板上：<br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
+<p>wifi<br>博主这里用的是安卓测试机，所以就通过 mac 的网络共享来建一个 wifi （度娘：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。接下来就可以通过切换各种网络环境来测试应用了。在面板上切换各种网络。</p>
+<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），</a><br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
 <p>参照：<a href="http://nshipster.com/network-link-conditioner/" target="_blank" rel="external">Network Link Conditioner</a></p>
 </span>
       
