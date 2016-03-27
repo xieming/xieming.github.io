@@ -220,6 +220,251 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/23/xueche/" itemprop="url">
+                  学车
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-23T20:21:04+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/23/xueche/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/23/xueche/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>终于通过了大路考。考试并没有平时训练时那么难。可能教练怕我们不过，可以磨练我们吧。</p>
+<p>虽然所有考试都是一次性通过的。但是学车过程是很艰辛的。</p>
+<p>下雨下雪都得去，每次被骂得狗血淋头。</p>
+<p>记忆最深刻的是： 忘记了动作要领，被骂得不敢上车了。</p>
+<p>后面自己慢慢总结了一下，在要领的地方特别注意了一下，后面就少犯错了。</p>
+<p>感受最深的是： <strong>不必过于谨慎，看好了，就放开手脚去做。</strong><br>刚开始在大路上跑的时候，相当的谨慎，导致动作一直没做到位，或者时机不合适。<br>越是胆小慎微，患得患失，越被骂得惨。<br>后面索性豁出去了。就按照教练说的来，在保证安全的前提下，自由发挥，动作麻利，不脱泥带水。</p>
+<p>果然长进多了，基本上不被骂了。</p>
+<p>工作上也是，<strong>掌握到了要领，看清了方向，不必过于拘谨，放开手脚去做。<br>啥事都不可能十分完美。</strong><br>不可能不犯错，只要不是大错，原则性的错误。 犯错是不可避免的。过度的谨慎，反而束缚了手脚。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/14/dockeronmac/" itemprop="url">
+                  Docker manage STF on IOS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-14T23:52:29+08:00" content="2016-02-14">
+              2016-02-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/14/dockeronmac/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/14/dockeronmac/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>之前看到过有人安装了STF, 但是他们的步骤太多，太复杂了。</p>
+<p>我想能不能用dockfile来管理那些步骤，做成image.</p>
+<p>这样就简单多了。</p>
+<p>还好，在github上找到了dockerfile.</p>
+<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install boot2docker</span><br></pre></td></tr></table></figure>
+<p>启动docker:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boot2docker init</span><br><span class="line">boot2docker start</span><br><span class="line">boot2docker shellinit</span><br></pre></td></tr></table></figure>
+<p>最后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(boot2docker shellinit)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boot2docker </span>status</span><br></pre></td></tr></table></figure></p>
+<p>建立一个文件夹：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> stf</span><br></pre></td></tr></table></figure></p>
+<p>然后创建： Dockerfile<br>将下面的贴上去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">FROM openstf/base:v1.<span class="number">0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sneak the stf executable into $PATH.</span></span><br><span class="line">ENV PATH /app/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work in app dir by default.</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Export default app port, not enough for all processes but it should do</span></span><br><span class="line"><span class="comment"># for now.</span></span><br><span class="line">EXPOSE <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy app source.</span></span><br><span class="line">COPY . /tmp/build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Give permissions to our build user.</span></span><br><span class="line">RUN mkdir -p /app &amp;&amp; \</span><br><span class="line">    chown -R stf-build:stf-build /tmp/build /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch over to the build user.</span></span><br><span class="line">USER stf-build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the build.</span></span><br><span class="line">RUN <span class="built_in">set</span> -x &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /tmp/build &amp;&amp; \</span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/node_modules/.bin:<span class="variable">$PATH</span> &amp;&amp; \</span><br><span class="line">    npm install --loglevel http &amp;&amp; \</span><br><span class="line">    npm pack &amp;&amp; \</span><br><span class="line">    tar xzf stf-*.tgz --strip-components <span class="number">1</span> -C /app &amp;&amp; \</span><br><span class="line">    bower cache clean &amp;&amp; \</span><br><span class="line">    npm prune --production &amp;&amp; \</span><br><span class="line">    mv node_modules /app &amp;&amp; \</span><br><span class="line">    npm cache clean &amp;&amp; \</span><br><span class="line">    rm -rf ~/.node-gyp &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /app &amp;&amp; \</span><br><span class="line">    rm -rf /tmp/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to the app user.</span></span><br><span class="line">USER stf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show help by default.</span></span><br><span class="line">CMD stf --help</span><br></pre></td></tr></table></figure>
+<p>然后编译<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t <span class="string">"stf/v1.0"</span> .</span><br></pre></td></tr></table></figure></p>
+<p>然后查看镜像，新的镜像应该在里面了。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> ps</span><br></pre></td></tr></table></figure></p>
+<p>就可以运行了：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="string">"stf/v1.0"</span></span><br></pre></td></tr></table></figure>
+<p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
+<p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
+<p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/07/tangguo/" itemprop="url">
                   糖果
                 </a>
@@ -1250,265 +1495,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/05/railsupload/" itemprop="url">
-                  rails实现文件上传
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-06-05T22:43:01+08:00" content="2015-06-05">
-              2015-06-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/rails/" itemprop="url" rel="index">
-                    <span itemprop="name">rails</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/05/railsupload/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/05/railsupload/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近一直在折腾上传，对mongo的上传搞伤脑经。</p>
-<p>rails 上传主要是一个gem carrierwave<br>先生成一个项目，然后对Gemfile做点修改,如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'mongoid'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line">gem <span class="string">'carrierwave-mongoid'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span>, <span class="string">'0.6.2'</span></span><br><span class="line">gem <span class="string">'mini_magick'</span> <span class="comment">#不使用rmagick，占内存</span></span><br><span class="line">gem <span class="string">'fog'</span>  <span class="comment">#用来在生产环境中上传图片</span></span><br></pre></td></tr></table></figure>
-<p>然后安装</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="operator"><span class="keyword">install</span></span><br><span class="line">rails <span class="keyword">g</span> mongoid:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require <span class="string">"action_controller/railtie"</span></span><br><span class="line">require <span class="string">"action_mailer/railtie"</span></span><br><span class="line"><span class="comment"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span></span><br><span class="line">require <span class="string">"rails/test_unit/railtie"</span></span><br><span class="line">require <span class="string">"sprockets/railtie"</span> <span class="comment"># Uncomment this line for Rails 3.1+</span></span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>生成一个scaffold</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rails generate scaffold <span class="keyword">User</span> <span class="title">name</span>:<span class="type">string</span> nick:<span class="type">string</span> avatar:<span class="type">string</span></span><br><span class="line"></span><br><span class="line">rails generate uploader Avatar</span><br></pre></td></tr></table></figure>
-<p>未完待续。。。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/29/pyqrcode/" itemprop="url">
-                  pyqrcode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-05-29T23:53:39+08:00" content="2015-05-29">
-              2015-05-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/29/pyqrcode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/29/pyqrcode/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近对二维码生成比较感兴趣，发现python本来就有qrcode这个插件。<br>先是<a href="http://blog.chinaunix.net/uid-21633169-id-5566663.html" target="_blank" rel="external">Python使用QRCode模块生成二维码</a></p>
-<p>但是他的安装方法已经失效。<br>我去官网看了一下<a href="https://pypi.python.org/pypi/qrcode" target="_blank" rel="external">qrcode|python</a></p>
-<p>我的安装方法很简单：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install pillow</span><br><span class="line">sudo easy_install qrcode</span><br></pre></td></tr></table></figure>
-<p>一下就安装成功了。</p>
-<p>简单用法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">img = qrcode.make(<span class="string">'hello, qrcode'</span>)</span><br><span class="line">img.save(<span class="string">'test.png'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">import</span> qrcode</span><br><span class="line">qr = qrcode.QRCode(</span><br><span class="line">    version=<span class="number">1</span>,</span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,</span><br><span class="line">    box_size=<span class="number">10</span>,</span><br><span class="line">    border=<span class="number">4</span>,</span><br><span class="line">)</span><br><span class="line">qr.add_data(<span class="string">'xieming.github.io'</span>)</span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)</span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'andersoon.png'</span>)</span><br></pre></td></tr></table></figure>
-<p>高级用法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qrcode </span><br><span class="line">qr = qrcode.QRCode(     </span><br><span class="line">    version=<span class="number">1</span>,     </span><br><span class="line">    error_correction=qrcode.constants.ERROR_CORRECT_L,     </span><br><span class="line">    box_size=<span class="number">10</span>,     </span><br><span class="line">    border=<span class="number">4</span>, </span><br><span class="line">) </span><br><span class="line">qr.add_data(<span class="string">'hello, qrcode'</span>) </span><br><span class="line">qr.make(fit=<span class="keyword">True</span>)  </span><br><span class="line">img = qr.make_image()</span><br><span class="line">img.save(<span class="string">'123.png'</span>)</span><br></pre></td></tr></table></figure>
-<p>参数含义：<br>version：值为1~40的整数，控制二维码的大小（最小值是1，是个12×12的矩阵）。 如果想让程序自动确定，将值设置为 None 并使用 fit 参数即可。</p>
-<p>error_correction：控制二维码的错误纠正功能。可取值下列4个常量。<br>　　ERROR_CORRECT_L：大约7%或更少的错误能被纠正。<br>　　ERROR_CORRECT_M（默认）：大约15%或更少的错误能被纠正。<br>　　ROR_CORRECT_H：大约30%或更少的错误能被纠正。</p>
-<p>box_size：控制二维码中每个小格子包含的像素数。</p>
-<p>border：控制边框（二维码与图片边界的距离）包含的格子数（默认为4，是相关标准规定的最小值）<br>尝试了一下带图标的，没有成功，先不管了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install image</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.jb51.net/article/58579.htm" target="_blank" rel="external">qrcode|图标</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1549,7 +1541,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1563,7 +1555,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

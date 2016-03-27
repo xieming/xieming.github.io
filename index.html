@@ -220,6 +220,244 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/27/simulaterofnet/" itemprop="url">
+                  模拟各种网络环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-27T15:23:40+08:00" content="2016-03-27">
+              2016-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/27/simulaterofnet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/simulaterofnet/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>作者最近要release一个Android版本， 在网络测试时却遇到了难题。<br>没有各种网络环境。<br>然后网上有Facebook/atc来模拟各种网络。<br>然后各种安装让我望而却步。</p>
+<p>我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。</p>
+<p>结果让我振奋。将过程分享一下，也许也有跟我一样遇到这种问题的。</p>
+<p><strong>Mac 下 xcode 自带的 Network Link Conditioner（NLC）</strong></p>
+<p>NLC 是 xcode 的插件，可以在 “Hardware IO Tools for Xcode” 中找到。你可以在苹果开发者页面找到这个插件<br><img src="/images/network-link-conditioner-download.png" alt="NLC"></p>
+<p>查找 “Network Link Conditioner”, 然后选择 “Hardware IO Tools for Xcode” package.<br><img src="/images/3.21.20.png" alt="NLC"></p>
+<p>下载好之后, 打开 DMG 然后双击 “Network Link Condition.prefPane” 来安装.<br><img src="/images/3.22.19.png" alt="NLC"><br>装好以后, 你就可以通过 ON 和 OFF 来开启/关闭网络模拟了.<br><img src="/images/3.22.41.png" alt="NLC"><br>Network Link Conditioner 可以模拟多种网络环境，以下是该工具目前自带的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EDGE</span><br><span class="line"><span class="number">3</span>G</span><br><span class="line">DSL</span><br><span class="line">WiFi</span><br><span class="line">High Latency DNS</span><br><span class="line">Very Bad Network</span><br><span class="line"><span class="number">100</span>% Loss</span><br></pre></td></tr></table></figure>
+<p>每种情况都是通过设置上载、下载的 带宽, 延迟, 和 丢包率 (如果设置为 0, 即不影响你当前的网络环境，本来网络是什么样子就是什么样子).<br><img src="/images/network-link-conditioner-preset.png" alt="NLC"></p>
+<p>你也可以自建配置一个环境，在 【Manage Profiles…】里面自定义</p>
+<p>wifi</p>
+<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），不过博主这里用的是安卓测试机，所以就通过" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），不过博主这里用的是安卓测试机，所以就通过</a> mac 的网络共享来建一个 wifi （详见：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。</p>
+<p>接下来就可以通过切换各种网络环境来测试应用了。切换功能在下面这个面板上：<br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
+<p>参照：<a href="http://nshipster.com/network-link-conditioner/" target="_blank" rel="external">Network Link Conditioner</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/27/jenkins-security/" itemprop="url">
+                  jenkins去掉security
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-27T15:11:16+08:00" content="2016-03-27">
+              2016-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/27/jenkins-security/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/jenkins-security/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近公司的DLAP更改了服务器，导致不能访问。Jenkins无法登录。</p>
+<p>于是用了种暴力的模式，直接将security去掉。<br>以下为解决办法</p>
+<p>• 停止jenkins服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl unload /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
+<p>• 修改jenkins的config.xml文件 将以下内容全部删除</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;useSecurity&gt;true&lt;/useSecurity&gt; &lt;authorizationStategy class="hudson.sucrity.FullControlOnceLoggedInAuthorizationStrategy"&gt; ...... &lt;/authorizationStategy&gt; &lt;securityRealm class="hudson.security.HudsonPrivateSecurityRealm"&gt;&lt;disableSignup&gt;false&lt;/disableSignup&gt; ..  &lt;/securityRealm&gt;</span><br></pre></td></tr></table></figure>
+<p>• 重启jenkins服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
+<p>注：删处上面文件内容后，所做的权限分配也就全部没有了，但是用户还在。</p>
+<p>暂时先度过了这次危机。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/21/python-spider/" itemprop="url">
                   python_spider
                 </a>
@@ -1448,257 +1686,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/23/xueche/" itemprop="url">
-                  学车
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-23T20:21:04+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/23/xueche/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/23/xueche/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>终于通过了大路考。考试并没有平时训练时那么难。可能教练怕我们不过，可以磨练我们吧。</p>
-<p>虽然所有考试都是一次性通过的。但是学车过程是很艰辛的。</p>
-<p>下雨下雪都得去，每次被骂得狗血淋头。</p>
-<p>记忆最深刻的是： 忘记了动作要领，被骂得不敢上车了。</p>
-<p>后面自己慢慢总结了一下，在要领的地方特别注意了一下，后面就少犯错了。</p>
-<p>感受最深的是： <strong>不必过于谨慎，看好了，就放开手脚去做。</strong><br>刚开始在大路上跑的时候，相当的谨慎，导致动作一直没做到位，或者时机不合适。<br>越是胆小慎微，患得患失，越被骂得惨。<br>后面索性豁出去了。就按照教练说的来，在保证安全的前提下，自由发挥，动作麻利，不脱泥带水。</p>
-<p>果然长进多了，基本上不被骂了。</p>
-<p>工作上也是，<strong>掌握到了要领，看清了方向，不必过于拘谨，放开手脚去做。<br>啥事都不可能十分完美。</strong><br>不可能不犯错，只要不是大错，原则性的错误。 犯错是不可避免的。过度的谨慎，反而束缚了手脚。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/14/dockeronmac/" itemprop="url">
-                  Docker manage STF on IOS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-14T23:52:29+08:00" content="2016-02-14">
-              2016-02-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/14/dockeronmac/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/14/dockeronmac/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>之前看到过有人安装了STF, 但是他们的步骤太多，太复杂了。</p>
-<p>我想能不能用dockfile来管理那些步骤，做成image.</p>
-<p>这样就简单多了。</p>
-<p>还好，在github上找到了dockerfile.</p>
-<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install boot2docker</span><br></pre></td></tr></table></figure>
-<p>启动docker:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boot2docker init</span><br><span class="line">boot2docker start</span><br><span class="line">boot2docker shellinit</span><br></pre></td></tr></table></figure>
-<p>最后执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(boot2docker shellinit)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boot2docker </span>status</span><br></pre></td></tr></table></figure></p>
-<p>建立一个文件夹：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> stf</span><br></pre></td></tr></table></figure></p>
-<p>然后创建： Dockerfile<br>将下面的贴上去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">FROM openstf/base:v1.<span class="number">0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sneak the stf executable into $PATH.</span></span><br><span class="line">ENV PATH /app/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work in app dir by default.</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Export default app port, not enough for all processes but it should do</span></span><br><span class="line"><span class="comment"># for now.</span></span><br><span class="line">EXPOSE <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy app source.</span></span><br><span class="line">COPY . /tmp/build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Give permissions to our build user.</span></span><br><span class="line">RUN mkdir -p /app &amp;&amp; \</span><br><span class="line">    chown -R stf-build:stf-build /tmp/build /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch over to the build user.</span></span><br><span class="line">USER stf-build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the build.</span></span><br><span class="line">RUN <span class="built_in">set</span> -x &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /tmp/build &amp;&amp; \</span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/node_modules/.bin:<span class="variable">$PATH</span> &amp;&amp; \</span><br><span class="line">    npm install --loglevel http &amp;&amp; \</span><br><span class="line">    npm pack &amp;&amp; \</span><br><span class="line">    tar xzf stf-*.tgz --strip-components <span class="number">1</span> -C /app &amp;&amp; \</span><br><span class="line">    bower cache clean &amp;&amp; \</span><br><span class="line">    npm prune --production &amp;&amp; \</span><br><span class="line">    mv node_modules /app &amp;&amp; \</span><br><span class="line">    npm cache clean &amp;&amp; \</span><br><span class="line">    rm -rf ~/.node-gyp &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /app &amp;&amp; \</span><br><span class="line">    rm -rf /tmp/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to the app user.</span></span><br><span class="line">USER stf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show help by default.</span></span><br><span class="line">CMD stf --help</span><br></pre></td></tr></table></figure>
-<p>然后编译<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t <span class="string">"stf/v1.0"</span> .</span><br></pre></td></tr></table></figure></p>
-<p>然后查看镜像，新的镜像应该在里面了。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> ps</span><br></pre></td></tr></table></figure></p>
-<p>就可以运行了：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="string">"stf/v1.0"</span></span><br></pre></td></tr></table></figure>
-<p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
-<p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
-<p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1739,7 +1732,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1753,7 +1746,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
