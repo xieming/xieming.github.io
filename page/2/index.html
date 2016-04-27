@@ -220,8 +220,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/02/23/xueche/" itemprop="url">
-                  学车
+                <a class="post-title-link" href="/2016/03/28/js-array/" itemprop="url">
+                  js_array
                 </a>
               
             
@@ -231,8 +231,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-02-23T20:21:04+08:00" content="2016-02-23">
-              2016-02-23
+            <time itemprop="dateCreated" datetime="2016-03-28T22:18:22+08:00" content="2016-03-28">
+              2016-03-28
             </time>
           </span>
 
@@ -241,8 +241,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
                   </a>
                 </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/23/xueche/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/23/xueche/" itemprop="commentsCount"></span>
+                <a href="/2016/03/28/js-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/js-array/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -280,14 +280,62 @@
         
           <span itemprop="articleBody">
             
-              <p>终于通过了大路考。考试并没有平时训练时那么难。可能教练怕我们不过，可以磨练我们吧。</p>
-<p>虽然所有考试都是一次性通过的。但是学车过程是很艰辛的。</p>
-<p>下雨下雪都得去，每次被骂得狗血淋头。</p>
-<p>记忆最深刻的是： 忘记了动作要领，被骂得不敢上车了。</p>
-<p>后面自己慢慢总结了一下，在要领的地方特别注意了一下，后面就少犯错了。</p>
-<p>感受最深的是： <strong>不必过于谨慎，看好了，就放开手脚去做。</strong><br>刚开始在大路上跑的时候，相当的谨慎，导致动作一直没做到位，或者时机不合适。<br>越是胆小慎微，患得患失，越被骂得惨。<br>后面索性豁出去了。就按照教练说的来，在保证安全的前提下，自由发挥，动作麻利，不脱泥带水。</p>
-<p>果然长进多了，基本上不被骂了。</p>
-<p>工作上也是，<strong>掌握到了要领，看清了方向，不必过于拘谨，放开手脚去做。<br>啥事都不可能十分完美。</strong><br>不可能不犯错，只要不是大错，原则性的错误。 犯错是不可避免的。过度的谨慎，反而束缚了手脚。</p>
+              <p><strong>创建数组</strong></p>
+<p>在实际生产中，创建数组的方式基本有两种。</p>
+<p><strong>使用Array构造函数</strong></p>
+<p>可以使用Array构造函数来创建数组，如下所示：</p>
+<figure class="highlight"><figcaption><span>arr = new Array();</span><a href="//">output: []```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19978;&#38754;&#30340;&#20195;&#30721;&#23601;&#26159;&#21019;&#24314;&#20102;&#19968;&#20010;&#31354;&#30340;&#25968;&#32452;[]&#12290;&#21487;&#20197;&#36890;&#36807;&#25968;&#32452;&#30340;length&#23646;&#24615;&#39564;&#35777;&#12290;&#10;&#10;```console.log(arr.length); //output: 0</span><br></pre></td></tr></table></figure>
+<p>如果预先知道要创建的数组的项目数量，可以在构造函数中传递该数量：</p>
+<figure class="highlight"><figcaption><span>arr = new Array(5);</span><a href="//">output: [undefined × 5]```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#36825;&#20010;&#26102;&#20505;&#65292;&#35813;&#25968;&#37327;&#20250;&#33258;&#21160;&#21464;&#25104;&#25968;&#32452;&#30340;length&#20540;&#65306;&#10;&#10;```console.log(arr.length); //output: 5</span><br></pre></td></tr></table></figure>
+<p>也可以向构造函数Array直接传入需要创建的数组中应该包含的数组项：</p>
+<figure class="highlight"><figcaption><span>arr = new Array('a', 'b', 'c');</span><a href="//">output: ["a", "b", "c"]```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20174;&#19978;&#38754;&#20960;&#20010;&#31616;&#21333;&#30340;&#31034;&#20363;&#65292;&#25105;&#20204;&#21487;&#20197;&#24471;&#30693;&#65292;&#36890;&#36807;Array&#26500;&#36896;&#20989;&#25968;&#21019;&#24314;&#25968;&#32452;&#65292;&#25105;&#20204;&#21487;&#20197;&#65306;&#10;&#10;&#21019;&#24314;&#19968;&#20010;&#31354;&#25968;&#32452;&#65306; ```new Array()</span><br></pre></td></tr></table></figure>
+<p>创建一定数量的数组： <figure class="highlight"><figcaption><span>Array(5)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#21019;&#24314;&#25351;&#23450;&#25968;&#32452;&#39033;&#30446;&#30340;&#25968;&#32452;&#65306; ```new Array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是，当只给new Array()传递一个值创建数组时，问题会变得比较复杂。如果传递的是一个数值，则会按该数值创建包含给定项数的数组；如果传递的是其它类型的参数时，则会创建包含那个值的只有一项的数组。来看个简单的示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">// 创建一个包含3项的数组</span></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'3'</span>); <span class="comment">// 创建一个包含1项的数组，该项的值为字符串"3"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">//[undefined × 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// ["3"]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1.length); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2.length); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>在实际生产中，使用Array构造函数创建数组时，还可以省略new操作符。如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = <span class="built_in">Array</span>(<span class="string">'china'</span>);  <span class="comment">// "china" arr1.length=1</span></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'china'</span>); <span class="comment">// "china" arr2.length=1</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用[]创建数组</strong></p>
+<p>除了使用Array构造函数创建数组之外，还可以直接使用[]（数组字面量表示法）创建数组。采用这种方式创建数组时，数组的每个数组项之间以逗号(,)分隔开，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>,<span class="string">'b'</span>]; <span class="comment">//创建一个包含两个字符串的数组</span></span><br><span class="line"><span class="keyword">var</span> arr2 = []; <span class="comment">//创建一个空数组</span></span><br></pre></td></tr></table></figure>
+<p><strong>数组元素的访问</strong><br>前面也说过，数组每一项都有对应的索引号，而且其索引号从0开始，到数组的length值结束。在实际生产中，总是需要访问数组的数组项，我们就可以通过数组的索引号来访问数组元素。如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'blue'</span>,<span class="string">'red'</span>,<span class="string">'green'</span>]; <span class="comment">//创建了一个字符串数组</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>]); <span class="comment">// output: "blue"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>]); <span class="comment">// output: "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>]); <span class="comment">// output: "green"</span></span><br><span class="line">colors[<span class="number">0</span>]方括号[]中的索引表示要访问的数组元素。</span><br></pre></td></tr></table></figure>
+<p>很多时候我们需要对JavaScript中数据类型(Function、String、Number、Undefined、Boolean和Object)做判断。在JavaScript中提供了typeof操作符可以对这些常用的数据类型做判断。</p>
+<p><strong>typeof操作符</strong></p>
+<p>typeof可以解决大部分数据类型的检测，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span>;&#125;); <span class="comment">// function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">"a"</span>); <span class="comment">// string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="number">123</span>); <span class="comment">// number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">true</span>); <span class="comment">// boolean</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">NaN</span>); <span class="comment">// number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> !<span class="literal">NaN</span>); <span class="comment">//boolean</span></span><br></pre></td></tr></table></figure>
+<p>push()方法可以在数组的末属添加一个或多个元素</p>
+<p>shift()方法把数组中的第一个元素删除</p>
+<p>unshift()方法可以在数组的前端添加一个或多个元素</p>
+<p>pop()方法把数组中的最后一个元素删除</p>
+<p><strong>sort()方法</strong></p>
+<p>sort()方法对数组的元素做原地的排序，并返回这个数组。默认情况下，sort()方法是按升序排列数组项。即最小的值位于最前面，最大的值排列在最后面。为了实现排序，sort()方法会调用每个数组项的toString()转型方法，然后比较得到的字符串，以确定如何排序。</p>
+<p><strong>push()</strong></p>
+<p>使用push()方法可以给数组末尾添加一个或多个数组项。</p>
+<p>var arr = [];<br>arr.push(‘a’,’b’);<br>console.log(arr); // [‘a’,’b’]</p>
+<p><strong>unshift()</strong></p>
+<p>使用push()方法可以给数组末尾添加一个或多个数组项，那么使用unshift()方法可以在数组的前面添加一个或多个数组项：</p>
+<p>var arr = [‘a’,’b’];<br>arr.unshift(1,2);<br>console.log(arr); // [1, 2, “a”, “b”]<br>除了这两种方法之外，还可以使用splice()方法给数组添加数组项：</p>
+<p>var arr = [‘a’,’b’,’c’,1,2];<br>arr.splice(2,0,’d’,’c’,’e’);<br>console.log(arr); // [“a”, “b”, “d”, “c”, “e”, “c”, 1, 2]</p>
+<p>另外除了splice()方法之外还可以使用concat()方法可以给数组添加数组项，只不过使用这种方法不会改变原数组，会在原数组中创建一个新数组：</p>
+<p>var arr = [‘a’,’b’,’c’];<br>var arr2 = arr.concat(‘d’,1,2,[‘e’,3]);<br>console.log(arr); // [“a”, “b”, “c”]<br>console.log(arr2); // [“a”, “b”, “c”, “d”, 1, 2, “e”, 3]<br>删除数组项</p>
+<p>对于数组的操作，除了增加数组项，很多时候还需要对数组进行删除操作。删除数组项常用的方法有pop()和shift()两种方法。</p>
+<p><strong>pop()</strong></p>
+<p>pop()方法可以从数组的末尾删除一个数组项：</p>
+<p>var arr = [‘a’,’b’,’c’,’d’,1,2];<br>arr.pop();<br>console.log(arr); // [“a”, “b”, “c”, “d”, 1]</p>
+<p><strong>shift()</strong></p>
+<p>shift()方法和pop()方法刚好相反，它可以删除数组的第一项：</p>
+<p>var arr = [‘a’,’b’,’c’,’d’,1,2];<br>arr.shift();<br>console.log(arr); // [“b”, “c”, “d”, 1, 2]<br>不管是pop()或shift()方法每次只能给数组删除一个数组项，但很多时候这样删除数组项相对来说是比较麻烦的。在数组的操作中，除了这两种方法之外，还可以通过slice()和splice()方法来删除数组项。</p>
+<p><strong>slice()</strong></p>
+<p>slice()方法可以给一个数组中删除多个数组项，只不过不同的是，slice()不会影响原数组，只是会在原数组基础上创建一个数组副本：</p>
+<p>var arr = [1,2,3,4,’a’,’b’];<br>var arr2 = arr.slice(2);<br>console.log(arr); // [1, 2, 3, 4, “a”, “b”]<br>console.log(arr2); // [3, 4, “a”, “b”]<br>console.log(arr3); // [“a”, “b”]</p>
+<p><strong>splice()</strong></p>
+<p>splice()方法除了能给数组添加数组项之外，还可以给数组删除数组项：</p>
+<p>var arr = [1,2,3,4,’a’,’b’,’c’];<br>var arr2 = arr.splice(2,2);<br>console.log(arr); // [1, 2, “a”, “b”, “c”]<br>console.log(arr2); // [3, 4]<br>改变数组</p>
+<p>数组中splice()方法是数组中一个强大的方法，其除了可以给数组添加数组项、删除数组项之外，还可以改变一个数组：</p>
+<p>var arr = [1,2,3,4,5,6];<br>var arr2 = arr.splice(2,3,’a’,’b’,’c’);<br>console.log(arr); // [1, 2, “a”, “b”, “c”, 6]<br>console.log(arr2); // [3, 4, 5]</p>
+<p><strong>数组的查询</strong></p>
+<p>这里所说的数组查询其实指的是数组的查询提取。其使用的方法是slice()方法:</p>
+<p>var arr = [1,2,3,4,5,6];<br>var arr2 = arr.slice(-3);<br>console.log(arr); // [1, 2, 3, 4, 5, 6]<br>console.log(arr2); // [4, 5, 6]</p>
 
             
           </span>
@@ -336,8 +384,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/02/14/dockeronmac/" itemprop="url">
-                  Docker manage STF on IOS
+                <a class="post-title-link" href="/2016/03/27/simulaterofnet/" itemprop="url">
+                  模拟各种网络环境
                 </a>
               
             
@@ -347,414 +395,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-02-14T23:52:29+08:00" content="2016-02-14">
-              2016-02-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/14/dockeronmac/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/14/dockeronmac/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>之前看到过有人安装了STF, 但是他们的步骤太多，太复杂了。</p>
-<p>我想能不能用dockfile来管理那些步骤，做成image.</p>
-<p>这样就简单多了。</p>
-<p>还好，在github上找到了dockerfile.</p>
-<p>在Mac上使用Docker, 需要用boot2docker建立docker运行的虚拟机宿主环境。<br>安装boot2docker可以用brew安装。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install boot2docker</span><br></pre></td></tr></table></figure>
-<p>启动docker:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boot2docker init</span><br><span class="line">boot2docker start</span><br><span class="line">boot2docker shellinit</span><br></pre></td></tr></table></figure>
-<p>最后执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(boot2docker shellinit)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>到此为止，boot2docker已经运行，并且docker的客户端已经建立，要验证是否成功，可以运行。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boot2docker </span>status</span><br></pre></td></tr></table></figure></p>
-<p>建立一个文件夹：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> stf</span><br></pre></td></tr></table></figure></p>
-<p>然后创建： Dockerfile<br>将下面的贴上去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">FROM openstf/base:v1.<span class="number">0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sneak the stf executable into $PATH.</span></span><br><span class="line">ENV PATH /app/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work in app dir by default.</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Export default app port, not enough for all processes but it should do</span></span><br><span class="line"><span class="comment"># for now.</span></span><br><span class="line">EXPOSE <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy app source.</span></span><br><span class="line">COPY . /tmp/build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Give permissions to our build user.</span></span><br><span class="line">RUN mkdir -p /app &amp;&amp; \</span><br><span class="line">    chown -R stf-build:stf-build /tmp/build /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch over to the build user.</span></span><br><span class="line">USER stf-build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run the build.</span></span><br><span class="line">RUN <span class="built_in">set</span> -x &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /tmp/build &amp;&amp; \</span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/node_modules/.bin:<span class="variable">$PATH</span> &amp;&amp; \</span><br><span class="line">    npm install --loglevel http &amp;&amp; \</span><br><span class="line">    npm pack &amp;&amp; \</span><br><span class="line">    tar xzf stf-*.tgz --strip-components <span class="number">1</span> -C /app &amp;&amp; \</span><br><span class="line">    bower cache clean &amp;&amp; \</span><br><span class="line">    npm prune --production &amp;&amp; \</span><br><span class="line">    mv node_modules /app &amp;&amp; \</span><br><span class="line">    npm cache clean &amp;&amp; \</span><br><span class="line">    rm -rf ~/.node-gyp &amp;&amp; \</span><br><span class="line">    <span class="built_in">cd</span> /app &amp;&amp; \</span><br><span class="line">    rm -rf /tmp/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Switch to the app user.</span></span><br><span class="line">USER stf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show help by default.</span></span><br><span class="line">CMD stf --help</span><br></pre></td></tr></table></figure>
-<p>然后编译<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">docker</span> <span class="keyword">build </span>-t <span class="string">"stf/v1.0"</span> .</span><br></pre></td></tr></table></figure></p>
-<p>然后查看镜像，新的镜像应该在里面了。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">docker</span> ps</span><br></pre></td></tr></table></figure></p>
-<p>就可以运行了：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="command">run</span> <span class="string">"stf/v1.0"</span></span><br></pre></td></tr></table></figure>
-<p>参考：<br><a href="http://my.oschina.net/agiledev/blog/423927?fromerr=KyTtsx0N" target="_blank" rel="external">boot2docker</a></p>
-<p><a href="https://hub.docker.com/r/openstf/stf/~/dockerfile/" target="_blank" rel="external">dockerfile|stf</a></p>
-<p><a href="http://npm.taobao.org/package/stf" target="_blank" rel="external">taobao|stf</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/07/tangguo/" itemprop="url">
-                  糖果
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-07T10:21:12+08:00" content="2016-02-07">
-              2016-02-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/07/tangguo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/07/tangguo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>这个春节，差不多啥事都没干，就是带娃。</p>
-<p>不管是东奔西跑的走亲戚，还是去哪，娃不离手。</p>
-<p>没有太多时间的陪伴，眼看着就长大了。</p>
-<p>娃不在身边，感觉比在身边长得快很多。</p>
-<p>看着就长牙了，开始要在地上跑了，要求你带他出去玩。。。</p>
-<p>他们都还不会说话，每天嘴里咿咿呀呀的想表达。9个月的一天，那天在火车上， 糖糖喊了一声“爸爸”。</p>
-<p>让我幸福了很久。</p>
-<p>原来幸福就这么简单。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/07/acralyzer/" itemprop="url">
-                  acralyzer监控你的App
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T15:25:13+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android-test/" itemprop="url" rel="index">
-                    <span itemprop="name">android_test</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/acralyzer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/acralyzer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>开发一个手机应用有如此多的限制，比如硬件限制（CPU，内存，电池等等）。如果你的代码不是足够合理，那就准备迎接世界上最严重的问题吧：Crash。根据研究所示：</p>
-<p>应用崩溃是手机app用户抱怨最多的额问题</p>
-<p>更严重的：</p>
-<p>如果一个应用连续崩溃3次，大概一半的用户会卸载这个应用</p>
-<p>崩溃追踪系统，让开发者能够从用户的设备上收集到每一个导致崩溃的细节，专门用来解决这种应用崩溃问题。目前最流行的2个流行崩溃追踪系统是 Crashlytics 和 Parse Crash Reporting，这两个服务都是免费的，开发者可以免费集成他们到你的app。当应用奔溃，整个跟踪报告就会发送到他们的后端，开发者可以及时快捷的修复这些严重的问题，这样，你就可以在很短的时间内奉上一个“无Crash”的应用。</p>
-<p>然而，这些服务的提供商会收集这些数据，对于对用户隐私敏感的公司还是有些顾虑的。</p>
-<p>那么。。。是否有那种允许我们在自己服务器部署的崩溃追踪系统？当然有！！并且会非常容易创建，下面有请Application Crash Reporting on Android (ACRA) 一个允许Android应用自动发送崩溃报告到自己服务器的库。</p>
-<p><a href="http://blog.csdn.net/chen52671/article/details/44751347" target="_blank" rel="external">[翻译]如何安装ACRA</a></p>
-<p><a href="http://inthecheesefactory.com/blog/how-to-install-and-use-acra-android/en" target="_blank" rel="external">How to setup ACRA</a></p>
-<p><a href="https://github.com/ACRA/acralyzer" target="_blank" rel="external">git地址</a></p>
-<p>以上都是在ubuntu上安装的步骤，我在Mac上实现了安装。</p>
-<p><strong>1. 安装couchdb数据库</strong></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Brew </span>install couchdb</span><br></pre></td></tr></table></figure>
-<p>安装完成后，用如下指令来检验是否成功</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  couchdb</span><br><span class="line">Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//127.0.0.1:5984/</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.108.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET / <span class="number">200</span></span><br><span class="line">[info] <span class="annotation">[&lt;0.102.0&gt;]</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> - - GET /favicon.ico <span class="number">200</span></span><br></pre></td></tr></table></figure>
-<p>在浏览器中敲上 <a href="http://127.0.0.1:5984" target="_blank" rel="external">http://127.0.0.1:5984</a><br>你得到如此信息：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;"<span class="attribute">couchdb</span>":<span class="value"><span class="string">"Welcome"</span></span>,"<span class="attribute">uuid</span>":<span class="value"><span class="string">"eba00733b63aab8847a954c2df76f432"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1"</span></span>,"<span class="attribute">vendor</span>":<span class="value">&#123;"<span class="attribute">name</span>":<span class="value"><span class="string">"Homebrew"</span></span>,"<span class="attribute">version</span>":<span class="value"><span class="string">"1.6.1_4"</span></span>&#125;</span>&#125;</span><br></pre></td></tr></table></figure></p>
-<p>恭喜你，数据库安装成功了。</p>
-<p><strong>2. 配置couchdb数据库</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  <span class="built_in">which</span> couchdb</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/couchdb</span><br><span class="line">➜  ~  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin	</span><br><span class="line">➜  ~  subl couch-config</span><br></pre></td></tr></table></figure>
-<p>读读这个文件，大致知道文件都在啥位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	staticdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/share/couchdb"</span></span><br><span class="line">	erlanglibdir=<span class="string">"/usr/local/Cellar/couchdb/1.6.1_4/lib/couchdb/erlang/lib"</span></span><br><span class="line">	couchversion=<span class="string">"1.6.1"</span></span><br><span class="line">	dbdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	viewdir=<span class="string">"/usr/local/var/lib/couchdb"</span></span><br><span class="line">	confdir=<span class="string">"/usr/local/etc/couchdb"</span></span><br><span class="line">	urifile=<span class="string">"/usr/local/var/run/couchdb/couch.uri"</span></span><br><span class="line">	logdir=<span class="string">"/usr/local/var/log/couchdb"</span></span><br><span class="line">	erlangversion=<span class="string">"18"</span></span><br><span class="line">erlangbin=<span class="string">"/usr/local/opt/erlang/bin/erl"</span></span><br></pre></td></tr></table></figure>
-<p>得到有用的信息：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">confdir=<span class="value"><span class="string">"/usr/local/etc/couchdb"</span></span></span></span><br></pre></td></tr></table></figure>
-<p>编辑/usr/local/etc/couchdb/local.ini 文件来允许我们通过外部IP来访问CouchDB（默认只能通关127.0.0.1来访问）。只需要把下面两行的注释去掉即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subl local.ini</span><br><span class="line">	;port = <span class="number">5984</span></span><br><span class="line">	;<span class="built_in">bind</span>_address = <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
-<p>然后修改为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">port = <span class="number">5984</span></span><br><span class="line">bind_address = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在这个文件里，你还应该添加一个用户名/密码来作为管理员账户，找到这一行（一般是在文件末尾）：</span><br><span class="line"></span><br><span class="line">[admins]</span><br><span class="line"></span><br><span class="line">在它的下一行添加一个 username=password形式的内容。例如：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">admin= <span class="number">12345</span></span><br><span class="line">	</span><br><span class="line">; changing <span class="keyword">this</span>.</span><br><span class="line">[admins]</span><br><span class="line">admin = <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>不用担心在这里写明文密码会不会有问题，一旦CouchDB重启后，你的密码会被自动哈希加密，并且是不可读的<br>保存文件，通过下面的语句来重启CouchDB：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~  couchdb</span><br><span class="line">	Apache CouchDB <span class="number">1.6</span><span class="number">.1</span> (LogLevel=info) is starting.</span><br><span class="line">	Apache CouchDB has started. Time <span class="keyword">to</span> relax.</span><br><span class="line">[info] <span class="annotation">[&lt;0.32.0&gt;]</span> Apache CouchDB has started on http:<span class="comment">//0.0.0.0:5984/</span></span><br></pre></td></tr></table></figure>
-<p>现在，你就可以通过浏览器来访问CouchDB了，网页服务被称为Futon—CouchDB的界面后端。通过以下地址来打开浏览器：<br><a href="http://localhost:5984/_utils/" target="_blank" rel="external">http://localhost:5984/_utils/</a></p>
-<p>多了两数据库。</p>
-<p><img src="/images/CouchDB.png" alt="CouchDB"></p>
-<p><strong>3. 配置couchdb本地数据库</strong></p>
-<p>首先，你需要通过之前设定的管理员账户来登录系统</p>
-<p>否则,后面的操作会出现如下错误：</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[error] <span class="annotation">[&lt;0.408.0&gt;]</span> httpd <span class="number">500</span> error response:</span><br><span class="line"> &#123;<span class="string">"error"</span>:<span class="string">"unauthorized"</span>,<span class="string">"reason"</span>:<span class="string">"unauthorized to access or create database acra-myapp"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>现在我们要安装一个acro-storage（Acralyzer的存储端）。通过右侧的菜单，点击Replicator(复制器)，并填写表单的from Remote Database和from Remote Database类似如下所示：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acra-storage" target="_blank" rel="external">http://get.acralyzer.com/distrib-acra-storage</a></p>
-<p>to Local Database: acra-myapp</p>
-<p>然后点击Replicate，等待它完成。</p>
-<p>成功后出现如下界面</p>
-<p><img src="/images/acro-storage.png" alt="acro-storage"></p>
-<p>然后使用类似的方法安装Acralyzer：</p>
-<p>from Remote Database: <a href="http://get.acralyzer.com/distrib-acralyzer" target="_blank" rel="external">http://get.acralyzer.com/distrib-acralyzer</a></p>
-<p>to Local Database: acralyzer</p>
-<p>如果你上面做的都对的话，你会发现系统里多了2个数据库—-acra-myapp 和 acralyzer.</p>
-<p><img src="/images/dbs.png" alt="dbs"></p>
-<p>离成功很近了，下一步，我们要创建用户，打开浏览器，转到这个网址：</p>
-<p><a href="http://localhost:5984/acralyzer/_design/acralyzer/index.html" target="_blank" rel="external">http://localhost:5984/acralyzer/_design/acralyzer/index.html</a></p>
-<p>进入 Admin 页并点击 Users,</p>
-<p><img src="/images/users.png" alt="users"></p>
-<p>空间不能放太多照片，请移步以下链接。</p>
-<p>本文发表在 <a href="https://testerhome.com/topics/3982" target="_blank" rel="external">Testerhome</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/ImageMagick/" itemprop="url">
-                  ImageMagick
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T17:35:06+08:00" content="2016-01-05">
-              2016-01-05
+            <time itemprop="dateCreated" datetime="2016-03-27T15:23:40+08:00" content="2016-03-27">
+              2016-03-27
             </time>
           </span>
 
@@ -779,8 +421,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/05/ImageMagick/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/ImageMagick/" itemprop="commentsCount"></span>
+                <a href="/2016/03/27/simulaterofnet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/simulaterofnet/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -802,16 +444,19 @@
         
           <span itemprop="articleBody">
             
-              <p>最近看了一下ImageMagick, 感觉很强大的。<br>因为有IOS app用了这个来区分环境，版本。打算好好研究一下。<br>我是在 Mac 上用 brew 安装的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install imagemagick</span><br></pre></td></tr></table></figure></p>
-<p>但是执行起来老报错：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">while</span> running <span class="built_in">convert</span>: <span class="built_in">convert</span>: unable <span class="built_in">to</span> <span class="built_in">read</span> font</span><br></pre></td></tr></table></figure></p>
-<p>网上搜了 一下，有解决方案：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install ghostscript</span><br></pre></td></tr></table></figure></p>
-<p>参照：<a href="http://stackoverflow.com/questions/13936256/imagemagick-error-while-running-convert-convert-unable-to-read-font" target="_blank" rel="external">ImageMagick: Error convert: unable to read font</a></p>
-<p>然后自己本地尝试了一下，也成功了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -background <span class="string">'#0008'</span> -fill white -gravity center  caption:<span class="string">"debug"</span>  mediahub_icon.png +swap -gravity south -composite mediahub_icon3.png</span><br></pre></td></tr></table></figure>
-<p>ImageMagick 主要的命令还是 convert<br><img src="/images/snake.jpg" alt="初始图像"><br>尝试了几个命令：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -fill black -pointsize <span class="number">10</span> -<span class="attribute">font</span> helvetica -draw <span class="string">'text 10,10 "Hello, World!"'</span>  snake<span class="class">.jpg</span>  helloworld.jpg</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/helloworld.jpg" alt="效果"><br>在图像的10,10 位置采用10磅的全黑Helvetica字体写上 Hello, World!<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert snake.png -<span class="built_in">fill</span> <span class="built_in">red</span> -pointsize <span class="number">13</span> -<span class="title">draw</span> <span class="string">"text 10,15 'snake'"</span> <span class="number">1112.</span>png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/1112.png" alt="效果"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -<span class="attribute">background</span> <span class="string">'#0008'</span> -fill white -gravity center  <span class="tag">caption</span>:<span class="string">"debug"</span>  snake<span class="class">.png</span> +swap -gravity south -composite snake111.png</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/snake111.png" alt="效果"><br>更多的命令：<br><a href="http://blog.chinaunix.net/uid-16979052-id-3374027.html" target="_blank" rel="external">ImageMagick之convert命令大全</a><br>回头继续研究一下。<br>未完待续。。。</p>
+              <p>作者最近要release一个Android版本， 在网络测试时却遇到了难题。<br>没有各种网络环境。<br>然后网上有Facebook/atc来模拟各种网络。<br>然后各种安装让我望而却步。</p>
+<p>我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。</p>
+<p>结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。</p>
+<p><strong>Mac 下 xcode 自带的 Network Link Conditioner（NLC）</strong></p>
+<p>NLC 是 xcode 的插件，可以在 “Hardware IO Tools for Xcode” 中找到。你可以在苹果开发者页面找到这个插件<br><img src="/images/network-link-conditioner-download.png" alt="NLC"></p>
+<p>查找 “Network Link Conditioner”, 然后选择 “Hardware IO Tools for Xcode” package.<br><img src="/images/3.21.20.png" alt="NLC"></p>
+<p>下载好之后, 打开 DMG 然后双击 “Network Link Condition.prefPane” 来安装.<br><img src="/images/3.22.19.png" alt="NLC"><br>装好以后, 你就可以通过 ON 和 OFF 来开启/关闭网络模拟了.<br><img src="/images/3.22.41.png" alt="NLC"><br>Network Link Conditioner 可以模拟多种网络环境，以下是该工具目前自带的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EDGE</span><br><span class="line"><span class="number">3</span>G</span><br><span class="line">DSL</span><br><span class="line">WiFi</span><br><span class="line">High Latency DNS</span><br><span class="line">Very Bad Network</span><br><span class="line"><span class="number">100</span>% Loss</span><br></pre></td></tr></table></figure>
+<p>每种情况都是通过设置上载、下载的 带宽, 延迟, 和 丢包率 (如果设置为 0, 即不影响你当前的网络环境，本来网络是什么样子就是什么样子).<br><img src="/images/network-link-conditioner-preset.png" alt="NLC"></p>
+<p>你也可以自建配置一个环境，在 【Manage Profiles…】里面自定义</p>
+<p>wifi<br>博主这里用的是安卓测试机，所以就通过 mac 的网络共享来建一个 wifi （度娘：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。接下来就可以通过切换各种网络环境来测试应用了。在面板上切换各种网络。</p>
+<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），</a><br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
+<p>参照：<a href="http://nshipster.com/network-link-conditioner/" target="_blank" rel="external">Network Link Conditioner</a></p>
 
             
           </span>
@@ -860,8 +505,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/12/28/testtime/" itemprop="url">
-                  测试估时
+                <a class="post-title-link" href="/2016/03/27/jenkins-security/" itemprop="url">
+                  jenkins去掉security
                 </a>
               
             
@@ -871,8 +516,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-28T22:47:15+08:00" content="2015-12-28">
-              2015-12-28
+            <time itemprop="dateCreated" datetime="2016-03-27T15:11:16+08:00" content="2016-03-27">
+              2016-03-27
             </time>
           </span>
 
@@ -881,8 +526,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/职业/" itemprop="url" rel="index">
-                    <span itemprop="name">职业</span>
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
                   </a>
                 </span>
 
@@ -897,8 +542,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/28/testtime/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/testtime/" itemprop="commentsCount"></span>
+                <a href="/2016/03/27/jenkins-security/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/jenkins-security/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -920,26 +565,14 @@
         
           <span itemprop="articleBody">
             
-              <p>原文链接：<br><a href="http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/" target="_blank" rel="external">http://www.softwaretestinghelp.com/software-test-estimation-how-to-estimate-testing-time-accurately/</a></p>
-<p>产品的成功与否，离不开测试。而测试中估时是非常重要。<br>现在大部分公司都实行敏捷模式，开发需要估时，测试也需要估时，不然会影响整个项目周期。<br>估时的原则是： 实际，精确。<br>这里不讨论测试估时的具体实施，只是讨论一下如何让测试估时更加实际，更加精确。</p>
-<p><strong>1）给自己留有余地</strong></p>
-<p>估时的时候需要给自己留一点风险时间，留有余地。任何事情都不是理想状态的，留有余地的话确保在不利的情况下也有时间对付。</p>
-<p><strong>2）充分考虑公司的流程</strong></p>
-<p>有的公司流程制定，留给测试的时间非常少。那么，需要做哪些测试，哪些有更高的优先级。出现问题怎么解决，这些都是在测试前就预估好的。<br>比如有些公司一个发布过程，要走开发环境，测试环境，生产环境。但是服务器都不稳定，有可能就会block。</p>
-<p><strong>3）并行测试</strong></p>
-<p>有些story没有太大的依赖，是不是可以一起测了。或者在开发刚开始的时候，是不是可以把一些准备工作给做了，比如创建帐号，准备testcase,准备一些自动化脚本等。</p>
-<p><strong>4）随时关注进度，重估时间</strong></p>
-<p>因为有很多不可预见的因素，项目没有预期进行。或者开始估计就有偏差，那么随时要校正预估时间。</p>
-<p><strong>5）考虑下过去的经验</strong></p>
-<p>过去的经验，能让你预计可能的风险，和应对策略，让估时更加精确，实际。</p>
-<p><strong>6）目标明确</strong></p>
-<p>很多时候，并不是需要把所有的bug都要解决了，一个release的范围是什么？产品需求的细节是啥？心里都要很清楚。不然就会偏差很大，引起delay, 或者加班。</p>
-<p><strong>7)了解你的团队</strong></p>
-<p>如果你是team leader, 你需要很明白你团队的战斗力，谁的专长是啥，谁做哪块会更好。</p>
-<p><strong>8）了解你的资源</strong></p>
-<p>估时的时候，都是要以现有的资源为依托，不要相信领导说的，在某个时段招个人。很多时候，招人并不能起到显著的效果。而且招人也没有那么迅速成长；或者领导，HR只是说说而已。</p>
-<p><strong>9) 取决于你，你的公司，你的领导</strong></p>
-<p>根据公司，领导对测试的重视程度不一样，给测试的时间也会不一样。有的时候，要从产品质量的方面考虑，争取一些时间。有的时候，测试估的时间多了，项管肯定不干。<br>如果不争取，估计会被压得很厉害，天天加班，团队不稳定。或者产品的质量更本没法保证。<br>有的时候，别的部门会认为测试很简单，分分钟就能搞定，不就是点点鼠标吗？质量深入人心很重要。</p>
+              <p>最近公司的DLAP更改了服务器，导致不能访问。Jenkins无法登录。</p>
+<p>于是用了种暴力的模式，直接将security去掉。<br>以下为解决办法</p>
+<p>• 停止jenkins服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl unload /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
+<p>• 修改jenkins的config.xml文件 将以下内容全部删除</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;useSecurity&gt;true&lt;/useSecurity&gt; &lt;authorizationStategy class="hudson.sucrity.FullControlOnceLoggedInAuthorizationStrategy"&gt; ...... &lt;/authorizationStategy&gt; &lt;securityRealm class="hudson.security.HudsonPrivateSecurityRealm"&gt;&lt;disableSignup&gt;false&lt;/disableSignup&gt; ..  &lt;/securityRealm&gt;</span><br></pre></td></tr></table></figure>
+<p>• 重启jenkins服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
+<p>注：删处上面文件内容后，所做的权限分配也就全部没有了，但是用户还在。</p>
+<p>暂时先度过了这次危机。</p>
 
             
           </span>
@@ -988,8 +621,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/12/28/mongdbrails/" itemprop="url">
-                  mongodb+rails
+                <a class="post-title-link" href="/2016/03/21/python-spider/" itemprop="url">
+                  python_spider
                 </a>
               
             
@@ -999,269 +632,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-28T14:17:38+08:00" content="2015-12-28">
-              2015-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DB/" itemprop="url" rel="index">
-                    <span itemprop="name">DB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/28/mongdbrails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/mongdbrails/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>要维护一个项目，但是这个项目是rails+mongodb的，之前用惯了mysql,突然换成mongodb,不是很习惯，而且关于这块的资料好少。<br>自己折腾了下，总结过程如下：</p>
-<p><strong><em>安装</em></strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Brew install mongodb</span><br></pre></td></tr></table></figure>
-<p>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> mongo</span><br></pre></td></tr></table></figure></p>
-<p>来找到mongo的安装路径<br>添加环境变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi .bahs_profile</span><br><span class="line">Export /usr/ocal/cellar/mongodb/<span class="number">3.0</span>.<span class="number">7</span>/bin:<span class="variable">$PATH</span>;</span><br><span class="line">Source .bash_profile</span><br></pre></td></tr></table></figure>
-<p>然后启动mongo 服务：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
-<p>敲上mongo就可以操作数据库了</p>
-<p><strong><em>与rails结合</em></strong></p>
-<p>在Gemfile中添加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line">gem <span class="string">"mongoid"</span>, <span class="string">"~&gt; 4.0.0"</span></span><br></pre></td></tr></table></figure>
-<p>然后</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bundle </span>install</span><br></pre></td></tr></table></figure>
-<p>再执行：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">rails</span> <span class="tag">g</span> <span class="tag">mongoid</span><span class="pseudo">:config</span></span><br></pre></td></tr></table></figure>
-<p>将会出现：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure></p>
-<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
-<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
-<p>和<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure></p>
-<p>这两行，再添加以下几行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require "action_controller/railtie"</span><br><span class="line">require "action_mailer/railtie"</span><br><span class="line"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span><br><span class="line">require "rails/test_unit/railtie"</span><br><span class="line">require "sprockets/railtie" # Uncomment this line for Rails 3.1+</span><br></pre></td></tr></table></figure>
-<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
-<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong><em>使用</em></strong></p>
-<p>经过上面的配置，就可以开始使用了，现在请忘记rake db:migrate命令吧，需要添加修改字段只要修改对应的model文件即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">include Mongoid::Document</span><br><span class="line">field :first_name, type: String</span><br><span class="line">field :last_name, type: String</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>就ok了</p>
-<p><strong>相关Gems</strong></p>
-<p>• 如果觉得mongode生成的objectid在url中显示不够美观的话，那么可以安装mongoid_auto_increment_id来生成自增的整数形id。</p>
-<p>• 使用mongoid-rails可以防止query的注入</p>
-<p>• 因为在替换成mongoid之后，默认的migratetion就已经不能用来了，所以可以用mongoid_rails_migrations来实现针对mongodb的数据迁移功能。</p>
-<p>参考：<br><a href="http://t-y.me/p/331" target="_blank" rel="external">TY’s Blog</a><br><a href="http://www.xiaozhou.net/setup-mongoid-mongodb-environment-2013-09-18.html" target="_blank" rel="external">xiaozhou’s Blog</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/31/taiwan/" itemprop="url">
-                  台湾之行
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-31T20:20:57+08:00" content="2015-10-31">
-              2015-10-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/31/taiwan/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/31/taiwan/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>感谢我厂，把这次年会放到了台北。才使我这样的土鳖，有机会出去瞅瞅。</p>
-<p>首先是痛苦的办证过程。最后还是得感谢房东，提供了房产证明。才在最后的时刻办上了临时居住证，后面的顺利多了。</p>
-<p>台湾之行是愉快的。 无论是公司里面的老外，还是见多识广的海龟，还是比较小资上海拧，还是我这种没出去过的土鳖。每个人都觉得很愉快。</p>
-<p>台北没有上海这样多的高楼大厦。看起来甚至不如一个内陆的二线城市。跟大陆任何一个城市没多大的区别，除了繁体字。可能是软实力吧，藏富于民。</p>
-<p>无论走到哪个大街小巷，本地人的精神状态很好，很礼貌热情。可能没有房贷，医疗，教育各个方面的压力吧。</p>
-<p>台北的物价没有上海的高，遍布各个大街小巷的都有物美价廉，新鲜绿色的水果，夜市小吃。</p>
-<p>去了下西门汀，日据时代日本人的聚集地。现在还有很多日本人在那居住。<br>台湾的日本人很多，台湾人根本不排斥日本人。台湾处处有日本的痕迹。<br>就像在台北故宫参观。大陆游客都是走马观花，日本人韩国人却能很规矩的一个一个欣赏，认真听讲解。</p>
-<p>台湾跟大陆同宗同源，去台湾，就跟去香港差不多。没有语言 ，文化上的差异。很多传统，在台湾都有保留。比如儒家的那套“仁，义，礼，智，信，忠，孝，廉，耻”在台湾就有很好的保留和发扬，从道路命名就可以看出来。</p>
-<p>整个行程很短暂，留下的都是些美好记忆。</p>
-<blockquote>
-<p>有机会，世界各地多走走。<br>行千里路，读万卷书。。。</p>
-</blockquote>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/22/python-config/" itemprop="url">
-                  Python中的config配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-07-22T10:37:55+08:00" content="2015-07-22">
-              2015-07-22
+            <time itemprop="dateCreated" datetime="2016-03-21T22:43:00+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
@@ -1286,8 +658,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/22/python-config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/22/python-config/" itemprop="commentsCount"></span>
+                <a href="/2016/03/21/python-spider/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-spider/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1309,21 +681,12 @@
         
           <span itemprop="articleBody">
             
-              <p>Python中有ConfigParser类，可以很方便的从配置文件中读取数据（如DB的配置，路径的配置），所以可以自己写一个函数，实现读取config配置。</p>
-<p>config文件的写法比较简单，[section]下配置key=value，一下是例子：db.conf</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置数据库  </span></span><br><span class="line">[database]  </span><br><span class="line">dbhost=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  </span><br><span class="line">dbport=<span class="number">3366</span>  </span><br><span class="line">dbname=test  </span><br><span class="line">dbuser=test  </span><br><span class="line">dbpassword=test  </span><br><span class="line">dbcharset=utf8</span><br></pre></td></tr></table></figure>
-<p>接着写一个读取config的方法模块</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="comment">#name:mod_config.py  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取config配置文件  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getConfig</span><span class="params">(section, key)</span>:</span>  </span><br><span class="line">    config = ConfigParser.ConfigParser()  </span><br><span class="line">    path = os.path.split(os.path.realpath(__file__))[<span class="number">0</span>] + <span class="string">'/db.conf'</span>  </span><br><span class="line">    config.read(path)  </span><br><span class="line">    <span class="keyword">return</span> config.get(section, key)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#其中 os.path.split(os.path.realpath(__file__))[0] 得到的是当前文件模块的目录</span></span><br></pre></td></tr></table></figure>
-<p>ConfigParser 是Python自带的模块， 用来读写配置文件， 用法及其简单。 直接上代码，不解释，不多说。</p>
-<p>配置文件的格式是： []包含的叫section,    section 下有option=value这样的键值<br>配置文件：test.conf</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[section1]  </span><br><span class="line">name = anderson  </span><br><span class="line">sex = male  </span><br><span class="line">  </span><br><span class="line">[section2]  </span><br><span class="line">ip = <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span>  </span><br><span class="line">port = <span class="number">8080</span></span><br></pre></td></tr></table></figure>
-<p>读写</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -* - coding: UTF-8 -* -    </span></span><br><span class="line"><span class="keyword">import</span> ConfigParser  </span><br><span class="line">  </span><br><span class="line">conf = ConfigParser.ConfigParser()  </span><br><span class="line">conf.read(<span class="string">"c:\\test.conf"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 获取指定的section， 指定的option的值  </span></span><br><span class="line">name = conf.get(<span class="string">"section1"</span>, <span class="string">"name"</span>)  </span><br><span class="line">print(name)  </span><br><span class="line">age = conf.get(<span class="string">"section1"</span>, <span class="string">"age"</span>)  </span><br><span class="line"><span class="keyword">print</span> age  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#获取所有的section  </span></span><br><span class="line">sections = conf.sections()  </span><br><span class="line"><span class="keyword">print</span> sections  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#写配置文件  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 更新指定section, option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"port"</span>, <span class="string">"8081"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写入指定section, 增加新option的值  </span></span><br><span class="line">conf.set(<span class="string">"section2"</span>, <span class="string">"IEPort"</span>, <span class="string">"80"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 添加新的 section  </span></span><br><span class="line">conf.add_section(<span class="string">"new_section"</span>)  </span><br><span class="line">conf.set(<span class="string">"new_section"</span>, <span class="string">"new_option"</span>, <span class="string">"http://xieming.github.io"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 写回配置文件  </span></span><br><span class="line">conf.write(open(<span class="string">"c:\\test.conf"</span>,<span class="string">"w"</span>))</span><br></pre></td></tr></table></figure>
-<p>数据库配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[dbsetting]</span><br><span class="line">host = <span class="number">10.128</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">user = BOSTON\anderson</span><br><span class="line">password = Good</span><br><span class="line">database = ET_Main</span><br></pre></td></tr></table></figure>
-<p>数据库操作：</p>
-<p>连接的是sqlserver，要安装pymssql这个模块。<br>mac上操作：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> pymssql</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> pymssql</span><br><span class="line"><span class="keyword">import</span> ConfigParser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cf = ConfigParser.ConfigParser()</span><br><span class="line"><span class="comment">#read config</span></span><br><span class="line">cf.read(<span class="string">"ini.conf"</span>)</span><br><span class="line">hostcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"host"</span>)</span><br><span class="line">usercf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"user"</span>)</span><br><span class="line">passwordcf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"password"</span>)</span><br><span class="line">databasecf = cf.get(<span class="string">"dbsetting"</span>, <span class="string">"database"</span>)</span><br><span class="line"></span><br><span class="line">print(hostcf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execdb</span><span class="params">(query,querystr)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">	    conn = pymssql.connect(host=hostcf,user=usercf,password=passwordcf, database=databasecf)</span><br><span class="line">	<span class="keyword">except</span> pymssql.OperationalError, msg:</span><br><span class="line">	    <span class="keyword">print</span> <span class="string">"error: Could not Connection SQL Server!please check your dblink configure!"</span></span><br><span class="line">	    sys.exit()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	    cur = conn.cursor()</span><br><span class="line"></span><br><span class="line">	<span class="comment">#query="SELECT TOP 10 * FROM dbo.Members WHERE username = user"</span></span><br><span class="line">	<span class="keyword">print</span> query</span><br><span class="line">	cur.execute(query)</span><br><span class="line">	conn.commit</span><br></pre></td></tr></table></figure>
+              <p>前面自娱自乐，爬了几本书。<br>发帖出来，有些改进意见。<br>用多线程，用类，啥的。</p>
+<p>改进前：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(html,type)</span>:</span></span><br><span class="line">    pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">    source = re.compile(pattern)</span><br><span class="line">    sourcelist = re.findall(source,html)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">        <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> item[<span class="number">1</span>] != <span class="string">r"在线阅读"</span>:</span><br><span class="line">            <span class="comment">#print item[0]</span></span><br><span class="line">            <span class="keyword">if</span> type <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">type = <span class="string">"""</span><br><span class="line">    1.pdf</span><br><span class="line">    2.epub</span><br><span class="line">    3.mobi"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> type</span><br><span class="line"></span><br><span class="line">html = getHtml(<span class="string">"https://testerhome.com/topics/4419"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">downtype = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> yourtype != <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">if</span> yourtype ==<span class="string">'1'</span>:</span><br><span class="line">        downtype = <span class="string">'PDF'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'2'</span>:</span><br><span class="line">        downtype = <span class="string">'EPUB'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'3'</span>:</span><br><span class="line">        downtype = <span class="string">'MOBI'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please check your choice!"</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"please choose one type!"</span>        </span><br><span class="line"></span><br><span class="line">getlink(html,downtype)</span><br></pre></td></tr></table></figure>
+<p>改进后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">get_book</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,nsec, url, types)</span> :</span></span><br><span class="line">          <span class="comment">#super(myThread, self).__init__()</span></span><br><span class="line">          self.types = types</span><br><span class="line">          self.nsec = nsec</span><br><span class="line">          self.url = url</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(self,url)</span>:</span></span><br><span class="line">        page = urllib.urlopen(self.url)</span><br><span class="line">        html = page.read()</span><br><span class="line">        <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(self,html,types)</span>:</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">        source = re.compile(pattern)</span><br><span class="line">        sourcelist = re.findall(source,html)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">            <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> self.types <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line">                sleep(self.nsec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    types = &#123;<span class="number">1</span>:<span class="string">"PDF"</span>,<span class="number">2</span>:<span class="string">"EPUB"</span>,<span class="number">3</span>:<span class="string">"MOBI"</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">print</span> types.items()</span><br><span class="line"></span><br><span class="line">    html = <span class="string">"https://testerhome.com/topics/4419"</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> int(yourtype) <span class="keyword">not</span> <span class="keyword">in</span> range (<span class="number">1</span>,<span class="number">3</span>):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please select again"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> types[int(yourtype)]</span><br><span class="line"></span><br><span class="line">        get = get_book(<span class="number">2</span>,html,types[int(yourtype)])</span><br><span class="line">        url = get.getHtml(html)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'starting at:'</span>,get.now()</span><br><span class="line">        threadpool=[]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">            th = threading.Thread(target= get.getlink,args=(url,types[int(yourtype)]))</span><br><span class="line">            threadpool.append(th)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">            th.start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">            threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'all Done at:'</span>, get.now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p>然后看看效果。</p>
 
             
           </span>
@@ -1372,8 +735,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/06/15/Nginx-Passenger-Rails/" itemprop="url">
-                  Nginx+Passenger+Rails
+                <a class="post-title-link" href="/2016/03/21/python-multiple-threads/" itemprop="url">
+                  python_multiple_threads
                 </a>
               
             
@@ -1383,8 +746,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-15T21:37:09+08:00" content="2015-06-15">
-              2015-06-15
+            <time itemprop="dateCreated" datetime="2016-03-21T22:26:23+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
@@ -1393,8 +756,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -1409,8 +772,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/06/15/Nginx-Passenger-Rails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/15/Nginx-Passenger-Rails/" itemprop="commentsCount"></span>
+                <a href="/2016/03/21/python-multiple-threads/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-multiple-threads/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1432,42 +795,924 @@
         
           <span itemprop="articleBody">
             
-              <p>当网站做好了之后，需要部署，部署的方法有很多，这里就简单介绍在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境。</p>
-<p>假设已经配置好了ruby,rails等环境。</p>
-<p><strong>1.安装Passenger + Nginx</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gem install passenger</span><br><span class="line">$ passenger-install-nginx-module</span><br><span class="line"></span><br><span class="line">Whichever you choose, <span class="keyword">if</span> you already have an existing Nginx configuration file,</span><br><span class="line"><span class="keyword">then</span> it will be preserved.</span><br><span class="line">Enter your choice (<span class="number">1</span> or <span class="number">2</span>) or press Ctrl-C to abort:</span><br></pre></td></tr></table></figure>
-<p>这里建议选择1</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please specify <span class="operator">a</span> prefix <span class="built_in">directory</span> [/opt/nginx]: /usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
-<p>当询问nginx的安装路径的时候，个人建议安装到/usr/local/nginx下</p>
-<p>当安装完成后，会在console中提示如何配置Nginx<br>Passenger会自动帮你将下面两行添加到Nginx的配置文件中/usr/local/nginx/conf/nginx.conf（很人性化）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">...</span><br><span class="line">    passenger_root /Users/Daniel/.rvm/gems/ruby-1.9.2-p290/gems/passenger-3.0.10;</span><br><span class="line">    passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-1.9.2-p290/ruby;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.yourhost.com;</span><br><span class="line">    root /somewhere/public;   # &lt;--- be sure to point to 'public'!</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2.配置Nginx + Passenger + Rails</strong><br>修改hosts文件，给你的项目一个本地域名, 比如awesome_project.local</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/hosts</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span> awesome_project.local</span><br></pre></td></tr></table></figure>
-<p>测试hosts</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ping awesome_project.local</span><br><span class="line">PING awesome_project.local (<span class="number">127.0</span>.<span class="number">0.1</span>): <span class="number">56</span> data bytes</span><br></pre></td></tr></table></figure>
-<p>继续配置Nginx, 这里我给出一个最小可运行的Nginx配置文件</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line">events &#123;</span><br><span class="line">  worker_connections  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">  passenger_root /Users/Daniel/.rvm/gems/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/gems/passenger-<span class="number">3.0</span><span class="number">.10</span>;</span><br><span class="line">  passenger_ruby /Users/Daniel/.rvm/wrappers/ruby-<span class="number">1.9</span><span class="number">.2</span>-p290/ruby;</span><br><span class="line">include       mime.types;</span><br><span class="line">  default_type  application/octet-stream;</span><br><span class="line">  sendfile      on;</span><br><span class="line">  keepalive_timeout  <span class="number">65</span>;</span><br><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name awesome_project.local;</span><br><span class="line">    root /Users/Daniel/awesome_project/public;</span><br><span class="line">    passenger_enabled on;</span><br><span class="line">    rails_env development;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试Nginx的配置文件语法是否正确</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx -t</span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
-<p>启动Nginx</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo nginx</span><br></pre></td></tr></table></figure>
-<p>如何在修改Nginx的配置文件后，让Nginx载入新配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> reload</span><br></pre></td></tr></table></figure>
-<p>如何停止Nginx</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx <span class="operator">-s</span> stop</span><br></pre></td></tr></table></figure>
-<p>如何在不停Nginx的情况下，重新启动Passenger</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/your/awesome/project</span><br><span class="line">$ touch tmp/restart.txt</span><br></pre></td></tr></table></figure>
-<p>好了，这个时候你可以打开浏览器，访问你的awesome_project网站了</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//awesome_project.local</span></span><br></pre></td></tr></table></figure>
-<p>有时候，需要到  /usr/local/nginx/sbin/<br>执行：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Sudo</span> ./nginx</span><br></pre></td></tr></table></figure>
-<p>问题来了，启动后一直显示”welcome to nginx”<br>解决方案：在conf文件里注释掉</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># location / &#123;</span></span><br><span class="line"><span class="preprocessor">#     root   html;</span></span><br><span class="line"><span class="preprocessor">#    index  index.html index.htm;</span></span><br><span class="line"><span class="preprocessor"># &#125;</span></span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<p><a href="http://www.jianshu.com/p/b773becdc5dd" target="_blank" rel="external">通过Nginx在一台服务器上部署两个Rails项目</a></p>
-<p><a href="https://ruby-china.org/wiki/mac-nginx-passenger-rails" target="_blank" rel="external">如何在 Mac 下用 Nginx + Passenger 部署 Rails 的运行环境</a></p>
-<p><a href="http://www.zgxue.com/nclass/10/" target="_blank" rel="external">Ruby专题</a></p>
+              <blockquote>
+<p>前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。</p>
+</blockquote>
+<p>目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。<br>2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点，出现了multithreading  模块。threading模块里面主要是对一些线程的操作对象化，创建Thread的class。一般来说，使用线程有两种模式:<br>A 创建线程要执行的函数，把这个函数传递进Thread对象里，让它来执行；<br>B 继承Thread类，创建一个新的class，将要执行的代码 写到run函数里面。</p>
+<p>参照：<a href="http://blog.itpub.net/22664653/viewspace-1178285/" target="_blank" rel="external">python多线程</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(nloop, nsec)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start loop'</span>, nloop, <span class="string">'at:'</span>, now()</span><br><span class="line">    sleep(nsec)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'loop'</span>, nloop, <span class="string">'done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    threadpool=[]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">        th = threading.Thread(target= test,args= (i,<span class="number">2</span>))</span><br><span class="line">        threadpool.append(th)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">        th.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">        threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p>第2种方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading ,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span> <span class="params">(threading.Thread)</span> :</span></span><br><span class="line">      <span class="string">"""docstring for myThread"""</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nloop, nsec)</span> :</span></span><br><span class="line">          super(myThread, self).__init__()</span><br><span class="line">          self.nloop = nloop</span><br><span class="line">          self.nsec = nsec</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">          <span class="keyword">print</span> <span class="string">'start loop'</span>, self.nloop, <span class="string">'at:'</span>, ctime()</span><br><span class="line">          sleep(self.nsec)</span><br><span class="line">          <span class="keyword">print</span> <span class="string">'loop'</span>, self.nloop, <span class="string">'done at:'</span>, ctime()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">     thpool=[]</span><br><span class="line">     <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">         thpool.append(myThread(i,<span class="number">2</span>))</span><br><span class="line">         </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.start()</span><br><span class="line">   </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.join()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<p>再实践实践。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/13/resource/" itemprop="url">
+                  淘金岛
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-13T11:10:29+08:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/resource/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/13/resource/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><strong>1. 在github 上淘宝</strong></p>
+<p>身边总有神奇的同事，总是能分享一些很赞的资源，不好意思问他从哪里知道的。<br>打算学习一门新技术，怎么最快找到优质的资源（工具，第三方库，插件，文章，视频等）？<br>今天我分享给大家一个使用 Github 找优质资源的技巧：<br>使用Github 的站内搜索，搜索：<strong>Awesome + 你的关键字</strong></p>
+<p><a href="https://codingstyle.cn/topics/11?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">在 Github 上找「好东西」的方法</a></p>
+<p><strong>2. 资讯类</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.topthink.com" target="_blank" rel="external">极思维</a></td>
+<td style="text-align:center">互联网开发大杂烩</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.jobbole.com" target="_blank" rel="external">伯乐在线</a></td>
+<td style="text-align:center">开发资讯大杂烩</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="http://toutiao.io/explore" target="_blank" rel="external">开发者头条</a></td>
+<td style="text-align:center">有点干货</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://gold.xitu.io/#/explore" target="_blank" rel="external">掘金</a></td>
+<td style="text-align:center">可以偶尔来</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><a href="http://www.cocoachina.com" target="_blank" rel="external">cocoachina</a></td>
+<td style="text-align:center">移动开发</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="http://objcio.cn" target="_blank" rel="external">objcn</a></td>
+<td style="text-align:center">oc学习</td>
+<td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. 博客</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.liaoxuefeng.com" target="_blank" rel="external">廖雪峰</a></td>
+<td style="text-align:center">python,git,js不错</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="http://stormzhang.com" target="_blank" rel="external">stormzhang</a></td>
+<td style="text-align:center">测试转开发的典范</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. git</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="external">git免费电子书</a></td>
+<td style="text-align:center">各类教程</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="https://github.com/happypeter" target="_blank" rel="external">happypeter</a></td>
+<td style="text-align:center">ruby</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="https://github.com/daimajia" target="_blank" rel="external">代码家</a></td>
+<td style="text-align:center">android</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="https://www.gitbook.com/explore" target="_blank" rel="external">gitbook</a></td>
+<td style="text-align:center">技术电子书</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. 教程</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.ucai.cn" target="_blank" rel="external">优才学院</a></td>
+<td style="text-align:center">有些视频教程</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><a href="http://www.imooc.com/course/list" target="_blank" rel="external">慕课网</a></td>
+<td style="text-align:center">免费视频教程</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td><a href="http://www.howzhi.com" target="_blank" rel="external">好知网</a></td>
+<td style="text-align:center">综合性网站</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.maiziedu.com/course/android/" target="_blank" rel="external">麦子学院</a></td>
+<td style="text-align:center">Android基础视频教程</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td><a href="http://www.maiziedu.com/course/ios/" target="_blank" rel="external">麦子学院</a></td>
+<td style="text-align:center">ios基础视频教程</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td><a href="http://edu.51cto.com" target="_blank" rel="external">51CTO</a></td>
+<td style="text-align:center">开发视频教程</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.icoolxue.com" target="_blank" rel="external">爱酷学习网</a></td>
+<td style="text-align:center">小型开发视频教程</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.swiftv.cn/course/explore" target="_blank" rel="external">swift课堂</a></td>
+<td style="text-align:center">swift入门</td>
+<td style="text-align:right">5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. 工具</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://tool.lu/" target="_blank" rel="external">在线工具</a></td>
+<td style="text-align:center">比较全的在线工具</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. 源码</strong></p>
+<table>
+<thead>
+<tr>
+<th>ADD</th>
+<th style="text-align:center">Comments</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Trinea/android-open-project" target="_blank" rel="external">android开源项目</a></td>
+<td style="text-align:center">新手学android</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="http://www.lanrenios.com" target="_blank" rel="external">懒人ios</a></td>
+<td style="text-align:center">ios各种源代码</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td><a href="http://www.oschina.net/ios/codingList/386/ios-animation?sort=view" target="_blank" rel="external">oschina</a></td>
+<td style="text-align:center">IOS开发专区</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.23code.com" target="_blank" rel="external">23code</a></td>
+<td style="text-align:center">安卓经典源码</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://code4app.com" target="_blank" rel="external">code4App</a></td>
+<td style="text-align:center">ios源码</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td><a href="http://www.eoeandroid.com/thread-311366-1-1.html?_dsign=481d8a35" target="_blank" rel="external">android精品</a></td>
+<td style="text-align:center">android精品源码</td>
+<td style="text-align:right">4</td>
+</tr>
+</tbody>
+</table>
+<p>相关网站</p>
+<table>
+<thead>
+<tr>
+<th>网站</th>
+<th style="text-align:center">简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tutsplus</td>
+<td style="text-align:center">不定时更新一些 iOS 教程</td>
+</tr>
+<tr>
+<td>WWDC</td>
+<td style="text-align:center">苹果官方每年一度的 WWDC 视频, 可以了解历年有关 iOS 发布的内容</td>
+</tr>
+<tr>
+<td>ASCIIwwdc</td>
+<td style="text-align:center">WWDC 的文字版</td>
+</tr>
+<tr>
+<td>Awesome Swift</td>
+<td style="text-align:center">该网站收集了很多关于 Swift 的学习资料, 新闻</td>
+</tr>
+<tr>
+<td>Appcoda</td>
+<td style="text-align:center">经常发布一些 iOS 编程教程, 更新比较频繁, 想了解更多可以查看该网站的 About 界面</td>
+</tr>
+<tr>
+<td>NSHipster</td>
+<td style="text-align:center">NSHipster is a journal of the overlooked bits in Objective-C, Swift, and Cocoa. Updated weekly.</td>
+</tr>
+<tr>
+<td>Think and Build</td>
+<td style="text-align:center">Some tutorials about Core Graphic and Core Animation.</td>
+</tr>
+<tr>
+<td>Tutorials</td>
+<td style="text-align:center">大把的 Objective-C, Swift, iOS 教程, 且全部免费, Raywenderlich 真是业界良心, 赞!</td>
+</tr>
+</tbody>
+</table>
+<p>社区</p>
+<table>
+<thead>
+<tr>
+<th>社区</th>
+<th style="text-align:center">简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CocoaChina</td>
+<td style="text-align:center">全球最大苹果开发者中文社区</td>
+</tr>
+<tr>
+<td>code4app</td>
+<td style="text-align:center">经常更新一些很不错的 iOS 代码片段和一些 iOS 资源</td>
+</tr>
+<tr>
+<td>objc</td>
+<td style="text-align:center">定期发布一些有关 Objective-C 的高质量的文章</td>
+</tr>
+<tr>
+<td>objc中国</td>
+<td style="text-align:center">喵神组织的对 objc.io 的翻译网站, 旨在推进国内技术圈整体水平, 翻译质量非常高</td>
+</tr>
+<tr>
+<td>DevDiv</td>
+<td style="text-align:center">发布一些 iOS 的最新资讯及教程</td>
+</tr>
+<tr>
+<td>Cocos2d-x</td>
+<td style="text-align:center">Cocos2d-x 论坛</td>
+</tr>
+<tr>
+<td>iPhone Dev SDK</td>
+<td style="text-align:center">国外较有名的 iOS 开发者论坛</td>
+</tr>
+<tr>
+<td>Apple Developer Forums</td>
+<td style="text-align:center">苹果官方的开发者论坛</td>
+</tr>
+<tr>
+<td>Swiftist</td>
+<td style="text-align:center">Swift 中文社区</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>工具/插件</th>
+<th style="text-align:center">简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CocoaPods</td>
+<td style="text-align:center">开发 OS X 和 iOS 应用程序的一个第三方库的依赖管理工具, 本身是 Ruby 的一个 Gem, 极大的简化了 Objective-C 的开发流程</td>
+</tr>
+<tr>
+<td>Alcatraz</td>
+<td style="text-align:center">Alcatraz 是一款管理 Xcode 插件、模版以及颜色配置的工具</td>
+</tr>
+<tr>
+<td>XcodeColors</td>
+<td style="text-align:center">使 Xcode 调试控制台色彩更丰富</td>
+</tr>
+<tr>
+<td>xctool</td>
+<td style="text-align:center">Facebook 开源的一个 iOS 编译和测试的工具</td>
+</tr>
+<tr>
+<td>KSImageNamed-Xcode</td>
+<td style="text-align:center">自动补全图片命名的一款插件</td>
+</tr>
+<tr>
+<td>VVDocumenter</td>
+<td style="text-align:center">一个自动生成代码注释的工具</td>
+</tr>
+<tr>
+<td>ImageOptim</td>
+<td style="text-align:center">用于压缩图片一款工具</td>
+</tr>
+<tr>
+<td>fastlane</td>
+<td style="text-align:center">开发流程工具，将开发过程流程化，极大提高开发效率</td>
+</tr>
+<tr>
+<td>iOS 必备的 75 个工具</td>
+<td style="text-align:center">其中包含了非常多好用的工具, 涉及到设计, 分析, 部署等, 总结的十分详细, 有中文翻译</td>
+</tr>
+</tbody>
+</table>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/12/python-paramiko/" itemprop="url">
+                  python-paramiko
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-12T15:22:58+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/12/python-paramiko/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/python-paramiko/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>之前为了操作远程服务器，想尽了办法，那时候在windows 机器上想装paramiko 模块，一直没有成功， 最近在Mac 上却尝试成功了。</p>
+<p><strong>1. 安装：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install --upgrade pip</span><br><span class="line">Sudo pip install paramiko</span><br></pre></td></tr></table></figure>
+<p><strong>2. 执行远程命令</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line">ssh = paramiko.SSHClient()</span><br><span class="line">ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">ssh.connect(<span class="string">"某IP地址"</span>,<span class="number">22</span>,<span class="string">"用户名"</span>, <span class="string">"口令"</span>)</span><br><span class="line">stdin, stdout, stderr = ssh.exec_command(<span class="string">"你的命令"</span>)</span><br><span class="line"><span class="keyword">print</span> stdout.readlines()</span><br><span class="line">ssh.close()</span><br></pre></td></tr></table></figure>
+<p><strong>3. 上传文件到远程</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line">t = paramiko.Transport((<span class="string">"某IP地址"</span>,<span class="number">22</span>))</span><br><span class="line">t.connect(username = <span class="string">"用户名"</span>, password = <span class="string">"口令"</span>)</span><br><span class="line">sftp = paramiko.SFTPClient.from_transport(t)</span><br><span class="line">remotepath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">localpath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">sftp.put(localpath,remotepath)</span><br><span class="line">t.close()</span><br></pre></td></tr></table></figure>
+<p><strong>4.从远程下载文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line">t = paramiko.Transport((<span class="string">"某IP地址"</span>,<span class="number">22</span>))</span><br><span class="line">t.connect(username = <span class="string">"用户名"</span>, password = <span class="string">"口令"</span>)</span><br><span class="line">sftp = paramiko.SFTPClient.from_transport(t)</span><br><span class="line">remotepath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">localpath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">sftp.get(remotepath, localpath)</span><br><span class="line">t.close()</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/charts/" itemprop="url">
+                  charts
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-11T13:16:47+08:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/charts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/11/charts/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="http://echarts.baidu.com/echarts2/doc/start.html" target="_blank" rel="external">echarts</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34;&#62;&#10;    &#60;title&#62;ECharts&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;!-- &#20026;ECharts&#20934;&#22791;&#19968;&#20010;&#20855;&#22791;&#22823;&#23567;&#65288;&#23485;&#39640;&#65289;&#30340;Dom --&#62;&#10;    &#60;div id=&#34;main&#34; style=&#34;height:400px&#34;&#62;&#60;/div&#62;&#10;    &#60;!-- ECharts&#21333;&#25991;&#20214;&#24341;&#20837; --&#62;&#10;    &#60;script src=&#34;http://echarts.baidu.com/build/dist/echarts.js&#34;&#62;&#60;/script&#62;&#10;    &#60;script type=&#34;text/javascript&#34;&#62;&#10;        // &#36335;&#24452;&#37197;&#32622;&#10;        require.config(&#123;&#10;            paths: &#123;&#10;                echarts: &#39;http://echarts.baidu.com/build/dist&#39;&#10;            &#125;&#10;        &#125;);&#10;        &#10;        // &#20351;&#29992;&#10;        require(&#10;            [&#10;                &#39;echarts&#39;,&#10;                &#39;echarts/chart/bar&#39; // &#20351;&#29992;&#26609;&#29366;&#22270;&#23601;&#21152;&#36733;bar&#27169;&#22359;&#65292;&#25353;&#38656;&#21152;&#36733;&#10;                 ],&#10;            function (ec) &#123;&#10;                // &#22522;&#20110;&#20934;&#22791;&#22909;&#30340;dom&#65292;&#21021;&#22987;&#21270;echarts&#22270;&#34920;&#10;                var myChart = ec.init(document.getElementById(&#39;main&#39;)); &#10;                &#10;                var option = &#123;&#10;                    tooltip: &#123;&#10;                        show: true&#10;                    &#125;,&#10;                    legend: &#123;&#10;                        data:[&#39;&#38144;&#37327;&#39;]&#10;                    &#125;,&#10;                    xAxis : [&#10;                        &#123;&#10;                            type : &#39;category&#39;,&#10;                            data : [&#34;&#34924;&#34923;&#34;,&#34;&#32650;&#27611;&#34923;&#34;,&#34;&#38634;&#32442;&#34923;&#34;,&#34;&#35044;&#23376;&#34;,&#34;&#39640;&#36319;&#38795;&#34;,&#34;&#34972;&#23376;&#34;]&#10;                        &#125;&#10;                    ],&#10;                    yAxis : [&#10;                        &#123;&#10;                            type : &#39;value&#39;&#10;                        &#125;&#10;                    ],&#10;                    series : [&#10;                        &#123;&#10;                            &#34;name&#34;:&#34;&#38144;&#37327;&#34;,&#10;                            &#34;type&#34;:&#34;bar&#34;,&#10;                            &#34;data&#34;:[5, 20, 40, 10, 10, 20]&#10;                              &#125;&#10;                    ]&#10;                &#125;;&#10;        &#10;                // &#20026;echarts&#23545;&#35937;&#21152;&#36733;&#25968;&#25454; &#10;                myChart.setOption(option); &#10;            &#125;&#10;        );&#10;    &#60;/script&#62;&#10;&#60;/body&#62;</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/06/badminton/" itemprop="url">
+                  badminton
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-06T14:55:50+08:00" content="2016-03-06">
+              2016-03-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/06/badminton/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/06/badminton/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>好久没运动了。</p>
+<p>虽然最近控制了饮食，体重下降了些，但是还是胖了。<br>打算运动减肥。</p>
+<p>于是去了静安体育馆。我们公司有周二，周四的羽毛球包场。</p>
+<p>可能是新来的，他们常来，打得也比较好，也有长期的球友。</p>
+<p>还好Sean也经常来，不然我就是孤家寡人一个。</p>
+<p>问题来了，跑不动。</p>
+<p>看着球掉下，迈不开腿。</p>
+<p>回去找了个视频看看，学习了基本步法。</p>
+<p>第2次去的时候跟一个水平比较高的人打，结果被玩死了。</p>
+<p>根本无法判断他的球的落点。视屏学的根本就没用上。</p>
+<p>看来还是缺少锻炼。</p>
+<p><strong>“纸上得来终觉浅，绝知此事要躬行”</strong></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/04/ceshi/" itemprop="url">
+                  30多岁转开发还来得及吗？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-04T15:12:31+08:00" content="2016-03-04">
+              2016-03-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/04/ceshi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/ceshi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近搞得心累，跟各个部门撕逼。测试是个弱势群体。脏活，累活都要干，干的最多，还拿得最少。</p>
+<p>你要想保证质量，就得push别人干活，坑少埋点。</p>
+<p>太极是中国人发明的，都会玩。</p>
+<p>当然也会被管进度的人压得不行。</p>
+<p>在他们看来，一个破功能，点点就可以了，还要那么多时间测试。</p>
+<p>但是，很多时候是被block住的。</p>
+<p>所以，测试成了整个流程线上最忙，最苦逼的人。</p>
+<p>到处吃力不讨好，还处处得罪人。</p>
+<p>很多时候好想安安静静地写写代码，像一个开发一样。没有那么多纷纷扰扰，各方面还不错。</p>
+<p>有的时候想想，当时Android,IOS兴起的时候，我在做啥呢？怎么没自学，或者报个培训班啥的。可能是生活安逸，不想改变？或者没有技术敏感度，错过机会了。</p>
+<p>老问题又来了：“30多岁转开发还来得及吗？” 中午吃饭的时候，跟几个开发讨论。</p>
+<p>几个Android开发都是半道出家的，不是本专业。</p>
+<p>有个家伙说，“来不及了，都这么大年纪了，拼不过小年轻。”</p>
+<p>有个老道一点的说官话了，“干啥跟年龄无关，只要你想做。”</p>
+<p>是啊，只要你想做，什么时候都不晚。</p>
+<p>不能拿他当谋饭吃，就当一兴趣吧。</p>
 
             
           </span>
@@ -1500,7 +1745,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1541,21 +1786,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

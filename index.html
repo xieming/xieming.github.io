@@ -220,8 +220,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/27/simulaterofnet/" itemprop="url">
-                  模拟各种网络环境
+                <a class="post-title-link" href="/2016/04/27/bootstrap-node建一个网站/" itemprop="url">
+                  bootstrap+node一天快速建一个网站
                 </a>
               
             
@@ -231,8 +231,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-03-27T15:23:40+08:00" content="2016-03-27">
-              2016-03-27
+            <time itemprop="dateCreated" datetime="2016-04-27T14:27:51+08:00" content="2016-04-27">
+              2016-04-27
             </time>
           </span>
 
@@ -241,8 +241,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
                   </a>
                 </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/27/simulaterofnet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/simulaterofnet/" itemprop="commentsCount"></span>
+                <a href="/2016/04/27/bootstrap-node建一个网站/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/bootstrap-node建一个网站/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -280,19 +280,18 @@
         
           <span itemprop="articleBody">
             
-              <p>作者最近要release一个Android版本， 在网络测试时却遇到了难题。<br>没有各种网络环境。<br>然后网上有Facebook/atc来模拟各种网络。<br>然后各种安装让我望而却步。</p>
-<p>我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。</p>
-<p>结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。</p>
-<p><strong>Mac 下 xcode 自带的 Network Link Conditioner（NLC）</strong></p>
-<p>NLC 是 xcode 的插件，可以在 “Hardware IO Tools for Xcode” 中找到。你可以在苹果开发者页面找到这个插件<br><img src="/images/network-link-conditioner-download.png" alt="NLC"></p>
-<p>查找 “Network Link Conditioner”, 然后选择 “Hardware IO Tools for Xcode” package.<br><img src="/images/3.21.20.png" alt="NLC"></p>
-<p>下载好之后, 打开 DMG 然后双击 “Network Link Condition.prefPane” 来安装.<br><img src="/images/3.22.19.png" alt="NLC"><br>装好以后, 你就可以通过 ON 和 OFF 来开启/关闭网络模拟了.<br><img src="/images/3.22.41.png" alt="NLC"><br>Network Link Conditioner 可以模拟多种网络环境，以下是该工具目前自带的:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EDGE</span><br><span class="line"><span class="number">3</span>G</span><br><span class="line">DSL</span><br><span class="line">WiFi</span><br><span class="line">High Latency DNS</span><br><span class="line">Very Bad Network</span><br><span class="line"><span class="number">100</span>% Loss</span><br></pre></td></tr></table></figure>
-<p>每种情况都是通过设置上载、下载的 带宽, 延迟, 和 丢包率 (如果设置为 0, 即不影响你当前的网络环境，本来网络是什么样子就是什么样子).<br><img src="/images/network-link-conditioner-preset.png" alt="NLC"></p>
-<p>你也可以自建配置一个环境，在 【Manage Profiles…】里面自定义</p>
-<p>wifi<br>博主这里用的是安卓测试机，所以就通过 mac 的网络共享来建一个 wifi （度娘：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。接下来就可以通过切换各种网络环境来测试应用了。在面板上切换各种网络。</p>
-<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），</a><br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
-<p>参照：<a href="http://nshipster.com/network-link-conditioner/" target="_blank" rel="external">Network Link Conditioner</a></p>
+              <p>最近下载了好几个 bootstrap 的模版， 用nodejs跑起来。<br>一般用express框架。<br>结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- lib</span><br><span class="line">-- views</span><br><span class="line">   + -- index.html</span><br><span class="line">   + -- about.html</span><br><span class="line">   + -- contact.html</span><br><span class="line">   + -- <span class="number">404</span>.html</span><br><span class="line">-- node_modules</span><br><span class="line">   + -- express</span><br><span class="line">package.json</span><br></pre></td></tr></table></figure>
+<p>先配置 Package.json(类似ruby rails 中的Gem file)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"website-using-express"</span>,</span><br><span class="line">  <span class="string">"version"</span> : <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"scripts"</span> : &#123;</span><br><span class="line">    <span class="string">"start"</span> : <span class="string">"node Server.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span> : &#123;</span><br><span class="line">    <span class="string">"express"</span> : <span class="string">"latest"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后Switch to your project folder and type<br><figure class="highlight"><figcaption><span>install``` (类似gem install)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#25509;&#30528;&#24314;&#31435;Server.js&#10;express&#37324;&#38754;&#19968;&#33324;&#37117;&#26159; app.js&#10;&#10;```javascript&#10;var express = require(&#34;express&#34;);&#10;var app = express();&#10;var router = express.Router();&#10;var path = __dirname + &#39;/views/&#39;;&#10;&#10;router.use(function (req,res,next) &#123;&#10;  console.log(&#34;/&#34; + req.method);&#10;  next();&#10;&#125;);&#10;&#10;router.get(&#34;/&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;index.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/about&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;about.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/contact&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;contact.html&#34;);&#10;&#125;);&#10;&#10;app.use(&#34;/&#34;,router);&#10;&#10;app.use(&#34;*&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;404.html&#34;);&#10;&#125;);&#10;&#10;app.listen(3000,function()&#123;&#10;  console.log(&#34;Live at Port 3000&#34;);&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>各种配置和路由，express会把这放在router里面去做。<br>建一个views的文件夹，把html放里面，然后在这个里面相应的链接一下。<br>然后敲上<br><figure class="highlight"><figcaption><span>start``` (rails start)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#22312;&#27983;&#35272;&#22120;&#37324;&#38754;&#25970;&#19978; localhost:3000 (&#31471;&#21475;&#38752;js&#37324;&#38754;&#35774;&#32622;)&#10;&#10;&#32467;&#26524;&#27809;&#36215;&#26469;&#65292;&#22240;&#20026;&#25226; css, js, image&#31561;&#25918;&#21040;public &#19979;&#20102;&#12290;&#10;&#10;&#35299;&#20915;&#26041;&#27861;&#65306;&#10;&#27169;&#26495;&#25991;&#20214;&#40664;&#35748;&#23384;&#25918;&#22312;views&#23376;&#30446;&#24405;&#12290;&#36825;&#26102;&#65292;&#22914;&#26524;&#35201;&#22312;&#32593;&#39029;&#20013;&#21152;&#36733;&#38745;&#24577;&#25991;&#20214;&#65288;&#27604;&#22914;&#26679;&#24335;&#34920;&#12289;&#22270;&#29255;&#31561;&#65289;&#65292;&#23601;&#38656;&#35201;&#21478;&#22806;&#25351;&#23450;&#19968;&#20010;&#23384;&#25918;&#38745;&#24577;&#25991;&#20214;&#30340;&#30446;&#24405;&#12290;&#10;```app.use(express.static(&#39;public&#39;));</span><br></pre></td></tr></table></figure></p>
+<p>上面代码在文件app.js之中，指定静态文件存放的目录是public。于是，当浏览器发出非HTML文件请求时，服务器端就到public目录寻找这个文件。比如，浏览器发出如下的样式表请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">"/bootstrap/css/bootstrap.css"</span> rel=<span class="string">"stylesheet"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>服务器端就到public/bootstrap/css/目录中寻找bootstrap.css文件。</p>
+<p>然后就跑起来了。<br>后面研究下数据库等。</p>
+<p>参考：<br><a href="https://www.codementor.io/nodejs/tutorial/build-website-from-scratch-using-expressjs-and-bootstrap" target="_blank" rel="external">expressjs-and-bootstrap</a></p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express框架</a></p>
 
             
           </span>
@@ -341,8 +340,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/27/jenkins-security/" itemprop="url">
-                  jenkins去掉security
+                <a class="post-title-link" href="/2016/04/12/算法/" itemprop="url">
+                  算法 
                 </a>
               
             
@@ -352,124 +351,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-03-27T15:11:16+08:00" content="2016-03-27">
-              2016-03-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/27/jenkins-security/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/jenkins-security/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近公司的DLAP更改了服务器，导致不能访问。Jenkins无法登录。</p>
-<p>于是用了种暴力的模式，直接将security去掉。<br>以下为解决办法</p>
-<p>• 停止jenkins服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl unload /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
-<p>• 修改jenkins的config.xml文件 将以下内容全部删除</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;useSecurity&gt;true&lt;/useSecurity&gt; &lt;authorizationStategy class="hudson.sucrity.FullControlOnceLoggedInAuthorizationStrategy"&gt; ...... &lt;/authorizationStategy&gt; &lt;securityRealm class="hudson.security.HudsonPrivateSecurityRealm"&gt;&lt;disableSignup&gt;false&lt;/disableSignup&gt; ..  &lt;/securityRealm&gt;</span><br></pre></td></tr></table></figure>
-<p>• 重启jenkins服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
-<p>注：删处上面文件内容后，所做的权限分配也就全部没有了，但是用户还在。</p>
-<p>暂时先度过了这次危机。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/21/python-spider/" itemprop="url">
-                  python_spider
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-21T22:43:00+08:00" content="2016-03-21">
-              2016-03-21
+            <time itemprop="dateCreated" datetime="2016-04-12T18:39:33+08:00" content="2016-04-12">
+              2016-04-12
             </time>
           </span>
 
@@ -494,8 +377,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/21/python-spider/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-spider/" itemprop="commentsCount"></span>
+                <a href="/2016/04/12/算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/算法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -517,12 +400,118 @@
         
           <span itemprop="articleBody">
             
-              <p>前面自娱自乐，爬了几本书。<br>发帖出来，有些改进意见。<br>用多线程，用类，啥的。</p>
-<p>改进前：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(html,type)</span>:</span></span><br><span class="line">    pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">    source = re.compile(pattern)</span><br><span class="line">    sourcelist = re.findall(source,html)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">        <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> item[<span class="number">1</span>] != <span class="string">r"在线阅读"</span>:</span><br><span class="line">            <span class="comment">#print item[0]</span></span><br><span class="line">            <span class="keyword">if</span> type <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">type = <span class="string">"""</span><br><span class="line">    1.pdf</span><br><span class="line">    2.epub</span><br><span class="line">    3.mobi"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> type</span><br><span class="line"></span><br><span class="line">html = getHtml(<span class="string">"https://testerhome.com/topics/4419"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">downtype = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> yourtype != <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">if</span> yourtype ==<span class="string">'1'</span>:</span><br><span class="line">        downtype = <span class="string">'PDF'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'2'</span>:</span><br><span class="line">        downtype = <span class="string">'EPUB'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'3'</span>:</span><br><span class="line">        downtype = <span class="string">'MOBI'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please check your choice!"</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"please choose one type!"</span>        </span><br><span class="line"></span><br><span class="line">getlink(html,downtype)</span><br></pre></td></tr></table></figure>
-<p>改进后：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">get_book</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,nsec, url, types)</span> :</span></span><br><span class="line">          <span class="comment">#super(myThread, self).__init__()</span></span><br><span class="line">          self.types = types</span><br><span class="line">          self.nsec = nsec</span><br><span class="line">          self.url = url</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(self,url)</span>:</span></span><br><span class="line">        page = urllib.urlopen(self.url)</span><br><span class="line">        html = page.read()</span><br><span class="line">        <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(self,html,types)</span>:</span></span><br><span class="line">        pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">        source = re.compile(pattern)</span><br><span class="line">        sourcelist = re.findall(source,html)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">            <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> self.types <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line">                sleep(self.nsec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    types = &#123;<span class="number">1</span>:<span class="string">"PDF"</span>,<span class="number">2</span>:<span class="string">"EPUB"</span>,<span class="number">3</span>:<span class="string">"MOBI"</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">print</span> types.items()</span><br><span class="line"></span><br><span class="line">    html = <span class="string">"https://testerhome.com/topics/4419"</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> int(yourtype) <span class="keyword">not</span> <span class="keyword">in</span> range (<span class="number">1</span>,<span class="number">3</span>):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please select again"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> types[int(yourtype)]</span><br><span class="line"></span><br><span class="line">        get = get_book(<span class="number">2</span>,html,types[int(yourtype)])</span><br><span class="line">        url = get.getHtml(html)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'starting at:'</span>,get.now()</span><br><span class="line">        threadpool=[]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">            th = threading.Thread(target= get.getlink,args=(url,types[int(yourtype)]))</span><br><span class="line">            threadpool.append(th)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">            th.start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">            threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'all Done at:'</span>, get.now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p>然后看看效果。</p>
+              <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""节点类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, elem=-<span class="number">1</span>, lchild=None, rchild=None)</span>:</span></span><br><span class="line">        self.elem = elem</span><br><span class="line">        self.lchild = lchild</span><br><span class="line">        self.rchild = rchild</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""树类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.root = Node()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, elem)</span>:</span></span><br><span class="line">        <span class="string">"""为树添加节点"""</span></span><br><span class="line">        node = Node(elem)</span><br><span class="line">        <span class="keyword">if</span> self.root.elem == -<span class="number">1</span>:            <span class="comment">#如果树是空的，则对根节点赋值</span></span><br><span class="line">            self.root = node</span><br><span class="line">        <span class="keyword">else</span>:                     </span><br><span class="line">            myQueue = []</span><br><span class="line">            treeNode = self.root</span><br><span class="line">            myQueue.append(treeNode)</span><br><span class="line">            <span class="keyword">while</span> myQueue:                      <span class="comment">#对已有的节点进行层次遍历</span></span><br><span class="line">                treeNode = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> treeNode.lchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.lchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">elif</span> treeNode.rchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.rchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    myQueue.append(treeNode.lchild)</span><br><span class="line">                    myQueue.append(treeNode.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.front_digui(root.lchild)</span><br><span class="line">        self.front_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.middle_digui(root.lchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.middle_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.later_digui(root.lchild)</span><br><span class="line">        self.later_digui(root.rchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                <span class="keyword">print</span> node.elem,</span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack1 = []</span><br><span class="line">        myStack2 = []</span><br><span class="line">        node = root</span><br><span class="line">        myStack1.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack1:                   <span class="comment">#这个while循环的功能是找出后序遍历的逆序，存在myStack2里面</span></span><br><span class="line">            node = myStack1.pop()</span><br><span class="line">            <span class="keyword">if</span> node.lchild:</span><br><span class="line">                myStack1.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild:</span><br><span class="line">                myStack1.append(node.rchild)</span><br><span class="line">            myStack2.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack2:                         <span class="comment">#将myStack2中的元素出栈，即为后序遍历次序</span></span><br><span class="line">            <span class="keyword">print</span> myStack2.pop().elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">level_queue</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用队列实现树的层次遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myQueue = []</span><br><span class="line">        node = root</span><br><span class="line">        myQueue.append(node)</span><br><span class="line">        <span class="keyword">while</span> myQueue:</span><br><span class="line">            node = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            <span class="keyword">if</span> node.lchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="string">"""主函数"""</span></span><br><span class="line">    elems = range(<span class="number">10</span>)           <span class="comment">#生成十个数据作为树节点</span></span><br><span class="line">    tree = Tree()          <span class="comment">#新建一个树对象</span></span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> elems:                  </span><br><span class="line">        tree.add(elem)           <span class="comment">#逐个添加树的节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'队列实现层次遍历:'</span></span><br><span class="line">    tree.level_queue(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n递归实现先序遍历:'</span></span><br><span class="line">    tree.front_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现中序遍历:'</span> </span><br><span class="line">    tree.middle_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现后序遍历:'</span></span><br><span class="line">    tree.later_digui(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n堆栈实现先序遍历:'</span></span><br><span class="line">    tree.front_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现中序遍历:'</span></span><br><span class="line">    tree.middle_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现后序遍历:'</span></span><br><span class="line">    tree.later_stack(tree.root)</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/所谓管理/" itemprop="url">
+                  所谓管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T13:08:58+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/职业/" itemprop="url" rel="index">
+                    <span itemprop="name">职业</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/所谓管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/所谓管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近心比较累。</p>
+<p>突然明白了：</p>
+<p>大公司所谓的管理，</p>
+<p>管理，就是培植自己的嫡系，打击别人的亲信，关键岗位能放自己的人。每个人都会被各个圈子争取，面临站队。就看你是否站错队。风水也是轮流转的。当你对任何人都不构成威胁时，你就有独善其身的机会，也就意味着你难以出头。只有你领导上去你，才有可能带你玩。有人的地方就有江湖，江湖险恶，没有人会无缘无故对你好，就看你有无利用价值，或者对手是否在争夺你。每个人都是伪装者，开始各种表演，时间长了，情商再低的人也能看出来。斗争越激烈，说明你位置越高，或者你对手情商高。没有赢家，也没有结局，要么出局，要么有小弟替你背锅出局。可悲的是有些出局的小弟，被你当枪使了仍对你感激。影帝啊!</p>
 
             
           </span>
@@ -571,8 +560,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/21/python-multiple-threads/" itemprop="url">
-                  python_multiple_threads
+                <a class="post-title-link" href="/2016/04/12/看美剧/" itemprop="url">
+                  看美剧
                 </a>
               
             
@@ -582,8 +571,692 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-03-21T22:26:23+08:00" content="2016-03-21">
-              2016-03-21
+            <time itemprop="dateCreated" datetime="2016-04-12T13:00:02+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/看美剧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/看美剧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>工作是英文环境。要跟老外交流。</p>
+<p>自己蹩脚的口语，总是阻碍了表达。然后很难理解外国人的幽默。</p>
+<p>上次看到有人发帖说去苹果面试，口语要求很高。然后他的经验是看美剧来提高。</p>
+<p>于是我也开始看美剧“摩登家庭”。</p>
+<p>感觉就是讲得很快。然后很多简单的单词表达了复杂的意思。</p>
+<p>当我们讲的时候，想破头的去想一个专业单词来表达。</p>
+<p>然后有的时候发现还有点意思，有些小幽默，然后发音。</p>
+<p>最主要的是一些日常生活单词，课本上是学不到的。</p>
+<p>听了几次后，我有那种想说英语的欲望了。</p>
+<p>坚持！加油！</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/喝酒/" itemprop="url">
+                  喝酒
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:50:40+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/喝酒/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/喝酒/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>每次回老家，最怕喝酒和打牌。被拉着灌，我很不爽。</p>
+<p>但是老家的风俗如此。每次都是很应付。</p>
+<p>清明节前回去搬了个家。</p>
+<p>把老头子从山沟沟里接到省城生活。后面顿顿都是酒局，不管在家，还是外面吃。总被拉着喝酒，都逃不掉。</p>
+<p>因为思想观念不一样。老头子总觉得我对人不够热情，不会招待客人，太内向，不会劝酒劝菜。</p>
+<p>我的原则是，不敬酒敬烟夹菜。茶水不能少。</p>
+<ol>
+<li>你不知道这个人的酒量。强迫人家喝，身体出问题怎么办。如果人家开车来，出事故怎么办。</li>
+<li>你不知道这个人的爱好，禁口。你跟人夹了一碗人家不喜欢的菜，你叫人家怎么办。然后如果人家信教，或者有忌口，你那是对人不尊重。</li>
+<li>卫生问题。</li>
+<li>我一向反感抽烟。抽人家一屋子的烟，你爽了，知道别人怎么想。</li>
+</ol>
+<p>思想观念真的是太不一样了。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/健康无价/" itemprop="url">
+                  健康无价
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:45:39+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/健康无价/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/健康无价/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>周末的时候，跟几个老家伙小聚了一下。</p>
+<p>酒足饭饱之后，就是吹牛逼的时候了。</p>
+<p>这里面，兵混得最好，开了自己的公司，比我们这上班族，挣得多得多。</p>
+<p>但是美中不足，他身体不好。 太肥胖了。</p>
+<p>走几步就走不动了，像个球。</p>
+<p>导致他很多业务没法去做。</p>
+<p>所以无论啥时候，健康无价。哪怕你挣得再多，那又有什么用，没命花。</p>
+<p>坚持锻炼，保持健康的身体和心态。</p>
+<p>come on!</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/说与做/" itemprop="url">
+                  说与做
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:35:07+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/说与做/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/说与做/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>参加了几次技术沙龙。后面越来越不想去了。</p>
+<p>主要是没什么干货，没有啥技术含量，也认识不到几个人。</p>
+<p>就是打广告，吹水，沽名钓誉。 每次讲一样的Topic.</p>
+<p>但是有个事情还是让我比较有感触的。</p>
+<p>就是坚持做一件事。如果一直做，总有一些人进来。总能蒙蔽到一些人，然后就达到自己的目的了。</p>
+<p>很多事情看起来很难，很没水平，很多人都不去做。</p>
+<p>但是一旦坚持了，也许就成气候了。</p>
+<p>最近发现自己在技术上出现了瓶颈。</p>
+<p>自动化测试，接口测试等，也就那么回事。 那几个开源的框架，基本上花点时间就能上手。没什么竞争优势。<br>虽然朝着精通的方向发展，那种东西，做多了，也就疲惫了。</p>
+<p>然后想出路，看了一些开发的视频，虽然android,ios, nodejs开发的视频看了好多。</p>
+<p>但是一直没怎么动手，所以还停留在理论上。 一直停滞不前。</p>
+<p>要多多实践了。</p>
+<p>记得有次，安吉利拉跟我说，要少说多做。我觉得很有道理。</p>
+<p>但是有的时候，也要多说，然后有拿得出手的东西。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/做高端/" itemprop="url">
+                  做高端
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:28:33+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/做高端/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/做高端/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>小部门欢迎新来的同事，去了鼎泰丰。</p>
+<p>这是我第一个去这种高档的地方，第一次吃这么贵的包子。</p>
+<p>而且厨房是透明的，可以看到食物的制作过程。</p>
+<p>那种地方吃的人还不少。老外特别的多。</p>
+<p>后面看到一个招测试的高端职位。虽然适合我，但是在北京。</p>
+<p>跟水水聊到这个事情。</p>
+<p>就是什么行业，入门比较容易，做精很难，做到高端也很难。</p>
+<p>所以不管做什么，要做到高端，做到精通。不是浅尝辄止。</p>
+<p>虽然测试入行的人多。真正做到精通的人凤毛麟角。</p>
+<p>行业内对高端人才还是有需求的。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/人脉/" itemprop="url">
+                  人脉
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:17:26+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/人脉/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/人脉/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近有几个伙计回老家省城了。发现好久都没跟那些家伙联系。<br>电话号码也找不到了，就在QQ上留言。</p>
+<p>过了几天都没有人理我。</p>
+<p>以前一直只钻研技术。发现自己慢慢跟很多人疏远。<br>就算碰到一起，也没有什么话说，没啥共同话题。</p>
+<p>在这里这么久，也没啥聊的来的朋友。首先大家都会有戒心。人情也比较淡薄。</p>
+<p>那天跟他们几个讨论，其中菜就说了。（菜在一家公司做到了比较高的职位）</p>
+<p>“在技术眼里，业务不值钱，啥也不会，就一张嘴吹。”</p>
+<p>“在业务眼里，技术不值钱，只会写几行代码，除此之外，啥也不会。”</p>
+<p>聊到了情商，聊到了人脉。</p>
+<p>我发现自己很失败，最近一直在研究技术，除此之外，什么也没太关心。</p>
+<p>不能只能做技术，除了技术，还有很多值得去钻研的。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/webauto/" itemprop="url">
+                  chromedriver on mac
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T12:05:42+08:00" content="2016-04-12">
+              2016-04-12
             </time>
           </span>
 
@@ -608,8 +1281,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/21/python-multiple-threads/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/python-multiple-threads/" itemprop="commentsCount"></span>
+                <a href="/2016/04/12/webauto/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/webauto/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -631,1033 +1304,16 @@
         
           <span itemprop="articleBody">
             
-              <blockquote>
-<p>前面写了个脚本，别人说，你怎么不用多线程啊。于是我就去学多线程。</p>
-</blockquote>
-<p>目前python 提供了几种多线程实现方式 thread，threading，multithreading ,其中thread模块比较底层，而threading模块是对thread做了一些包装，可以更加方便的被使用。<br>2.7版本之前python对线程的支持还不够完善，不能利用多核CPU，但是2.7版本的python中已经考虑改进这点，出现了multithreading  模块。threading模块里面主要是对一些线程的操作对象化，创建Thread的class。一般来说，使用线程有两种模式:<br>A 创建线程要执行的函数，把这个函数传递进Thread对象里，让它来执行；<br>B 继承Thread类，创建一个新的class，将要执行的代码 写到run函数里面。</p>
-<p>参照：<a href="http://blog.itpub.net/22664653/viewspace-1178285/" target="_blank" rel="external">python多线程</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(nloop, nsec)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'start loop'</span>, nloop, <span class="string">'at:'</span>, now()</span><br><span class="line">    sleep(nsec)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'loop'</span>, nloop, <span class="string">'done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    threadpool=[]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">        th = threading.Thread(target= test,args= (i,<span class="number">2</span>))</span><br><span class="line">        threadpool.append(th)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool:</span><br><span class="line">        th.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> threadpool :</span><br><span class="line">        threading.Thread.join( th )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p>第2种方式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading ,time</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep, ctime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">now</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="keyword">return</span> str( time.strftime( <span class="string">'%Y-%m-%d %H:%M:%S'</span> , time.localtime() ) )</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span> <span class="params">(threading.Thread)</span> :</span></span><br><span class="line">      <span class="string">"""docstring for myThread"""</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, nloop, nsec)</span> :</span></span><br><span class="line">          super(myThread, self).__init__()</span><br><span class="line">          self.nloop = nloop</span><br><span class="line">          self.nsec = nsec</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">          <span class="keyword">print</span> <span class="string">'start loop'</span>, self.nloop, <span class="string">'at:'</span>, ctime()</span><br><span class="line">          sleep(self.nsec)</span><br><span class="line">          <span class="keyword">print</span> <span class="string">'loop'</span>, self.nloop, <span class="string">'done at:'</span>, ctime()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">     thpool=[]</span><br><span class="line">     <span class="keyword">print</span> <span class="string">'starting at:'</span>,now()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">         thpool.append(myThread(i,<span class="number">2</span>))</span><br><span class="line">         </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.start()</span><br><span class="line">   </span><br><span class="line">     <span class="keyword">for</span> th <span class="keyword">in</span> thpool:</span><br><span class="line">         th.join()</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">print</span> <span class="string">'all Done at:'</span>, now()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p>再实践实践。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/13/resource/" itemprop="url">
-                  淘金岛
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-13T11:10:29+08:00" content="2016-03-13">
-              2016-03-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/13/resource/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/13/resource/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><strong>1. 在github 上淘宝</strong></p>
-<p>身边总有神奇的同事，总是能分享一些很赞的资源，不好意思问他从哪里知道的。<br>打算学习一门新技术，怎么最快找到优质的资源（工具，第三方库，插件，文章，视频等）？<br>今天我分享给大家一个使用 Github 找优质资源的技巧：<br>使用Github 的站内搜索，搜索：<strong>Awesome + 你的关键字</strong></p>
-<p><a href="https://codingstyle.cn/topics/11?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">在 Github 上找「好东西」的方法</a></p>
-<p><strong>2. 资讯类</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://www.topthink.com" target="_blank" rel="external">极思维</a></td>
-<td style="text-align:center">互联网开发大杂烩</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.jobbole.com" target="_blank" rel="external">伯乐在线</a></td>
-<td style="text-align:center">开发资讯大杂烩</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="http://toutiao.io/explore" target="_blank" rel="external">开发者头条</a></td>
-<td style="text-align:center">有点干货</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://gold.xitu.io/#/explore" target="_blank" rel="external">掘金</a></td>
-<td style="text-align:center">可以偶尔来</td>
-<td style="text-align:right">2</td>
-</tr>
-<tr>
-<td><a href="http://www.cocoachina.com" target="_blank" rel="external">cocoachina</a></td>
-<td style="text-align:center">移动开发</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="http://objcio.cn" target="_blank" rel="external">objcn</a></td>
-<td style="text-align:center">oc学习</td>
-<td style="text-align:right">2</td>
-</tr>
-</tbody>
-</table>
-<p><strong>3. 博客</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://www.liaoxuefeng.com" target="_blank" rel="external">廖雪峰</a></td>
-<td style="text-align:center">python,git,js不错</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="http://stormzhang.com" target="_blank" rel="external">stormzhang</a></td>
-<td style="text-align:center">测试转开发的典范</td>
-<td style="text-align:right">4</td>
-</tr>
-</tbody>
-</table>
-<p><strong>4. git</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="external">git免费电子书</a></td>
-<td style="text-align:center">各类教程</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="https://github.com/happypeter" target="_blank" rel="external">happypeter</a></td>
-<td style="text-align:center">ruby</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="https://github.com/daimajia" target="_blank" rel="external">代码家</a></td>
-<td style="text-align:center">android</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="https://www.gitbook.com/explore" target="_blank" rel="external">gitbook</a></td>
-<td style="text-align:center">技术电子书</td>
-<td style="text-align:right">4</td>
-</tr>
-</tbody>
-</table>
-<p><strong>5. 教程</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://www.ucai.cn" target="_blank" rel="external">优才学院</a></td>
-<td style="text-align:center">有些视频教程</td>
-<td style="text-align:right">2</td>
-</tr>
-<tr>
-<td><a href="http://www.imooc.com/course/list" target="_blank" rel="external">慕课网</a></td>
-<td style="text-align:center">免费视频教程</td>
-<td style="text-align:right">5</td>
-</tr>
-<tr>
-<td><a href="http://www.howzhi.com" target="_blank" rel="external">好知网</a></td>
-<td style="text-align:center">综合性网站</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.maiziedu.com/course/android/" target="_blank" rel="external">麦子学院</a></td>
-<td style="text-align:center">Android基础视频教程</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td><a href="http://www.maiziedu.com/course/ios/" target="_blank" rel="external">麦子学院</a></td>
-<td style="text-align:center">ios基础视频教程</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td><a href="http://edu.51cto.com" target="_blank" rel="external">51CTO</a></td>
-<td style="text-align:center">开发视频教程</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.icoolxue.com" target="_blank" rel="external">爱酷学习网</a></td>
-<td style="text-align:center">小型开发视频教程</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.swiftv.cn/course/explore" target="_blank" rel="external">swift课堂</a></td>
-<td style="text-align:center">swift入门</td>
-<td style="text-align:right">5</td>
-</tr>
-</tbody>
-</table>
-<p><strong>6. 工具</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://tool.lu/" target="_blank" rel="external">在线工具</a></td>
-<td style="text-align:center">比较全的在线工具</td>
-<td style="text-align:right">4</td>
-</tr>
-</tbody>
-</table>
-<p><strong>7. 源码</strong></p>
-<table>
-<thead>
-<tr>
-<th>ADD</th>
-<th style="text-align:center">Comments</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/Trinea/android-open-project" target="_blank" rel="external">android开源项目</a></td>
-<td style="text-align:center">新手学android</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="http://www.lanrenios.com" target="_blank" rel="external">懒人ios</a></td>
-<td style="text-align:center">ios各种源代码</td>
-<td style="text-align:right">4</td>
-</tr>
-<tr>
-<td><a href="http://www.oschina.net/ios/codingList/386/ios-animation?sort=view" target="_blank" rel="external">oschina</a></td>
-<td style="text-align:center">IOS开发专区</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.23code.com" target="_blank" rel="external">23code</a></td>
-<td style="text-align:center">安卓经典源码</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://code4app.com" target="_blank" rel="external">code4App</a></td>
-<td style="text-align:center">ios源码</td>
-<td style="text-align:right">3</td>
-</tr>
-<tr>
-<td><a href="http://www.eoeandroid.com/thread-311366-1-1.html?_dsign=481d8a35" target="_blank" rel="external">android精品</a></td>
-<td style="text-align:center">android精品源码</td>
-<td style="text-align:right">4</td>
-</tr>
-</tbody>
-</table>
-<p>相关网站</p>
-<table>
-<thead>
-<tr>
-<th>网站</th>
-<th style="text-align:center">简介</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tutsplus</td>
-<td style="text-align:center">不定时更新一些 iOS 教程</td>
-</tr>
-<tr>
-<td>WWDC</td>
-<td style="text-align:center">苹果官方每年一度的 WWDC 视频, 可以了解历年有关 iOS 发布的内容</td>
-</tr>
-<tr>
-<td>ASCIIwwdc</td>
-<td style="text-align:center">WWDC 的文字版</td>
-</tr>
-<tr>
-<td>Awesome Swift</td>
-<td style="text-align:center">该网站收集了很多关于 Swift 的学习资料, 新闻</td>
-</tr>
-<tr>
-<td>Appcoda</td>
-<td style="text-align:center">经常发布一些 iOS 编程教程, 更新比较频繁, 想了解更多可以查看该网站的 About 界面</td>
-</tr>
-<tr>
-<td>NSHipster</td>
-<td style="text-align:center">NSHipster is a journal of the overlooked bits in Objective-C, Swift, and Cocoa. Updated weekly.</td>
-</tr>
-<tr>
-<td>Think and Build</td>
-<td style="text-align:center">Some tutorials about Core Graphic and Core Animation.</td>
-</tr>
-<tr>
-<td>Tutorials</td>
-<td style="text-align:center">大把的 Objective-C, Swift, iOS 教程, 且全部免费, Raywenderlich 真是业界良心, 赞!</td>
-</tr>
-</tbody>
-</table>
-<p>社区</p>
-<table>
-<thead>
-<tr>
-<th>社区</th>
-<th style="text-align:center">简介</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CocoaChina</td>
-<td style="text-align:center">全球最大苹果开发者中文社区</td>
-</tr>
-<tr>
-<td>code4app</td>
-<td style="text-align:center">经常更新一些很不错的 iOS 代码片段和一些 iOS 资源</td>
-</tr>
-<tr>
-<td>objc</td>
-<td style="text-align:center">定期发布一些有关 Objective-C 的高质量的文章</td>
-</tr>
-<tr>
-<td>objc中国</td>
-<td style="text-align:center">喵神组织的对 objc.io 的翻译网站, 旨在推进国内技术圈整体水平, 翻译质量非常高</td>
-</tr>
-<tr>
-<td>DevDiv</td>
-<td style="text-align:center">发布一些 iOS 的最新资讯及教程</td>
-</tr>
-<tr>
-<td>Cocos2d-x</td>
-<td style="text-align:center">Cocos2d-x 论坛</td>
-</tr>
-<tr>
-<td>iPhone Dev SDK</td>
-<td style="text-align:center">国外较有名的 iOS 开发者论坛</td>
-</tr>
-<tr>
-<td>Apple Developer Forums</td>
-<td style="text-align:center">苹果官方的开发者论坛</td>
-</tr>
-<tr>
-<td>Swiftist</td>
-<td style="text-align:center">Swift 中文社区</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>工具/插件</th>
-<th style="text-align:center">简介</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CocoaPods</td>
-<td style="text-align:center">开发 OS X 和 iOS 应用程序的一个第三方库的依赖管理工具, 本身是 Ruby 的一个 Gem, 极大的简化了 Objective-C 的开发流程</td>
-</tr>
-<tr>
-<td>Alcatraz</td>
-<td style="text-align:center">Alcatraz 是一款管理 Xcode 插件、模版以及颜色配置的工具</td>
-</tr>
-<tr>
-<td>XcodeColors</td>
-<td style="text-align:center">使 Xcode 调试控制台色彩更丰富</td>
-</tr>
-<tr>
-<td>xctool</td>
-<td style="text-align:center">Facebook 开源的一个 iOS 编译和测试的工具</td>
-</tr>
-<tr>
-<td>KSImageNamed-Xcode</td>
-<td style="text-align:center">自动补全图片命名的一款插件</td>
-</tr>
-<tr>
-<td>VVDocumenter</td>
-<td style="text-align:center">一个自动生成代码注释的工具</td>
-</tr>
-<tr>
-<td>ImageOptim</td>
-<td style="text-align:center">用于压缩图片一款工具</td>
-</tr>
-<tr>
-<td>fastlane</td>
-<td style="text-align:center">开发流程工具，将开发过程流程化，极大提高开发效率</td>
-</tr>
-<tr>
-<td>iOS 必备的 75 个工具</td>
-<td style="text-align:center">其中包含了非常多好用的工具, 涉及到设计, 分析, 部署等, 总结的十分详细, 有中文翻译</td>
-</tr>
-</tbody>
-</table>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/python-paramiko/" itemprop="url">
-                  python-paramiko
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-12T15:22:58+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/12/python-paramiko/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/python-paramiko/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>之前为了操作远程服务器，想尽了办法，那时候在windows 机器上想装paramiko 模块，一直没有成功， 最近在Mac 上却尝试成功了。</p>
-<p><strong>1. 安装：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install --upgrade pip</span><br><span class="line">Sudo pip install paramiko</span><br></pre></td></tr></table></figure>
-<p><strong>2. 执行远程命令</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line">ssh = paramiko.SSHClient()</span><br><span class="line">ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">ssh.connect(<span class="string">"某IP地址"</span>,<span class="number">22</span>,<span class="string">"用户名"</span>, <span class="string">"口令"</span>)</span><br><span class="line">stdin, stdout, stderr = ssh.exec_command(<span class="string">"你的命令"</span>)</span><br><span class="line"><span class="keyword">print</span> stdout.readlines()</span><br><span class="line">ssh.close()</span><br></pre></td></tr></table></figure>
-<p><strong>3. 上传文件到远程</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line">t = paramiko.Transport((<span class="string">"某IP地址"</span>,<span class="number">22</span>))</span><br><span class="line">t.connect(username = <span class="string">"用户名"</span>, password = <span class="string">"口令"</span>)</span><br><span class="line">sftp = paramiko.SFTPClient.from_transport(t)</span><br><span class="line">remotepath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">localpath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">sftp.put(localpath,remotepath)</span><br><span class="line">t.close()</span><br></pre></td></tr></table></figure>
-<p><strong>4.从远程下载文件</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line">t = paramiko.Transport((<span class="string">"某IP地址"</span>,<span class="number">22</span>))</span><br><span class="line">t.connect(username = <span class="string">"用户名"</span>, password = <span class="string">"口令"</span>)</span><br><span class="line">sftp = paramiko.SFTPClient.from_transport(t)</span><br><span class="line">remotepath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">localpath=<span class="string">'/tmp/test.txt'</span></span><br><span class="line">sftp.get(remotepath, localpath)</span><br><span class="line">t.close()</span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/charts/" itemprop="url">
-                  charts
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-11T13:16:47+08:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/11/charts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/11/charts/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><a href="http://echarts.baidu.com/echarts2/doc/start.html" target="_blank" rel="external">echarts</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34;&#62;&#10;    &#60;title&#62;ECharts&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;!-- &#20026;ECharts&#20934;&#22791;&#19968;&#20010;&#20855;&#22791;&#22823;&#23567;&#65288;&#23485;&#39640;&#65289;&#30340;Dom --&#62;&#10;    &#60;div id=&#34;main&#34; style=&#34;height:400px&#34;&#62;&#60;/div&#62;&#10;    &#60;!-- ECharts&#21333;&#25991;&#20214;&#24341;&#20837; --&#62;&#10;    &#60;script src=&#34;http://echarts.baidu.com/build/dist/echarts.js&#34;&#62;&#60;/script&#62;&#10;    &#60;script type=&#34;text/javascript&#34;&#62;&#10;        // &#36335;&#24452;&#37197;&#32622;&#10;        require.config(&#123;&#10;            paths: &#123;&#10;                echarts: &#39;http://echarts.baidu.com/build/dist&#39;&#10;            &#125;&#10;        &#125;);&#10;        &#10;        // &#20351;&#29992;&#10;        require(&#10;            [&#10;                &#39;echarts&#39;,&#10;                &#39;echarts/chart/bar&#39; // &#20351;&#29992;&#26609;&#29366;&#22270;&#23601;&#21152;&#36733;bar&#27169;&#22359;&#65292;&#25353;&#38656;&#21152;&#36733;&#10;                 ],&#10;            function (ec) &#123;&#10;                // &#22522;&#20110;&#20934;&#22791;&#22909;&#30340;dom&#65292;&#21021;&#22987;&#21270;echarts&#22270;&#34920;&#10;                var myChart = ec.init(document.getElementById(&#39;main&#39;)); &#10;                &#10;                var option = &#123;&#10;                    tooltip: &#123;&#10;                        show: true&#10;                    &#125;,&#10;                    legend: &#123;&#10;                        data:[&#39;&#38144;&#37327;&#39;]&#10;                    &#125;,&#10;                    xAxis : [&#10;                        &#123;&#10;                            type : &#39;category&#39;,&#10;                            data : [&#34;&#34924;&#34923;&#34;,&#34;&#32650;&#27611;&#34923;&#34;,&#34;&#38634;&#32442;&#34923;&#34;,&#34;&#35044;&#23376;&#34;,&#34;&#39640;&#36319;&#38795;&#34;,&#34;&#34972;&#23376;&#34;]&#10;                        &#125;&#10;                    ],&#10;                    yAxis : [&#10;                        &#123;&#10;                            type : &#39;value&#39;&#10;                        &#125;&#10;                    ],&#10;                    series : [&#10;                        &#123;&#10;                            &#34;name&#34;:&#34;&#38144;&#37327;&#34;,&#10;                            &#34;type&#34;:&#34;bar&#34;,&#10;                            &#34;data&#34;:[5, 20, 40, 10, 10, 20]&#10;                              &#125;&#10;                    ]&#10;                &#125;;&#10;        &#10;                // &#20026;echarts&#23545;&#35937;&#21152;&#36733;&#25968;&#25454; &#10;                myChart.setOption(option); &#10;            &#125;&#10;        );&#10;    &#60;/script&#62;&#10;&#60;/body&#62;</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/06/badminton/" itemprop="url">
-                  badminton
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-06T14:55:50+08:00" content="2016-03-06">
-              2016-03-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/06/badminton/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/06/badminton/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>好久没运动了。</p>
-<p>虽然最近控制了饮食，体重下降了些，但是还是胖了。<br>打算运动减肥。</p>
-<p>于是去了静安体育馆。我们公司有周二，周四的羽毛球包场。</p>
-<p>可能是新来的，他们常来，打得也比较好，也有长期的球友。</p>
-<p>还好Sean也经常来，不然我就是孤家寡人一个。</p>
-<p>问题来了，跑不动。</p>
-<p>看着球掉下，迈不开腿。</p>
-<p>回去找了个视频看看，学习了基本步法。</p>
-<p>第2次去的时候跟一个水平比较高的人打，结果被玩死了。</p>
-<p>根本无法判断他的球的落点。视屏学的根本就没用上。</p>
-<p>看来还是缺少锻炼。</p>
-<p><strong>“纸上得来终觉浅，绝知此事要躬行”</strong></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/04/ceshi/" itemprop="url">
-                  30多岁转开发还来得及吗？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-04T15:12:31+08:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/04/ceshi/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/ceshi/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近搞得心累，跟各个部门撕逼。测试是个弱势群体。脏活，累活都要干，干的最多，还拿得最少。</p>
-<p>你要想保证质量，就得push别人干活，坑少埋点。</p>
-<p>太极是中国人发明的，都会玩。</p>
-<p>当然也会被管进度的人压得不行。</p>
-<p>在他们看来，一个破功能，点点就可以了，还要那么多时间测试。</p>
-<p>但是，很多时候是被block住的。</p>
-<p>所以，测试成了整个流程线上最忙，最苦逼的人。</p>
-<p>到处吃力不讨好，还处处得罪人。</p>
-<p>很多时候好想安安静静地写写代码，像一个开发一样。没有那么多纷纷扰扰，各方面还不错。</p>
-<p>有的时候想想，当时Android,IOS兴起的时候，我在做啥呢？怎么没自学，或者报个培训班啥的。可能是生活安逸，不想改变？或者没有技术敏感度，错过机会了。</p>
-<p>老问题又来了：“30多岁转开发还来得及吗？” 中午吃饭的时候，跟几个开发讨论。</p>
-<p>几个Android开发都是半道出家的，不是本专业。</p>
-<p>有个家伙说，“来不及了，都这么大年纪了，拼不过小年轻。”</p>
-<p>有个老道一点的说官话了，“干啥跟年龄无关，只要你想做。”</p>
-<p>是啊，只要你想做，什么时候都不晚。</p>
-<p>不能拿他当谋饭吃，就当一兴趣吧。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/27/calabash/" itemprop="url">
-                  calabash使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-27T17:38:02+08:00" content="2016-02-27">
-              2016-02-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/27/calabash/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/27/calabash/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>安装<br>gem sources -l<br>gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a><br>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br>gem sources -l</p>
-<p>gem install calabash-android</p>
-<p>calabash-android version</p>
-<p>mkdir calabash<br>cd calabash<br>calabash-android gen</p>
-<p>.<br>└── features<br>    ├── my_first.feature<br>    ├── step_definitions<br>    │   └── calabash_steps.rb<br>    └── support<br>        ├── app_installation_hooks.rb<br>        ├── app_life_cycle_hooks.rb<br>        ├── env.rb<br>        └── hooks.rb</p>
-<p>calabash-android run /Users/anderson/autotest/android_engage_automation/features/engage-englishtown-uat-debug-1.0.0-201602270059.apk<br>calabash-android console /Users/anderson/autotest/android_engage_automation/features/engage-englishtown-uat-debug-1.0.0-201602270059.apk<br>no test server</p>
-<p>签名的包<br>calabash-android resign /Users/anderson/autotest/android_engage_automation/features/engage-englishtown-uat-debug-1.0.0-201602270059.apk </p>
-<p>出错：<br>Could not sign app</p>
-<p>calabash-android setup<br>keystore</p>
-<p><a href="https://github.com/calabash/calabash-android/wiki/05-Query-Syntax" target="_blank" rel="external">Syntax</a></p>
-<p><a href="http://docs.behat.org/en/latest/guides/1.gherkin.html" target="_blank" rel="external">gherkin</a></p>
-<p><a href="https://developer.xamarin.com/guides/testcloud/calabash/introduction-to-calabash/" target="_blank" rel="external">inroduction</a></p>
-<p><a href="https://github.com/calabash/calabash-android/blob/master/documentation/ruby_api.md" target="_blank" rel="external">api</a></p>
-<p><a href="https://github.com/calabash/calabash-android/tree/master/ruby-gem/lib/calabash-android/steps" target="_blank" rel="external">steps</a></p>
-<p>1、配置环境变量<br>配置环境变量最关键点<br>export ANDROID_HOME=/Users/<user>/adt-bundle-mac-x86_64-20140702/sdk<br>export PATH=$PATH:$ANDROID_HOME/tools<br>2、生成签名，并且知道自己签名的password和alias<br>生成签名可以使用一下Shell来生成。<br>keytool -genkey -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname “CN=Android Debug,O=Android,C=US”<br>生成之后签名的位置在<br>~/.android/debug.keystore<br>password是：<br>android<br>alias是：<br>androiddebugkey<br>以上这些关键元素在配置Calabash的时候都很重要。<br>3、配置Calabash<br>Calabash的配置一般情况加只需要配置签名相关信息就好。运行命令行：<br>calabash-android setup 520c4f587081a6b530a03c3e86c8bfc4.apk -v<br>然后按照提示分别输入，签名证书的位置，密码和alias。成功之后会看到这样一句提示：<br>Saved your settings to .calabash_settings. You can edit the settings manually or run this setup script again<br>当然，你也可以手动的配置文件完成设置。配置文件的地址为：<br>~/.calabash_settings<br>4、Calabash Console<br>Calabash Console对于会写代码的人来说，一种非常方便调试的工具。使用命令：<br>calabash-android console 520c4f587081a6b530a03c3e86c8bfc4.apk<br>当然有时就会报错。报错有两种，一种是需要按照本文之前的内容进行Calabash配置。还有一种情况是需要对被测试应用进行重新签名。重新签名的命令：<br>calabash-android resign 520c4f587081a6b530a03c3e86c8bfc4.apk -v<br>成功进入Calabash Console之后，还需要运行两个命令行，才能开始传统意义上的自动化测试的调试：<br>reinstall_apps<br>start_test_server_in_background<br>经过以上两条命令，被测试程序会启动，这是可以通过一些Calabash的命令进行自动化测试了。<br>当然，也会有一些异常情况，例如，如果拿了网易新闻的Android客户端做这个实验，就会发现不会成功。因为网易新闻做了签名验证，当程序的签名被替换掉以后，程序无法正常启动。</user></p>
-<p>calabash-android run d:\calabash\Yiban_Circle0401sao.apk –tags @login –format html –out=report.html</p>
+              <p>最近在Mac上折腾selenium, 一直都装不上chromedriver.<br>今天终于找到了一个方法：</p>
+<p><a href="http://bites.goodeggs.com/posts/selenium-webdriver-nodejs-tutorial/" target="_blank" rel="external">automationtest</a></p>
+<p>曾今尝试过用npm安装，但是速度极其慢。(换了淘宝镜像)<br><a href="https://www.npmjs.com/package/chromedriver" target="_blank" rel="external">chromedriver</a></p>
+<p>最后的步骤是：</p>
+<p>1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save selenium-webdriver@<span class="number">2.44</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>2.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save chromedriver@<span class="number">2.12</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>然后实验了一个小程序，就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"></span><br><span class="line">drivers = [<span class="string">'HtmlUnit'</span>]   </span><br><span class="line">  </span><br><span class="line">dervers_time = &#123;  </span><br><span class="line">    <span class="string">'HtmlUnit'</span> : <span class="number">0</span>,   </span><br><span class="line">&#125;</span><br><span class="line">times = <span class="number">50</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_with_Chrome</span><span class="params">()</span>:</span></span><br><span class="line">    common_step(webdriver.Chrome())</span><br><span class="line"><span class="string">'''</span><br><span class="line">def run_with_FF():  </span><br><span class="line">    common_step(webdriver.Firefox())  </span><br><span class="line">      </span><br><span class="line">def run_with_IE():  </span><br><span class="line">    common_step(webdriver.Ie())  </span><br><span class="line">  </span><br><span class="line">def run_with_PhantomJS():  </span><br><span class="line">    common_step(webdriver.PhantomJS(executable_path=r'C:\Python27\Scripts\phantomjs.exe'))  </span><br><span class="line"></span><br><span class="line">def run_with_HtmlUnit():  </span><br><span class="line">    driver = webdriver.Remote("http://localhost:4444/wd/hub",   </span><br><span class="line">                                desired_capabilities=webdriver.DesiredCapabilities.HTMLUNIT)  </span><br><span class="line">    common_step(driver)  </span><br><span class="line">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common_step</span><span class="params">(driver)</span>:</span>  </span><br><span class="line">    driver.get(<span class="string">'http://www.baidu.com'</span>)  </span><br><span class="line">    ele = driver.find_element_by_id(<span class="string">'su'</span>)  </span><br><span class="line">    <span class="keyword">print</span> ele.get_attribute(<span class="string">'value'</span>)  </span><br><span class="line">    driver.quit()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(times):  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'=============Times %s============'</span> % i  </span><br><span class="line">    <span class="keyword">for</span> driver <span class="keyword">in</span> drivers:  </span><br><span class="line">        start = time.time()   </span><br><span class="line">        <span class="keyword">print</span> start  </span><br><span class="line"><span class="comment">#        eval('run_with_%s()'%driver)</span></span><br><span class="line">        end = time.time()   </span><br><span class="line">        <span class="keyword">print</span> end  </span><br><span class="line">        elapse_time = end-start  </span><br><span class="line">        dervers_time[driver] += elapse_time  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">'elapse for %s:%s'</span> % (driver, elapse_time)  </span><br><span class="line">      </span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> dervers_time.items():  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'avg elapse for %s in %s times:%s'</span> % (k, times, v/times)</span><br></pre></td></tr></table></figure>
 
             
           </span>
@@ -1690,7 +1346,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1731,21 +1387,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

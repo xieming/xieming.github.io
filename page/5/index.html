@@ -220,8 +220,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/12/03/开贴了/" itemprop="url">
-                  Hexo小试牛刀
+                <a class="post-title-link" href="/2014/07/20/python-excel/" itemprop="url">
+                  python操作excel
                 </a>
               
             
@@ -231,8 +231,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2013-12-03T22:24:29+08:00" content="2013-12-03">
-              2013-12-03
+            <time itemprop="dateCreated" datetime="2014-07-20T10:53:19+08:00" content="2014-07-20">
+              2014-07-20
             </time>
           </span>
 
@@ -241,8 +241,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/建站/" itemprop="url" rel="index">
-                    <span itemprop="name">建站</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2013/12/03/开贴了/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/03/开贴了/" itemprop="commentsCount"></span>
+                <a href="/2014/07/20/python-excel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/20/python-excel/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -280,37 +280,1284 @@
         
           <span itemprop="articleBody">
             
-              <h1 id="Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5"><a href="#Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5" class="headerlink" title="Hexo: 独立博客新玩法"></a>Hexo: 独立博客新玩法</h1><p>首先Hexo是一款基于Node.js的静态博客，它是由台湾的一位大学生写出来的，支持很多主题和Markdown，很多人都在使用。</p>
-<p>我的理解，按照MarkDown的语法规则，免费的将自己网页部署到代码托管网站上去。Hexo就是这样一套自动生成网页的框架。<br>对于喜欢写独立博客的来说，是一个福音。不需要域名，服务器，备案等，就可以拥有自己的网站。</p>
-<p>我记得以前是用jeklly托管到github上，我弄过，但是没坚持下来。<br>当知道有Hexo的时候，也写过一些。但是由于众所周知的原因，github经常打不开，导致部署常常出错，所以也没有坚持下来。<br>前段时间发现上github速度又可以了，打算重新在弄弄，坚持写下去。</p>
-<h2 id="1-__u672C_u5730_u642D_u5EFA"><a href="#1-__u672C_u5730_u642D_u5EFA" class="headerlink" title="1. 本地搭建"></a>1. 本地搭建</h2><p>几条命令：</p>
-<p><pre><code><br>$ npm install -g hexo<br>$ mkdir Hexo<br>$ cd Hexo<br>$ hexo init<br>$ npm install<br></code></pre><br>这样就安装完成了，NodeJs的安装，网上有很多的资料。</p>
-<h2 id="2-_Start_Server"><a href="#2-_Start_Server" class="headerlink" title="2. Start Server"></a>2. Start Server</h2><p>在/Hexo下执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl + c to stop.</span><br></pre></td></tr></table></figure>
-<p>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>, 你就可以看到生成的博客了。</p>
-<h2 id="3-_Create_a_new_post"><a href="#3-_Create_a_new_post" class="headerlink" title="3. Create a new post"></a>3. Create a new post</h2><p>在/Hexo下执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"your article name"</span></span><br><span class="line">[info] File Created at \Hexo\<span class="built_in">source</span>\_posts\your-article-name.md</span><br></pre></td></tr></table></figure>
-<h2 id="4-_Generate_static_files"><a href="#4-_Generate_static_files" class="headerlink" title="4. Generate static files"></a>4. Generate static files</h2><pre><code>$ hexo generate
-</code></pre><p>it will generate file at the folder \Hexo\public\</p>
-<h2 id="5-_Edit_files"><a href="#5-_Edit_files" class="headerlink" title="5. Edit files"></a>5. Edit files</h2><p>如果要更改文件，到\Hexo\source_posts 用markdown 语法编辑一下。<br>如果要删除，到这个目录下删除不想要的文章。<br>然后更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate &lt;!--生成--&gt;</span><br><span class="line">hexo s == hexo server &lt;!--启动服务来预览--&gt;</span><br><span class="line">hexo d == hexo deploy &lt;!--部署--&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="6-_Deploy_to_github"><a href="#6-_Deploy_to_github" class="headerlink" title="6. Deploy to github"></a>6. Deploy to github</h2><h3 id="1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D"><a href="#1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D" class="headerlink" title="1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］"></a>1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］</h3><h3 id="2-SSH"><a href="#2-SSH" class="headerlink" title="2.SSH"></a>2.SSH</h3><p>请参照 <a href="http://segmentfault.com/q/1010000000164925" target="_blank" rel="external">hexo重置ssh</a></p>
-<h3 id="3-_u914D_u7F6Econfig-yml"><a href="#3-_u914D_u7F6Econfig-yml" class="headerlink" title="3.配置config.yml"></a>3.配置config.yml</h3><p>部署到Github前需要配置_config.yml文件，首先找到下面的内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Deployment</span></span><br><span class="line"><span class="comment">##Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>:</span><br><span class="line">``` </span><br><span class="line">然后将它们修改为</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: github</span><br><span class="line">  repository: git@github.com:snake/snake.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>NOTE1:</p>
-<p>Repository：必须是SSH形式的url（git@github.com:snake/snake.github.io.git），而不能是HTTPS形式的url（<a href="https://github.com/snake/snake.github.io.git），否则会出现错误。" target="_blank" rel="external">https://github.com/snake/snake.github.io.git），否则会出现错误。</a></p>
-<p>NOTE2:</p>
-<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。</p>
-<h3 id="4-_Deploy"><a href="#4-_Deploy" class="headerlink" title="4. Deploy"></a>4. Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="7-__u6D4B_u8BD5"><a href="#7-__u6D4B_u8BD5" class="headerlink" title="7. 测试"></a>7. 测试</h2><p>当部署完成后，在浏览器中打开<a href="http://snake.github.io/（https://snake.github.io/）" target="_blank" rel="external">http://snake.github.io/（https://snake.github.io/）</a> ，正常显示网页，表明部署成功。</p>
-<h2 id="8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4"><a href="#8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4" class="headerlink" title="8. 总结：部署步骤"></a>8. 总结：部署步骤</h2><p>每次部署的步骤，可按以下三步来进行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5"><a href="#9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5" class="headerlink" title="9. 总结：本地调试"></a>9. 总结：本地调试</h2><p>在执行下面的命令后，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment">#生成</span></span><br><span class="line">$ hexo s <span class="comment">#启动本地服务，进行文章预览调试</span></span><br></pre></td></tr></table></figure>
-<p>浏览器输入<a href="http://localhost:4000，" target="_blank" rel="external">http://localhost:4000，</a><br>查看搭建效果。此后的每次变更_config.yml 文件或者新建文件都可以先用此命令调试，尤其是当你想调试新添加的主题时。</p>
-<p>可以用简化的一条命令<br><code>hexo s -g</code></p>
-<p><strong>常用命令：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br><span class="line"></span><br><span class="line">命令的简写为：</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
+              <p>一、安装xlrd模块</p>
+<p>   到<a href="http://pypi.python.org/pypi/xlrd" target="_blank" rel="external">xlrd官网下载</a>模块安装，前提是已经安装了python 环境。</p>
+<p>   我在windows 上用的是 pip install xlrd</p>
+<p>二、使用介绍</p>
+<p>  1、导入模块</p>
+<pre><code>import xlrd
+</code></pre><p>   2、打开Excel文件读取数据</p>
+<pre><code>data = xlrd.open_workbook(&apos;excelFile.xls&apos;)
+</code></pre><p>   3、使用技巧</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">        获取一个工作表</span><br><span class="line"></span><br><span class="line">        <span class="built_in">table</span> = data.sheets()[<span class="number">0</span>]          <span class="comment">#通过索引顺序获取</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">table</span> = data.sheet_by_index(<span class="number">0</span>) <span class="comment">#通过索引顺序获取</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        <span class="built_in">table</span> = data.sheet_by_name(u'Sheet1')<span class="comment">#通过名称获取</span></span><br><span class="line"> </span><br><span class="line">        获取整行和整列的值（数组）</span><br><span class="line"> 　		  <span class="built_in">table</span>.row_values(i)</span><br><span class="line"> </span><br><span class="line">         <span class="built_in">table</span>.col_values(i)</span><br><span class="line"> </span><br><span class="line">        获取行数和列数</span><br><span class="line">　　</span><br><span class="line">        nrows = <span class="built_in">table</span>.nrows</span><br><span class="line"> </span><br><span class="line">        ncols = <span class="built_in">table</span>.ncols</span><br><span class="line">       </span><br><span class="line">        循环行列表数据</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(nrows ):</span><br><span class="line">      print <span class="built_in">table</span>.row_values(i)</span><br><span class="line"> </span><br><span class="line">单元格</span><br><span class="line">cell_A1 = <span class="built_in">table</span>.cell(<span class="number">0</span>,<span class="number">0</span>).value</span><br><span class="line"> </span><br><span class="line">cell_C4 = <span class="built_in">table</span>.cell(<span class="number">2</span>,<span class="number">3</span>).value</span><br><span class="line"> </span><br><span class="line">使用行列索引</span><br><span class="line">cell_A1 = <span class="built_in">table</span>.row(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line"> </span><br><span class="line">cell_A2 = <span class="built_in">table</span>.col(<span class="number">1</span>)[<span class="number">0</span>].value</span><br><span class="line"> </span><br><span class="line">简单的写入</span><br><span class="line">row = <span class="number">0</span></span><br><span class="line"> </span><br><span class="line">col = <span class="number">0</span></span><br><span class="line"><span class="variable">&lt;!-- 类型 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error--&gt;</span></span><br><span class="line"> </span><br><span class="line">ctype = <span class="number">1</span> value = '单元格的值'</span><br><span class="line"> </span><br><span class="line">xf = <span class="number">0</span> <span class="comment"># 扩展的格式化</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">table</span>.put_cell(row, col, ctype, value, xf)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">table</span>.cell(<span class="number">0</span>,<span class="number">0</span>)  <span class="comment">#单元格的值'</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">table</span>.cell(<span class="number">0</span>,<span class="number">0</span>).value <span class="comment">#单元格的值'</span></span><br></pre></td></tr></table></figure>
+<p>三、Demo代码</p>
+<p>   Demo代码其实很简单，就是读取Excel数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># -*- coding: utf-8 -*-   </span></span><br><span class="line"><span class="keyword">import</span> xlrd  </span><br><span class="line">data=xlrd.open_workbook(<span class="string">'aa.xls'</span>)  </span><br><span class="line">table=data.sheets()[<span class="number">0</span>]  </span><br><span class="line">nrows = table.nrows  </span><br><span class="line">ncols = table.ncols  </span><br><span class="line"><span class="keyword">print</span> table  </span><br><span class="line"><span class="keyword">print</span> nrows  </span><br><span class="line"><span class="keyword">print</span> ncols</span><br></pre></td></tr></table></figure>
+<p> 另一个例子：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># -*- coding: utf-8 -*-   </span></span><br><span class="line"><span class="keyword">import</span>  xdrlib ,sys  </span><br><span class="line"><span class="keyword">import</span> xlrd  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">open_excel</span><span class="params">(file= <span class="string">'file.xls'</span>)</span>:</span>  </span><br><span class="line">    <span class="keyword">try</span>:  </span><br><span class="line">        data = xlrd.open_workbook(file)  </span><br><span class="line">        <span class="keyword">return</span> data  </span><br><span class="line">    <span class="keyword">except</span> Exception,e:  </span><br><span class="line">        <span class="keyword">print</span> str(e)  </span><br><span class="line"><span class="comment">#根据索引获取Excel表格中的数据   参数:file：Excel文件路径     colnameindex：表头列名所在行的所以  ，by_index：表的索引  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">excel_table_byindex</span><span class="params">(file= <span class="string">'file.xls'</span>,colnameindex=<span class="number">0</span>,by_index=<span class="number">0</span>)</span>:</span>  </span><br><span class="line">    data = open_excel(file)  </span><br><span class="line">    table = data.sheets()[by_index]  </span><br><span class="line">    nrows = table.nrows <span class="comment">#行数  </span></span><br><span class="line">    ncols = table.ncols <span class="comment">#列数  </span></span><br><span class="line">    colnames =  table.row_values(colnameindex) <span class="comment">#某一行数据   </span></span><br><span class="line">    list =[]  </span><br><span class="line">    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(<span class="number">1</span>,nrows):  </span><br><span class="line">  </span><br><span class="line">         row = table.row_values(rownum)  </span><br><span class="line">         <span class="keyword">if</span> row:  </span><br><span class="line">             app = &#123;&#125;  </span><br><span class="line">             <span class="keyword">for</span> i <span class="keyword">in</span> range(len(colnames)):  </span><br><span class="line">                app[colnames[i]] = row[i]   </span><br><span class="line">             list.append(app)  </span><br><span class="line">    <span class="keyword">return</span> list  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#根据名称获取Excel表格中的数据   参数:file：Excel文件路径     colnameindex：表头列名所在行的所以  ，by_name：Sheet1名称  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">excel_table_byname</span><span class="params">(file= <span class="string">'file.xls'</span>,colnameindex=<span class="number">0</span>,by_name=<span class="string">u'Sheet1'</span>)</span>:</span>  </span><br><span class="line">    data = open_excel(file)  </span><br><span class="line">    table = data.sheet_by_name(by_name)  </span><br><span class="line">    nrows = table.nrows <span class="comment">#行数   </span></span><br><span class="line">    colnames =  table.row_values(colnameindex) <span class="comment">#某一行数据   </span></span><br><span class="line">    list =[]  </span><br><span class="line">    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(<span class="number">1</span>,nrows):  </span><br><span class="line">         row = table.row_values(rownum)  </span><br><span class="line">         <span class="keyword">if</span> row:  </span><br><span class="line">             app = &#123;&#125;  </span><br><span class="line">             <span class="keyword">for</span> i <span class="keyword">in</span> range(len(colnames)):  </span><br><span class="line">                app[colnames[i]] = row[i]  </span><br><span class="line">             list.append(app)  </span><br><span class="line">    <span class="keyword">return</span> list  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span>  </span><br><span class="line">   tables = excel_table_byindex()  </span><br><span class="line">   <span class="keyword">for</span> row <span class="keyword">in</span> tables:  </span><br><span class="line">       <span class="keyword">print</span> row  </span><br><span class="line">  </span><br><span class="line">   tables = excel_table_byname()  </span><br><span class="line">   <span class="keyword">for</span> row <span class="keyword">in</span> tables:  </span><br><span class="line">       <span class="keyword">print</span> row  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:  </span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p> 先引入xlwt模块<br> 然后实验了一下，成功了一些，用的是： pip install xlwt</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># -*- coding: utf-8 -*-   </span></span><br><span class="line"><span class="keyword">import</span> xlwt  </span><br><span class="line">book=xlwt.Workbook(encoding=<span class="string">'utf-8'</span>,style_compression=<span class="number">0</span>)  </span><br><span class="line">sheet=book.add_sheet(<span class="string">'dede'</span>,cell_overwrite_ok=<span class="keyword">True</span>)  </span><br><span class="line">sheet.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">'fuck'</span>)  </span><br><span class="line">txt=<span class="string">'输入中文'</span>  </span><br><span class="line">txt.decode(<span class="string">'gbk'</span>)  </span><br><span class="line">sheet.write(<span class="number">1</span>,<span class="number">1</span>,txt.decode(<span class="string">'gbk'</span>))  </span><br><span class="line">book.save(<span class="string">'D:\\e\\API\\aa.xls'</span>)</span><br></pre></td></tr></table></figure>
+<p> 目前的版本只支持Excel2010, 高版本的支持不了。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/07/06/dailybuildios/" itemprop="url">
+                  自动化测试与持续集成方案--IOS Daily Build
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-07-06T21:09:38+08:00" content="2014-07-06">
+              2014-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/07/06/dailybuildios/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/06/dailybuildios/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>首先你得有Mac的电脑，xcode, 开发者证书。<br>安装 xctool.</p>
+<p>配置好证书，然后在命令行转到项目目录.</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>清除  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild clean  </span><br><span class="line"><span class="number">2.</span>编译  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild -target CTest -configuration Release  </span><br><span class="line"><span class="number">3.</span>打包ipa  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcrun -sdk iphoneos  PackageApplication -v <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTestild<span class="regexp">/Release-iphoneos/</span>CTest.app -o <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTest/CTest.ipa</span><br></pre></td></tr></table></figure>
+<p>跟 android ant 打包一样，也是三条命令</p>
+<pre><code>#!/bin/sh
+#  autoBuild.sh
+#  Created by Anderson on 14-04-28. 
+#  Copyright (c) 2014年 Anderson. All rights reserved.
+###############################################
+#使用方法
+#./autoBuild.sh arg1 arg2
+#arg1 项目的路径，例如：/Users/apple/code
+#arg2 为项目编译ID
+###############################################
+
+###############################################
+
+#参数检查
+if [ -z &quot;$1&quot; ]; 
+then
+echo &quot;error:项目路径为空&quot;
+exit 1
+fi
+if [ -z &quot;$2&quot; ]; 
+then 
+echo &quot;error:项目编译ID为空&quot;
+exit 1
+fi
+#日志地址
+logPath=&quot;${1}/log.txt&quot;
+#ipa地址 
+ipaPath=&quot;${1}/${2}.ipa&quot;
+##############################################
+
+#清理项目 
+cd $1
+xcodebuild clean
+
+###############################################
+
+#编译并将日志写到文件 正式使用需要修改 Debug/Release
+xcodebuild -target XXXX -configuration Debug &gt; ${logPath}
+#判断是否编译成功
+if [[ $? -eq 0 ]];  
+then
+echo &quot;build success&quot;
+else
+cho &quot;build error&quot;
+exit 2
+fi
+
+###############################################
+#生成ipa
+xcrun -sdk iphoneos PackageApplication -v build/Debug-iphoneos/*.app -o ${ipaPath}
+if [[ $? -eq 0 ]];  then
+rm -rf build
+echo &quot;create ipa success&quot;
+exit 0
+else
+echo &quot;create ipa error&quot;
+exit 2
+fi
+</code></pre><p>打包能成功。通过Debug/Release来控制签名和不签名。</p>
+<p>Jenkins 上要装xcode 的插件。 配置好后，你会发现一直失败，每次都会在codsign出错。然后你不在jenkins中调用，只用命令执行是通过的。这个问题困惑了我好久，最后找到了方案：<br>在jenkins中设置Unlock Keychain.</p>
+<p>本文发表在：<a href="https://testerhome.com/topics/2554" target="_blank" rel="external">Testerhome</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/06/21/python-cmd/" itemprop="url">
+                  cmd中之行adb 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-06-21T23:41:52+08:00" content="2014-06-21">
+              2014-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/21/python-cmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/21/python-cmd/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在用python编写脚本对android操作时，有时需要通过cmd命令直接对app操作。这样的好处是，如果你想对一页界面操作，不用一步一步的进行界面跳转，可以从主界面一下子调到你想要操作的界面。<br>通过os.popen()方法打开一个cmd命令</p>
+<p>1、os.popen(“adb wait-for devices”)：等待连接设备</p>
+<p>2、os.popen(“adb shell screencap -p /data/local/tmp.png”)：截屏后将图片以.png格式放在 /data/local/文件夹下</p>
+<p>3、os.popen(“adb shell pull /data/local/“ +PATH(path+”/“ +timestamp + “.png”))：将手机/data/local/文件夹下文件传到手机文件夹下，并对图片以当时时间命名</p>
+<p>4、os.popen(“adb shell am start -n com.xxx.xxx/com.xxx.xxx.plugins.PluginCenterActicity”)：直接跳转并打开com.xxx.xxx下的com.xxx.xxx.plugins.PluginCenterActicity界面</p>
+<p>下边是手机截屏并上传到电脑中的代码：</p>
+<pre><code class="python"><span class="comment">#!/usr/bin/pyton</span>
+<span class="comment">#encoding=utf-8</span>
+<span class="keyword">import</span> time
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> os
+
+
+timestamp = time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>,time.localtime(time.time()))
+
+type = <span class="string">"""
+    1. screenshot
+    2. logcat
+    3. tracefile
+    4. device information
+"""</span>
+<span class="keyword">print</span> type
+yourtype = raw_input(<span class="string">"Please choose type: "</span>)
+
+<span class="function"><span class="keyword">def</span> <span class="title">getlogcat</span><span class="params">()</span>:</span>
+        path = os.getcwd()+<span class="string">"/output/logcat"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
+            os.makedirs(path)
+        logcatname=path+<span class="string">"/"</span>+timestamp+<span class="string">r"logcat.log"</span>
+        cmdlogcat=<span class="string">"adb logcat -d &gt;%s"</span> %(logcatname)  
+        os.popen(cmdlogcat)   
+
+<span class="function"><span class="keyword">def</span> <span class="title">gettracefile</span><span class="params">()</span>:</span>  
+        path = os.getcwd()+<span class="string">"/output/trace"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
+            os.makedirs(path)
+        tracename = path+<span class="string">"/"</span>+timestamp+<span class="string">r"trace.log"</span>
+        cmd=<span class="string">"adb shell cat /data/anr/traces.txt&gt;%s"</span> %(tracename)
+        os.popen(cmd) 
+
+<span class="function"><span class="keyword">def</span> <span class="title">screenshot</span><span class="params">()</span>:</span>
+        path = os.getcwd()+<span class="string">"/output/pic"</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(path):
+            os.makedirs(path)
+
+
+        os.popen(<span class="string">"adb shell screencap -p /sdcard/monkey_run.png"</span>)
+
+        cmd=<span class="string">"adb pull /sdcard/monkey_run.png %s"</span> %(path)
+        os.popen(cmd)  
+        os.popen(<span class="string">"adb shell rm /sdcard/monkey_run.png"</span>)
+        oldname = path+<span class="string">"/"</span> + <span class="string">"monkey_run.png"</span>
+        newname= path+<span class="string">"/"</span> + timestamp +<span class="string">r".png"</span>
+        os.rename(oldname, newname)
+
+        <span class="keyword">print</span> <span class="string">"success"</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">getdeviceinfo</span><span class="params">()</span>:</span>
+        cmd = <span class="string">'adb shell cat /system/build.prop'</span>
+        deviceinfo = os.popen(cmd)
+        infoList = deviceinfo.readlines()
+        <span class="comment">#print infoList</span>
+
+        dict ={}
+
+        param = [<span class="string">'ro.product.manufacturer'</span>,<span class="string">'ro.build.version.release'</span>,<span class="string">'ro.build.version.sdk'</span>,<span class="string">'ro.product.model'</span>,<span class="string">'ro.product.brand'</span>,<span class="string">'ro.product.locale.language'</span>,<span class="string">'ro.product.locale.region'</span>]
+
+        <span class="keyword">for</span> info <span class="keyword">in</span> infoList:
+            <span class="keyword">for</span> each_param <span class="keyword">in</span> param:
+                <span class="keyword">if</span> str(each_param) <span class="keyword">in</span> str(info):
+                    k = info.split(<span class="string">'='</span>)[<span class="number">0</span>]
+                    s = k.split(<span class="string">'.'</span>)
+                    dict[s[<span class="number">-1</span>]] = info.split(<span class="string">'='</span>)[<span class="number">1</span>].strip()
+        <span class="keyword">print</span> dict.items()
+
+
+deviceText = os.popen(<span class="string">'adb devices'</span>)
+textList = deviceText.readlines()
+deviceName = textList[<span class="number">1</span>].split()[<span class="number">0</span>]
+
+<span class="keyword">if</span> deviceName == <span class="string">''</span>:
+    <span class="keyword">print</span> <span class="string">"please connect devices!"</span>
+
+<span class="keyword">else</span>:
+
+    <span class="keyword">if</span> yourtype == <span class="string">'1'</span>:
+        screenshot()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'2'</span>:
+        getlogcat()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'3'</span>:
+        gettracefile()
+
+    <span class="keyword">if</span> yourtype == <span class="string">'4'</span>:
+        getdeviceinfo()
+</code></pre>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/06/05/python-csv/" itemprop="url">
+                  python csv模块介绍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-06-05T11:44:19+08:00" content="2014-06-05">
+              2014-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/05/python-csv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/05/python-csv/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
+<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure></p>
+<p>参数：</p>
+<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
+<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
+<p>使用例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
+<p>writer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">writer.writerow([<span class="string">"hello"</span>,<span class="string">"anderson"</span>])</span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(file)</span>:</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please choose the type: "</span>)</span><br><span class="line">    rule = re.compile(yourtype)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">        spamreader = csv.reader(readfile)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(row)):</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writecsv</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (<span class="string">'jsonfile.csv'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    	spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</span><br><span class="line">            spamwriter.writerow(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(self, file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">       spamreader = csv.reader(readfile)</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">                line = row.split(<span class="string">','</span>)</span><br><span class="line">                <span class="keyword">for</span> each_line <span class="keyword">in</span> line:</span><br><span class="line">                    <span class="keyword">if</span> each_line != <span class="string">" "</span>:</span><br><span class="line">                        <span class="keyword">print</span> each_line</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/10/python-monkeyrunnerhb/" itemprop="url">
+                  自动化抢红包的实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-04-10T11:13:33+08:00" content="2014-04-10">
+              2014-04-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/10/python-monkeyrunnerhb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/10/python-monkeyrunnerhb/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近抢红包火热，基本上是全民抢红包。<br>大家为了几分钱，或者优惠券，时刻候着那个点，只能说支付宝太精明了。</p>
+<p>借鉴了别人的代码，在模拟器上跑起来了。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/pyton</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner,MonkeyDevice,MonkeyImage</span><br><span class="line"></span><br><span class="line">print(<span class="string">'connect'</span>)</span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line"></span><br><span class="line"><span class="comment">#device.shell('am force-stop com.eztech.kylinlauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.eg.android.AlipayGphone -v 1'</span>)</span><br><span class="line">print(<span class="string">'start'</span>)</span><br><span class="line"><span class="comment">#device.startActivity(component='com.eg.android.AlipayGphone/com.alipay.android.launcher.TabLauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.alipay.android.launcher.TabLauncher -v 1'</span>)</span><br><span class="line"></span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line"><span class="comment">#raw_input("press Enter then press Ctrl+D to start!")</span></span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">	<span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line">		<span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">			device.drag((wi,hi),(<span class="number">765</span>,<span class="number">1244</span>),<span class="number">0.1</span>,<span class="number">10</span>)</span><br><span class="line">			<span class="comment">#device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span></span><br></pre></td></tr></table></figure>
+<p>没有在真机上实践过。</p>
+<p>现在缺点如下：</p>
+<ol>
+<li><p>只是拖拽，不知道能否实现点击的功能。</p>
+</li>
+<li><p>点击速度太慢，模拟器上的缘故。</p>
+</li>
+<li><p>没有经过检验。</p>
+</li>
+</ol>
+<p>明天试下。</p>
+<p>别人的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># Imports the monkeyrunner modules used by this program</span></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner, MonkeyDevice</span><br><span class="line"><span class="comment"># Connects to the current device, returning a MonkeyDevice object</span></span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line">raw_input(<span class="string">"按 Enter后再按 Ctrl+D 后开始乱点"</span>)</span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line"><span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line"><span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span><br><span class="line"><span class="comment"># Takes a screenshot</span></span><br><span class="line"><span class="comment">#result = device.takeSnapshot()</span></span><br><span class="line"><span class="comment"># Writes the screenshot to a file</span></span><br><span class="line"><span class="comment">#result.writeToFile('/tmp/shot1.png','png')</span></span><br></pre></td></tr></table></figure>
+<p>缺点： 很容易点到别的地方。</p>
+<p>用monkey来实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb   shell monkey -p com.eg.android.AlipayGphone -s <span class="number">500</span> --pct-touch <span class="number">100</span> --ignore-crashes --ignore-timeouts --monitor-native-crashes -v -v <span class="number">10000</span> &gt; E:\monkey_log\java_monkey_log.txt</span><br></pre></td></tr></table></figure>
+<p>缺点： 完全不受控制。也很容易点到别的地方。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/22/python-report/" itemprop="url">
+                  ReportLab 实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-03-22T00:07:32+08:00" content="2014-03-22">
+              2014-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/22/python-report/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/22/python-report/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>python 生成报告， ReportLab 实践，网上找的例子，自己实践了一把。</p>
+<p><a href="http://www.reportlab.com/docs/reportlab-userguide.pdf" target="_blank" rel="external">文档</a></p>
+<p>然后照着文档，<a href="http://blog.csdn.net/youyudehexie/article/details/7918402" target="_blank" rel="external">例子</a></p>
+<p>写成了一个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> Drawing  </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.barcharts <span class="keyword">import</span> VerticalBarChart  </span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlopen    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> *    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.lineplots <span class="keyword">import</span> LinePlot    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.textlabels <span class="keyword">import</span> Label    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics <span class="keyword">import</span> renderPDF  </span><br><span class="line">drawing = Drawing(<span class="number">400</span>, <span class="number">200</span>)  </span><br><span class="line">data = [(<span class="number">13</span>, <span class="number">5</span>, <span class="number">20</span>),(<span class="number">14</span>, <span class="number">6</span>, <span class="number">21</span>)]  </span><br><span class="line">bc = VerticalBarChart()  </span><br><span class="line">bc.x = <span class="number">50</span>  </span><br><span class="line">bc.y = <span class="number">50</span>  </span><br><span class="line">bc.height = <span class="number">125</span>  </span><br><span class="line">bc.width = <span class="number">300</span>  </span><br><span class="line">bc.data = data  </span><br><span class="line">bc.strokeColor = colors.black  </span><br><span class="line">bc.valueAxis.valueMin = <span class="number">0</span>  </span><br><span class="line">bc.valueAxis.valueMax = <span class="number">50</span>  </span><br><span class="line">bc.valueAxis.valueStep = <span class="number">10</span>  </span><br><span class="line">bc.categoryAxis.labels.boxAnchor =<span class="string">'ne'</span>  </span><br><span class="line">bc.categoryAxis.labels.dx = <span class="number">8</span>  </span><br><span class="line">bc.categoryAxis.labels.dy = -<span class="number">2</span>  </span><br><span class="line">bc.categoryAxis.labels.angle = <span class="number">30</span>  </span><br><span class="line">bc.categoryAxis.categoryNames = [<span class="string">'Jan-99'</span>,<span class="string">'Feb-99'</span>,<span class="string">'Mar-99'</span>]  </span><br><span class="line">drawing.add(bc)  </span><br><span class="line">  </span><br><span class="line">drawing.add(String(<span class="number">250</span>,<span class="number">150</span>,<span class="string">"ss"</span>, fontSize=<span class="number">14</span>,fillColor=colors.red))        </span><br><span class="line">renderPDF.drawToFile(drawing,<span class="string">'report2.pdf'</span>,<span class="string">'API'</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.jb51.net/article/53233.htm" target="_blank" rel="external">然后按照</a></p>
+<p>学习了下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="keyword">import</span> subprocess  </span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="keyword">from</span> reportlab.lib.units <span class="keyword">import</span> inch  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_report</span><span class="params">()</span>:</span>  </span><br><span class="line">    p = os.popen(<span class="string">"df -h"</span>)  </span><br><span class="line"><span class="comment">#   print p.stdout.readlines()  </span></span><br><span class="line">    <span class="keyword">return</span> p.readlines()  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pdf</span><span class="params">(input, output=<span class="string">"disk_report.pdf"</span>)</span>:</span>  </span><br><span class="line">    now = datetime.datetime.today()  </span><br><span class="line">    date = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)  </span><br><span class="line">    c = canvas.Canvas(output)  </span><br><span class="line">    textobject = c.beginText()  </span><br><span class="line">    textobject.setTextOrigin(inch, <span class="number">11</span>*inch)  </span><br><span class="line">    textobject.textLines(<span class="string">'''''Disk Capcity Report: %s'''</span> %date)  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> input:  </span><br><span class="line">        textobject.textLine(line.strip())  </span><br><span class="line">    c.drawText(textobject)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">report = disk_report()  </span><br><span class="line">create_pdf(report)</span><br></pre></td></tr></table></figure>
+<p>再练习：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>  </span><br><span class="line">    c = canvas.Canvas(<span class="string">"helloworld.pdf"</span>)  </span><br><span class="line">    c.drawString(<span class="number">100</span>,<span class="number">100</span>,<span class="string">"Hello,World"</span>)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/12/python-mails/" itemprop="url">
+                  python发送mails
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-03-12T11:25:24+08:00" content="2014-03-12">
+              2014-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/12/python-mails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/12/python-mails/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在做持续集成时，有时会要用到邮件提醒，Jenkins自带的邮件功能有时满足不了需要，python中email模块使得处理邮件变得比较简单。</p>
+<p>  一、相关模块介绍</p>
+<p>   发送邮件主要用到了smtplib和email两个模块，这里首先就两个模块进行一下简单的介绍：<br>    1、smtplib模块</p>
+<pre><code>smtplib.SMTP([host[, port[, local_hostname[, timeout]]]])
+</code></pre><p>　  SMTP类构造函数，表示与SMTP服务器之间的连接，通过这个连接可以向smtp服务器发送指令，执行相关操作（如：登陆、发送邮件）。所有参数都是可选的。</p>
+<pre><code>host：smtp服务器主机名
+
+port：smtp服务的端口，默认是25；如果在创建SMTP对象的时候提供了这两个参数，在初始化的时候会自动调用connect方法去连接服务器。
+</code></pre><p>　smtplib模块还提供了SMTP_SSL类和LMTP类，对它们的操作与SMTP基本一致。</p>
+<p>　smtplib.SMTP提供的方法：</p>
+<pre><code>SMTP.set_debuglevel(level)：设置是否为调试模式。默认为False，即非调试模式，表示不输出任何调试信息。
+
+SMTP.connect([host[, port]])：连接到指定的smtp服务器。参数分别表示smpt主机和端口。注意: 也可以在host参数中指定端口号（如：smpt.yeah.net:25），这样就没必要给出port参数。
+
+SMTP.docmd(cmd[, argstring])：向smtp服务器发送指令。可选参数argstring表示指令的参数。
+
+SMTP.helo([hostname]) ：使用&quot;helo&quot;指令向服务器确认身份。相当于告诉smtp服务器“我是谁”。
+
+SMTP.has_extn(name)：判断指定名称在服务器邮件列表中是否存在。出于安全考虑，smtp服务器往往屏蔽了该指令。
+
+SMTP.verify(address) ：判断指定邮件地址是否在服务器中存在。出于安全考虑，smtp服务器往往屏蔽了该指令。
+
+SMTP.login(user, password) ：登陆到smtp服务器。现在几乎所有的smtp服务器，都必须在验证用户信息合法之后才允许发送邮件。
+
+SMTP.sendmail(from_addr, to_addrs, msg[, mail_options, rcpt_options]) ：发送邮件。这里要注意一下第三个参数，msg是字符串，表示邮件。我们知道邮件一般由标题，发信人，收件人，邮件内容，附件等构成，发送邮件的时候，要注意msg的格式。这个格式就是smtp协议中定义的格式。
+
+SMTP.quit() ：断开与smtp服务器的连接，相当于发送&quot;quit&quot;指令。（很多程序中都用到了smtp.close()，具体与quit的区别google了一下，也没找到答案。）
+</code></pre><p>   2、email模块</p>
+<pre><code>emial模块用来处理邮件消息，包括MIME和其他基于RFC 2822 的消息文档。使用这些模块来定义邮件的内容，是非常简单的。其包括的类有（更加详细的介绍可见：http://docs.python.org/library/email.mime.html）：
+
+class email.mime.base.MIMEBase(_maintype, _subtype, **_params)：这是MIME的一个基类。一般不需要在使用时创建实例。其中_maintype是内容类型，如text或者image。_subtype是内容的minor type 类型，如plain或者gif。 **_params是一个字典，直接传递给Message.add_header()。
+
+class email.mime.multipart.MIMEMultipart([_subtype[, boundary[, _subparts[, _params]]]]：MIMEBase的一个子类，多个MIME对象的集合，_subtype默认值为mixed。boundary是MIMEMultipart的边界，默认边界是可数的。
+
+class email.mime.application.MIMEApplication(_data[, _subtype[, _encoder[, **_params]]])：MIMEMultipart的一个子类。
+
+class email.mime.audio. MIMEAudio(_audiodata[, _subtype[, _encoder[, **_params]]])： MIME音频对象
+
+class email.mime.image.MIMEImage(_imagedata[, _subtype[, _encoder[, **_params]]])：MIME二进制文件对象。
+
+class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message实例，使用方法如下：
+</code></pre><p>msg=mail.Message.Message()    #一个实例<br>msg[‘to’]=’XXX@XXX.com’      #发送到哪里<br>msg[‘from’]=’YYY@YYYY.com’       #自己的邮件地址<br>msg[‘date’]=’2012-3-16’           #时间日期<br>msg[‘subject’]=’hello world’    #邮件主题 </p>
+<pre><code>class email.mime.text.MIMEText(_text[, _subtype[, _charset]])：MIME文本对象，其中_text是邮件内容，_subtype邮件类型，可以是text/plain（普通文本邮件），html/plain(html邮件),  _charset编码，可以是gb2312等等。
+</code></pre><p>二、几种邮件的具体实现代码</p>
+<p>   1、普通文本邮件</p>
+<p>   普通文本邮件发送的实现，关键是要将MIMEText中_subtype设置为plain。首先导入smtplib和mimetext。创建smtplib.smtp实例，connect邮件smtp服务器，login后发送，具体代码如下：（python2.7下实现）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送txt文本邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">import</span> smtplib  </span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText  </span><br><span class="line"><span class="comment">#mailto_list=[YYY@YYY.com]</span></span><br><span class="line">mailto_list=[<span class="string">'luck@163.com'</span>] </span><br><span class="line">mail_host=<span class="string">"smtp.XXX.cn"</span>  <span class="comment">#设置服务器</span></span><br><span class="line">mail_user=<span class="string">"anderson@XXX.cn"</span>    <span class="comment">#用户名</span></span><br><span class="line">mail_pass=<span class="string">"123456"</span>   <span class="comment">#口令 </span></span><br><span class="line">mail_postfix=<span class="string">"XXX.cn"</span>  <span class="comment">#发件箱的后缀</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(to_list,sub,content)</span>:</span>  </span><br><span class="line">    me=<span class="string">"hello"</span>+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span>  </span><br><span class="line">    msg = MIMEText(content,_subtype=<span class="string">'plain'</span>,_charset=<span class="string">'gb2312'</span>)  </span><br><span class="line">    msg[<span class="string">'Subject'</span>] = sub  </span><br><span class="line">    msg[<span class="string">'From'</span>] = me  </span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(to_list)  </span><br><span class="line">    <span class="keyword">try</span>:  </span><br><span class="line">        server = smtplib.SMTP()  </span><br><span class="line">        server.connect(mail_host)  </span><br><span class="line">        server.login(mail_user,mail_pass)  </span><br><span class="line">        server.sendmail(me, to_list, msg.as_string())  </span><br><span class="line">        server.close()  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">    <span class="keyword">except</span> Exception, e:  </span><br><span class="line">        <span class="keyword">print</span> str(e)  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    <span class="keyword">if</span> send_mail(mailto_list,<span class="string">"hello"</span>,<span class="string">"hello world！"</span>):  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送成功"</span>  </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送失败"</span></span><br></pre></td></tr></table></figure>
+<p>2、html邮件的发送</p>
+<p>   与text邮件不同之处就是将将MIMEText中_subtype设置为html。具体代码如下：（python2.7下实现）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送html文本邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">import</span> smtplib  </span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText  </span><br><span class="line">mailto_list=[<span class="string">"luck@163.com"</span>] </span><br><span class="line">mail_host=<span class="string">"smtp.XXX.cn"</span>  <span class="comment">#设置服务器</span></span><br><span class="line">mail_user=<span class="string">"anderson@XXX.cn"</span>    <span class="comment">#用户名</span></span><br><span class="line">mail_pass=<span class="string">"123456"</span>   <span class="comment">#口令 </span></span><br><span class="line">mail_postfix=<span class="string">"XXX.cn"</span>  <span class="comment">#发件箱的后缀</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">(to_list,sub,content)</span>:</span>  <span class="comment">#to_list：收件人；sub：主题；content：邮件内容</span></span><br><span class="line">    me=<span class="string">"hello"</span>+<span class="string">"&lt;"</span>+mail_user+<span class="string">"@"</span>+mail_postfix+<span class="string">"&gt;"</span>   <span class="comment">#这里的hello可以任意设置，收到信后，将按照设置显示</span></span><br><span class="line">    msg = MIMEText(content,_subtype=<span class="string">'html'</span>,_charset=<span class="string">'gb2312'</span>)    <span class="comment">#创建一个实例，这里设置为html格式邮件</span></span><br><span class="line">    msg[<span class="string">'Subject'</span>] = sub    <span class="comment">#设置主题</span></span><br><span class="line">    msg[<span class="string">'From'</span>] = me  </span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">";"</span>.join(to_list)  </span><br><span class="line">    <span class="keyword">try</span>:  </span><br><span class="line">        s = smtplib.SMTP()  </span><br><span class="line">        s.connect(mail_host)  <span class="comment">#连接smtp服务器</span></span><br><span class="line">        s.login(mail_user,mail_pass)  <span class="comment">#登陆服务器</span></span><br><span class="line">        s.sendmail(me, to_list, msg.as_string())  <span class="comment">#发送邮件</span></span><br><span class="line">        s.close()  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">    <span class="keyword">except</span> Exception, e:  </span><br><span class="line">        <span class="keyword">print</span> str(e)  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    <span class="keyword">if</span> send_mail(mailto_list,<span class="string">"hello"</span>,<span class="string">u"&lt;a href='http://www.yiban.cn'&gt;链接&lt;/a&gt;"</span>):  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送成功"</span>  </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"发送失败"</span></span><br></pre></td></tr></table></figure>
+<p>3、发送带附件的邮件</p>
+<p>   发送带附件的邮件，首先要创建MIMEMultipart()实例，然后构造附件，如果有多个附件，可依次构造，最后利用smtplib.smtp发送。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp936 -*-</span></span><br><span class="line"><span class="string">'''</span><br><span class="line">发送带附件邮件</span><br><span class="line">Anderson</span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建一个带附件的实例</span></span><br><span class="line">msg = MIMEMultipart()</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造附件1</span></span><br><span class="line">att1 = MIMEText(open(<span class="string">'C:\\Users\\wftang\\Desktop\\New folder\\mail1.py'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'gb2312'</span>)</span><br><span class="line">att1[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></span><br><span class="line">att1[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="123.doc"'</span><span class="comment">#这里的filename可以任意写，写什么名字，邮件中显示什么名字</span></span><br><span class="line">msg.attach(att1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造附件2</span></span><br><span class="line">att2 = MIMEText(open(<span class="string">'C:\\Users\\wftang\\Desktop\\New folder\\mail1.py'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'gb2312'</span>)</span><br><span class="line">att2[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></span><br><span class="line">att2[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="124.txt"'</span></span><br><span class="line">msg.attach(att2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加邮件头</span></span><br><span class="line">msg[<span class="string">'to'</span>] = <span class="string">'anderson@163.com'</span></span><br><span class="line">msg[<span class="string">'from'</span>] = <span class="string">'luck@163.com'</span></span><br><span class="line">msg[<span class="string">'subject'</span>] = <span class="string">'hello world'</span></span><br><span class="line"><span class="comment">#发送邮件</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    server = smtplib.SMTP()</span><br><span class="line">    server.connect(<span class="string">'smtp.163.com'</span>)</span><br><span class="line">    server.login(<span class="string">'luck@163.com'</span>,<span class="string">'****'</span>)<span class="comment">#XXX为用户名，XXXXX为密码</span></span><br><span class="line">    server.sendmail(msg[<span class="string">'from'</span>], msg[<span class="string">'to'</span>],msg.as_string())</span><br><span class="line">    server.quit()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'发送成功'</span></span><br><span class="line"><span class="keyword">except</span> Exception, e:  </span><br><span class="line">    <span class="keyword">print</span> str(e)</span><br></pre></td></tr></table></figure>
+<p>4、利用MIMEimage发送图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp936 -*-</span></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">import</span> mimetypes</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"><span class="keyword">from</span> email.mime.image <span class="keyword">import</span> MIMEImage</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AutoSendMail</span><span class="params">()</span>:</span></span><br><span class="line">    msg = MIMEMultipart()</span><br><span class="line">    msg[<span class="string">'From'</span>] = <span class="string">"luck@163.com"</span></span><br><span class="line">    msg[<span class="string">'To'</span>] = <span class="string">"anderson@163.com"</span></span><br><span class="line">    msg[<span class="string">'Subject'</span>] = <span class="string">"hello world"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    txt = MIMEText(<span class="string">"这是中文的邮件内容哦"</span>,<span class="string">'plain'</span>,<span class="string">'gb2312'</span>)     </span><br><span class="line">    msg.attach(txt)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    file1 = <span class="string">"C:\\Users\\anderson\\Desktop\\ssssa.jpg"</span></span><br><span class="line">    image = MIMEImage(open(file1,<span class="string">'rb'</span>).read())</span><br><span class="line">    image.add_header(<span class="string">'Content-ID'</span>,<span class="string">'&lt;image1&gt;'</span>)</span><br><span class="line">    msg.attach(image)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    server = smtplib.SMTP()</span><br><span class="line">    server.connect(<span class="string">'smtp.163.com'</span>)</span><br><span class="line">    server.login(<span class="string">'lucklly@163.com'</span>,<span class="string">'allen888'</span>)</span><br><span class="line">    server.sendmail(msg[<span class="string">'From'</span>],msg[<span class="string">'To'</span>],msg.as_string())</span><br><span class="line">    server.quit()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    AutoSendMail()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/05/python-monkey/" itemprop="url">
+                  python尝试monkey收集crash
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-03-05T23:56:55+08:00" content="2014-03-05">
+              2014-03-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/05/python-monkey/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/05/python-monkey/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>曾今花了点时间研究的 monkey 测试，感觉Monkey太不可控了，不停的点击，crash一个接着一个。看Log也看得眼花，好不容易找到一个FATAL ERROR, 开发却说没什么用。</p>
+<p>Monkey 命令看似简单，就那么一行，可是参数组合起来，就强大了。</p>
+<p>Monkey经常点了系统的控件。恒温告诉我有黑白名单。后面试用了一下，果然不会点到系统中去了。</p>
+<p>可以直接用： </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.model</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.build</span><span class="class">.version</span><span class="class">.releasel</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.brand</span>"</span><br></pre></td></tr></table></figure>
+<p>来获<br>/system/build.prop  里面的信息。（何老师教的。）</p>
+<p>翠花，上脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> re  </span><br><span class="line">  </span><br><span class="line">packageName=<span class="string">"com.XXX.app"</span>  </span><br><span class="line">logdir=<span class="string">r"d:\jenkins"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXXX\build\android"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#os.popen('adb shell cat /system/build.prop &gt;D:\jenkins\phone.text')  </span></span><br><span class="line">os.system(<span class="string">'adb shell cat /system/build.prop &gt;D:\jenkins\phone.text'</span>)  </span><br><span class="line">  </span><br><span class="line">f = <span class="string">r"D:\jenkins\phone.text"</span>   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcmd</span><span class="params">(cmd)</span>:</span>  </span><br><span class="line">    f = open(cmd,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">          </span><br><span class="line">        line=line.split(<span class="string">'='</span>)  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.build.version.release'</span>):  </span><br><span class="line">            version = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.model'</span>):  </span><br><span class="line">            model = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.brand'</span>):  </span><br><span class="line">            brand = line[<span class="number">1</span>]  </span><br><span class="line">    <span class="keyword">return</span> version,model,brand  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">version,model,brand=getcmd(f)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> version,model,brand  </span><br><span class="line">os.remove(f)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print "使用Logcat清空Phone中log"  </span></span><br><span class="line">os.popen(<span class="string">"adb logcat -c"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"暂停2秒..."  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"wait"</span>  </span><br><span class="line">time.sleep(<span class="number">2</span>)  </span><br><span class="line"><span class="comment">#os.popen("adb shell monkey -p com.XXX.app -s 500 -v -v 1000")  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"强制关闭准备测试的APP"  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"a"</span>  </span><br><span class="line"><span class="comment">#commd="adb shell am force-stop %s" %(packageName)  </span></span><br><span class="line"><span class="comment">#os.popen(commd)      </span></span><br><span class="line">now1 = time.strftime(<span class="string">'%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line"><span class="comment">#newfname="%sCircle-debug.apk"%(now1)  </span></span><br><span class="line"><span class="comment">#newfpath="%s/%s"%(output_path,newfname)   </span></span><br><span class="line"><span class="comment">#oldfpath="%s/%s"%(output_path,oldname)  </span></span><br><span class="line"><span class="comment">#os.rename(oldfpath, newfpath)  </span></span><br><span class="line"><span class="comment">#print"开始执行Monkey命令"  </span></span><br><span class="line">  </span><br><span class="line">monkeylogname=logdir+<span class="string">"\\"</span>+now1+<span class="string">"monkey.log"</span>  </span><br><span class="line"><span class="keyword">print</span> monkeylogname  </span><br><span class="line">cmd=<span class="string">"adb shell monkey -p com.XXX.app -s 500 --ignore-timeouts --monitor-native-crashes -v -v 10000 &gt;&gt;%s"</span> %(monkeylogname)  </span><br><span class="line">os.popen(cmd)     </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"手机截屏"  </span></span><br><span class="line">  </span><br><span class="line">os.popen(<span class="string">"adb shell screencap -p /sdcard/monkey_run.png"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"拷贝截屏图片至电脑"  </span></span><br><span class="line">  </span><br><span class="line">cmd1=<span class="string">"adb pull /sdcard/monkey_run.png %s"</span> %(logdir)  </span><br><span class="line">os.popen(cmd1)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">"gai ming"</span>  </span><br><span class="line">oldname=logdir+<span class="string">"\\"</span>+<span class="string">r"monkey_run.png"</span>  </span><br><span class="line"><span class="keyword">if</span> (os.path.exists(oldname)):  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file is exist"</span>  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file isn't exist"</span>  </span><br><span class="line"><span class="keyword">print</span> oldname  </span><br><span class="line">newname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"monkey.png"</span>  </span><br><span class="line"><span class="keyword">print</span> newname  </span><br><span class="line">os.rename(oldname, newname)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"使用Logcat导出日志"  </span></span><br><span class="line">  </span><br><span class="line">logcatname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"logcat.log"</span>  </span><br><span class="line">cmd2=<span class="string">"adb logcat -d &gt;%s"</span> %(logcatname)  </span><br><span class="line">os.popen(cmd2)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"导出traces文件"  </span></span><br><span class="line">  </span><br><span class="line">tracesname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"traces.log"</span>  </span><br><span class="line">cmd3=<span class="string">"adb shell cat /data/anr/traces.txt&gt;%s"</span> %(tracesname)  </span><br><span class="line">os.popen(cmd3)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line"><span class="comment">#获取error  </span></span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line">  </span><br><span class="line">NullPointer=<span class="string">"java.lang.NullPointerException"</span>  </span><br><span class="line">IllegalState=<span class="string">"java.lang.IllegalStateException"</span>  </span><br><span class="line">IllegalArgument=<span class="string">"java.lang.IllegalArgumentException"</span>  </span><br><span class="line">ArrayIndexOutOfBounds=<span class="string">"java.lang.ArrayIndexOutOfBoundsException"</span>  </span><br><span class="line">RuntimeException=<span class="string">"java.lang.RuntimeException"</span>  </span><br><span class="line">SecurityException=<span class="string">"java.lang.SecurityException"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">geterror</span><span class="params">()</span>:</span>  </span><br><span class="line">    f = open(logcatname,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    errfile=<span class="string">"%s\error.log"</span> %(remote_path)  </span><br><span class="line">    fr = open(errfile,<span class="string">"a"</span>)  </span><br><span class="line">    fr.write(now1)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(version)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(model)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(brand)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">      </span><br><span class="line">    count=<span class="number">0</span>  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">    <span class="keyword">if</span> ( re.findall(NullPointer,line) <span class="keyword">or</span> re.findall(IllegalState,line) <span class="keyword">or</span> re.findall(IllegalArgument,line) <span class="keyword">or</span> re.findall(ArrayIndexOutOfBounds,line) <span class="keyword">or</span> re.findall(RuntimeException,line) <span class="keyword">or</span> re.findall(SecurityException,line) ):  </span><br><span class="line">            a=lines.index(line)  </span><br><span class="line">            count +=<span class="number">1</span>  </span><br><span class="line">            <span class="keyword">for</span> var <span class="keyword">in</span> range(a,a+<span class="number">22</span>):  </span><br><span class="line">                <span class="keyword">print</span> lines[var]  </span><br><span class="line">                fr.write(lines[var])  </span><br><span class="line">            fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    f.close()  </span><br><span class="line">    fr.close()  </span><br><span class="line">    <span class="keyword">return</span> count  </span><br><span class="line">  </span><br><span class="line">      </span><br><span class="line">number=geterror()  </span><br><span class="line"><span class="keyword">print</span> number</span><br></pre></td></tr></table></figure>
+<p>脚本是写出来了，也能发现一些有用的crash。<br>但是，开发不Fix。。。</p>
+<p>要是哪天能做一个监控系统就好了。<br>结合线上线下，就不会有这么多Crash了。</p>
+<p>本文发表在： <a href="https://testerhome.com/topics/2514" target="_blank" rel="external">testerhome</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/02/22/python-monkeyrunner/" itemprop="url">
+                  初学monkeyrunner
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-02-22T11:10:30+08:00" content="2014-02-22">
+              2014-02-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/22/python-monkeyrunner/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/22/python-monkeyrunner/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>现在的工作的重心渐渐从Web转到Mobile上来了。根据网上的例子，在公司产品上体验了一把MokeyRunner</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/pyton</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner,MonkeyDevice,MonkeyImage</span><br><span class="line"></span><br><span class="line">now=time.strftime(<span class="string">"%Y-%m-%d-%H-%M-%S"</span>)</span><br><span class="line">logpath=<span class="string">"D:\\log\\"</span></span><br><span class="line">name=sys.argv[<span class="number">0</span>].split(<span class="string">"\\"</span>)</span><br><span class="line">filename=name[len(name)-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">log=open(logpath+filename[<span class="number">0</span>:-<span class="number">3</span>]+<span class="string">"-log"</span>+now+<span class="string">".txt"</span>,<span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line">print(<span class="string">'connected'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line">log.write(<span class="string">"连接成功...\n"</span>)</span><br><span class="line"></span><br><span class="line">device.installPackage(<span class="string">'../platform-tools/weather.apk'</span>)</span><br><span class="line">print(<span class="string">'install'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line">log.write(<span class="string">"安装成功...\n"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#device.shell('am force-stop com.eztech.kylinlauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.XXX.app -v 1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#device.startActivity(component='com.eztech.kylinlauncher/com.eztech.kylinlauncher.MainActivity')</span></span><br><span class="line">device.startActivity(component =<span class="string">"com.XXX.app/com.XXX.app.activity.WelcomeActivity"</span>)</span><br><span class="line"></span><br><span class="line">MonkeyRunner.sleep(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">device.touch(<span class="number">137</span>,<span class="number">205</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">346</span>,<span class="number">200</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">186</span>,<span class="number">304</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">234</span>,<span class="number">202</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">562</span>,<span class="number">205</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">27</span>,<span class="number">90</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.touch(<span class="number">609</span>,<span class="number">197</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_UP'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_UP'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_RIGHT'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_RIGHT'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_RIGHT'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_LEFT'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">2</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_RIGHT'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">5</span>)</span><br><span class="line">device.press(<span class="string">"KEYCODE_DPAD_CENTER"</span>,<span class="string">"DOWN_AND_UP"</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">10</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_DPAD_DOWN'</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line">device.press(<span class="string">'KEYCODE_BACK '</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line"><span class="comment">#点击发送的位置</span></span><br><span class="line"><span class="comment">#device.touch(324,73,'DOWN_AND_UP')</span></span><br><span class="line">device.touch(<span class="number">388</span>,<span class="number">298</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">10</span>)</span><br><span class="line">print(<span class="string">'touch'</span>)</span><br><span class="line">log.write(<span class="string">"我点！...\n"</span>)</span><br><span class="line"><span class="comment">#移动第一个便签的位置到最后面去，参数是：一个起始点坐标，一个终点坐标，移动的时间，移动的步骤</span></span><br><span class="line"><span class="comment">#device.drag((232,235),(216,472),3,2)</span></span><br><span class="line">device.drag((<span class="number">314</span>,<span class="number">248</span>),(<span class="number">314</span>,<span class="number">360</span>),<span class="number">4</span>,<span class="number">3</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line">print(<span class="string">'drag'</span>)</span><br><span class="line">log.write(<span class="string">"我拽！...\n"</span>)</span><br><span class="line"><span class="comment">#截图</span></span><br><span class="line">result = device.takeSnapshot()</span><br><span class="line"><span class="comment">#保存截图</span></span><br><span class="line">result.writeToFile(<span class="string">'./pic0012.png'</span>,<span class="string">'png'</span>)</span><br><span class="line"><span class="comment">#取电脑中的需要对比的截图</span></span><br><span class="line">resultTrue=MonkeyRunner.loadImageFromFile(<span class="string">'C:\\SDK\\adt-bundle-windows-x86_64-20140321\\sdk\\tools\\picture\\pic001.png'</span>)</span><br><span class="line">log.write(<span class="string">"对比截图...\n"</span>)</span><br><span class="line"><span class="comment">#compare pictures with the same is 90%</span></span><br><span class="line"><span class="comment">#对比截图，看相似度能否达到9成</span></span><br><span class="line"><span class="keyword">if</span>(result.sameAs(resultTrue,<span class="number">0.9</span>)):</span><br><span class="line">    <span class="comment">#print the message </span></span><br><span class="line">    print(<span class="string">"compare success"</span>)</span><br><span class="line">    <span class="comment">#write message to log</span></span><br><span class="line">    log.write(<span class="string">"对比成功...\n"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment">#print the failed message</span></span><br><span class="line">    print(<span class="string">"compare failed"</span>)</span><br><span class="line">    log.write(<span class="string">"对比失败，图片相似度没有达到90%...\n"</span>)</span><br><span class="line"></span><br><span class="line">device.removePackage(<span class="string">'com.moji.mjweather'</span>)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">'uninstall Success!'</span>)</span><br><span class="line">log.write(<span class="string">"卸载成功...\n"</span>)</span><br><span class="line"><span class="comment">#回到主界面</span></span><br><span class="line">device.press(<span class="string">'KEYCODE_HOME '</span>,<span class="string">'DOWN_AND_UP'</span>)</span><br><span class="line">MonkeyRunner.sleep(<span class="number">3</span>)</span><br><span class="line">print(<span class="string">'back to home '</span>)</span><br><span class="line">log.write(<span class="string">"结束！...\n"</span>)</span><br></pre></td></tr></table></figure>
+<p>跑完了以后，感觉这工具不太好用。<br>1： 取坐标这个是硬伤。兼容性难做到。<br>2： 靠图片相似度对比，这个太不准了。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/01/27/python-oa/" itemprop="url">
+                  用selenium实现的流程自动化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-01-27T10:15:10+08:00" content="2014-01-27">
+              2014-01-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/01/27/python-oa/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/27/python-oa/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>这是在某厂负责的第一个项目，是公司内部做的一个OA系统，主要是各种流程，请假，审批等等。<br>开发起来并不复杂，但是流程特别多，业务比较复杂，项目还没结束的时候，团队人都走没了。</p>
+<p>当时测试时间被压缩得很紧，基本功能没啥问题后，就写了个脚本来覆盖各个流程。<br>这也是这个公司的第一个自动化测试项目和敏捷项目。<br>虽然功劳都被人拿走了，但是这个项目还是很成功的。</p>
+<p>auto.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8</span></span><br><span class="line"><span class="comment"># coding:gb2312</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> NoAlertPresentException</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.action_chains <span class="keyword">import</span> ActionChains</span><br><span class="line"><span class="keyword">import</span> time,re,sys,os</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OAtest</span><span class="params">()</span>:</span></span><br><span class="line">    currentpath=os.getcwd()</span><br><span class="line">    logpath=currentpath+<span class="string">"\\Log"</span></span><br><span class="line">    casepath=currentpath+<span class="string">"\\Case"</span></span><br><span class="line">    tablepath=currentpath+<span class="string">"\\Table"</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(logpath) :</span><br><span class="line">        os.mkdir(<span class="string">"Log"</span>)</span><br><span class="line">    <span class="keyword">print</span> logpath</span><br><span class="line">    logname = time.strftime(<span class="string">r"%Y-%m-%d_%H-%M"</span>,time.localtime())</span><br><span class="line">    <span class="keyword">print</span> logname</span><br><span class="line">    filename=logpath + <span class="string">"\\"</span> + logname+<span class="string">"log.txt"</span></span><br><span class="line">    <span class="keyword">print</span> filename</span><br><span class="line">    logline=open(filename,<span class="string">"w+"</span>)</span><br><span class="line">    <span class="comment">#logline.write('If you are happy')</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.dr = webdriver.Chrome()</span><br><span class="line">        <span class="comment">#self.dr = webdriver.Ie()</span></span><br><span class="line">        self.url = <span class="string">'http://10.21.168.170/index'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在开始登陆..."</span></span><br><span class="line">        self.logline.write(<span class="string">"现在开始登陆...\n"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Now Logging is %s"</span> %(name)</span><br><span class="line">        self.logline.write(<span class="string">"现在登陆的账号是 %s \n"</span> %(name))</span><br><span class="line">        dr = self.dr</span><br><span class="line">        dr.get(self.url)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        dr.find_element_by_id(<span class="string">'UserForm_username'</span>).send_keys(name)</span><br><span class="line">        dr.find_element_by_id(<span class="string">'UserForm_password'</span>).send_keys(<span class="string">'1'</span>)</span><br><span class="line">        dr.find_element_by_name(<span class="string">'yt0'</span>).click()</span><br><span class="line">      <span class="comment">#  errormsg = dr.find_element_by_class_name("errorSummary")</span></span><br><span class="line">        <span class="comment">#if errormsg.is_displayed() == True:</span></span><br><span class="line">        <span class="comment">#    print u"用户名密码不匹配，请检查用户名或密码！\n"</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        dr.maximize_window()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">creatleaveprogress</span><span class="params">(self,mingzi)</span>:</span></span><br><span class="line">        dr = self.dr</span><br><span class="line">        frame = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">        dr.switch_to_frame(frame)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入流程"</span></span><br><span class="line">        dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[2]/div[1]/a'</span>).click()</span><br><span class="line">        self.logline.write(<span class="string">"现在进入新建流程...\n"</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入新建流程"</span></span><br><span class="line">        dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[2]/div[3]/p[1]/a'</span>).click()</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"点中了新建流程按钮"</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        dr.switch_to_default_content()</span><br><span class="line">    <span class="comment">#    dr.switch_to_frame("Main")</span></span><br><span class="line">        frame1 = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">        dr.switch_to_frame(frame1)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"转入到流程页面"</span></span><br><span class="line">        self.logline.write(<span class="string">"转入到流程页面...\n"</span>)</span><br><span class="line">       <span class="comment"># element=dr.find_element_by_xpath('/html/body/div/div/div[2]/ul[3]/li[3]/p[1]/a')</span></span><br><span class="line">        <span class="comment">#开始读table表了</span></span><br><span class="line">        filelist=os.listdir(self.tablepath)</span><br><span class="line">        <span class="keyword">print</span> filelist</span><br><span class="line">        <span class="keyword">print</span> mingzi</span><br><span class="line">        rule=re.compile(mingzi)</span><br><span class="line">        filelist1=<span class="string">","</span>.join(filelist)</span><br><span class="line">        <span class="keyword">if</span> rule.findall(filelist1):</span><br><span class="line">            <span class="keyword">print</span> rule.findall(filelist1)</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"有这张表"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"找不到张表"</span></span><br><span class="line">        <span class="comment">#my_file= 'C:\\Users\\Lenovo\\Desktop\\aa\\aa.csv'</span></span><br><span class="line">        myfile = self.tablepath + <span class="string">"\\"</span>+mingzi + <span class="string">".csv"</span></span><br><span class="line">        <span class="keyword">print</span> myfile</span><br><span class="line">        data=csv.reader(file(myfile,<span class="string">'rb'</span>))</span><br><span class="line">        <span class="keyword">print</span> data</span><br><span class="line">        <span class="comment">#for user in data:</span></span><br><span class="line">        <span class="comment">#    print user</span></span><br><span class="line"><span class="comment">#        table2 = list(data)</span></span><br><span class="line">        i=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> table1 <span class="keyword">in</span> data:</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">                element=dr.find_element_by_xpath(table1[<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">print</span> <span class="string">u"打开创建流程页面"</span></span><br><span class="line">                element.click()</span><br><span class="line">                <span class="keyword">print</span> <span class="string">u"现在申请的是：%s"</span>%(element.text)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"title of current page is %s"</span> %(dr.title)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"url of current page is %s"</span> %(dr.current_url)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dr.switch_to_default_content()</span><br><span class="line">                <span class="comment"># now_handle = dr.current_window_handle</span></span><br><span class="line">                <span class="keyword">for</span> handle <span class="keyword">in</span> dr.window_handles:</span><br><span class="line">                    dr.switch_to_window(handle)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"title of current page is %s"</span> %(dr.title)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"url of current page is %s"</span> %(dr.current_url)</span><br><span class="line"><span class="comment">#                print "url of current page is %s" %(dr.current_window_handle)</span></span><br><span class="line">                <span class="comment">#for table1 in data:</span></span><br><span class="line"><span class="comment">#                print table1</span></span><br><span class="line">                <span class="keyword">print</span> <span class="string">"The value is %s,%s"</span>%(table1[<span class="number">0</span>],table1[<span class="number">1</span>])</span><br><span class="line">                dr.find_element_by_xpath(table1[<span class="number">0</span>]).send_keys(table1[<span class="number">1</span>])</span><br><span class="line">            i=i+<span class="number">1</span></span><br><span class="line">        title = dr.find_element_by_xpath(<span class="string">'//table/tbody/tr[1]/td[2]/div'</span>).text</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"The title is %s \n"</span> %title</span><br><span class="line">        dr.find_element_by_id(<span class="string">'submit_request'</span>).click()</span><br><span class="line">        currenttime = time.strftime(<span class="string">r"%Y-%m-%d_%H:%M:%S"</span>,time.localtime())</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Time is %s"</span>%currenttime</span><br><span class="line">        <span class="comment"># dr.get_screenshot_as_file('baidu.png')</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            alert = dr.switch_to_alert()</span><br><span class="line">            alert.accept()</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'no alerts display'</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#filename = title + currenttime</span></span><br><span class="line">        <span class="keyword">return</span> title</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">banjie</span><span class="params">(self,biaoti,flag=<span class="number">1</span>)</span>:</span></span><br><span class="line">        dr = self.dr</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"传过来的参数是%s"</span>%biaoti</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在flag的值是%s"</span>%flag</span><br><span class="line">        frame = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">        dr.switch_to_frame(frame)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入流程"</span></span><br><span class="line">        dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[2]/div[1]/a'</span>).click()</span><br><span class="line">        <span class="keyword">if</span> flag==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"现在进入我的待办"</span></span><br><span class="line">            self.logline.write(<span class="string">"现在进入我的待办...\n"</span>)</span><br><span class="line">            dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[2]/div[3]/p[2]/a'</span>).click()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"现在进入我的办结"</span></span><br><span class="line">            self.logline.write(<span class="string">"现在进入我的办结...\n"</span>)</span><br><span class="line">            dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[2]/div[3]/p[4]/a'</span>).click()</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"点中"</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        dr.switch_to_default_content()</span><br><span class="line">    <span class="comment">#    dr.switch_to_frame("Main")</span></span><br><span class="line">        frame1 = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">        dr.switch_to_frame(frame1)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"转入到我的办结页面"</span></span><br><span class="line">        self.logline.write(<span class="string">"转入到我的办结页面...\n"</span>)</span><br><span class="line">      <span class="comment">#  dr.find_element_by_xpath('/html/body/div/div/div[2]/ul[3]/li[3]/p[1]/a').click()</span></span><br><span class="line"></span><br><span class="line">        xiaobiaoti = dr.find_element_by_xpath(<span class="string">'/html/body/div/div/table/tbody/tr[1]/td[4]/a'</span>)</span><br><span class="line">       <span class="comment"># assert(biaoti,xiaobiaoti.text)</span></span><br><span class="line">        pngname1=self.logpath+<span class="string">"\\"</span>+self.logname+biaoti+<span class="string">"progress.png"</span></span><br><span class="line">        pngname2=self.logpath+<span class="string">"\\"</span>+self.logname+biaoti+<span class="string">"detail.png"</span></span><br><span class="line">        <span class="keyword">if</span> (biaoti == xiaobiaoti.text):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"找到了 %s"</span> %biaoti</span><br><span class="line">            xiaobiaoti.click()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"打开请求 %s"</span> %biaoti</span><br><span class="line">            <span class="keyword">for</span> handle <span class="keyword">in</span> dr.window_handles:</span><br><span class="line">                dr.switch_to_window(handle)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line">            dr.get_screenshot_as_file(pngname2)</span><br><span class="line">            dr.close()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"没有找到 %s，请查看你的设置或流程，谢谢！\n"</span> %biaoti</span><br><span class="line">       <span class="comment">#xiaobiaoti.click()</span></span><br><span class="line">        <span class="keyword">for</span> handle <span class="keyword">in</span> dr.window_handles:</span><br><span class="line">            dr.switch_to_window(handle)</span><br><span class="line">        dr.get_screenshot_as_file(pngname1)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">approveleaveprogress</span><span class="params">(self,biaoti,flag=<span class="number">1</span>)</span>:</span></span><br><span class="line">        dr = self.dr</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"传过来的参数是%s"</span>%biaoti</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在flag的值是%s"</span>%flag</span><br><span class="line">        frame = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">      <span class="comment">#  driver.switch_to_frame(frame)</span></span><br><span class="line">        dr.switch_to_frame(frame)</span><br><span class="line">      <span class="comment">#  dr.switch_to_frame("Left")</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入frame"</span></span><br><span class="line">    <span class="comment">#    add = driver.find_element_by_css_selector('input.add')</span></span><br><span class="line">    <span class="comment">#    SearchButton = driver.find_element_by_css_selector('input.add1')</span></span><br><span class="line">    <span class="comment">#    progressbutton = dr.find_element_by_xpath('/html/body/div[1]/div/ul/li[2]/div[1]/a')</span></span><br><span class="line">        dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[3]/div[1]/a'</span>).click()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入事宜"</span></span><br><span class="line">        dr.find_element_by_xpath(<span class="string">'/html/body/div[1]/div/ul/li[3]/div[3]/p[1]/a'</span>).click()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"打开了待办事宜"</span></span><br><span class="line">        self.logline.write(<span class="string">"打开了待办事宜...\n"</span>)</span><br><span class="line">        dr.switch_to_default_content()</span><br><span class="line">        frame1 = dr.find_element_by_xpath(<span class="string">"/html/frameset/frameset/frameset"</span>).find_element_by_tag_name(<span class="string">"frame"</span>)</span><br><span class="line">      <span class="comment">#  driver.switch_to_frame(frame)</span></span><br><span class="line">        dr.switch_to_frame(frame1)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">u"现在进入到 frame11"</span></span><br><span class="line">        self.logline.write(<span class="string">"现在进入到 frame11...\n"</span>)</span><br><span class="line">      <span class="comment">#  inputs = dr.find_elements_by_tag_name('td')</span></span><br><span class="line">      <span class="comment">#  for input in inputs:</span></span><br><span class="line">      <span class="comment">#      if input.text == 'biaoti':</span></span><br><span class="line">      <span class="comment">#          print"Find the progress"</span></span><br><span class="line">    <span class="comment">#         input.click()</span></span><br><span class="line">     <span class="comment">#           break</span></span><br><span class="line">        <span class="comment">#dr.find_element_by_xpath('/html/body/div/div/table/tbody/tr[1]/td[3]/a').click()</span></span><br><span class="line">        xiaobiaoti = dr.find_element_by_xpath(<span class="string">'/html/body/div/div/table/tbody/tr[1]/td[3]/a'</span>)</span><br><span class="line">       <span class="comment"># assert(biaoti,xiaobiaoti.text)</span></span><br><span class="line">        <span class="keyword">if</span> (biaoti == xiaobiaoti.text):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"在待办事宜中找到了 %s"</span> %biaoti</span><br><span class="line">            xiaobiaoti.click()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"打开请求 %s"</span> %biaoti</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"在待办事宜中没找到 %s，请查看你的设置或流程，谢谢！\n"</span> %biaoti</span><br><span class="line">        <span class="comment">#xiaobiaoti.click()</span></span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Now I open the page"</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"title of current page is %s"</span> %(dr.title)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"url of current page is %s"</span> %(dr.current_url)</span><br><span class="line">        <span class="keyword">for</span> handle <span class="keyword">in</span> dr.window_handles:</span><br><span class="line">            dr.switch_to_window(handle)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"title of current page is %s"</span> %(dr.title)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"url of current page is %s"</span> %(dr.current_url)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"url of current page is %s"</span> %(dr.current_window_handle)</span><br><span class="line">        <span class="keyword">if</span> flag==<span class="number">0</span>:</span><br><span class="line">            dr.find_element_by_id(<span class="string">'submit_back'</span>).click()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"请求%s被退回"</span>%(biaoti)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dr.find_element_by_id(<span class="string">'submit_request'</span>).click()</span><br><span class="line">            <span class="keyword">print</span> <span class="string">u"批准请求%s"</span>%(biaoti)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            alert = dr.switch_to_alert()</span><br><span class="line">            alert.accept()</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'no alerts display'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#def rejectprogress(self):</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.dr.quit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#if __name__ == "__main__":</span></span><br><span class="line"><span class="comment">#    unittest.main()</span></span><br><span class="line"></span><br><span class="line">t = OAtest()</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'now start to create a request'</span></span><br><span class="line">t.setUp()</span><br><span class="line"></span><br><span class="line">t.login(<span class="number">10000386</span>)</span><br><span class="line">ss=t.creatleaveprogress()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"return value is %s"</span> %ss</span><br><span class="line">t.tearDown()</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'now start to approve a request'</span></span><br><span class="line">t.setUp()</span><br><span class="line">t.login(<span class="number">10000410</span>)</span><br><span class="line">t.approveleaveprogress(ss)</span><br><span class="line">t.tearDown()</span><br><span class="line"></span><br><span class="line">        leavetime = dr.find_element_by_xpath(<span class="string">'//table/tbody/tr[6]/td[2]/div/input'</span>)</span><br><span class="line">        backtime = dr.find_element_by_xpath(<span class="string">'//table/tbody/tr[7]/td[2]/div/input'</span>)</span><br><span class="line">        leaveday = dr.find_element_by_xpath(<span class="string">'//table/tbody/tr[11]/td[2]/div/input'</span>)</span><br><span class="line">        leavereason = dr.find_element_by_xpath(<span class="string">'//table/tbody/tr[12]/td[2]/div/textarea'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        leavetime.send_keys(<span class="string">"2014-07-09 00:00:00"</span>)</span><br><span class="line">        backtime.send_keys(<span class="string">"2014-07-10 00:00:00"</span>)</span><br><span class="line">        leaveday.send_keys(<span class="string">"1"</span>)</span><br><span class="line">        leavereason.send_keys(<span class="string">u"回家"</span>)</span><br></pre></td></tr></table></figure>
+<p>path.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encode=utf-8</span></span><br><span class="line"><span class="keyword">import</span> os,sys,re</span><br><span class="line"></span><br><span class="line">a=os.getcwd()+<span class="string">"\\Table"</span></span><br><span class="line"><span class="keyword">print</span> a</span><br><span class="line">list=os.listdir(a)</span><br><span class="line"><span class="keyword">print</span> list</span><br><span class="line"><span class="keyword">print</span> type(list)</span><br><span class="line">arry=<span class="string">","</span>.join(list)</span><br><span class="line"><span class="keyword">print</span> arry</span><br><span class="line"><span class="keyword">print</span> type(arry)</span><br><span class="line">r=<span class="string">r'\w+\.csv'</span></span><br><span class="line">a=re.compile(r)</span><br><span class="line"><span class="keyword">print</span> a</span><br><span class="line">list=a.findall(arry)</span><br><span class="line"><span class="keyword">print</span> list</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list:</span><br><span class="line">        <span class="keyword">print</span> i</span><br><span class="line">        i=i.split(<span class="string">"."</span>)</span><br><span class="line">        <span class="keyword">print</span> i[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>把case写到一个文件里面，维护起来方便。</p>
+<p>reader.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> re,sys,os</span><br><span class="line"></span><br><span class="line">my_file= <span class="string">'C:\\Users\\Lenovo\\Desktop\\aa\\dd.csv'</span></span><br><span class="line">typelist =[]</span><br><span class="line">data=csv.reader(file(my_file,<span class="string">'rb'</span>))</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> user <span class="keyword">in</span> data:</span><br><span class="line">	<span class="keyword">print</span> user</span><br><span class="line">	typelist.append(user[<span class="number">0</span>])</span><br><span class="line">	i=i+<span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> typelist</span><br><span class="line">typeli=<span class="string">""</span>.join(typelist)</span><br><span class="line"><span class="keyword">print</span> i+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#yourfile='C:\\Users\\Lenovo\\Desktop\\aa\\dd.txt'</span></span><br><span class="line"><span class="comment">#data=csv.reader(file(yourfile,'rb'))</span></span><br><span class="line">source=open(<span class="string">r"C:\\Users\\Lenovo\\Desktop\\aa\\dd.txt"</span>,<span class="string">"r"</span>)</span><br><span class="line">data=source.readlines()</span><br><span class="line">source.close()</span><br><span class="line">j=<span class="number">0</span></span><br><span class="line">k=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> pro <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"the list is %s"</span> %pro</span><br><span class="line">      <span class="comment">#  pro="".join(pro)</span></span><br><span class="line">        <span class="comment">#print "the list change to %s" %pro</span></span><br><span class="line">        pro=pro.strip(<span class="string">"\n"</span>)</span><br><span class="line">        index=pro.find(<span class="string">':'</span>)</span><br><span class="line">        <span class="keyword">print</span> index</span><br><span class="line">        pro=pro.split(<span class="string">':'</span>)</span><br><span class="line">        head=pro[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">print</span> head</span><br><span class="line">        tail=pro[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">print</span> tail</span><br><span class="line">        <span class="comment">#r=r'\d'</span></span><br><span class="line">        rule=re.compile(<span class="string">r'^\D'</span>)</span><br><span class="line">        <span class="comment">#print rule.findall(head)</span></span><br><span class="line">        <span class="keyword">if</span> rule.findall(head):</span><br><span class="line">                <span class="keyword">if</span> re.findall(head,typeli):</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u"在csv文件中有匹配"</span></span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u"行号是"</span></span><br><span class="line">                        j=j+<span class="number">1</span></span><br><span class="line">                        <span class="comment">#登陆等操作</span></span><br><span class="line">                        <span class="comment">#创建新表</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">u"请新建流程的表路径，或者检查你的类型"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"The case %s is skip "</span> %head</span><br><span class="line">                k=k+<span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">u"跑过的case %d"</span> %j</span><br><span class="line"><span class="keyword">print</span> <span class="string">u"跳过的case %d"</span> %k</span><br></pre></td></tr></table></figure>
+<p>弄成一个可执行的工具，这样就可以脱离python环境。</p>
+<p>setup.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding: UTF-8-*-</span></span><br><span class="line"><span class="keyword">from</span> distutils.core <span class="keyword">import</span> setup</span><br><span class="line"><span class="keyword">import</span> py2exe</span><br><span class="line"><span class="comment"># Powered by ***</span></span><br><span class="line">INCLUDES = []</span><br><span class="line">options = &#123;<span class="string">"py2exe"</span> :  </span><br><span class="line">    &#123;<span class="string">"compressed"</span> : <span class="number">1</span>,  </span><br><span class="line">     <span class="string">"optimize"</span> : <span class="number">2</span>,    </span><br><span class="line">     <span class="string">"includes"</span> : INCLUDES, 	 </span><br><span class="line">     <span class="string">"dll_excludes"</span>: [<span class="string">"mswsock.dll"</span>, <span class="string">"powrprof.dll"</span>,<span class="string">"w9xpopen.exe"</span>] &#125;&#125;  </span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">"OA Helper"</span>,</span><br><span class="line">    version = <span class="string">'1.0'</span>,</span><br><span class="line">    options = options,</span><br><span class="line">    description = <span class="string">"Please contact with Anderson if you have any problems,Q:117732865"</span>,  </span><br><span class="line">    zipfile=<span class="keyword">None</span>,</span><br><span class="line">    console=[&#123;<span class="string">"script"</span>: <span class="string">"file.py"</span>, <span class="string">"icon_resources"</span>: [(<span class="number">1</span>, <span class="string">"logo.ico"</span>)] &#125;],</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>因为时间很紧，脚本没有做太多的优化，也没有结果报表啥的，主要是给自己看的，就随意了很多。</p>
+
             
           </span>
         
@@ -342,7 +1589,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -383,21 +1630,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
