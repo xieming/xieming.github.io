@@ -197,15 +197,286 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/29/json-load-dump/" itemprop="url">
+                  json_load_dump
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-29T00:14:30+08:00" content="2016-07-29">
+              2016-07-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/29/json-load-dump/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/29/json-load-dump/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
+        
+          <span itemprop="articleBody">
+            
+              <p>在程序运行的过程中，所有的变量都是在内存中，比如，定义一个dict：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = <span class="function"><span class="title">dict</span><span class="params">(name=<span class="string">'Bob'</span>, age=<span class="number">20</span>, score=<span class="number">88</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>首先，我们尝试把一个对象序列化并写入文件：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = dict(name='Bob', age=20, score=88)</span><br><span class="line">&gt;&gt;&gt; pickle.dumps(d)</span><br><span class="line">"(dp0<span class="command">\nS</span>'age'<span class="command">\np</span>1<span class="command">\nI</span>20<span class="command">\nsS</span>'score'<span class="command">\np</span>2<span class="command">\nI</span>88<span class="command">\nsS</span>'name'<span class="command">\np</span>3<span class="command">\nS</span>'Bob'<span class="command">\np</span>4<span class="command">\ns</span>."</span><br></pre></td></tr></table></figure>
+<p>pickle.dumps()方法把任意对象序列化成一个str，然后，就可以把这个str写入文件。或者用另一个方法pickle.dump()直接把对象序列化后写入一个file-like Object：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f = <span class="function"><span class="title">open</span><span class="params">(<span class="string">'dump.txt'</span>, <span class="string">'wb'</span>)</span></span></span><br><span class="line">&gt;&gt;&gt; pickle.<span class="function"><span class="title">dump</span><span class="params">(d, f)</span></span></span><br><span class="line">&gt;&gt;&gt; f.<span class="function"><span class="title">close</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>看看写入的dump.txt文件，一堆乱七八糟的内容，这些都是Python保存的对象内部信息。</p>
+<p>当我们要把对象从磁盘读到内存时，可以先把内容读到一个str，然后用pickle.loads()方法反序列化出对象，也可以直接用pickle.load()方法从一个file-like Object中直接反序列化出对象。我们打开另一个Python命令行来反序列化刚才保存的对象：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;</span>&gt; f = open(<span class="string">'dump.txt'</span>, <span class="string">'rb'</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; d = pickle.load(f)</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; f.close()</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; d</span><br><span class="line">&#123;<span class="string">'age'</span><span class="symbol">:</span> <span class="number">20</span>, <span class="string">'score'</span><span class="symbol">:</span> <span class="number">88</span>, <span class="string">'name'</span><span class="symbol">:</span> <span class="string">'Bob'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>变量的内容又回来了！</p>
+<p><strong>JSON</strong></p>
+<p>如果我们要在不同的编程语言之间传递对象，就必须把对象序列化为标准格式，比如XML，但更好的方法是序列化为JSON，因为JSON表示出来就是一个字符串，可以被所有语言读取，也可以方便地存储到磁盘或者通过网络传输。JSON不仅是标准格式，并且比XML更快，而且可以直接在Web页面中读取，非常方便。</p>
+<p>JSON表示的对象就是标准的JavaScript语言的对象，JSON和Python内置的数据类型对应如下：</p>
+<p>JSON类型    Python类型<br>{}    dict<br>[]    list<br>“string”    ‘str’或u’unicode’<br>1234.56    int或float<br>true/false    True/False<br>null    None<br>Python内置的json模块提供了非常完善的Python对象到JSON格式的转换。我们先看看如何把Python对象变成一个JSON：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;</span>&gt; import json</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; d = dict(name=<span class="string">'Bob'</span>, age=<span class="number">20</span>, score=<span class="number">88</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; json.dumps(d)</span><br><span class="line"><span class="string">'&#123;"age": 20, "score": 88, "name": "Bob"&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>dumps()方法返回一个str，内容就是标准的JSON。类似的，dump()方法可以直接把JSON写入一个file-like Object。</p>
+<p>要把JSON反序列化为Python对象，用loads()或者对应的load()方法，前者把JSON的字符串反序列化，后者从file-like Object中读取字符串并反序列化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>json_str = <span class="string">'&#123;"age": 20, "score": 88, "name": "Bob"&#125;'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>json.loads(json_str)</span><br><span class="line">&#123;<span class="string">u'age'</span>: <span class="number">20</span>, <span class="string">u'score'</span>: <span class="number">88</span>, <span class="string">u'name'</span>: <span class="string">u'Bob'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>有一点需要注意，就是反序列化得到的所有字符串对象默认都是unicode而不是str。由于JSON标准规定JSON编码是UTF-8，所以我们总是能正确地在Python的str或unicode与JSON的字符串之间转换。</p>
+<p><strong>总结：</strong></p>
+<p>dumps()方法返回一个str，内容就是标准的JSON。<br>loads()把JSON反序列化为Python对象</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
     
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/28/python-encode-decode/" itemprop="url">
+                  PYTHON-编码处理小结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-28T23:41:39+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/python-encode-decode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/python-encode-decode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">原文</a></p>
+<p>用python处理中文时，读取文件或消息，http参数等等</p>
+<p>一运行，发现乱码(字符串处理，读写文件，print)</p>
+<p>然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码</p>
+<p>所以调试时最常出现的错误</p>
+<p>错误1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe6 in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+<p>错误2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">File <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> decode</span><br><span class="line">    <span class="built_in">return</span> codecs.utf_8_decode(input, errors, True)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-1: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+<p>首先</p>
+<blockquote>
+<p>必须有大体概念，了解下字符集，字符编码</p>
+<p>ASCII | Unicode | UTF-8 | 等等</p>
+</blockquote>
+<p>str 和 unicode</p>
+<blockquote>
+<p>str和unicode都是basestring的子类</p>
+</blockquote>
+<p>所以有判断是否是字符串的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_str</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> isinstance(s, basestring)</span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str<span class="function">  -&gt;</span> decode<span class="function"><span class="params">(<span class="string">'the_coding_of_str'</span>)</span> -&gt;</span> unicode</span><br><span class="line">unicode<span class="function"> -&gt;</span> encode<span class="function"><span class="params">(<span class="string">'the_coding_you_want'</span>)</span> -&gt;</span> str</span><br></pre></td></tr></table></figure>
+<p>str是字节串，由unicode经过编码(encode)后的字节组成的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'中文'</span></span><br><span class="line">s = <span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="string">'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>求长度(返回字节数)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="string">'\xe4\xb8\xad\xe6\x96\x87'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>unicode才是真正意义上的字符串，由字符组成</p>
+<p>声明方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">u'中文'</span></span><br><span class="line">s = <span class="string">'中文'</span>.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">s = unicode(<span class="string">'中文'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">type(<span class="string">u'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'unicode'</span>&gt;</span><br><span class="line">求长度(返回字符数),在逻辑中真正想要用的</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span></span><br><span class="line"><span class="string">u'\u4e2d\u6587'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>结论:</strong><br>搞明白要处理的是str还是unicode, 使用对的处理方法(str.decode/unicode.encode)</p>
+<p>下面是判断是否为unicode/str的方法</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', unicode)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance('中文', unicode)</span><br><span class="line">False</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; isinstance('中文', str)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', str)</span><br><span class="line">False</span><br><span class="line">简单原则：不要对str使用<span class="keyword">encode</span>，不要对unicode使用<span class="keyword">decode</span> (事实上可以对str进行<span class="keyword">encode</span>的，具体见最后，为了保证简单，不建议)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; '中文'.<span class="keyword">encode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: 'ascii' codec can't <span class="keyword">decode</span> byte 0xe4 <span class="keyword">in</span> position 0: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; <span class="keyword">u</span>'中文'.<span class="keyword">decode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line"><span class="keyword">File</span> <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, <span class="keyword">line</span> 16, <span class="keyword">in</span> <span class="keyword">decode</span></span><br><span class="line">    <span class="keyword">return</span> codecs.utf_8_decode(<span class="keyword">input</span>, errors, True)</span><br><span class="line">UnicodeEncodeError: 'ascii' codec can't <span class="keyword">encode</span> characters <span class="keyword">in</span> position 0-1: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br></pre></td></tr></table></figure>
+<p>不同编码转换,使用unicode作为中间编码</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#s是code_A的str</span><br><span class="line">s.<span class="function"><span class="title">decode</span><span class="params">(<span class="string">'code_A'</span>)</span></span>.<span class="function"><span class="title">encode</span><span class="params">(<span class="string">'code_B'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>总结总结，本文仅适用于python2.x</strong></p>
+<p>默认编码与开头声明<br>首先是开头的地方声明编码</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># coding: utf8</span></span><br></pre></td></tr></table></figure>
+<p>这个东西的用处是声明文件编码为utf8(要写在前两行内)，不然文件里如果有中文，比如</p>
+<p>a = ‘美丽’<br>b = u’美丽’<br>中任何一种，运行前就会提示你SyntaxError，Non-ASCII character… 之类，因为python2.x的文件编码默认使用万恶的ascii<br>开头加上那句默认编码声明就会变成utf8，获取当前的默认编码</p>
+<p>sys.getdefaultencoding()<br>unicode与utf8<br>在python中，使用unicode类型作为编码的基础类型，编解码要以其为中间形式过渡，即进行str和unicode之间的转换。<br>解码然后再编码的过程，即str-&gt;unicode-&gt;str的过程。中间得到的叫做unicode对象</p>
+<p>这里需要强调的是unicode是一种字符编码方法，是 “与存储无关的表示”，而utf8是一种以unicode进行编码的计算机二进制表示，或者说传输规范。gbk，gb2312，gb18030, utf8等属于不同的字符集，转换编码就是在它们中的任意两者间进行。</p>
+<p><strong>控制台的编码</strong></p>
+<p>这又是另一个让人困惑的地方——控制台的编码导致的乱码问题甚至是报错。一般个人用的电脑上控制台基本上都是utf8编码的</p>
+<p>一般submine保存时需要选择“utf-8 with Bom”.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#encode=utf-8</span></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">data1 = &#123;<span class="string">'b'</span>: <span class="number">789</span>, <span class="string">'c'</span>: <span class="number">456</span>, <span class="string">'a'</span>: <span class="number">123</span>&#125;</span><br><span class="line">encode_json = json.dumps(data1)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(encode_json), encode_json</span><br><span class="line"></span><br><span class="line">decode_json = json.loads(encode_json)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(decode_json)</span><br><span class="line"><span class="built_in">print</span> decode_json[<span class="string">'a'</span>]</span><br><span class="line"><span class="built_in">print</span> decode_json</span><br><span class="line"><span class="built_in">print</span> json.dumps(decode_json)</span><br><span class="line"></span><br><span class="line">s=<span class="string">'中国'</span></span><br><span class="line"><span class="comment">#s.encode('gbk')</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> s</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -292,6 +563,131 @@
               <p>最近写了一个自动修改host文件的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">host_window = <span class="string">r"C:\Windows\System32\drivers\etc\hosts"</span></span><br><span class="line">host_mac = <span class="string">r"/etc/hosts"</span></span><br><span class="line">B2B_UAT_HOST = [<span class="string">"#B2B uat deepblue2"</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat-cache.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2cn.englishtown.com'</span>]</span><br><span class="line"></span><br><span class="line">HOST_LIVE = [<span class="string">"#LIVE"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       englishlive.ef.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com.br"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       services.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       etvt.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       axis.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       secure.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accenture.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accounts.ef.com"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"> hostfile = open(host_path,<span class="string">'r'</span>)</span><br><span class="line"> each_line = hostfile.readlines()</span><br><span class="line"> hostfile.close()</span><br><span class="line"> findresult = re.findall(hostvalue,<span class="string">''</span>.join(each_line))</span><br><span class="line"> <span class="keyword">return</span> findresult</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"></span><br><span class="line">    output = open(host_path, <span class="string">'a'</span>)</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> insid <span class="keyword">in</span> hostvalue:</span><br><span class="line">        <span class="keyword">print</span> insid</span><br><span class="line">        output.write(insid)</span><br><span class="line">        output.write(<span class="string">"\n"</span>)</span><br><span class="line">    output.close()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#inside_test()</span></span><br><span class="line">    <span class="keyword">if</span> platform.system <span class="keyword">is</span> <span class="string">"Windows"</span>:</span><br><span class="line">        host_path = host_window</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        host_path = host_mac</span><br><span class="line">        os.popen(<span class="string">"sudo chmod 777 %s"</span> %host_path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> host_path</span><br><span class="line">    <span class="keyword">if</span> search_host(HOST_LIVE[<span class="number">0</span>],host_path):</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"Already exist"</span>)</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        write_host(HOST_LIVE,host_path)</span><br></pre></td></tr></table></figure>
 
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/04/nodejswritefile/" itemprop="url">
+                  nodejswritefile
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-04T11:47:23+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/04/nodejswritefile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nodejswritefile/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近在搞一个网站，用 javascript 写东西，发现用js来读写本地文件不是很方便， 用nodejs效果更佳。</p>
+<p>网上找的例子。</p>
+<p><a href="http://qianduanblog.com/post/nodejs-learning-4-filestream-read-write-local-file.html" target="_blank" rel="external">filestream读写本地文件</a></p>
+<h2 id="1_u3001filestream_API"><a href="#1_u3001filestream_API" class="headerlink" title="1、filestream API"></a>1、filestream API</h2><ul>
+<li>读文件：fs.readFile（异步）</li>
+<li>写文件：fs.writeFile（异步）</li>
+<li>追加内容：fs.appendFile（异步）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 fs（filestream） 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 1、读文件</span></span><br><span class="line">fs.readFile(<span class="string">"text.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 操作fileData</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 2、写文件</span></span><br><span class="line">fs.writeFiel(<span class="string">"text.txt"</span>, <span class="string">"new fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 3、追加内容</span></span><br><span class="line">fs.appendFile(<span class="string">"text.txt"</span>, <span class="string">"append fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="2_u3001_u96C6_u6210_u4F8B_u5B50"><a href="#2_u3001_u96C6_u6210_u4F8B_u5B50" class="headerlink" title="2、集成例子"></a>2、集成例子</h2><p>通过访问不同的querystring来操作不同的API：</p>
+<ul>
+<li>localhost:2014?read =&gt; 读文件</li>
+<li>localhost:2014?write =&gt; 写文件</li>
+<li>localhost:2014?append =&gt; 追加内容</li>
+</ul>
+<p>例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模块</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 filestream 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 url 模块</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 querystring 模块</span></span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">"querystring"</span>)</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> objQuery = querystring.parse(url.parse(request.url).query);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// 读取文件</span></span><br><span class="line">	<span class="keyword">if</span> (objQuery.type == <span class="string">"read"</span>) &#123;</span><br><span class="line">		<span class="comment">// 为什么不是 fs.read</span></span><br><span class="line">		fs.readFile(<span class="string">"./tmp/file.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取内容为：&lt;/h1&gt;"</span> + fileData);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写入文件</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"write"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> writeString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.writeFile(<span class="string">"./tmp/file.txt"</span>, writeString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入内容为：&lt;/h1&gt;"</span> + writeString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 追加内容</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"append"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> appendString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.appendFile(<span class="string">"./tmp/file.txt"</span>, appendString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加内容为：&lt;/h1&gt;"</span> + appendString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		write(response, <span class="string">"&lt;h1&gt;请在网址上输入参数&lt;/h1&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).listen(<span class="number">2014</span>);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params">response, content</span>) </span>&#123;</span><br><span class="line">	response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">		<span class="string">"content-type"</span>: <span class="string">"text/html"</span></span><br><span class="line">	&#125;);</span><br><span class="line">	response.write(content);</span><br><span class="line">	response.end();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6"><a href="#3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6" class="headerlink" title="3. node.js里面怎么创建和解析JSON格式的文件"></a>3. node.js里面怎么创建和解析JSON格式的文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> writlog = &#123;<span class="string">"rows"</span>:[     &#123;<span class="string">"buildid"</span>:<span class="string">"data.number"</span>,<span class="string">"product"</span>:<span class="string">"englishtown"</span>,<span class="string">"env"</span>:<span class="string">"live"</span>,<span class="string">"version"</span>:<span class="string">"ver"</span>&#125;</span><br><span class="line">    ]&#125;</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(<span class="string">'./output.json'</span>,<span class="built_in">JSON</span>.stringify(writlog));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> JsonObj=<span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./output.json'</span>));<span class="built_in">console</span>.log(JsonObj);</span><br></pre></td></tr></table></figure>
             
           </span>
         
@@ -964,245 +1360,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/健康无价/" itemprop="url">
-                  健康无价
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:45:39+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/健康无价/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/健康无价/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>周末的时候，跟几个老家伙小聚了一下。</p>
-<p>酒足饭饱之后，就是吹牛逼的时候了。</p>
-<p>这里面，兵混得最好，开了自己的公司，比我们这上班族，挣得多得多。</p>
-<p>但是美中不足，他身体不好。 太肥胖了。</p>
-<p>走几步就走不动了，像个球。</p>
-<p>导致他很多业务没法去做。</p>
-<p>所以无论啥时候，健康无价。哪怕你挣得再多，那又有什么用，没命花。</p>
-<p>坚持锻炼，保持健康的身体和心态。</p>
-<p>come on!</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/说与做/" itemprop="url">
-                  说与做
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:35:07+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/说与做/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/说与做/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>参加了几次技术沙龙。后面越来越不想去了。</p>
-<p>主要是没什么干货，没有啥技术含量，也认识不到几个人。</p>
-<p>就是打广告，吹水，沽名钓誉。 每次讲一样的Topic.</p>
-<p>但是有个事情还是让我比较有感触的。</p>
-<p>就是坚持做一件事。如果一直做，总有一些人进来。总能蒙蔽到一些人，然后就达到自己的目的了。</p>
-<p>很多事情看起来很难，很没水平，很多人都不去做。</p>
-<p>但是一旦坚持了，也许就成气候了。</p>
-<p>最近发现自己在技术上出现了瓶颈。</p>
-<p>自动化测试，接口测试等，也就那么回事。 那几个开源的框架，基本上花点时间就能上手。没什么竞争优势。<br>虽然朝着精通的方向发展，那种东西，做多了，也就疲惫了。</p>
-<p>然后想出路，看了一些开发的视频，虽然android,ios, nodejs开发的视频看了好多。</p>
-<p>但是一直没怎么动手，所以还停留在理论上。 一直停滞不前。</p>
-<p>要多多实践了。</p>
-<p>记得有次，安吉利拉跟我说，要少说多做。我觉得很有道理。</p>
-<p>但是有的时候，也要多说，然后有拿得出手的东西。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1249,7 +1406,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1263,7 +1420,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

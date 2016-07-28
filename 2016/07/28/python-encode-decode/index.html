@@ -1,0 +1,856 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="encode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="原文
+用python处理中文时，读取文件或消息，http参数等等
+一运行，发现乱码(字符串处理，读写文件，print)
+然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码
+所以调试时最常出现的错误
+错误1
+123Traceback (most recent call last):File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;mod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PYTHON-编码处理小结">
+<meta property="og:url" content="http://snake.me/2016/07/28/python-encode-decode/index.html">
+<meta property="og:site_name" content="Snake's Home">
+<meta property="og:description" content="原文
+用python处理中文时，读取文件或消息，http参数等等
+一运行，发现乱码(字符串处理，读写文件，print)
+然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码
+所以调试时最常出现的错误
+错误1
+123Traceback (most recent call last):File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;mod">
+<meta property="og:updated_time" content="2016-07-28T16:12:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PYTHON-编码处理小结">
+<meta name="twitter:description" content="原文
+用python处理中文时，读取文件或消息，http参数等等
+一运行，发现乱码(字符串处理，读写文件，print)
+然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码
+所以调试时最常出现的错误
+错误1
+123Traceback (most recent call last):File &quot;&amp;lt;stdin&amp;gt;&quot;, line 1, in &amp;lt;mod">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> PYTHON-编码处理小结 | Snake's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Snake's Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">snake</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PYTHON-编码处理小结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-28T23:41:39+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/python-encode-decode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/python-encode-decode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">原文</a></p>
+<p>用python处理中文时，读取文件或消息，http参数等等</p>
+<p>一运行，发现乱码(字符串处理，读写文件，print)</p>
+<p>然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码</p>
+<p>所以调试时最常出现的错误</p>
+<p>错误1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe6 in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+<p>错误2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">File <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> decode</span><br><span class="line">    <span class="built_in">return</span> codecs.utf_8_decode(input, errors, True)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-1: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+<p>首先</p>
+<blockquote>
+<p>必须有大体概念，了解下字符集，字符编码</p>
+<p>ASCII | Unicode | UTF-8 | 等等</p>
+</blockquote>
+<p>str 和 unicode</p>
+<blockquote>
+<p>str和unicode都是basestring的子类</p>
+</blockquote>
+<p>所以有判断是否是字符串的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_str</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> isinstance(s, basestring)</span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str<span class="function">  -&gt;</span> decode<span class="function"><span class="params">(<span class="string">'the_coding_of_str'</span>)</span> -&gt;</span> unicode</span><br><span class="line">unicode<span class="function"> -&gt;</span> encode<span class="function"><span class="params">(<span class="string">'the_coding_you_want'</span>)</span> -&gt;</span> str</span><br></pre></td></tr></table></figure>
+<p>str是字节串，由unicode经过编码(encode)后的字节组成的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'中文'</span></span><br><span class="line">s = <span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="string">'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>求长度(返回字节数)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="string">'\xe4\xb8\xad\xe6\x96\x87'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>unicode才是真正意义上的字符串，由字符组成</p>
+<p>声明方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">u'中文'</span></span><br><span class="line">s = <span class="string">'中文'</span>.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">s = unicode(<span class="string">'中文'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">type(<span class="string">u'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'unicode'</span>&gt;</span><br><span class="line">求长度(返回字符数),在逻辑中真正想要用的</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span></span><br><span class="line"><span class="string">u'\u4e2d\u6587'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>结论:</strong><br>搞明白要处理的是str还是unicode, 使用对的处理方法(str.decode/unicode.encode)</p>
+<p>下面是判断是否为unicode/str的方法</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', unicode)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance('中文', unicode)</span><br><span class="line">False</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; isinstance('中文', str)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', str)</span><br><span class="line">False</span><br><span class="line">简单原则：不要对str使用<span class="keyword">encode</span>，不要对unicode使用<span class="keyword">decode</span> (事实上可以对str进行<span class="keyword">encode</span>的，具体见最后，为了保证简单，不建议)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; '中文'.<span class="keyword">encode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: 'ascii' codec can't <span class="keyword">decode</span> byte 0xe4 <span class="keyword">in</span> position 0: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; <span class="keyword">u</span>'中文'.<span class="keyword">decode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line"><span class="keyword">File</span> <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, <span class="keyword">line</span> 16, <span class="keyword">in</span> <span class="keyword">decode</span></span><br><span class="line">    <span class="keyword">return</span> codecs.utf_8_decode(<span class="keyword">input</span>, errors, True)</span><br><span class="line">UnicodeEncodeError: 'ascii' codec can't <span class="keyword">encode</span> characters <span class="keyword">in</span> position 0-1: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br></pre></td></tr></table></figure>
+<p>不同编码转换,使用unicode作为中间编码</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#s是code_A的str</span><br><span class="line">s.<span class="function"><span class="title">decode</span><span class="params">(<span class="string">'code_A'</span>)</span></span>.<span class="function"><span class="title">encode</span><span class="params">(<span class="string">'code_B'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>总结总结，本文仅适用于python2.x</strong></p>
+<p>默认编码与开头声明<br>首先是开头的地方声明编码</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># coding: utf8</span></span><br></pre></td></tr></table></figure>
+<p>这个东西的用处是声明文件编码为utf8(要写在前两行内)，不然文件里如果有中文，比如</p>
+<p>a = ‘美丽’<br>b = u’美丽’<br>中任何一种，运行前就会提示你SyntaxError，Non-ASCII character… 之类，因为python2.x的文件编码默认使用万恶的ascii<br>开头加上那句默认编码声明就会变成utf8，获取当前的默认编码</p>
+<p>sys.getdefaultencoding()<br>unicode与utf8<br>在python中，使用unicode类型作为编码的基础类型，编解码要以其为中间形式过渡，即进行str和unicode之间的转换。<br>解码然后再编码的过程，即str-&gt;unicode-&gt;str的过程。中间得到的叫做unicode对象</p>
+<p>这里需要强调的是unicode是一种字符编码方法，是 “与存储无关的表示”，而utf8是一种以unicode进行编码的计算机二进制表示，或者说传输规范。gbk，gb2312，gb18030, utf8等属于不同的字符集，转换编码就是在它们中的任意两者间进行。</p>
+<p><strong>控制台的编码</strong></p>
+<p>这又是另一个让人困惑的地方——控制台的编码导致的乱码问题甚至是报错。一般个人用的电脑上控制台基本上都是utf8编码的</p>
+<p>一般submine保存时需要选择“utf-8 with Bom”.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#encode=utf-8</span></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">data1 = &#123;<span class="string">'b'</span>: <span class="number">789</span>, <span class="string">'c'</span>: <span class="number">456</span>, <span class="string">'a'</span>: <span class="number">123</span>&#125;</span><br><span class="line">encode_json = json.dumps(data1)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(encode_json), encode_json</span><br><span class="line"></span><br><span class="line">decode_json = json.loads(encode_json)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(decode_json)</span><br><span class="line"><span class="built_in">print</span> decode_json[<span class="string">'a'</span>]</span><br><span class="line"><span class="built_in">print</span> decode_json</span><br><span class="line"><span class="built_in">print</span> json.dumps(decode_json)</span><br><span class="line"></span><br><span class="line">s=<span class="string">'中国'</span></span><br><span class="line"><span class="comment">#s.encode('gbk')</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> s</span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/encode/" rel="tag">#encode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/04/changehost/" rel="next" title="changehost">
+                <i class="fa fa-chevron-left"></i> changehost
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/29/json-load-dump/" rel="prev" title="json_load_dump">
+                json_load_dump <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <! -- 添加微信图标 -->
+    
+    
+
+    <div>
+
+    <span>
+    
+    欢迎大家关注：Snake's 微信
+    
+    <br>
+    </span>
+    <br>
+
+    
+    <a href="/images/weichat.jpg" title="snake's微信号" class="fancybox" rel="article0"       style="float:left;margin-left:25%;margin-right:2px;">
+    <img src="/images/weichat.jpg" title="snake's微信号" height="164px" width="164px">
+    </a>
+    
+    </div>
+
+    
+    
+
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/28/python-encode-decode/"
+     data-title="PYTHON-编码处理小结"
+     data-content=""
+     data-url="http://snake.me/2016/07/28/python-encode-decode/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/28/python-encode-decode/"
+           data-title="PYTHON-编码处理小结" data-url="http://snake.me/2016/07/28/python-encode-decode/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Snake</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xieming" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051745804351/home?from=page_100505&mod=TAB&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/52671329/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> douban
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/" target="_blank">简书</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://testerhome.com" target="_blank">Testerhome</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.imooc.com" target="_blank">幕客网</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Snake</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"snake"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+</body>
+</html>
