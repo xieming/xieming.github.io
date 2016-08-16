@@ -1,0 +1,899 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="matplotlib," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="Matplotlib是一个Python工具箱，用于科学计算的数据可视化。借助它，Python可以绘制如Matlab和Octave多种多样的数据图形。
+圆饼图-pie()
+pie()最基本的输入数据是一个数组。它可以根据数组元素的比例绘制扇形，因此不必要事先计算好百分比。
+1234567import matplotlib.pyplot as plt rate = [1, 7, 3, 9] plt.p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matplotlib 画图">
+<meta property="og:url" content="http://snake.me/2016/08/16/matplotlib/index.html">
+<meta property="og:site_name" content="Snake's Home">
+<meta property="og:description" content="Matplotlib是一个Python工具箱，用于科学计算的数据可视化。借助它，Python可以绘制如Matlab和Octave多种多样的数据图形。
+圆饼图-pie()
+pie()最基本的输入数据是一个数组。它可以根据数组元素的比例绘制扇形，因此不必要事先计算好百分比。
+1234567import matplotlib.pyplot as plt rate = [1, 7, 3, 9] plt.p">
+<meta property="og:updated_time" content="2016-08-16T15:59:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="matplotlib 画图">
+<meta name="twitter:description" content="Matplotlib是一个Python工具箱，用于科学计算的数据可视化。借助它，Python可以绘制如Matlab和Octave多种多样的数据图形。
+圆饼图-pie()
+pie()最基本的输入数据是一个数组。它可以根据数组元素的比例绘制扇形，因此不必要事先计算好百分比。
+1234567import matplotlib.pyplot as plt rate = [1, 7, 3, 9] plt.p">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> matplotlib 画图 | Snake's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Snake's Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">snake</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                matplotlib 画图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-08-16T23:17:20+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/matplotlib/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/matplotlib/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>Matplotlib是一个Python工具箱，用于科学计算的数据可视化。借助它，Python可以绘制如Matlab和Octave多种多样的数据图形。</p>
+<p><strong>圆饼图-pie()</strong></p>
+<p>pie()最基本的输入数据是一个数组。它可以根据数组元素的比例绘制扇形，因此不必要事先计算好百分比。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line"> </span><br><span class="line">plt.<span class="function"><span class="title">pie</span><span class="params">(rate)</span></span></span><br><span class="line"> </span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><em>样式</em></p>
+<p>有几个最常用的参数可以控制绘图样式：</p>
+<p>colors - 数组，扇形颜色<br>explode - 数组，扇形偏离圆心的距离<br>labels - 数组，扇形的标签</p>
+<p>首先，让我们为饼图设定颜色，并让第三个扇形抽离出来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>然后，要为每个扇形添加标签：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line">labels = [‘Apple‘, ‘Pear‘, ‘Peach‘, ‘Orange‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors, labels=labels)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>百分比</p>
+<p>如何显示百分比数值呢？我们需要使用autopct参数：</p>
+<p>None，不显示百分比<br>格式字符串，如‘%d percent‘，显示“40 percent”形式的百分比<br>方法，调用方法输出百分比</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line">labels = [‘Apple‘, ‘Pear‘, ‘Peach‘, ‘Orange‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors, labels=labels, autopct=‘%d%%‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>autopct=‘%d%%‘表示我们将百分比以整数(%d)形式输出，后缀是百分号‘%‘。在格式化字符串中，百分号要用‘%%‘转义字符表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># make a square figure and axes</span></span><br><span class="line">figure(<span class="number">1</span>, figsize=(<span class="number">6</span>,<span class="number">6</span>))</span><br><span class="line">ax = axes([<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span>])</span><br><span class="line"></span><br><span class="line">fracs = [<span class="number">45</span>, <span class="number">30</span>, <span class="number">25</span>]             <span class="comment">#每一块占得比例，总和为100</span></span><br><span class="line">explode=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.08</span>)             <span class="comment">#离开整体的距离，看效果</span></span><br><span class="line">labels = <span class="string">'Hogs'</span>, <span class="string">'Dogs'</span>, <span class="string">'Logs'</span>  <span class="comment">#对应每一块的标志</span></span><br><span class="line"></span><br><span class="line">pie(fracs, explode=explode, labels=labels,</span><br><span class="line">                autopct=<span class="string">'%1.1f%%'</span>, shadow=<span class="keyword">True</span>, startangle=<span class="number">90</span>, colors = (<span class="string">"g"</span>, <span class="string">"r"</span>, <span class="string">"y"</span>))</span><br><span class="line">                                 <span class="comment"># startangle是开始的角度，默认为0，从这里开始按逆时针方向依次展开</span></span><br><span class="line"></span><br><span class="line">title(<span class="string">'Raining Hogs and Dogs'</span>)   <span class="comment">#标题</span></span><br><span class="line"></span><br><span class="line">show()</span><br></pre></td></tr></table></figure>
+<p><strong>柱形图-bar()</strong><br>什么是最简单的bar，看如下语句你就知道她有多么简单了：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt  </span><br><span class="line"></span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(left = <span class="number">0</span>,height = <span class="number">1</span>)</span></span></span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>left：柱形的左边缘的位置，如果我们指定1那么当前柱形的左边缘的x值就是1.0了</p>
+<p>height：这是柱形的高度，也就是Y轴的值了</p>
+<p>left，height除了可以使用单独的值（此时是一个柱形），也可以使用元组来替换（此时代表多个矩形）。例如，下面的例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt </span><br><span class="line"></span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(left = (<span class="number">0</span>,<span class="number">1</span>)</span></span>,<span class="attribute">height</span> = (<span class="number">1</span>,<span class="number">0.5</span>))</span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>当然，可能你还觉得这两个矩形“太胖”了。此时我们可以通过指定bar的width参数来设置它们的宽度。</p>
+<p>此时又来需求了，我需要标明x，y轴的说明。比如x轴是性别，y轴是人数。实现也很简单，看代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">u'性别'</span>)</span><br><span class="line">plt.ylabel(<span class="string">u'人数'</span>)</span><br><span class="line">plt.bar(left = (<span class="number">0</span>,<span class="number">1</span>),height = (<span class="number">1</span>,<span class="number">0.5</span>),width = <span class="number">0.35</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>接下来，让我们在x轴上的每个bar进行说明。比如第一个是“男”，第二个是“女”。</p>
+<p>我们可以通过直接指定bar方法里面的align=”center”就可以让文字居中了。</p>
+<p>接下来，我们还可以给图标加入标题。</p>
+<p>plt.title(u”性别比例分析”)<br>当然，还有图例也少不掉:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">u'性别'</span>)</span><br><span class="line">plt.ylabel(<span class="string">u'人数'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">u"性别比例分析"</span>)</span><br><span class="line">plt.xticks((<span class="number">0</span>,<span class="number">1</span>),(<span class="string">u'男'</span>,<span class="string">u'女'</span>))</span><br><span class="line">rect = plt.bar(left = (<span class="number">0</span>,<span class="number">1</span>),height = (<span class="number">1</span>,<span class="number">0.5</span>),width = <span class="number">0.35</span>,align=<span class="string">"center"</span>)</span><br><span class="line"></span><br><span class="line">plt.legend((rect,),(<span class="string">u"图例"</span>,))</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>柱状图-bar()</strong></p>
+<p>bar()函数可以绘制各种样式的柱状图，barh()则可绘制水平方向的柱状图。两个方法除了绘图方向外，其他属性和用法的是相同的。</p>
+<p>数据和坐标</p>
+<p>bar()至少需要两个数组left和height：left是每个柱向左到坐标原点的距离；height是每个柱的高度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mport matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">left = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">height = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.bar(left, height)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>样式</p>
+<p>bar()函数的参数可以控制柱状图的多种样式，最常用的有：</p>
+<p>width，第3个参数，柱的宽度。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>bottom，第4个参数，柱底部的y轴坐标。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>color，关键字参数，柱的填充颜色。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>edgecolor，关键字参数，柱的边框颜色。</p>
+<p>linewidth，关键字参数，边框宽度。</p>
+<p>xerr，yerr，关键字参数，x和y轴误差线。</p>
+<p>ecolor，关键字参数，误差线颜色。</p>
+<p>align，关键字参数，设定柱的对齐方式。‘edge‘将x坐标设为左边界，‘center‘将x坐标设为中轴线。</p>
+<p>下面的柱状图要表达一件商品12个月的销量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">sales = [<span class="number">112</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">109</span>, <span class="number">103</span>, <span class="number">110</span>, <span class="number">113</span>, <span class="number">112</span>, <span class="number">108</span>, <span class="number">106</span>, <span class="number">111</span>, <span class="number">114</span>]</span><br><span class="line"> </span><br><span class="line">plt.bar(month, sales, <span class="number">0.5</span>, color=‘y‘, edgecolor=‘g‘, linewidth=<span class="number">3</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>我们设置柱宽度0.5，填充颜色‘y‘(黄色)，边框颜色‘g‘(绿色)，线框宽度3，对齐方式为‘center‘</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">sales = [<span class="number">12</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">13</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">14</span>]</span><br><span class="line">colors = [‘g‘, ‘g‘, ‘g‘, ‘m‘, ‘m‘, ‘m‘, ‘y‘, ‘y‘, ‘y‘, ‘c‘, ‘c‘, ‘c‘]</span><br><span class="line"> </span><br><span class="line">plt.bar(month, sales, <span class="number">0.5</span>, <span class="number">100</span>, color=colors, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>多段柱图和水平柱图</p>
+<p>绘制多段柱图的原理是：先后绘制多张柱图，依次重叠在上方，如果后面绘制的柱图比前者的柱图短，就可以显示出前者长出的部分。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">cost = [<span class="number">8</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">10</span>]</span><br><span class="line">profit = [<span class="number">12</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">13</span>]</span><br><span class="line"> </span><br><span class="line">bar1 = plt.bar(month, profit, <span class="number">0.5</span>, color=‘y‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line">bar2 = plt.bar(month, cost, <span class="number">0.5</span>, color=‘g‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.legend( (bar1[<span class="number">0</span>], bar2[<span class="number">0</span>]), (‘Profits‘, ‘Costs‘) )</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>最后，让我们来绘制一个水平柱图，只需将bar()替换成barh()：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">cost = [<span class="number">8</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">10</span>]</span><br><span class="line">profit = [<span class="number">12</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">13</span>]</span><br><span class="line"> </span><br><span class="line">bar1 = plt.barh(month, profit, <span class="number">0.5</span>, color=‘y‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line">bar2 = plt.barh(month, cost, <span class="number">0.5</span>, color=‘g‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.legend( (bar1[<span class="number">0</span>], bar2[<span class="number">0</span>]), (‘Profits‘, ‘Costs‘) )</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>折线图和散点图-plot()</strong><br>plot()函数可以绘制折线图和折线图，取决于您使用的参数。</p>
+<p>数据和坐标</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>绘制折线图/散点图需要一系列关键点。x是关键点的x轴坐标，y是关键点的y轴坐标。</p>
+<p>x轴坐标是可以缺省的：</p>
+<p>plot(y)<br>y是一个一维数组，是折线图关键点的y轴坐标。而x轴坐标没有给出，会默认以[0,1,2,…]的常数列作为x轴坐标。</p>
+<p>样式</p>
+<p>散点图和折线图只是线条样式的差异，我们可以通过简单的参数设置线条的样式和颜色。样式和颜色参数都是一个或多个字符构成的字符串。</p>
+<p>既可以单独设定颜色或样式，如‘g‘代表绿色，‘-‘代表实线<br>也可以同时设定样式和颜色，比如‘–g‘代表绿色虚线，其中‘–‘代表虚线，‘g‘代表绿色<br>样式字符串中的参数字符是无顺序的，‘g–‘和‘–g‘的意义是相同的<br>也可以同时设定折线和散点，如‘-or‘代表红色实线+圆圈</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y, ‘-or‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><em>折线样式：</em></p>
+<p>参数    样式</p>
+<p>‘-‘    实线</p>
+<p>‘–‘    虚线</p>
+<p>‘-.‘    线-点</p>
+<p>‘:‘    点虚线</p>
+<p><em>散点样式：</em></p>
+<p>参数    样式</p>
+<p>‘.‘    实心点</p>
+<p>‘o‘    圆圈</p>
+<p>‘,‘    一个像素点</p>
+<p>‘x‘    叉号</p>
+<p>‘+‘    十字</p>
+<p>‘*‘    星号</p>
+<p>‘^‘ ‘v‘ ‘&lt;‘ ‘&gt;‘    三角形(上下左右)</p>
+<p>‘1‘ ‘2‘ ‘3‘ ‘4‘    三叉号（上下左右）</p>
+<p><em>颜色：</em></p>
+<p>参数    颜色</p>
+<p>‘b‘    蓝</p>
+<p>‘g‘    绿</p>
+<p>‘r‘    红</p>
+<p>‘c‘    青</p>
+<p>‘m‘    品红</p>
+<p>‘y‘    黄</p>
+<p>‘k‘    黑</p>
+<p>‘w‘    白</p>
+<p><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot" target="_blank" rel="external">更多样式参见 </a></p>
+<p>您也可以不必使用样式字符串，而直接使用参数名，这种方式更加灵活：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(x, y, <span class="built_in">color</span>=‘<span class="built_in">green</span>‘, linestyle=‘dashed‘, marker=‘o‘, markerfacecolor=‘<span class="built_in">blue</span>‘, markersize=<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<p>多条线</p>
+<p>我们可以在一个坐标中绘制多条折线或散点，plot(第一条线的参数,第二条线的参数…)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line">y2 = [<span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y, ‘b‘, x, y2, ‘g‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>更多请参考</p>
+<p><a href="http://www.bubuko.com/infodetail-947670.html" target="_blank" rel="external">样式</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/matplotlib/" rel="tag">#matplotlib</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/json-load-dump/" rel="next" title="json_load_dump">
+                <i class="fa fa-chevron-left"></i> json_load_dump
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <! -- 添加微信图标 -->
+    
+    
+
+    <div>
+
+    <span>
+    
+    欢迎大家关注：Snake's 微信
+    
+    <br>
+    </span>
+    <br>
+
+    
+    <a href="/images/weichat.jpg" title="snake's微信号" class="fancybox" rel="article0"       style="float:left;margin-left:25%;margin-right:2px;">
+    <img src="/images/weichat.jpg" title="snake's微信号" height="164px" width="164px">
+    </a>
+    
+    </div>
+
+    
+    
+
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/16/matplotlib/"
+     data-title="matplotlib 画图"
+     data-content=""
+     data-url="http://snake.me/2016/08/16/matplotlib/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/16/matplotlib/"
+           data-title="matplotlib 画图" data-url="http://snake.me/2016/08/16/matplotlib/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Snake</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xieming" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051745804351/home?from=page_100505&mod=TAB&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/52671329/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> douban
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/" target="_blank">简书</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://testerhome.com" target="_blank">Testerhome</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.imooc.com" target="_blank">幕客网</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Snake</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"snake"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+</body>
+</html>

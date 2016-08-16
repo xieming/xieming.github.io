@@ -220,6 +220,135 @@
             
               
                 
+                <a class="post-title-link" href="/2014/04/10/python-monkeyrunnerhb/" itemprop="url">
+                  自动化抢红包的实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-04-10T11:13:33+08:00" content="2014-04-10">
+              2014-04-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/10/python-monkeyrunnerhb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/10/python-monkeyrunnerhb/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近抢红包火热，基本上是全民抢红包。<br>大家为了几分钱，或者优惠券，时刻候着那个点，只能说支付宝太精明了。</p>
+<p>借鉴了别人的代码，在模拟器上跑起来了。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/pyton</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner,MonkeyDevice,MonkeyImage</span><br><span class="line"></span><br><span class="line">print(<span class="string">'connect'</span>)</span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line"></span><br><span class="line"><span class="comment">#device.shell('am force-stop com.eztech.kylinlauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.eg.android.AlipayGphone -v 1'</span>)</span><br><span class="line">print(<span class="string">'start'</span>)</span><br><span class="line"><span class="comment">#device.startActivity(component='com.eg.android.AlipayGphone/com.alipay.android.launcher.TabLauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.alipay.android.launcher.TabLauncher -v 1'</span>)</span><br><span class="line"></span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line"><span class="comment">#raw_input("press Enter then press Ctrl+D to start!")</span></span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">	<span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line">		<span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">			device.drag((wi,hi),(<span class="number">765</span>,<span class="number">1244</span>),<span class="number">0.1</span>,<span class="number">10</span>)</span><br><span class="line">			<span class="comment">#device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span></span><br></pre></td></tr></table></figure>
+<p>没有在真机上实践过。</p>
+<p>现在缺点如下：</p>
+<ol>
+<li><p>只是拖拽，不知道能否实现点击的功能。</p>
+</li>
+<li><p>点击速度太慢，模拟器上的缘故。</p>
+</li>
+<li><p>没有经过检验。</p>
+</li>
+</ol>
+<p>明天试下。</p>
+<p>别人的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># Imports the monkeyrunner modules used by this program</span></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner, MonkeyDevice</span><br><span class="line"><span class="comment"># Connects to the current device, returning a MonkeyDevice object</span></span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line">raw_input(<span class="string">"按 Enter后再按 Ctrl+D 后开始乱点"</span>)</span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line"><span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line"><span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span><br><span class="line"><span class="comment"># Takes a screenshot</span></span><br><span class="line"><span class="comment">#result = device.takeSnapshot()</span></span><br><span class="line"><span class="comment"># Writes the screenshot to a file</span></span><br><span class="line"><span class="comment">#result.writeToFile('/tmp/shot1.png','png')</span></span><br></pre></td></tr></table></figure>
+<p>缺点： 很容易点到别的地方。</p>
+<p>用monkey来实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb   shell monkey -p com.eg.android.AlipayGphone -s <span class="number">500</span> --pct-touch <span class="number">100</span> --ignore-crashes --ignore-timeouts --monitor-native-crashes -v -v <span class="number">10000</span> &gt; E:\monkey_log\java_monkey_log.txt</span><br></pre></td></tr></table></figure>
+<p>缺点： 完全不受控制。也很容易点到别的地方。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/03/22/python-report/" itemprop="url">
                   ReportLab 实践
                 </a>
@@ -1160,7 +1289,7 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1174,7 +1303,7 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

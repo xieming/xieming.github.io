@@ -220,6 +220,213 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/16/matplotlib/" itemprop="url">
+                  matplotlib 画图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-08-16T23:17:20+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/matplotlib/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/matplotlib/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>Matplotlib是一个Python工具箱，用于科学计算的数据可视化。借助它，Python可以绘制如Matlab和Octave多种多样的数据图形。</p>
+<p><strong>圆饼图-pie()</strong></p>
+<p>pie()最基本的输入数据是一个数组。它可以根据数组元素的比例绘制扇形，因此不必要事先计算好百分比。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line"> </span><br><span class="line">plt.<span class="function"><span class="title">pie</span><span class="params">(rate)</span></span></span><br><span class="line"> </span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><em>样式</em></p>
+<p>有几个最常用的参数可以控制绘图样式：</p>
+<p>colors - 数组，扇形颜色<br>explode - 数组，扇形偏离圆心的距离<br>labels - 数组，扇形的标签</p>
+<p>首先，让我们为饼图设定颜色，并让第三个扇形抽离出来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>然后，要为每个扇形添加标签：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line">labels = [‘Apple‘, ‘Pear‘, ‘Peach‘, ‘Orange‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors, labels=labels)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>百分比</p>
+<p>如何显示百分比数值呢？我们需要使用autopct参数：</p>
+<p>None，不显示百分比<br>格式字符串，如‘%d percent‘，显示“40 percent”形式的百分比<br>方法，调用方法输出百分比</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">rate = [<span class="number">1</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line">colors = [‘c‘, ‘m‘, ‘y‘, ‘g‘]</span><br><span class="line">labels = [‘Apple‘, ‘Pear‘, ‘Peach‘, ‘Orange‘]</span><br><span class="line"> </span><br><span class="line">plt.pie(rate, explode=explode, colors=colors, labels=labels, autopct=‘%d%%‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>autopct=‘%d%%‘表示我们将百分比以整数(%d)形式输出，后缀是百分号‘%‘。在格式化字符串中，百分号要用‘%%‘转义字符表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># make a square figure and axes</span></span><br><span class="line">figure(<span class="number">1</span>, figsize=(<span class="number">6</span>,<span class="number">6</span>))</span><br><span class="line">ax = axes([<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span>])</span><br><span class="line"></span><br><span class="line">fracs = [<span class="number">45</span>, <span class="number">30</span>, <span class="number">25</span>]             <span class="comment">#每一块占得比例，总和为100</span></span><br><span class="line">explode=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.08</span>)             <span class="comment">#离开整体的距离，看效果</span></span><br><span class="line">labels = <span class="string">'Hogs'</span>, <span class="string">'Dogs'</span>, <span class="string">'Logs'</span>  <span class="comment">#对应每一块的标志</span></span><br><span class="line"></span><br><span class="line">pie(fracs, explode=explode, labels=labels,</span><br><span class="line">                autopct=<span class="string">'%1.1f%%'</span>, shadow=<span class="keyword">True</span>, startangle=<span class="number">90</span>, colors = (<span class="string">"g"</span>, <span class="string">"r"</span>, <span class="string">"y"</span>))</span><br><span class="line">                                 <span class="comment"># startangle是开始的角度，默认为0，从这里开始按逆时针方向依次展开</span></span><br><span class="line"></span><br><span class="line">title(<span class="string">'Raining Hogs and Dogs'</span>)   <span class="comment">#标题</span></span><br><span class="line"></span><br><span class="line">show()</span><br></pre></td></tr></table></figure>
+<p><strong>柱形图-bar()</strong><br>什么是最简单的bar，看如下语句你就知道她有多么简单了：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt  </span><br><span class="line"></span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(left = <span class="number">0</span>,height = <span class="number">1</span>)</span></span></span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>left：柱形的左边缘的位置，如果我们指定1那么当前柱形的左边缘的x值就是1.0了</p>
+<p>height：这是柱形的高度，也就是Y轴的值了</p>
+<p>left，height除了可以使用单独的值（此时是一个柱形），也可以使用元组来替换（此时代表多个矩形）。例如，下面的例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib<span class="class">.pyplot</span> as plt </span><br><span class="line"></span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(left = (<span class="number">0</span>,<span class="number">1</span>)</span></span>,<span class="attribute">height</span> = (<span class="number">1</span>,<span class="number">0.5</span>))</span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>当然，可能你还觉得这两个矩形“太胖”了。此时我们可以通过指定bar的width参数来设置它们的宽度。</p>
+<p>此时又来需求了，我需要标明x，y轴的说明。比如x轴是性别，y轴是人数。实现也很简单，看代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">u'性别'</span>)</span><br><span class="line">plt.ylabel(<span class="string">u'人数'</span>)</span><br><span class="line">plt.bar(left = (<span class="number">0</span>,<span class="number">1</span>),height = (<span class="number">1</span>,<span class="number">0.5</span>),width = <span class="number">0.35</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>接下来，让我们在x轴上的每个bar进行说明。比如第一个是“男”，第二个是“女”。</p>
+<p>我们可以通过直接指定bar方法里面的align=”center”就可以让文字居中了。</p>
+<p>接下来，我们还可以给图标加入标题。</p>
+<p>plt.title(u”性别比例分析”)<br>当然，还有图例也少不掉:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">u'性别'</span>)</span><br><span class="line">plt.ylabel(<span class="string">u'人数'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">u"性别比例分析"</span>)</span><br><span class="line">plt.xticks((<span class="number">0</span>,<span class="number">1</span>),(<span class="string">u'男'</span>,<span class="string">u'女'</span>))</span><br><span class="line">rect = plt.bar(left = (<span class="number">0</span>,<span class="number">1</span>),height = (<span class="number">1</span>,<span class="number">0.5</span>),width = <span class="number">0.35</span>,align=<span class="string">"center"</span>)</span><br><span class="line"></span><br><span class="line">plt.legend((rect,),(<span class="string">u"图例"</span>,))</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>柱状图-bar()</strong></p>
+<p>bar()函数可以绘制各种样式的柱状图，barh()则可绘制水平方向的柱状图。两个方法除了绘图方向外，其他属性和用法的是相同的。</p>
+<p>数据和坐标</p>
+<p>bar()至少需要两个数组left和height：left是每个柱向左到坐标原点的距离；height是每个柱的高度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mport matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">left = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">height = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.bar(left, height)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>样式</p>
+<p>bar()函数的参数可以控制柱状图的多种样式，最常用的有：</p>
+<p>width，第3个参数，柱的宽度。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>bottom，第4个参数，柱底部的y轴坐标。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>color，关键字参数，柱的填充颜色。可以是一个常数或数组。数组将对每条柱设定不同的值。</p>
+<p>edgecolor，关键字参数，柱的边框颜色。</p>
+<p>linewidth，关键字参数，边框宽度。</p>
+<p>xerr，yerr，关键字参数，x和y轴误差线。</p>
+<p>ecolor，关键字参数，误差线颜色。</p>
+<p>align，关键字参数，设定柱的对齐方式。‘edge‘将x坐标设为左边界，‘center‘将x坐标设为中轴线。</p>
+<p>下面的柱状图要表达一件商品12个月的销量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">sales = [<span class="number">112</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">109</span>, <span class="number">103</span>, <span class="number">110</span>, <span class="number">113</span>, <span class="number">112</span>, <span class="number">108</span>, <span class="number">106</span>, <span class="number">111</span>, <span class="number">114</span>]</span><br><span class="line"> </span><br><span class="line">plt.bar(month, sales, <span class="number">0.5</span>, color=‘y‘, edgecolor=‘g‘, linewidth=<span class="number">3</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>我们设置柱宽度0.5，填充颜色‘y‘(黄色)，边框颜色‘g‘(绿色)，线框宽度3，对齐方式为‘center‘</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">sales = [<span class="number">12</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">13</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">14</span>]</span><br><span class="line">colors = [‘g‘, ‘g‘, ‘g‘, ‘m‘, ‘m‘, ‘m‘, ‘y‘, ‘y‘, ‘y‘, ‘c‘, ‘c‘, ‘c‘]</span><br><span class="line"> </span><br><span class="line">plt.bar(month, sales, <span class="number">0.5</span>, <span class="number">100</span>, color=colors, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>多段柱图和水平柱图</p>
+<p>绘制多段柱图的原理是：先后绘制多张柱图，依次重叠在上方，如果后面绘制的柱图比前者的柱图短，就可以显示出前者长出的部分。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">cost = [<span class="number">8</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">10</span>]</span><br><span class="line">profit = [<span class="number">12</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">13</span>]</span><br><span class="line"> </span><br><span class="line">bar1 = plt.bar(month, profit, <span class="number">0.5</span>, color=‘y‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line">bar2 = plt.bar(month, cost, <span class="number">0.5</span>, color=‘g‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.legend( (bar1[<span class="number">0</span>], bar2[<span class="number">0</span>]), (‘Profits‘, ‘Costs‘) )</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>最后，让我们来绘制一个水平柱图，只需将bar()替换成barh()：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">month = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]</span><br><span class="line">cost = [<span class="number">8</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">11</span>, <span class="number">10</span>]</span><br><span class="line">profit = [<span class="number">12</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">13</span>]</span><br><span class="line"> </span><br><span class="line">bar1 = plt.barh(month, profit, <span class="number">0.5</span>, color=‘y‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line">bar2 = plt.barh(month, cost, <span class="number">0.5</span>, color=‘g‘, linewidth=<span class="number">0</span>, align=‘center‘)</span><br><span class="line"> </span><br><span class="line">plt.legend( (bar1[<span class="number">0</span>], bar2[<span class="number">0</span>]), (‘Profits‘, ‘Costs‘) )</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>折线图和散点图-plot()</strong><br>plot()函数可以绘制折线图和折线图，取决于您使用的参数。</p>
+<p>数据和坐标</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>绘制折线图/散点图需要一系列关键点。x是关键点的x轴坐标，y是关键点的y轴坐标。</p>
+<p>x轴坐标是可以缺省的：</p>
+<p>plot(y)<br>y是一个一维数组，是折线图关键点的y轴坐标。而x轴坐标没有给出，会默认以[0,1,2,…]的常数列作为x轴坐标。</p>
+<p>样式</p>
+<p>散点图和折线图只是线条样式的差异，我们可以通过简单的参数设置线条的样式和颜色。样式和颜色参数都是一个或多个字符构成的字符串。</p>
+<p>既可以单独设定颜色或样式，如‘g‘代表绿色，‘-‘代表实线<br>也可以同时设定样式和颜色，比如‘–g‘代表绿色虚线，其中‘–‘代表虚线，‘g‘代表绿色<br>样式字符串中的参数字符是无顺序的，‘g–‘和‘–g‘的意义是相同的<br>也可以同时设定折线和散点，如‘-or‘代表红色实线+圆圈</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y, ‘-or‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><em>折线样式：</em></p>
+<p>参数    样式</p>
+<p>‘-‘    实线</p>
+<p>‘–‘    虚线</p>
+<p>‘-.‘    线-点</p>
+<p>‘:‘    点虚线</p>
+<p><em>散点样式：</em></p>
+<p>参数    样式</p>
+<p>‘.‘    实心点</p>
+<p>‘o‘    圆圈</p>
+<p>‘,‘    一个像素点</p>
+<p>‘x‘    叉号</p>
+<p>‘+‘    十字</p>
+<p>‘*‘    星号</p>
+<p>‘^‘ ‘v‘ ‘&lt;‘ ‘&gt;‘    三角形(上下左右)</p>
+<p>‘1‘ ‘2‘ ‘3‘ ‘4‘    三叉号（上下左右）</p>
+<p><em>颜色：</em></p>
+<p>参数    颜色</p>
+<p>‘b‘    蓝</p>
+<p>‘g‘    绿</p>
+<p>‘r‘    红</p>
+<p>‘c‘    青</p>
+<p>‘m‘    品红</p>
+<p>‘y‘    黄</p>
+<p>‘k‘    黑</p>
+<p>‘w‘    白</p>
+<p><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot" target="_blank" rel="external">更多样式参见 </a></p>
+<p>您也可以不必使用样式字符串，而直接使用参数名，这种方式更加灵活：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(x, y, <span class="built_in">color</span>=‘<span class="built_in">green</span>‘, linestyle=‘dashed‘, marker=‘o‘, markerfacecolor=‘<span class="built_in">blue</span>‘, markersize=<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<p>多条线</p>
+<p>我们可以在一个坐标中绘制多条折线或散点，plot(第一条线的参数,第二条线的参数…)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"> </span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>]</span><br><span class="line">y2 = [<span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0</span>]</span><br><span class="line"> </span><br><span class="line">plt.plot(x, y, ‘b‘, x, y2, ‘g‘)</span><br><span class="line"> </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>更多请参考</p>
+<p><a href="http://www.bubuko.com/infodetail-947670.html" target="_blank" rel="external">样式</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/29/json-load-dump/" itemprop="url">
                   json_load_dump
                 </a>
@@ -1254,112 +1461,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/喝酒/" itemprop="url">
-                  喝酒
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:50:40+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/喝酒/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/喝酒/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>每次回老家，最怕喝酒和打牌。被拉着灌，我很不爽。</p>
-<p>但是老家的风俗如此。每次都是很应付。</p>
-<p>清明节前回去搬了个家。</p>
-<p>把老头子从山沟沟里接到省城生活。后面顿顿都是酒局，不管在家，还是外面吃。总被拉着喝酒，都逃不掉。</p>
-<p>因为思想观念不一样。老头子总觉得我对人不够热情，不会招待客人，太内向，不会劝酒劝菜。</p>
-<p>我的原则是，不敬酒敬烟夹菜。茶水不能少。</p>
-<ol>
-<li>你不知道这个人的酒量。强迫人家喝，身体出问题怎么办。如果人家开车来，出事故怎么办。</li>
-<li>你不知道这个人的爱好，禁口。你跟人夹了一碗人家不喜欢的菜，你叫人家怎么办。然后如果人家信教，或者有忌口，你那是对人不尊重。</li>
-<li>卫生问题。</li>
-<li>我一向反感抽烟。抽人家一屋子的烟，你爽了，知道别人怎么想。</li>
-</ol>
-<p>思想观念真的是太不一样了。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1406,7 +1507,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1420,7 +1521,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

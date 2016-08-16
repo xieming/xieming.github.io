@@ -220,6 +220,137 @@
             
               
                 
+                <a class="post-title-link" href="/2015/03/06/dockeronubumtu/" itemprop="url">
+                  Docker 之 ubuntu 上实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-03-06T12:02:35+08:00" content="2015-03-06">
+              2015-03-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/06/dockeronubumtu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/06/dockeronubumtu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h1 id="1-__u73AF_u5883_u3002"><a href="#1-__u73AF_u5883_u3002" class="headerlink" title="1. 环境。"></a>1. 环境。</h1><p>我是用13.04 升级上来的。<br>先用命令看： <figure class="highlight"><figcaption><span>/etc/issue```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29256;&#26412;&#20026; 13.2&#10;&#10;&#28982;&#21518;&#29992;&#21629;&#20196;&#65306;&#10;```sudo apt-get update&#10;sudo apt-getdist-upgrade</span><br></pre></td></tr></table></figure></p>
+<p>升级好后，更改ubuntu的源， 原因你懂的。<br><a href="http://jingyan.baidu.com/article/7f41ecec1b7a2e593d095ce6.html" target="_blank" rel="external">Ubuntu14.04更新源</a><br><a href="http://chenrongya.blog.163.com/blog/static/8747419620143185103297/" target="_blank" rel="external">Ubuntu14.04 LTS更新源</a><br>用的阿里的源，最后成功了。</p>
+<p>在Windows 7 下使用 VirtualBox 安装了一个 Ubuntu 14.10 后，碰到了一个 640×480屏幕分辨率的问题。在 ‘DisplaySettings’设置界面的 ‘Detect Displays’按钮无法点击到，因为 640x480的分辨率的确太小了。<br>解决办法<br>你需要安装一个 VirtualBox的额外组件到你的 Ubuntu-Guest 中，可运行如下命令：<br><figure class="highlight"><figcaption><span>apt-get install virtualbox-guest-dkms```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#23433;&#35013;&#23436;&#27605;&#38656;&#35201;&#37325;&#21551;&#34394;&#25311;&#26426;&#23601;&#21487;&#20197;&#12290;&#10;[&#20462;&#22797; VirtualBox &#19979; Ubuntu 14.10 &#23631;&#24149;&#20998;&#36776;&#29575;&#38382;&#39064;](http://www.oschina.net/question/12_178184?fromerr=HU30mmgo)&#10;&#10;# 2. &#20351;&#29992;&#65306;&#10;&#21442;&#29031;&#65306;&#10;[Docker&#23454;&#36341;](http://blog.csdn.net/lincyang/article/details/43055061)&#10;&#10;&#23454;&#36341;&#20102;&#19968;&#25226;&#65306;&#10;&#19979;&#38754;&#35828;&#35828;&#25105;&#22312;Ubuntu14.04&#19979;&#30340;&#23433;&#35013;&#12290;        &#10;1.&#23558;&#38236;&#20687;&#21152;&#20837;&#21040;&#31243;&#24207;&#28304;&#20013;&#65306;&#10;```~$ sudo sh -c &#34;echo deb http://mirror.yandex.ru/mirrors/docker/ docker main &#62; /etc/apt/sources.list.d/docker.list&#34; ``` &#10;2.&#25509;&#30528;update&#10;```$ sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>3.如果报错就fix掉它：<br><figure class="highlight"><figcaption><span>GPG error:</span><a href="http://mirror.yandex.ru" target="_blank" rel="external">docker Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY D8576A8BA88D21E9```  </a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#35299;&#20915;&#27492;&#38169;&#35823;&#65306;&#10;```$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D8576A8BA88D21E9``` &#10;4.&#19979;&#36733;docker&#65306;&#10;```$ sudo apt-get install lxc-docker``` &#10;&#38745;&#38745;&#30340;&#31561;&#24453;&#23427;&#19979;&#36733;&#23436;&#25104;&#21543;&#12290;&#10;&#21478;&#22806;&#65292;&#36825;&#20010;&#21629;&#20196;&#20063;&#35768;&#20250;&#26377;&#24110;&#21161;&#65306;&#10;```$ curl sSL https//get.docker.com/ubuntu/ | sudo sh</span><br></pre></td></tr></table></figure></p>
+<p>然后Docker 还顺利安装成功了。 虽然有点慢。</p>
+<p>实践：<br>搜索仓库中是否有wordpress这个博客镜像，如下：<figure class="highlight"><figcaption><span>docker search wordpress```  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;2.&#19979;&#36733;&#36825;&#20010;&#38236;&#20687;&#10;```$ docker pull wordpress```  &#10;&#10;&#19979;&#36733;&#38236;&#20687;&#30340;&#26102;&#20505;&#65292;&#20960;&#20046;&#26159;&#19979;&#36733;&#19981;&#19979;&#26469;&#12290;&#10;&#28982;&#21518;&#22312;pull image&#30340;&#26102;&#20505;&#65292;&#32769;&#19981;&#25104;&#21151;&#65292;&#31561;&#20102;&#21322;&#22825;&#65292;&#24635;&#26159;&#20986;&#36825;&#26679;&#30340;&#38169;&#35823;&#65306;&#10;```Error pulling image(latest) from mysql, Server error: Status 0 while fetching image laye</span><br></pre></td></tr></table></figure></p>
+<p>百度搜索：<br>Error in pulling down images indocker: Status 0<br>找到的解决方案是关防火墙，关了也没起到作用。<br>然后找到了解决方案：<br>更改了docker 的镜像源，用国内的了。<br><figure class="highlight"><figcaption><span>"DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=http://f2d6cb40.m.daocloud.io\"" | sudo tee -a</span><a href="/etc/default/docker```">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```sudo service docker restart</span><br></pre></td></tr></table></figure></p>
+<p>然后下载都成功了：<br><figure class="highlight"><figcaption><span>docker pull mysql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```Sudo docker pull wordpress</span><br></pre></td></tr></table></figure></p>
+<p>启动：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> docker run --name mysql_wordpress -e MYSQL_ROOT_PASSWORD=wordpress  -d  mysql </span><br><span class="line"><span class="variable">$sudo</span> docker run --name docker_wordpress --link mysql_wordpress:mysql -p <span class="number">8080</span>:<span class="number">80</span> -d wordpress</span><br></pre></td></tr></table></figure></p>
+<p>接下来就可以在浏览器中输入<a href="http://localhost:8080进行wordpress的配置了，" target="_blank" rel="external">http://localhost:8080进行wordpress的配置了，</a> 结果真的成功了。</p>
+<ol>
+<li>Jenkins:</li>
+</ol>
+<p>因为wordpress 将8080 给占用了， 后面找到命令杀掉。</p>
+<p><a href="http://blog.csdn.net/we_shell/article/details/38368137" target="_blank" rel="external">Docker常用命令</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins</span><br><span class="line"></span><br><span class="line">docker run -p <span class="number">8080</span>:<span class="number">8080</span> jenkins</span><br></pre></td></tr></table></figure>
+<p>然后敲入：<a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a></p>
+<p>Jenkins 也启动起来了。</p>
+<p>参考：<br><a href="http://www.catosplace.net/blog/2015/02/11/running-jenkins-in-docker-containers/" target="_blank" rel="external">jenkins-in-docker</a></p>
+<p><a href="http://www.nuxeo.com/blog/docker-jenkins-cloud-provider/" target="_blank" rel="external">jenkins-cloud-provider</a></p>
+<p><a href="http://container-solutions.com/running-docker-in-jenkins-in-docker/" target="_blank" rel="external">container-solutions</a></p>
+<p><a href="https://dantehranian.wordpress.com/2014/09/08/docker-jenkins-dynamically-provisioning-sles-11-build-containers/" target="_blank" rel="external">docker-jenkins</a></p>
+<p><a href="http://blog.csdn.net/we_shell/article/details/38445979" target="_blank" rel="external">如何使用Dockerfile构建镜像</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/12/06/Jmetertest/" itemprop="url">
                   Jmeter 测试接口及性能
                 </a>
@@ -1405,135 +1536,6 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/04/10/python-monkeyrunnerhb/" itemprop="url">
-                  自动化抢红包的实践
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-04-10T11:13:33+08:00" content="2014-04-10">
-              2014-04-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/04/10/python-monkeyrunnerhb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/10/python-monkeyrunnerhb/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近抢红包火热，基本上是全民抢红包。<br>大家为了几分钱，或者优惠券，时刻候着那个点，只能说支付宝太精明了。</p>
-<p>借鉴了别人的代码，在模拟器上跑起来了。</p>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/pyton</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner,MonkeyDevice,MonkeyImage</span><br><span class="line"></span><br><span class="line">print(<span class="string">'connect'</span>)</span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line"></span><br><span class="line"><span class="comment">#device.shell('am force-stop com.eztech.kylinlauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.eg.android.AlipayGphone -v 1'</span>)</span><br><span class="line">print(<span class="string">'start'</span>)</span><br><span class="line"><span class="comment">#device.startActivity(component='com.eg.android.AlipayGphone/com.alipay.android.launcher.TabLauncher')</span></span><br><span class="line">device.shell(<span class="string">'monkey -p com.alipay.android.launcher.TabLauncher -v 1'</span>)</span><br><span class="line"></span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line"><span class="comment">#raw_input("press Enter then press Ctrl+D to start!")</span></span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">	<span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line">		<span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">			device.drag((wi,hi),(<span class="number">765</span>,<span class="number">1244</span>),<span class="number">0.1</span>,<span class="number">10</span>)</span><br><span class="line">			<span class="comment">#device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span></span><br></pre></td></tr></table></figure>
-<p>没有在真机上实践过。</p>
-<p>现在缺点如下：</p>
-<ol>
-<li><p>只是拖拽，不知道能否实现点击的功能。</p>
-</li>
-<li><p>点击速度太慢，模拟器上的缘故。</p>
-</li>
-<li><p>没有经过检验。</p>
-</li>
-</ol>
-<p>明天试下。</p>
-<p>别人的脚本：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment"># Imports the monkeyrunner modules used by this program</span></span><br><span class="line"><span class="keyword">from</span> com.android.monkeyrunner <span class="keyword">import</span> MonkeyRunner, MonkeyDevice</span><br><span class="line"><span class="comment"># Connects to the current device, returning a MonkeyDevice object</span></span><br><span class="line">device = MonkeyRunner.waitForConnection()</span><br><span class="line">w = <span class="number">720</span></span><br><span class="line">h = <span class="number">1280</span></span><br><span class="line">raw_input(<span class="string">"按 Enter后再按 Ctrl+D 后开始乱点"</span>)</span><br><span class="line">print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line"><span class="keyword">for</span> wi <span class="keyword">in</span> xrange(<span class="number">100</span>, w, w/<span class="number">6</span>):</span><br><span class="line"><span class="keyword">for</span> hi <span class="keyword">in</span> xrange(<span class="number">100</span>, h, h/<span class="number">11</span>):</span><br><span class="line">device.touch(wi, hi, MonkeyDevice.DOWN_AND_UP)</span><br><span class="line"><span class="comment"># Takes a screenshot</span></span><br><span class="line"><span class="comment">#result = device.takeSnapshot()</span></span><br><span class="line"><span class="comment"># Writes the screenshot to a file</span></span><br><span class="line"><span class="comment">#result.writeToFile('/tmp/shot1.png','png')</span></span><br></pre></td></tr></table></figure>
-<p>缺点： 很容易点到别的地方。</p>
-<p>用monkey来实现</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb   shell monkey -p com.eg.android.AlipayGphone -s <span class="number">500</span> --pct-touch <span class="number">100</span> --ignore-crashes --ignore-timeouts --monitor-native-crashes -v -v <span class="number">10000</span> &gt; E:\monkey_log\java_monkey_log.txt</span><br></pre></td></tr></table></figure>
-<p>缺点： 完全不受控制。也很容易点到别的地方。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1580,7 +1582,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1594,7 +1596,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
