@@ -220,6 +220,119 @@
             
               
                 
+                <a class="post-title-link" href="/2015/03/08/robotium/" itemprop="url">
+                  robotium测试读取sd卡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-03-08T11:32:31+08:00" content="2015-03-08">
+              2015-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/08/robotium/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/08/robotium/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>当时为了解决帐号问题，用robotium 测试时，先将帐号写到sd.然后实现读出来，解决帐号冲突。</p>
+<p>page.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.XXXcircle.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Environment;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">final</span> String FILE_NAME = <span class="string">"/number.txt"</span>;</span><br><span class="line">	<span class="comment">// guidepage</span></span><br><span class="line">	<span class="keyword">public</span> String guideActivity = <span class="string">"com.XXX.app.activity.GuideActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String guidepagebtn = <span class="string">"guide_page_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Login Page</span></span><br><span class="line">	<span class="keyword">public</span> String LoginNewActivity = <span class="string">"com.XXX.app.activity.LoginNewActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String username = <span class="string">"login_account_et"</span>;</span><br><span class="line">	<span class="keyword">public</span> String password = <span class="string">"login_password_et"</span>;</span><br><span class="line">	<span class="keyword">public</span> String loginbtn = <span class="string">"login_btn"</span>;</span><br><span class="line">	<span class="keyword">public</span> String HomeActivity = <span class="string">"HomeActivity"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Logout Page</span></span><br><span class="line">	<span class="keyword">public</span> String backbtn = <span class="string">"widget_custom_titlebar_right_gamma_btn"</span>;</span><br><span class="line">	<span class="keyword">public</span> String popuptext = <span class="string">"popup_text"</span>;</span><br><span class="line">	<span class="keyword">public</span> String settingmainactivity = <span class="string">"SettingMainActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String settingmianlayout = <span class="string">"setting_main_about_XXX_layout"</span>;</span><br><span class="line">	<span class="keyword">public</span> String settingmainquit = <span class="string">"setting_main_quit"</span>;</span><br><span class="line">	<span class="keyword">public</span> String positivebtn = <span class="string">"positiveButton"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Home Page</span></span><br><span class="line">	<span class="keyword">public</span> String homeactivity = <span class="string">"com.XXX.app.activity.HomeActivity"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 动态</span></span><br><span class="line">	<span class="keyword">public</span> String XXXtab = <span class="string">"page_home_XXX_tab_btn"</span>;</span><br><span class="line">	<span class="comment">// 联系人</span></span><br><span class="line">	<span class="keyword">public</span> String contactstab = <span class="string">"page_home_contacts_tab_btn"</span>;</span><br><span class="line">	<span class="comment">// 探究</span></span><br><span class="line">	<span class="keyword">public</span> String discovertab = <span class="string">"page_home_discover_tab_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 我</span></span><br><span class="line">	<span class="keyword">public</span> String profiletab = <span class="string">"page_home_profile_tab_btn"</span>;</span><br><span class="line">	<span class="comment">// 查找</span></span><br><span class="line">	<span class="comment">// public String searchbtn = "widget_custom_titlebar_right_alpha_btn";</span></span><br><span class="line">	<span class="comment">// 查找（放大镜）</span></span><br><span class="line">	<span class="keyword">public</span> String searchbtn = <span class="string">"widget_custom_titlebar_right_beta_btn"</span>;</span><br><span class="line">	<span class="comment">// 设置（加号）</span></span><br><span class="line">	<span class="keyword">public</span> String setbtn = <span class="string">"widget_custom_titlebar_right_gamma_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 查找</span></span><br><span class="line">	<span class="keyword">public</span> String SearchActivity = <span class="string">"com.XXX.app.activity.SearchActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String searchbtnet = <span class="string">"page_search_content_et"</span>;</span><br><span class="line">	<span class="keyword">public</span> String searchcancelbtn = <span class="string">"page_search_cancel_btn"</span>;</span><br><span class="line">	<span class="keyword">public</span> String searchbackbtn = <span class="string">"page_search_back_ib"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 添加好友</span></span><br><span class="line">	<span class="keyword">public</span> String searchfriendactivity = <span class="string">"SearchFriendActivity"</span>;</span><br><span class="line">	<span class="comment">// 查找框</span></span><br><span class="line">	<span class="keyword">public</span> String editsearch = <span class="string">"edit_searchfriends"</span>;</span><br><span class="line">	<span class="comment">// 清空</span></span><br><span class="line">	<span class="keyword">public</span> String searchdel = <span class="string">"txt_search_del"</span>;</span><br><span class="line">	<span class="comment">// 搜索按钮</span></span><br><span class="line">	<span class="keyword">public</span> String searchclick = <span class="string">"txt_search_click"</span>;</span><br><span class="line">	<span class="comment">// 好友推荐</span></span><br><span class="line">	<span class="keyword">public</span> String recommend = <span class="string">"iv_recommend_icon"</span>;</span><br><span class="line">	<span class="comment">// 扫一扫</span></span><br><span class="line">	<span class="keyword">public</span> String saoyisao = <span class="string">"iv_er_icon"</span>;</span><br><span class="line">	<span class="comment">// 结果</span></span><br><span class="line">	<span class="keyword">public</span> String finduserresultactivity = <span class="string">"com.XXX.app.activity.FindUserResultActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String backupbtn = <span class="string">"widget_custom_titlebar_back_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 公共群聊天</span></span><br><span class="line">	<span class="keyword">public</span> String orgroup = <span class="string">"img_organizationgroup"</span>;</span><br><span class="line">	<span class="keyword">public</span> String publictalkgroupactivity = <span class="string">"com.XXX.app.activity.PublicTalkGroupListActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String txtgroup = <span class="string">"txt_group"</span>;</span><br><span class="line">	<span class="keyword">public</span> String talkgroupicon = <span class="string">"iv_talkgroup_icon"</span>;</span><br><span class="line">	<span class="keyword">public</span> String chatactivity = <span class="string">"com.XXX.app.activity.ChatActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String chataudiobtn = <span class="string">"page_chat_message_et"</span>;</span><br><span class="line">	<span class="keyword">public</span> String chatmessagesendbtn = <span class="string">"page_chat_message_send_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 探究</span></span><br><span class="line">	<span class="comment">// 动态</span></span><br><span class="line">	<span class="keyword">public</span> String customimgview = <span class="string">"widget_custom_imgview_iv"</span>;</span><br><span class="line">	<span class="keyword">public</span> String discoveractivity = <span class="string">"com.XXX.app.activity.DiscoverActivity"</span>;</span><br><span class="line">	<span class="comment">// 笔的标志</span></span><br><span class="line">	<span class="keyword">public</span> String releasebtn = <span class="string">"release_dynamic_btn"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 我</span></span><br><span class="line">	<span class="keyword">public</span> String settingactivity = <span class="string">"com.XXX.app.activity.SettingMainActivity"</span>;</span><br><span class="line">	<span class="keyword">public</span> String mysetting = <span class="string">"r_mysetting"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 通过ID输入文本内容 enterTextById( String id, String s,int t)</span><br><span class="line">	 * id:Id(hierarchviewer)获取的文本框id,字符串格式id s:需要输入的文本信息 t:timedelay</span><br><span class="line">	 * 触发按键后，停留多久（ms）</span><br><span class="line">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * public int enterTextById( String id, String s, int t) &#123; int ctrl;</span><br><span class="line">	 * EditText v;</span><br><span class="line">	 * </span><br><span class="line">	 * if (s == "") &#123; return -1; &#125; //</span><br><span class="line">	 * ctrl=solo.getCurrentActivity().getResources</span><br><span class="line">	 * ().getIdentifier(id,"id",solo.getCurrentActivity().getPackageName());</span><br><span class="line">	 * View ctr = solo.getView(id); v = (EditText) (ctr);</span><br><span class="line">	 * </span><br><span class="line">	 * // 先清空 solo.clearEditText(v); solo.enterText(v, s); solo.sleep(t); return</span><br><span class="line">	 * 0; &#125;</span><br><span class="line">	 * </span><br><span class="line">	 * </span><br><span class="line">	 * </span><br><span class="line">	 * 通过ID点击打开VIEW clickCtrlById( String s,int t)</span><br><span class="line">	 * s:Id(hierarchviewer)触摸按键的id,字符串格式 t:timedelay 触发按键后，停留多久（ms）</span><br><span class="line">	 * TARGET_PACKAGE_ID,是一个宏变量，字符串格式，定义了目标APK的包名</span><br><span class="line">	 * </span><br><span class="line">	 * public int clickCtrlById( String s, int t) &#123; int ctrl; View v; if (s ==</span><br><span class="line">	 * "") &#123; return -1; &#125; ctrl = solo.getCurrentActivity().getResources()</span><br><span class="line">	 * .getIdentifier(s, "id", "com.leju.platform"); v = solo.getView(ctrl);</span><br><span class="line">	 * solo.clickOnView(v); solo.sleep(t); return 0; &#125; <span class="comment">/* <span class="comment">/*</span><br><span class="line">	 * <span class="comment">/**我的需求是找列表中符合某种条件的Item可以点进去查看思路：滑动一个，判断一个，也就是说，每次点击的都是当前屏幕的第一个</span><br><span class="line">	 * </span><br><span class="line">	 * public void findItem() &#123; solo.sleep(_1S); //获取listView 随便怎么获取 ListView</span><br><span class="line">	 * listView = solo.getView(ListView.class, 0);</span><br><span class="line">	 * </span><br><span class="line">	 * if (listView.getCount() == 0) &#123; assertEquals("", "列表为空"); &#125; int clickLine</span><br><span class="line">	 * = 1; int oneScreenCount = listView.getChildCount(); for (int index = 0,</span><br><span class="line">	 * size = listView.getCount(); index &lt; size; index++) &#123; log("列表点击第" + (index</span><br><span class="line">	 * + 1) + "个"); solo.clickInList(clickLine); if ( your conditions) &#123;</span><br><span class="line">	 * log("列表符合条件的是第" + (index + 1) + "个"); //break; return; &#125; if (index &gt;=</span><br><span class="line">	 * (size - oneScreenCount) || (size &lt;= oneScreenCount)) &#123; //滑动到了列表的最后一屏</span><br><span class="line">	 * clickLine = clickLine + 1; &#125; else &#123; clickLine = 1; &#125; if (index == (size -</span><br><span class="line">	 * 1)) &#123; assertEquals("", "当前没有符合条件的东西"); &#125; solo.goBack();</span><br><span class="line">	 * solo.scrollListToLine(0, index + 1); &#125;</span><br><span class="line">	 * </span><br><span class="line">	 * //如果return换成break 此时点击clickLine就是你想要的了 //solo.clickInList(clickLine); &#125;</span><br><span class="line">	 * </span><br><span class="line">	 * </span><br><span class="line">	 * RelativeLayout parentView =</span><br><span class="line">	 * (RelativeLayout)solo.getView("pic_lick_num_id").getParent(); LinearLayout</span><br><span class="line">	 * linearlayout=(LinearLayout)parentView.findViewById(1);</span><br><span class="line">	 * linearlayout.getChildAt(0);</span><br><span class="line">	 * solo.clickOnView(solo.getView("gallery_flower_btn"));</span><br><span class="line">	 * </span><br><span class="line">	 * </span><br><span class="line">	 * try &#123; View fastLoginDialog = solo.getView("xxxxxxx:id/has_account",0);</span><br><span class="line">	 * solo.clickOnView(fastLoginDialog);</span><br><span class="line">	 * </span><br><span class="line">	 * View username = solo.getView("xxxxxxx:id/edit_account",0); EditText un =</span><br><span class="line">	 * (EditText)username; solo.typeText(un, "hh1906"); View pwd =</span><br><span class="line">	 * solo.getView("xxxxxxx:id/edit_pwd",0); EditText pw = (EditText)pwd;</span><br><span class="line">	 * solo.typeText(pw, "123456"); solo.clickOnButton("登 录");</span><br><span class="line">	 * Thread.sleep(5000);</span><br><span class="line">	 * </span><br><span class="line">	 * </span><br><span class="line">	 * &#125; catch (AssertionFailedError e) &#123; //登录操作 View rb =</span><br><span class="line">	 * solo.getView("xxxxxxx:id/right_bt",0); solo.clickOnView(rb); View avatar</span><br><span class="line">	 * = solo.getView("xxxxxxx:id/avatar",0); solo.clickOnView(avatar); View</span><br><span class="line">	 * username = solo.getView("xxxxxxx:id/edit_account",0); EditText un =</span><br><span class="line">	 * (EditText)username; solo.typeText(un, "hh1906"); View pwd =</span><br><span class="line">	 * solo.getView("xxxxxxx:id/edit_pwd",0); EditText pw = (EditText)pwd;</span><br><span class="line">	 * solo.typeText(pw, "123456"); solo.clickOnButton("登 录");</span><br><span class="line">	 * Thread.sleep(5000);</span><br><span class="line">	 * </span><br><span class="line">	 * &#125;</span><br><span class="line">	 */</span></span><br><span class="line">	private void write(String content) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (Environment.getExternalStorageState().equals(</span><br><span class="line">					Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">				// 获取SD卡的目录</span><br><span class="line">				File sdCardDir = Environment.getExternalStorageDirectory();</span><br><span class="line">				File targetFile = new File(sdCardDir.getCanonicalPath()</span><br><span class="line">						+ FILE_NAME);</span><br><span class="line">				// 以指定文件创建RandomAccessFile对象</span><br><span class="line">				RandomAccessFile raf = new RandomAccessFile(targetFile, "rw");</span><br><span class="line">				// 将文件记录指针移动到最后</span><br><span class="line">				raf.seek(targetFile.length());</span><br><span class="line">				// 输出文件内容</span><br><span class="line">				raf.write(content.getBytes());</span><br><span class="line">				raf.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String read() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (Environment.getExternalStorageState().equals(</span><br><span class="line">					Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">				// 获得SD卡对应的存储目录</span><br><span class="line">				File sdCardDir = Environment.getExternalStorageDirectory();</span><br><span class="line">				// 获取指定文件对应的输入流</span><br><span class="line">				FileInputStream fis = new FileInputStream(</span><br><span class="line">						sdCardDir.getCanonicalPath() + FILE_NAME);</span><br><span class="line">				// 将指定输入流包装成BufferReader</span><br><span class="line">				BufferedReader br = new BufferedReader(new InputStreamReader(</span><br><span class="line">						fis));</span><br><span class="line">				StringBuilder sb = new StringBuilder("");</span><br><span class="line">				String line = null;</span><br><span class="line">				// 循环读取文件内容</span><br><span class="line">				while ((line = br.readLine()) != null) &#123;</span><br><span class="line">					sb.append(line);</span><br><span class="line">				&#125;</span><br><span class="line">				br.close();</span><br><span class="line">				return sb.toString();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	public Object[] splitstring(String number) &#123;</span><br><span class="line">	</span><br><span class="line">		Object[] numberArray=number.split(",");</span><br><span class="line">		//Object[] o = new Object[2]; </span><br><span class="line">		//o[1]=numberArray[1];</span><br><span class="line">		//o[2]=numberArray[2];</span><br><span class="line">		return numberArray;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span></span></span></span><br></pre></td></tr></table></figure>
+<p>ddfriends.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.XXXcircle.testcases;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.XXXcircle.action.addfriendsaction;</span><br><span class="line"><span class="keyword">import</span> com.XXXcircle.action.chataction;</span><br><span class="line"><span class="keyword">import</span> com.XXXcircle.test.Page;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">addfriends</span>  <span class="keyword">extends</span> <span class="title">addfriendsaction</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">	public void testread()&#123;</span><br><span class="line">		Page page = new Page();</span><br><span class="line">		String a=page.read();</span><br><span class="line">		Object[] as= page.splitstring(a);</span><br><span class="line">		System.out.print(as[0]);</span><br><span class="line">		System.out.print(as[1]);</span><br><span class="line">	&#125;</span><br><span class="line">	*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">addfriends</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testaddfriend</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException</span>&#123;</span><br><span class="line">		Page page = <span class="keyword">new</span> Page();</span><br><span class="line">		String a=page.read();</span><br><span class="line">		Object[] as= page.splitstring(a);</span><br><span class="line">		<span class="comment">//System.out.print(as[0]);</span></span><br><span class="line">		<span class="comment">//System.out.print(as[1]);</span></span><br><span class="line">		<span class="comment">//testread();</span></span><br><span class="line">		testaddfriends(as[<span class="number">0</span>].toString(), as[<span class="number">1</span>].toString(),<span class="string">"尼玛坤爷"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/03/06/dockeronubumtu/" itemprop="url">
                   Docker 之 ubuntu 上实践
                 </a>
@@ -1416,126 +1529,6 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/06/05/python-csv/" itemprop="url">
-                  python csv模块介绍
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-06-05T11:44:19+08:00" content="2014-06-05">
-              2014-06-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/06/05/python-csv/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/05/python-csv/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
-<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure></p>
-<p>参数：</p>
-<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
-<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
-<p>使用例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
-<p>writer:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
-<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">writer.writerow([<span class="string">"hello"</span>,<span class="string">"anderson"</span>])</span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(file)</span>:</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please choose the type: "</span>)</span><br><span class="line">    rule = re.compile(yourtype)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">        spamreader = csv.reader(readfile)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(row)):</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writecsv</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (<span class="string">'jsonfile.csv'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    	spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</span><br><span class="line">            spamwriter.writerow(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(self, file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">       spamreader = csv.reader(readfile)</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">                line = row.split(<span class="string">','</span>)</span><br><span class="line">                <span class="keyword">for</span> each_line <span class="keyword">in</span> line:</span><br><span class="line">                    <span class="keyword">if</span> each_line != <span class="string">" "</span>:</span><br><span class="line">                        <span class="keyword">print</span> each_line</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1582,7 +1575,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1596,7 +1589,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
