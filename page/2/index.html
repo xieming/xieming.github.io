@@ -220,6 +220,118 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/12/所谓管理/" itemprop="url">
+                  所谓管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-12T13:08:58+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/职业/" itemprop="url" rel="index">
+                    <span itemprop="name">职业</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/12/所谓管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/所谓管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近心比较累。</p>
+<p>突然明白了：</p>
+<p>大公司所谓的管理，</p>
+<p>管理，就是培植自己的嫡系，打击别人的亲信，关键岗位能放自己的人。每个人都会被各个圈子争取，面临站队。就看你是否站错队。风水也是轮流转的。当你对任何人都不构成威胁时，你就有独善其身的机会，也就意味着你难以出头。只有你领导上去你，才有可能带你玩。有人的地方就有江湖，江湖险恶，没有人会无缘无故对你好，就看你有无利用价值，或者对手是否在争夺你。每个人都是伪装者，开始各种表演，时间长了，情商再低的人也能看出来。斗争越激烈，说明你位置越高，或者你对手情商高。没有赢家，也没有结局，要么出局，要么有小弟替你背锅出局。可悲的是有些出局的小弟，被你当枪使了仍对你感激。影帝啊!</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/12/看美剧/" itemprop="url">
                   看美剧
                 </a>
@@ -1286,122 +1398,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/27/jenkins-security/" itemprop="url">
-                  jenkins去掉security
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-27T15:11:16+08:00" content="2016-03-27">
-              2016-03-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/27/jenkins-security/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/jenkins-security/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近公司的DLAP更改了服务器，导致不能访问。Jenkins无法登录。</p>
-<p>于是用了种暴力的模式，直接将security去掉。<br>以下为解决办法</p>
-<p>• 停止jenkins服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl unload /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
-<p>• 修改jenkins的config.xml文件 将以下内容全部删除</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;useSecurity&gt;true&lt;/useSecurity&gt; &lt;authorizationStategy class="hudson.sucrity.FullControlOnceLoggedInAuthorizationStrategy"&gt; ...... &lt;/authorizationStategy&gt; &lt;securityRealm class="hudson.security.HudsonPrivateSecurityRealm"&gt;&lt;disableSignup&gt;false&lt;/disableSignup&gt; ..  &lt;/securityRealm&gt;</span><br></pre></td></tr></table></figure>
-<p>• 重启jenkins服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load /Library/LaunchAgents/homebrew.mxcl.jenkins.plist</span><br></pre></td></tr></table></figure></p>
-<p>注：删处上面文件内容后，所做的权限分配也就全部没有了，但是用户还在。</p>
-<p>暂时先度过了这次危机。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1448,7 +1444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
