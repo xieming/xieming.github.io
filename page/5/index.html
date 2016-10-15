@@ -197,6 +197,141 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/05/railsupload/" itemprop="url">
+                  rails实现文件上传
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-06-05T22:43:01+08:00" content="2015-06-05">
+              2015-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/rails/" itemprop="url" rel="index">
+                    <span itemprop="name">rails</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/05/railsupload/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/05/railsupload/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近一直在折腾上传，对mongo的上传搞伤脑经。</p>
+<p>rails 上传主要是一个gem carrierwave<br>先生成一个项目，然后对Gemfile做点修改,如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'mongoid'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line">gem <span class="string">'carrierwave-mongoid'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span>, <span class="string">'0.6.2'</span></span><br><span class="line">gem <span class="string">'mini_magick'</span> <span class="comment">#不使用rmagick，占内存</span></span><br><span class="line">gem <span class="string">'fog'</span>  <span class="comment">#用来在生产环境中上传图片</span></span><br></pre></td></tr></table></figure>
+<p>然后安装</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="operator"><span class="keyword">install</span></span><br><span class="line">rails <span class="keyword">g</span> mongoid:config</span></span><br></pre></td></tr></table></figure>
+<p>将会出现：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">This</span> generates config<span class="regexp">/mongoid.yml</span></span><br></pre></td></tr></table></figure>
+<p>那么，之前那个默认的database.yml配置文件已经没用了，别舍不得，去./config目录里面随手删掉它吧!</p>
+<p>修改config/application.rb文件，先删掉<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">"rails/all"</span></span><br></pre></td></tr></table></figure></p>
+<p>和</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.raise_in_transactional_callbacks</span> = true</span><br></pre></td></tr></table></figure>
+<p>这两行，再添加以下几行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require <span class="string">"action_controller/railtie"</span></span><br><span class="line">require <span class="string">"action_mailer/railtie"</span></span><br><span class="line"><span class="comment"># require "active_resource/railtie" # Comment this line for Rails 4.0+</span></span><br><span class="line">require <span class="string">"rails/test_unit/railtie"</span></span><br><span class="line">require <span class="string">"sprockets/railtie"</span> <span class="comment"># Uncomment this line for Rails 3.1+</span></span><br></pre></td></tr></table></figure>
+<p>修改config/environments/development.rb文件，将里面所有涉及到active_record的配置项都注释掉：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.active_record</span><span class="class">.migration_error</span> = :page_load</span><br></pre></td></tr></table></figure>
+<p>在config/initializers/目录下新建一个mongoid.rb文件，添加一行：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Mongoid.</span>load!(<span class="string">"config/mongoid.yml"</span>, <span class="symbol">:production</span>)</span><br></pre></td></tr></table></figure>
+<p>然后启动mongo服务：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --config <span class="regexp">/usr/</span>local<span class="regexp">/etc/m</span>ongod.conf</span><br></pre></td></tr></table></figure>
+<p>生成一个scaffold</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rails generate scaffold <span class="keyword">User</span> <span class="title">name</span>:<span class="type">string</span> nick:<span class="type">string</span> avatar:<span class="type">string</span></span><br><span class="line"></span><br><span class="line">rails generate uploader Avatar</span><br></pre></td></tr></table></figure>
+<p>未完待续。。。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -1274,185 +1409,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/07/06/dailybuildios/" itemprop="url">
-                  自动化测试与持续集成方案--IOS Daily Build
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-07-06T21:09:38+08:00" content="2014-07-06">
-              2014-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IOS/" itemprop="url" rel="index">
-                    <span itemprop="name">IOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/07/06/dailybuildios/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/06/dailybuildios/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>首先你得有Mac的电脑，xcode, 开发者证书。<br>安装 xctool.</p>
-<p>配置好证书，然后在命令行转到项目目录.</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>清除  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild clean  </span><br><span class="line"><span class="number">2.</span>编译  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild -target CTest -configuration Release  </span><br><span class="line"><span class="number">3.</span>打包ipa  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcrun -sdk iphoneos  PackageApplication -v <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTestild<span class="regexp">/Release-iphoneos/</span>CTest.app -o <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTest/CTest.ipa</span><br></pre></td></tr></table></figure>
-<p>跟 android ant 打包一样，也是三条命令</p>
-<pre><code>#!/bin/sh
-#  autoBuild.sh
-#  Created by Anderson on 14-04-28. 
-#  Copyright (c) 2014年 Anderson. All rights reserved.
-###############################################
-#使用方法
-#./autoBuild.sh arg1 arg2
-#arg1 项目的路径，例如：/Users/apple/code
-#arg2 为项目编译ID
-###############################################
-
-###############################################
-
-#参数检查
-if [ -z &quot;$1&quot; ]; 
-then
-echo &quot;error:项目路径为空&quot;
-exit 1
-fi
-if [ -z &quot;$2&quot; ]; 
-then 
-echo &quot;error:项目编译ID为空&quot;
-exit 1
-fi
-#日志地址
-logPath=&quot;${1}/log.txt&quot;
-#ipa地址 
-ipaPath=&quot;${1}/${2}.ipa&quot;
-##############################################
-
-#清理项目 
-cd $1
-xcodebuild clean
-
-###############################################
-
-#编译并将日志写到文件 正式使用需要修改 Debug/Release
-xcodebuild -target XXXX -configuration Debug &gt; ${logPath}
-#判断是否编译成功
-if [[ $? -eq 0 ]];  
-then
-echo &quot;build success&quot;
-else
-cho &quot;build error&quot;
-exit 2
-fi
-
-###############################################
-#生成ipa
-xcrun -sdk iphoneos PackageApplication -v build/Debug-iphoneos/*.app -o ${ipaPath}
-if [[ $? -eq 0 ]];  then
-rm -rf build
-echo &quot;create ipa success&quot;
-exit 0
-else
-echo &quot;create ipa error&quot;
-exit 2
-fi
-</code></pre><p>打包能成功。通过Debug/Release来控制签名和不签名。</p>
-<p>Jenkins 上要装xcode 的插件。 配置好后，你会发现一直失败，每次都会在codsign出错。然后你不在jenkins中调用，只用命令执行是通过的。这个问题困惑了我好久，最后找到了方案：<br>在jenkins中设置Unlock Keychain.</p>
-<p>本文发表在：<a href="https://testerhome.com/topics/2554" target="_blank" rel="external">Testerhome</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1493,21 +1455,21 @@ fi
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

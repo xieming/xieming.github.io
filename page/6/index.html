@@ -197,6 +197,184 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/07/06/dailybuildios/" itemprop="url">
+                  自动化测试与持续集成方案--IOS Daily Build
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-07-06T21:09:38+08:00" content="2014-07-06">
+              2014-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index">
+                    <span itemprop="name">IOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/07/06/dailybuildios/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/06/dailybuildios/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>首先你得有Mac的电脑，xcode, 开发者证书。<br>安装 xctool.</p>
+<p>配置好证书，然后在命令行转到项目目录.</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>清除  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild clean  </span><br><span class="line"><span class="number">2.</span>编译  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcodebuild -target CTest -configuration Release  </span><br><span class="line"><span class="number">3.</span>打包ipa  </span><br><span class="line"><span class="string">EthantekiiMac:</span>CTest ethan$ xcrun -sdk iphoneos  PackageApplication -v <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTestild<span class="regexp">/Release-iphoneos/</span>CTest.app -o <span class="regexp">/Volumes/</span>workildCommand<span class="regexp">/test/</span>CTest/CTest.ipa</span><br></pre></td></tr></table></figure>
+<p>跟 android ant 打包一样，也是三条命令</p>
+<pre><code>#!/bin/sh
+#  autoBuild.sh
+#  Created by Anderson on 14-04-28. 
+#  Copyright (c) 2014年 Anderson. All rights reserved.
+###############################################
+#使用方法
+#./autoBuild.sh arg1 arg2
+#arg1 项目的路径，例如：/Users/apple/code
+#arg2 为项目编译ID
+###############################################
+
+###############################################
+
+#参数检查
+if [ -z &quot;$1&quot; ]; 
+then
+echo &quot;error:项目路径为空&quot;
+exit 1
+fi
+if [ -z &quot;$2&quot; ]; 
+then 
+echo &quot;error:项目编译ID为空&quot;
+exit 1
+fi
+#日志地址
+logPath=&quot;${1}/log.txt&quot;
+#ipa地址 
+ipaPath=&quot;${1}/${2}.ipa&quot;
+##############################################
+
+#清理项目 
+cd $1
+xcodebuild clean
+
+###############################################
+
+#编译并将日志写到文件 正式使用需要修改 Debug/Release
+xcodebuild -target XXXX -configuration Debug &gt; ${logPath}
+#判断是否编译成功
+if [[ $? -eq 0 ]];  
+then
+echo &quot;build success&quot;
+else
+cho &quot;build error&quot;
+exit 2
+fi
+
+###############################################
+#生成ipa
+xcrun -sdk iphoneos PackageApplication -v build/Debug-iphoneos/*.app -o ${ipaPath}
+if [[ $? -eq 0 ]];  then
+rm -rf build
+echo &quot;create ipa success&quot;
+exit 0
+else
+echo &quot;create ipa error&quot;
+exit 2
+fi
+</code></pre><p>打包能成功。通过Debug/Release来控制签名和不签名。</p>
+<p>Jenkins 上要装xcode 的插件。 配置好后，你会发现一直失败，每次都会在codsign出错。然后你不在jenkins中调用，只用命令执行是通过的。这个问题困惑了我好久，最后找到了方案：<br>在jenkins中设置Unlock Keychain.</p>
+<p>本文发表在：<a href="https://testerhome.com/topics/2554" target="_blank" rel="external">Testerhome</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -1430,150 +1608,12 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/03/开贴了/" itemprop="url">
-                  Hexo小试牛刀
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-12-03T22:24:29+08:00" content="2013-12-03">
-              2013-12-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/建站/" itemprop="url" rel="index">
-                    <span itemprop="name">建站</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/12/03/开贴了/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/03/开贴了/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5"><a href="#Hexo_3A__u72EC_u7ACB_u535A_u5BA2_u65B0_u73A9_u6CD5" class="headerlink" title="Hexo: 独立博客新玩法"></a>Hexo: 独立博客新玩法</h1><p>首先Hexo是一款基于Node.js的静态博客，它是由台湾的一位大学生写出来的，支持很多主题和Markdown，很多人都在使用。</p>
-<p>我的理解，按照MarkDown的语法规则，免费的将自己网页部署到代码托管网站上去。Hexo就是这样一套自动生成网页的框架。<br>对于喜欢写独立博客的来说，是一个福音。不需要域名，服务器，备案等，就可以拥有自己的网站。</p>
-<p>我记得以前是用jeklly托管到github上，我弄过，但是没坚持下来。<br>当知道有Hexo的时候，也写过一些。但是由于众所周知的原因，github经常打不开，导致部署常常出错，所以也没有坚持下来。<br>前段时间发现上github速度又可以了，打算重新在弄弄，坚持写下去。</p>
-<h2 id="1-__u672C_u5730_u642D_u5EFA"><a href="#1-__u672C_u5730_u642D_u5EFA" class="headerlink" title="1. 本地搭建"></a>1. 本地搭建</h2><p>几条命令：</p>
-<p><pre><code><br>$ npm install -g hexo<br>$ mkdir Hexo<br>$ cd Hexo<br>$ hexo init<br>$ npm install<br></code></pre><br>这样就安装完成了，NodeJs的安装，网上有很多的资料。</p>
-<h2 id="2-_Start_Server"><a href="#2-_Start_Server" class="headerlink" title="2. Start Server"></a>2. Start Server</h2><p>在/Hexo下执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl + c to stop.</span><br></pre></td></tr></table></figure>
-<p>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>, 你就可以看到生成的博客了。</p>
-<h2 id="3-_Create_a_new_post"><a href="#3-_Create_a_new_post" class="headerlink" title="3. Create a new post"></a>3. Create a new post</h2><p>在/Hexo下执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"your article name"</span></span><br><span class="line">[info] File Created at \Hexo\<span class="built_in">source</span>\_posts\your-article-name.md</span><br></pre></td></tr></table></figure>
-<h2 id="4-_Generate_static_files"><a href="#4-_Generate_static_files" class="headerlink" title="4. Generate static files"></a>4. Generate static files</h2><pre><code>$ hexo generate
-</code></pre><p>it will generate file at the folder \Hexo\public\</p>
-<h2 id="5-_Edit_files"><a href="#5-_Edit_files" class="headerlink" title="5. Edit files"></a>5. Edit files</h2><p>如果要更改文件，到\Hexo\source_posts 用markdown 语法编辑一下。<br>如果要删除，到这个目录下删除不想要的文章。<br>然后更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate &lt;!--生成--&gt;</span><br><span class="line">hexo s == hexo server &lt;!--启动服务来预览--&gt;</span><br><span class="line">hexo d == hexo deploy &lt;!--部署--&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="6-_Deploy_to_github"><a href="#6-_Deploy_to_github" class="headerlink" title="6. Deploy to github"></a>6. Deploy to github</h2><h3 id="1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D"><a href="#1-_u5EFA_u7ACB_u4E0E_u4F60_u7528_u6237_u540D_u5BF9_u5E94_u7684_u4ED3_u5E93_uFF0C_u4ED3_u5E93_u540D_u5FC5_u987B_u4E3A_uFF3Byour_user_name-github-io_uFF3D" class="headerlink" title="1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］"></a>1.建立与你用户名对应的仓库，仓库名必须为［your_user_name.github.io］</h3><h3 id="2-SSH"><a href="#2-SSH" class="headerlink" title="2.SSH"></a>2.SSH</h3><p>请参照 <a href="http://segmentfault.com/q/1010000000164925" target="_blank" rel="external">hexo重置ssh</a></p>
-<h3 id="3-_u914D_u7F6Econfig-yml"><a href="#3-_u914D_u7F6Econfig-yml" class="headerlink" title="3.配置config.yml"></a>3.配置config.yml</h3><p>部署到Github前需要配置_config.yml文件，首先找到下面的内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Deployment</span></span><br><span class="line"><span class="comment">##Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>:</span><br><span class="line">``` </span><br><span class="line">然后将它们修改为</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: github</span><br><span class="line">  repository: git@github.com:snake/snake.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>NOTE1:</p>
-<p>Repository：必须是SSH形式的url（git@github.com:snake/snake.github.io.git），而不能是HTTPS形式的url（<a href="https://github.com/snake/snake.github.io.git），否则会出现错误。" target="_blank" rel="external">https://github.com/snake/snake.github.io.git），否则会出现错误。</a></p>
-<p>NOTE2:</p>
-<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。</p>
-<h3 id="4-_Deploy"><a href="#4-_Deploy" class="headerlink" title="4. Deploy"></a>4. Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="7-__u6D4B_u8BD5"><a href="#7-__u6D4B_u8BD5" class="headerlink" title="7. 测试"></a>7. 测试</h2><p>当部署完成后，在浏览器中打开<a href="http://snake.github.io/（https://snake.github.io/）" target="_blank" rel="external">http://snake.github.io/（https://snake.github.io/）</a> ，正常显示网页，表明部署成功。</p>
-<h2 id="8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4"><a href="#8-__u603B_u7ED3_uFF1A_u90E8_u7F72_u6B65_u9AA4" class="headerlink" title="8. 总结：部署步骤"></a>8. 总结：部署步骤</h2><p>每次部署的步骤，可按以下三步来进行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<h2 id="9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5"><a href="#9-__u603B_u7ED3_uFF1A_u672C_u5730_u8C03_u8BD5" class="headerlink" title="9. 总结：本地调试"></a>9. 总结：本地调试</h2><p>在执行下面的命令后，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment">#生成</span></span><br><span class="line">$ hexo s <span class="comment">#启动本地服务，进行文章预览调试</span></span><br></pre></td></tr></table></figure>
-<p>浏览器输入<a href="http://localhost:4000，" target="_blank" rel="external">http://localhost:4000，</a><br>查看搭建效果。此后的每次变更_config.yml 文件或者新建文件都可以先用此命令调试，尤其是当你想调试新添加的主题时。</p>
-<p>可以用简化的一条命令<br><code>hexo s -g</code></p>
-<p><strong>常用命令：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br><span class="line"></span><br><span class="line">命令的简写为：</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1614,21 +1654,21 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

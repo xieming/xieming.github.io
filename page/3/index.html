@@ -197,6 +197,132 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/27/simulaterofnet/" itemprop="url">
+                  模拟各种网络环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-27T15:23:40+08:00" content="2016-03-27">
+              2016-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/27/simulaterofnet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/27/simulaterofnet/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>作者最近要release一个Android版本， 在网络测试时却遇到了难题。<br>没有各种网络环境。<br>然后网上有Facebook/atc来模拟各种网络。<br>然后各种安装让我望而却步。</p>
+<p>我知道IOS是用Network Link Conditioner（NLC）来测试，能否在Android也可以尝试一下呢。</p>
+<p>结果让人振奋。将过程分享一下，也许能帮到有跟我一样遇到这种问题的。</p>
+<p><strong>Mac 下 xcode 自带的 Network Link Conditioner（NLC）</strong></p>
+<p>NLC 是 xcode 的插件，可以在 “Hardware IO Tools for Xcode” 中找到。你可以在苹果开发者页面找到这个插件<br><img src="/images/network-link-conditioner-download.png" alt="NLC"></p>
+<p>查找 “Network Link Conditioner”, 然后选择 “Hardware IO Tools for Xcode” package.<br><img src="/images/3.21.20.png" alt="NLC"></p>
+<p>下载好之后, 打开 DMG 然后双击 “Network Link Condition.prefPane” 来安装.<br><img src="/images/3.22.19.png" alt="NLC"><br>装好以后, 你就可以通过 ON 和 OFF 来开启/关闭网络模拟了.<br><img src="/images/3.22.41.png" alt="NLC"><br>Network Link Conditioner 可以模拟多种网络环境，以下是该工具目前自带的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EDGE</span><br><span class="line"><span class="number">3</span>G</span><br><span class="line">DSL</span><br><span class="line">WiFi</span><br><span class="line">High Latency DNS</span><br><span class="line">Very Bad Network</span><br><span class="line"><span class="number">100</span>% Loss</span><br></pre></td></tr></table></figure>
+<p>每种情况都是通过设置上载、下载的 带宽, 延迟, 和 丢包率 (如果设置为 0, 即不影响你当前的网络环境，本来网络是什么样子就是什么样子).<br><img src="/images/network-link-conditioner-preset.png" alt="NLC"></p>
+<p>你也可以自建配置一个环境，在 【Manage Profiles…】里面自定义</p>
+<p>wifi<br>博主这里用的是安卓测试机，所以就通过 mac 的网络共享来建一个 wifi （度娘：Mac共享无线网络）然后用安卓机连上 mac 建的 wifi 就好了。接下来就可以通过切换各种网络环境来测试应用了。在面板上切换各种网络。</p>
+<p>如果是 IOS 的话是可以直接用苹果提供的开发者模式连上该网络（详细见：<a href="http://nshipster.com/network-link-conditioner/），" target="_blank" rel="external">http://nshipster.com/network-link-conditioner/），</a><br><img src="/images/network-link-conditioner-ios.png" alt="NLC"></p>
+<p>参照：<a href="http://nshipster.com/network-link-conditioner/" target="_blank" rel="external">Network Link Conditioner</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -1564,128 +1690,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/23/xueche/" itemprop="url">
-                  学车
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-23T20:21:04+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/23/xueche/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/23/xueche/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>终于通过了大路考。考试并没有平时训练时那么难。可能教练怕我们不过，可以磨练我们吧。</p>
-<p>虽然所有考试都是一次性通过的。但是学车过程是很艰辛的。</p>
-<p>下雨下雪都得去，每次被骂得狗血淋头。</p>
-<p>记忆最深刻的是： 忘记了动作要领，被骂得不敢上车了。</p>
-<p>后面自己慢慢总结了一下，在要领的地方特别注意了一下，后面就少犯错了。</p>
-<p>感受最深的是： <strong>不必过于谨慎，看好了，就放开手脚去做。</strong><br>刚开始在大路上跑的时候，相当的谨慎，导致动作一直没做到位，或者时机不合适。<br>越是胆小慎微，患得患失，越被骂得惨。<br>后面索性豁出去了。就按照教练说的来，在保证安全的前提下，自由发挥，动作麻利，不脱泥带水。</p>
-<p>果然长进多了，基本上不被骂了。</p>
-<p>工作上也是，<strong>掌握到了要领，看清了方向，不必过于拘谨，放开手脚去做。<br>啥事都不可能十分完美。</strong><br>不可能不犯错，只要不是大错，原则性的错误。 犯错是不可避免的。过度的谨慎，反而束缚了手脚。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1726,21 +1736,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">50</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

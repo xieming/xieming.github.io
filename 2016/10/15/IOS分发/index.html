@@ -1,0 +1,837 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="分发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="为啥写这篇文章？因为前面一个事故，送AppStore的版本发错了。一打听，这样的事故发生过好几次。
+
+苹果有太多限制，在测试中拿到包不是易事。目前流行的有如下几种：
+1.使用iTunes将iPa同步到手机中；
+2.使用itms-services协议进行下载分发；
+3.使用第三方工具进行下载分发，如：蒲公英，fir…
+现在就以2来说说。原理是通过Safari解析链接中的”itms-services:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现无AppStore分发iOS应用">
+<meta property="og:url" content="http://snake.me/2016/10/15/IOS分发/index.html">
+<meta property="og:site_name" content="Snake's Home">
+<meta property="og:description" content="为啥写这篇文章？因为前面一个事故，送AppStore的版本发错了。一打听，这样的事故发生过好几次。
+
+苹果有太多限制，在测试中拿到包不是易事。目前流行的有如下几种：
+1.使用iTunes将iPa同步到手机中；
+2.使用itms-services协议进行下载分发；
+3.使用第三方工具进行下载分发，如：蒲公英，fir…
+现在就以2来说说。原理是通过Safari解析链接中的”itms-services:">
+<meta property="og:updated_time" content="2016-10-15T15:36:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实现无AppStore分发iOS应用">
+<meta name="twitter:description" content="为啥写这篇文章？因为前面一个事故，送AppStore的版本发错了。一打听，这样的事故发生过好几次。
+
+苹果有太多限制，在测试中拿到包不是易事。目前流行的有如下几种：
+1.使用iTunes将iPa同步到手机中；
+2.使用itms-services协议进行下载分发；
+3.使用第三方工具进行下载分发，如：蒲公英，fir…
+现在就以2来说说。原理是通过Safari解析链接中的”itms-services:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> 实现无AppStore分发iOS应用 | Snake's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Snake's Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">snake</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                实现无AppStore分发iOS应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-10-15T22:38:44+08:00" content="2016-10-15">
+              2016-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ios-test/" itemprop="url" rel="index">
+                    <span itemprop="name">ios_test</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/15/IOS分发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/15/IOS分发/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>为啥写这篇文章？因为前面一个事故，送AppStore的版本发错了。一打听，这样的事故发生过好几次。</p>
+</blockquote>
+<p>苹果有太多限制，在测试中拿到包不是易事。<br>目前流行的有如下几种：</p>
+<p>1.使用iTunes将iPa同步到手机中；</p>
+<p>2.使用itms-services协议进行下载分发；</p>
+<p>3.使用第三方工具进行下载分发，如：蒲公英，fir…</p>
+<p>现在就以2来说说。<br>原理是通过Safari解析链接中的”itms-services://“来实现的。</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.10.193/installIPA.plist"</span>&gt;</span></span><br><span class="line">Iphone Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Safari会去读取installIPA.plist中的信息，如：iOS应用的名称、版本、安装地址等。</p>
+<p>流程如下：</p>
+<ol>
+<li>用Xcode打包IPA版本</li>
+<li>搭建本地Web服务器</li>
+<li>开启HTTPS</li>
+<li>编写好对应的.plist文件</li>
+<li>上传ipa、.plist、ca证书到Web服务器，配置好index.html</li>
+<li>在手机上用Safari打开链接，完成下载</li>
+</ol>
+<p>首先，我们得解决证书的问题。可以参考<a href="http://www.jianshu.com/p/01224fc523d4" target="_blank" rel="external">iOS 证书申请和使用详解</a><br>如果搞不定，可以找开发帮忙。<br>把生成的证书放到server上。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/upload'</span>, methods=[<span class="string">'POST'</span>])</span></span></span><br><span class="line">def <span class="function"><span class="title">upload</span><span class="params">()</span></span>:</span><br><span class="line">  uploaded_files = request<span class="class">.files</span><span class="class">.getlist</span>(<span class="string">"file[]"</span>)</span><br><span class="line">  filenames = []</span><br><span class="line">  <span class="keyword">for</span> file <span class="keyword">in</span> uploaded_files:</span><br><span class="line">    <span class="keyword">if</span> file and <span class="function"><span class="title">allowed_file</span><span class="params">(file.filename)</span></span>:</span><br><span class="line">      filename = <span class="function"><span class="title">secure_filename</span><span class="params">(file.filename)</span></span></span><br><span class="line">      	   file.<span class="function"><span class="title">save</span><span class="params">(os.path.join(app.config[<span class="string">'UPLOAD_FOLDER'</span>],filename)</span></span>)</span><br><span class="line">      filenames.<span class="function"><span class="title">append</span><span class="params">(filename)</span></span></span><br><span class="line">  return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'upload.html'</span>, filenames=filenames)</span></span></span><br><span class="line">  </span><br><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/down_loads'</span>)</span></span></span><br><span class="line">def <span class="function"><span class="title">down_loads</span><span class="params">()</span></span>:</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">"GET"</span>:</span><br><span class="line">        <span class="keyword">if</span> os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>):</span><br><span class="line">            files = os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>)</span><br><span class="line">            return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'down_loads.html'</span>,files=files)</span></span></span><br><span class="line">        <span class="function"><span class="title">abort</span><span class="params">(<span class="number">404</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>编写plist文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>items<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>assets<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">string</span>&gt;</span>software-package<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">key</span>&gt;</span>url<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">string</span>&gt;</span>http://192.168.10.193/test.ipa<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>metadata<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-identifier<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>必须和打包的bundleidentifier一样<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-version<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>版本号<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>software<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>releaseNotes<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>v1(可以随意填)<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>title<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>App名称<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>添加配置信息<br>我们把刚刚建好的plist文件(这里取名为installIPA.plist)、ipa包、ca证书放到Web服务器的文件目录下，然后修改index.html中的内容。<br>(index.html内容)：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>应用名字<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span>iOS应用OTA安装<span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.10.193/installIPA.plist"</span>&gt;</span>Iphone Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"http://192.168.10.193/ca.crt"</span>&gt;</span>ssl 证书安装<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>到了最激动人心的时候了，我们用iphone打开浏览器，输入本地服务器的地址，首先选择ssl证书安装, 然后再点击Iphone Download，哈哈，是不是已经弹出对话框询问需要安装了？？</p>
+<p>没错，这时点击安装即可快速地实现OTA下安装App了！</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分发/" rel="tag">#分发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/15/SSL-on-flask/" rel="next" title="SSL on flask">
+                <i class="fa fa-chevron-left"></i> SSL on flask
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <! -- 添加微信图标 -->
+    
+    
+
+    <div>
+
+    <span>
+    
+    欢迎大家关注：Snake's 微信
+    
+    <br>
+    </span>
+    <br>
+
+    
+    <a href="/images/weichat.jpg" title="snake's微信号" class="fancybox" rel="article0"       style="float:left;margin-left:25%;margin-right:2px;">
+    <img src="/images/weichat.jpg" title="snake's微信号" height="164px" width="164px">
+    </a>
+    
+    </div>
+
+    
+    
+
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/15/IOS分发/"
+     data-title="实现无AppStore分发iOS应用"
+     data-content=""
+     data-url="http://snake.me/2016/10/15/IOS分发/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/15/IOS分发/"
+           data-title="实现无AppStore分发iOS应用" data-url="http://snake.me/2016/10/15/IOS分发/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Snake</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xieming" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051745804351/home?from=page_100505&mod=TAB&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/52671329/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> douban
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/" target="_blank">简书</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://testerhome.com" target="_blank">Testerhome</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.imooc.com" target="_blank">幕客网</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Snake</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"snake"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+</body>
+</html>
