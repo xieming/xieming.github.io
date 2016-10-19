@@ -51,22 +51,28 @@
 
 
 
-<meta name="description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+<meta name="description" content="此文发表在： 爬了几本书
+
+前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
 改进前：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimpo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python_spider">
 <meta property="og:url" content="http://snake.me/2016/03/21/python-spider/index.html">
 <meta property="og:site_name" content="Snake's Home">
-<meta property="og:description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+<meta property="og:description" content="此文发表在： 爬了几本书
+
+前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
 改进前：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
-<meta property="og:updated_time" content="2016-03-22T02:14:03.000Z">
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimpo">
+<meta property="og:updated_time" content="2016-10-19T07:51:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python_spider">
-<meta name="twitter:description" content="前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
+<meta name="twitter:description" content="此文发表在： 爬了几本书
+
+前面自娱自乐，爬了几本书。发帖出来，有些改进意见。用多线程，用类，啥的。
 改进前：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimport reimport os">
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950__author__ = &apos;anderson&apos;#coding=utf-8import urllibimpo">
 
 
 
@@ -273,7 +279,10 @@
       
 
       
-        <span itemprop="articleBody"><p>前面自娱自乐，爬了几本书。<br>发帖出来，有些改进意见。<br>用多线程，用类，啥的。</p>
+        <span itemprop="articleBody"><blockquote>
+<p>此文发表在： <a href="https://testerhome.com/topics/4445" target="_blank" rel="external">爬了几本书</a></p>
+</blockquote>
+<p>前面自娱自乐，爬了几本书。<br>发帖出来，有些改进意见。<br>用多线程，用类，啥的。</p>
 <p>改进前：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getlink</span><span class="params">(html,type)</span>:</span></span><br><span class="line">    pattern = re.compile(<span class="string">'&lt;li&gt;  &lt;a href="(.*?)" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">    source = re.compile(pattern)</span><br><span class="line">    sourcelist = re.findall(source,html)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> sourcelist:</span><br><span class="line">        <span class="keyword">print</span> item[<span class="number">0</span>],item[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> item[<span class="number">1</span>] != <span class="string">r"在线阅读"</span>:</span><br><span class="line">            <span class="comment">#print item[0]</span></span><br><span class="line">            <span class="keyword">if</span> type <span class="keyword">in</span> item[<span class="number">1</span>]:</span><br><span class="line">                os.popen(<span class="string">"curl -O %s"</span> %(item[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">type = <span class="string">"""</span><br><span class="line">    1.pdf</span><br><span class="line">    2.epub</span><br><span class="line">    3.mobi"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> type</span><br><span class="line"></span><br><span class="line">html = getHtml(<span class="string">"https://testerhome.com/topics/4419"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yourtype = raw_input(<span class="string">"please input your type: "</span>)</span><br><span class="line"></span><br><span class="line">downtype = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> yourtype != <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">if</span> yourtype ==<span class="string">'1'</span>:</span><br><span class="line">        downtype = <span class="string">'PDF'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'2'</span>:</span><br><span class="line">        downtype = <span class="string">'EPUB'</span></span><br><span class="line">    <span class="keyword">elif</span> yourtype ==<span class="string">'3'</span>:</span><br><span class="line">        downtype = <span class="string">'MOBI'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please check your choice!"</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"please choose one type!"</span>        </span><br><span class="line"></span><br><span class="line">getlink(html,downtype)</span><br></pre></td></tr></table></figure>
 <p>改进后：</p>
