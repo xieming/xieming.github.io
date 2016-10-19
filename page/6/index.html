@@ -197,6 +197,123 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/10/python-build/" itemprop="url">
+                  python实现自动化构件和持续集成Android
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-10-10T00:03:09+08:00" content="2014-10-10">
+              2014-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/10/python-build/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/10/python-build/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>公司的打包效率太低下了， 没有持续构建和集成。<br>每次要等开发打包。碰到那个开发请假，其他的开发又不会，要等。<br>而且没有版本管理。想找一个以前的版本，都没有。<br>开始想用gradle打包，当时还是1.0.0，坑太多。<br>用maven,有个依赖总是不成功。<br>最后还是用原始的Ant打包，实现了自动化构建。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> walk <span class="keyword">as</span> oswalk  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> chdir <span class="keyword">as</span> oschdir  </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> popen <span class="keyword">as</span> ospopen  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> exists <span class="keyword">as</span> pathexists  </span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> join <span class="keyword">as</span> pathjoin  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfile <span class="keyword">as</span> shcopy  </span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> rmtree <span class="keyword">as</span> shrmtree  </span><br><span class="line"><span class="keyword">import</span> shutil  </span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#consts  </span></span><br><span class="line">LIBRARY = <span class="string">"library"</span>  </span><br><span class="line">TRUNK = <span class="string">"trunk"</span>  </span><br><span class="line">CIRCLE = <span class="string">"Circle"</span>  </span><br><span class="line">PROJECT_PROPERTY = <span class="string">"project.properties"</span>  </span><br><span class="line">BIN = <span class="string">"bin"</span>  </span><br><span class="line">OBJ = <span class="string">"obj"</span>  </span><br><span class="line">APK = <span class="string">"Circle-debug.apk"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXX\build\android"</span>  </span><br><span class="line">local_path=<span class="string">r"D:\dailyAPK"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidBuilder</span>:</span>  </span><br><span class="line">    __base_path = <span class="string">""</span>  </span><br><span class="line">    __output_path = <span class="string">""</span>  </span><br><span class="line">    __use_ndk = <span class="keyword">False</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base_path, output_path, use_ndk)</span>:</span>  </span><br><span class="line">        self.__base_path = base_path  </span><br><span class="line">        self.__output_path = output_path  </span><br><span class="line">        self.__use_ndk = use_ndk  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__execmd</span><span class="params">(self, cmd)</span>:</span>  </span><br><span class="line">        ret = ospopen(cmd).readlines()  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> ret:  </span><br><span class="line">            print(line)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_native</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"re-build shared objects"</span>)  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(OBJ)):  </span><br><span class="line">            shrmtree(OBJ)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build clean"</span>)  </span><br><span class="line">        self.__execmd(<span class="string">"ndk-build"</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__move_qrcode</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        zxing_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"qrcode"</span>, <span class="string">"com"</span>, <span class="string">"XXX"</span>, <span class="string">"zxing"</span>)  </span><br><span class="line">        dest_path = pathjoin(self.__base_path, TRUNK, CIRCLE, <span class="string">"src"</span>, <span class="string">"com"</span>, <span class="string">"XXX"</span>)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,dest_path  </span><br><span class="line">        shutil.copy(zxing_path, dest_path)  </span><br><span class="line">        <span class="comment">#shutil.copy2(zxing_path, dest_path)  </span></span><br><span class="line">        <span class="comment">#shutil.copytree(zxing_path, dest_path,True)  </span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"wo cao"</span>  </span><br><span class="line">        <span class="keyword">if</span> (pathexists(dest_path)):  </span><br><span class="line">            shrmtree(dest_path)  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ccc"</span>,zxing_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ddd"</span>,dest_path  </span><br><span class="line">        shcopy(zxing_path, dest_path)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__re_ant</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        idx = <span class="number">0</span>  </span><br><span class="line">        project_properties = <span class="string">"target=android-19\n\n"</span>  </span><br><span class="line">        <span class="keyword">for</span> dirpath, dirname, filename <span class="keyword">in</span> oswalk(pathjoin(self.__base_path, LIBRARY)):  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">"------------------"</span>,dirname  </span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> dirname:  </span><br><span class="line">                print(<span class="string">"re-ant project %s"</span> % (dir))  </span><br><span class="line">                oschdir(pathjoin(self.__base_path, LIBRARY, dir))  </span><br><span class="line">                idx += <span class="number">1</span>  </span><br><span class="line">                project_properties += <span class="string">"android.library.reference.%d=../../%s/%s\n"</span> % (idx, LIBRARY, dir)  </span><br><span class="line">                self.__execmd(<span class="string">"android update project -n %s -p . -t android-19"</span> % (dir))  </span><br><span class="line">                self.__execmd(<span class="string">"ant clean"</span>)  </span><br><span class="line">            <span class="keyword">break</span>  </span><br><span class="line">        print(<span class="string">"re-ant project Circle"</span>)  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        self.__execmd(<span class="string">"android update project -n Circle -p . -t android-19"</span>)  </span><br><span class="line">        property_file = open(PROJECT_PROPERTY, <span class="string">"w"</span>)  </span><br><span class="line">        property_file.write(project_properties)  </span><br><span class="line">        property_file.flush()  </span><br><span class="line">        property_file.close()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_apk</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        self.__re_ant()  </span><br><span class="line">        oschdir(pathjoin(self.__base_path, TRUNK, CIRCLE))  </span><br><span class="line">        <span class="keyword">if</span> (self.__use_ndk == <span class="keyword">True</span>):  </span><br><span class="line">            self.__re_native()  </span><br><span class="line">        print(<span class="string">"build apk"</span>)  </span><br><span class="line">        <span class="comment">#self.__move_qrcode()  </span></span><br><span class="line">        self.__execmd(<span class="string">"ant debug"</span>)  </span><br><span class="line">        apk_path = pathjoin(self.__base_path, TRUNK, CIRCLE, BIN, APK)  </span><br><span class="line">        <span class="keyword">if</span> pathexists(apk_path):  </span><br><span class="line">            shcopy(apk_path, pathjoin(self.__output_path, APK))  </span><br><span class="line">            print(<span class="string">"Build completed.!"</span>)  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            print(<span class="string">"Build failed."</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">move_remote</span><span class="params">(self, base_path, output_path,oldname)</span>:</span>  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"aaa"</span>,base_path  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">"bbb"</span>,output_path  </span><br><span class="line">        base_file = base_path + <span class="string">'\\'</span>+oldname  </span><br><span class="line">        output_file=output_path+ <span class="string">'\\'</span>+oldname  </span><br><span class="line">        <span class="keyword">print</span> base_file  </span><br><span class="line">        shutil.copy2(base_file, output_file)  </span><br><span class="line">        now1 = time.strftime(<span class="string">'%Y-%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line">        newfname=<span class="string">"%sCircle-debug.apk"</span>%(now1)  </span><br><span class="line">        newfpath=<span class="string">"%s/%s"</span>%(output_path,newfname)   </span><br><span class="line">        oldfpath=<span class="string">"%s/%s"</span>%(output_path,oldname)  </span><br><span class="line">        os.rename(oldfpath, newfpath)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_help</span><span class="params">()</span>:</span>  </span><br><span class="line">    print(<span class="string">"usage:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py &lt;base_path&gt; &lt;output_path&gt; &lt;use-ndk&gt;"</span>)  </span><br><span class="line">    print(<span class="string">"    path must be absolute path, do NOT accept relative path"</span>)  </span><br><span class="line">    print(<span class="string">"sample:"</span>)  </span><br><span class="line">    print(<span class="string">"    python make_android.py /home/XXX/android /home/XXX/Desktop true"</span>)  </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:  </span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">4</span>:  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    <span class="comment"># base_path, output_path  </span></span><br><span class="line">    base_path = sys.argv[<span class="number">1</span>]  </span><br><span class="line">    output_path = sys.argv[<span class="number">2</span>]  </span><br><span class="line">    use_ndk = sys.argv[<span class="number">3</span>]  </span><br><span class="line">    <span class="keyword">if</span> (base_path.startswith(<span class="string">"."</span>) <span class="keyword">or</span> output_path.startswith(<span class="string">"."</span>)):  </span><br><span class="line">        print_help()  </span><br><span class="line">        exit()  </span><br><span class="line">    ab = AndroidBuilder(base_path, output_path, use_ndk == <span class="string">"true"</span>)  </span><br><span class="line">    ab.make_apk()  </span><br><span class="line">    ab.move_remote(local_path, remote_path, APK)</span><br></pre></td></tr></table></figure>
+<p>公司的source管理工具，是svn,结果每次拉的代码不是最新的。<br>后面找到原因了，就是要在命令里面加@head.</p>
+<p>文章发表在 <a href="https://testerhome.com/topics/2534" target="_blank" rel="external">testerhome</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -1469,125 +1586,6 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/03/05/python-monkey/" itemprop="url">
-                  python尝试monkey收集crash
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-03-05T23:56:55+08:00" content="2014-03-05">
-              2014-03-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/03/05/python-monkey/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/05/python-monkey/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>曾今花了点时间研究的 monkey 测试，感觉Monkey太不可控了，不停的点击，crash一个接着一个。看Log也看得眼花，好不容易找到一个FATAL ERROR, 开发却说没什么用。</p>
-<p>Monkey 命令看似简单，就那么一行，可是参数组合起来，就强大了。</p>
-<p>Monkey经常点了系统的控件。恒温告诉我有黑白名单。后面试用了一下，果然不会点到系统中去了。</p>
-<p>可以直接用： </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.model</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.build</span><span class="class">.version</span><span class="class">.releasel</span>"</span><br><span class="line"><span class="tag">adb</span> <span class="tag">shell</span> <span class="tag">getprop</span> "<span class="tag">ro</span><span class="class">.product</span><span class="class">.brand</span>"</span><br></pre></td></tr></table></figure>
-<p>来获<br>/system/build.prop  里面的信息。（何老师教的。）</p>
-<p>翠花，上脚本：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8  </span></span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> re  </span><br><span class="line">  </span><br><span class="line">packageName=<span class="string">"com.XXX.app"</span>  </span><br><span class="line">logdir=<span class="string">r"d:\jenkins"</span>  </span><br><span class="line">remote_path=<span class="string">r"\\10.21.101.100\XXXX\build\android"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#os.popen('adb shell cat /system/build.prop &gt;D:\jenkins\phone.text')  </span></span><br><span class="line">os.system(<span class="string">'adb shell cat /system/build.prop &gt;D:\jenkins\phone.text'</span>)  </span><br><span class="line">  </span><br><span class="line">f = <span class="string">r"D:\jenkins\phone.text"</span>   </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcmd</span><span class="params">(cmd)</span>:</span>  </span><br><span class="line">    f = open(cmd,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">          </span><br><span class="line">        line=line.split(<span class="string">'='</span>)  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.build.version.release'</span>):  </span><br><span class="line">            version = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.model'</span>):  </span><br><span class="line">            model = line[<span class="number">1</span>]  </span><br><span class="line">        <span class="keyword">if</span> (line[<span class="number">0</span>]==<span class="string">'ro.product.brand'</span>):  </span><br><span class="line">            brand = line[<span class="number">1</span>]  </span><br><span class="line">    <span class="keyword">return</span> version,model,brand  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">version,model,brand=getcmd(f)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> version,model,brand  </span><br><span class="line">os.remove(f)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print "使用Logcat清空Phone中log"  </span></span><br><span class="line">os.popen(<span class="string">"adb logcat -c"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"暂停2秒..."  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"wait"</span>  </span><br><span class="line">time.sleep(<span class="number">2</span>)  </span><br><span class="line"><span class="comment">#os.popen("adb shell monkey -p com.XXX.app -s 500 -v -v 1000")  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"强制关闭准备测试的APP"  </span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"a"</span>  </span><br><span class="line"><span class="comment">#commd="adb shell am force-stop %s" %(packageName)  </span></span><br><span class="line"><span class="comment">#os.popen(commd)      </span></span><br><span class="line">now1 = time.strftime(<span class="string">'%m-%d-%H_%M_%S'</span>, time.localtime(time.time()))  </span><br><span class="line"><span class="comment">#newfname="%sCircle-debug.apk"%(now1)  </span></span><br><span class="line"><span class="comment">#newfpath="%s/%s"%(output_path,newfname)   </span></span><br><span class="line"><span class="comment">#oldfpath="%s/%s"%(output_path,oldname)  </span></span><br><span class="line"><span class="comment">#os.rename(oldfpath, newfpath)  </span></span><br><span class="line"><span class="comment">#print"开始执行Monkey命令"  </span></span><br><span class="line">  </span><br><span class="line">monkeylogname=logdir+<span class="string">"\\"</span>+now1+<span class="string">"monkey.log"</span>  </span><br><span class="line"><span class="keyword">print</span> monkeylogname  </span><br><span class="line">cmd=<span class="string">"adb shell monkey -p com.XXX.app -s 500 --ignore-timeouts --monitor-native-crashes -v -v 10000 &gt;&gt;%s"</span> %(monkeylogname)  </span><br><span class="line">os.popen(cmd)     </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"手机截屏"  </span></span><br><span class="line">  </span><br><span class="line">os.popen(<span class="string">"adb shell screencap -p /sdcard/monkey_run.png"</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"拷贝截屏图片至电脑"  </span></span><br><span class="line">  </span><br><span class="line">cmd1=<span class="string">"adb pull /sdcard/monkey_run.png %s"</span> %(logdir)  </span><br><span class="line">os.popen(cmd1)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">"gai ming"</span>  </span><br><span class="line">oldname=logdir+<span class="string">"\\"</span>+<span class="string">r"monkey_run.png"</span>  </span><br><span class="line"><span class="keyword">if</span> (os.path.exists(oldname)):  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file is exist"</span>  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"file isn't exist"</span>  </span><br><span class="line"><span class="keyword">print</span> oldname  </span><br><span class="line">newname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"monkey.png"</span>  </span><br><span class="line"><span class="keyword">print</span> newname  </span><br><span class="line">os.rename(oldname, newname)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"使用Logcat导出日志"  </span></span><br><span class="line">  </span><br><span class="line">logcatname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"logcat.log"</span>  </span><br><span class="line">cmd2=<span class="string">"adb logcat -d &gt;%s"</span> %(logcatname)  </span><br><span class="line">os.popen(cmd2)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#print"导出traces文件"  </span></span><br><span class="line">  </span><br><span class="line">tracesname=logdir+<span class="string">"\\"</span>+now1+<span class="string">r"traces.log"</span>  </span><br><span class="line">cmd3=<span class="string">"adb shell cat /data/anr/traces.txt&gt;%s"</span> %(tracesname)  </span><br><span class="line">os.popen(cmd3)  </span><br><span class="line">  </span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line"><span class="comment">#获取error  </span></span><br><span class="line"><span class="comment">######################  </span></span><br><span class="line">  </span><br><span class="line">NullPointer=<span class="string">"java.lang.NullPointerException"</span>  </span><br><span class="line">IllegalState=<span class="string">"java.lang.IllegalStateException"</span>  </span><br><span class="line">IllegalArgument=<span class="string">"java.lang.IllegalArgumentException"</span>  </span><br><span class="line">ArrayIndexOutOfBounds=<span class="string">"java.lang.ArrayIndexOutOfBoundsException"</span>  </span><br><span class="line">RuntimeException=<span class="string">"java.lang.RuntimeException"</span>  </span><br><span class="line">SecurityException=<span class="string">"java.lang.SecurityException"</span>  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">geterror</span><span class="params">()</span>:</span>  </span><br><span class="line">    f = open(logcatname,<span class="string">"r"</span>)   </span><br><span class="line">    lines = f.readlines()  </span><br><span class="line">    errfile=<span class="string">"%s\error.log"</span> %(remote_path)  </span><br><span class="line">    fr = open(errfile,<span class="string">"a"</span>)  </span><br><span class="line">    fr.write(now1)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(version)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(model)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    fr.write(brand)  </span><br><span class="line">    fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">      </span><br><span class="line">    count=<span class="number">0</span>  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:  </span><br><span class="line">    <span class="keyword">if</span> ( re.findall(NullPointer,line) <span class="keyword">or</span> re.findall(IllegalState,line) <span class="keyword">or</span> re.findall(IllegalArgument,line) <span class="keyword">or</span> re.findall(ArrayIndexOutOfBounds,line) <span class="keyword">or</span> re.findall(RuntimeException,line) <span class="keyword">or</span> re.findall(SecurityException,line) ):  </span><br><span class="line">            a=lines.index(line)  </span><br><span class="line">            count +=<span class="number">1</span>  </span><br><span class="line">            <span class="keyword">for</span> var <span class="keyword">in</span> range(a,a+<span class="number">22</span>):  </span><br><span class="line">                <span class="keyword">print</span> lines[var]  </span><br><span class="line">                fr.write(lines[var])  </span><br><span class="line">            fr.write(<span class="string">"\n"</span>)  </span><br><span class="line">    f.close()  </span><br><span class="line">    fr.close()  </span><br><span class="line">    <span class="keyword">return</span> count  </span><br><span class="line">  </span><br><span class="line">      </span><br><span class="line">number=geterror()  </span><br><span class="line"><span class="keyword">print</span> number</span><br></pre></td></tr></table></figure>
-<p>脚本是写出来了，也能发现一些有用的crash。<br>但是，开发不Fix。。。</p>
-<p>要是哪天能做一个监控系统就好了。<br>结合线上线下，就不会有这么多Crash了。</p>
-<p>本文发表在： <a href="https://testerhome.com/topics/2514" target="_blank" rel="external">testerhome</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1634,21 +1632,21 @@ class email.mime.message.MIMEMessage(_msg[, _subtype])：具体的一个message�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
