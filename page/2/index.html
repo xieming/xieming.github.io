@@ -225,6 +225,348 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/04/nodejswritefile/" itemprop="url">
+                  nodejswritefile
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-04T11:47:23+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/04/nodejswritefile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nodejswritefile/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近在搞一个网站，用 javascript 写东西，发现用js来读写本地文件不是很方便， 用nodejs效果更佳。</p>
+<p>网上找的例子。</p>
+<p><a href="http://qianduanblog.com/post/nodejs-learning-4-filestream-read-write-local-file.html" target="_blank" rel="external">filestream读写本地文件</a></p>
+<h2 id="1_u3001filestream_API"><a href="#1_u3001filestream_API" class="headerlink" title="1、filestream API"></a>1、filestream API</h2><ul>
+<li>读文件：fs.readFile（异步）</li>
+<li>写文件：fs.writeFile（异步）</li>
+<li>追加内容：fs.appendFile（异步）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 fs（filestream） 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 1、读文件</span></span><br><span class="line">fs.readFile(<span class="string">"text.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 操作fileData</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 2、写文件</span></span><br><span class="line">fs.writeFiel(<span class="string">"text.txt"</span>, <span class="string">"new fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 3、追加内容</span></span><br><span class="line">fs.appendFile(<span class="string">"text.txt"</span>, <span class="string">"append fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="2_u3001_u96C6_u6210_u4F8B_u5B50"><a href="#2_u3001_u96C6_u6210_u4F8B_u5B50" class="headerlink" title="2、集成例子"></a>2、集成例子</h2><p>通过访问不同的querystring来操作不同的API：</p>
+<ul>
+<li>localhost:2014?read =&gt; 读文件</li>
+<li>localhost:2014?write =&gt; 写文件</li>
+<li>localhost:2014?append =&gt; 追加内容</li>
+</ul>
+<p>例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模块</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 filestream 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 url 模块</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 querystring 模块</span></span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">"querystring"</span>)</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> objQuery = querystring.parse(url.parse(request.url).query);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// 读取文件</span></span><br><span class="line">	<span class="keyword">if</span> (objQuery.type == <span class="string">"read"</span>) &#123;</span><br><span class="line">		<span class="comment">// 为什么不是 fs.read</span></span><br><span class="line">		fs.readFile(<span class="string">"./tmp/file.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取内容为：&lt;/h1&gt;"</span> + fileData);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写入文件</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"write"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> writeString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.writeFile(<span class="string">"./tmp/file.txt"</span>, writeString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入内容为：&lt;/h1&gt;"</span> + writeString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 追加内容</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"append"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> appendString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.appendFile(<span class="string">"./tmp/file.txt"</span>, appendString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加内容为：&lt;/h1&gt;"</span> + appendString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		write(response, <span class="string">"&lt;h1&gt;请在网址上输入参数&lt;/h1&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).listen(<span class="number">2014</span>);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params">response, content</span>) </span>&#123;</span><br><span class="line">	response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">		<span class="string">"content-type"</span>: <span class="string">"text/html"</span></span><br><span class="line">	&#125;);</span><br><span class="line">	response.write(content);</span><br><span class="line">	response.end();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6"><a href="#3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6" class="headerlink" title="3. node.js里面怎么创建和解析JSON格式的文件"></a>3. node.js里面怎么创建和解析JSON格式的文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> writlog = &#123;<span class="string">"rows"</span>:[     &#123;<span class="string">"buildid"</span>:<span class="string">"data.number"</span>,<span class="string">"product"</span>:<span class="string">"englishtown"</span>,<span class="string">"env"</span>:<span class="string">"live"</span>,<span class="string">"version"</span>:<span class="string">"ver"</span>&#125;</span><br><span class="line">    ]&#125;</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(<span class="string">'./output.json'</span>,<span class="built_in">JSON</span>.stringify(writlog));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> JsonObj=<span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./output.json'</span>));<span class="built_in">console</span>.log(JsonObj);</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/04/stock/" itemprop="url">
+                  stock
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-04T10:25:18+08:00" content="2016-05-04">
+              2016-05-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/04/stock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/stock/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>get information:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding:utf8</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文件中读取股票代码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readCode</span><span class="params">(filename, codes)</span>:</span></span><br><span class="line">	f = open(filename, <span class="string">"r"</span>)</span><br><span class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">		line.strip()</span><br><span class="line">		codes.append(line)</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据股票代码获取股票的当日信息，信息格式为</span></span><br><span class="line"><span class="comment"># 0：”大秦铁路”，股票名字；</span></span><br><span class="line"><span class="comment"># 1：”27.55″，今日开盘价；</span></span><br><span class="line"><span class="comment"># 2：”27.25″，昨日收盘价；</span></span><br><span class="line"><span class="comment"># 3：”26.91″，当前价格；</span></span><br><span class="line"><span class="comment"># 4：”27.55″，今日最高价；</span></span><br><span class="line"><span class="comment"># 5：”26.20″，今日最低价；</span></span><br><span class="line"><span class="comment"># 6：”26.91″，竞买价，即“买一”报价；</span></span><br><span class="line"><span class="comment"># 7：”26.92″，竞卖价，即“卖一”报价；</span></span><br><span class="line"><span class="comment"># 8：”22114263″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；</span></span><br><span class="line"><span class="comment"># 9：”589824680″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；</span></span><br><span class="line"><span class="comment"># 10：”4695″，“买一”申请4695股，即47手；</span></span><br><span class="line"><span class="comment"># 11：”26.91″，“买一”报价；</span></span><br><span class="line"><span class="comment"># 12：”57590″，“买二”</span></span><br><span class="line"><span class="comment"># 13：”26.90″，“买二”</span></span><br><span class="line"><span class="comment"># 14：”14700″，“买三”</span></span><br><span class="line"><span class="comment"># 15：”26.89″，“买三”</span></span><br><span class="line"><span class="comment"># 16：”14300″，“买四”</span></span><br><span class="line"><span class="comment"># 17：”26.88″，“买四”</span></span><br><span class="line"><span class="comment"># 18：”15100″，“买五”</span></span><br><span class="line"><span class="comment"># 19：”26.87″，“买五”</span></span><br><span class="line"><span class="comment"># 20：”3100″，“卖一”申报3100股，即31手；</span></span><br><span class="line"><span class="comment"># 21：”26.92″，“卖一”报价</span></span><br><span class="line"><span class="comment"># (22, 23), (24, 25), (26,27), (28, 29)分别为“卖二”至“卖四的情况”</span></span><br><span class="line"><span class="comment"># 30：”2008-01-11″，日期；</span></span><br><span class="line"><span class="comment"># 31：”15:05:32″，时间；</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getComInfo</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># 抓取股票信息</span></span><br><span class="line">	url = <span class="string">"http://hq.sinajs.cn/list=%s"</span> % code</span><br><span class="line">	response = urllib2.urlopen(url)</span><br><span class="line">	javascriptInfo = response.read()</span><br><span class="line">	<span class="comment"># 解析成python可识别的信息</span></span><br><span class="line">	pythonInfo = javascriptInfo[<span class="number">4</span>:]</span><br><span class="line">	exec(pythonInfo)</span><br><span class="line">	company = <span class="string">"hq_str_"</span> + code</span><br><span class="line">	companyInfo = eval(company)</span><br><span class="line">	companyInfo = companyInfo.split(<span class="string">","</span>)</span><br><span class="line">	<span class="comment"># 部分股票由于特殊情况没有相应信息</span></span><br><span class="line">	<span class="keyword">if</span> len(companyInfo) &lt; <span class="number">3</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	currentPrice = companyInfo[<span class="number">3</span>]</span><br><span class="line">	<span class="comment"># 当前票价小于5元时保存</span></span><br><span class="line">	<span class="keyword">if</span> float(currentPrice) &lt; <span class="number">5.0</span>:</span><br><span class="line">		saveGoodTicket(code)</span><br><span class="line">		<span class="keyword">print</span> code, companyInfo[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存好的股票日K线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveGoodTicket</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># # 日K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/daily/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># # 周K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/weekly/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># 月K线</span></span><br><span class="line">	url = <span class="string">"http://image.sinajs.cn/newchart/monthly/n/%s.gif"</span> % code</span><br><span class="line">	<span class="comment"># 分时线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/min/n/%s.gif" % code</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		response = urllib2.urlopen(url)</span><br><span class="line">		data = response.read()</span><br><span class="line">		f = open(<span class="string">"goodTicket/"</span> + code +<span class="string">'.gif'</span>, <span class="string">"wb"</span>)</span><br><span class="line">		f.write(data)</span><br><span class="line">		f.close()</span><br><span class="line">	<span class="keyword">except</span> Exception, e:</span><br><span class="line">		<span class="keyword">print</span> e</span><br><span class="line">	<span class="keyword">finally</span>:</span><br><span class="line">		<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 单个线程进行的工作</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleHandle</span><span class="params">(codes, test)</span>:</span></span><br><span class="line">	<span class="keyword">print</span> test</span><br><span class="line">	<span class="keyword">for</span> code <span class="keyword">in</span> codes:</span><br><span class="line">		<span class="comment"># 去除code中的空白字符</span></span><br><span class="line">		code = code.strip()</span><br><span class="line">		<span class="comment"># 获取信息</span></span><br><span class="line">		getComInfo(code)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次四个线程获取股票信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiHandle</span><span class="params">(fourcodes, test)</span>:</span></span><br><span class="line">	threads = [threading.Thread(target=singleHandle, args=(codes, test)) <span class="keyword">for</span> codes <span class="keyword">in</span> fourcodes]</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.start()</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.join()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	codes = []</span><br><span class="line">	readCode(<span class="string">"codes.txt"</span>, codes)</span><br><span class="line">	num = len(codes)</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">"goodTicket"</span>):</span><br><span class="line">		os.mkdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">		<span class="keyword">print</span> <span class="string">"make dir pic"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 设置4个线程</span></span><br><span class="line">	threadLen = num / <span class="number">4</span></span><br><span class="line"></span><br><span class="line">	t1 = codes[<span class="number">0</span>: threadLen]</span><br><span class="line">	t2 = codes[threadLen : threadLen*<span class="number">2</span>]</span><br><span class="line">	t3 = codes[threadLen*<span class="number">2</span> : threadLen *<span class="number">3</span>]</span><br><span class="line">	t4 = codes[threadLen*<span class="number">3</span> : ]</span><br><span class="line">	t = [t1, t2, t3, t4]</span><br><span class="line">	multiHandle(t, <span class="string">"To Beautiful You"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"success"</span></span><br></pre></td></tr></table></figure>
+<p>generatehtml.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding=utf8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">htmlHead = <span class="string">'''</span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;&#123;BODY&#125;&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	files = os.listdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">	htmlBody = <span class="string">"&lt;ul&gt;"</span></span><br><span class="line">	<span class="keyword">for</span> filename <span class="keyword">in</span> files:</span><br><span class="line">		htmlBody = htmlBody  + <span class="string">"&lt;li&gt;&lt;img src=\"%s\"&gt;&lt;/li&gt;"</span> % (<span class="string">"goodTicket/"</span> + filename)</span><br><span class="line"></span><br><span class="line">	htmlBody = htmlBody + <span class="string">"&lt;/ul&gt;"</span></span><br><span class="line"></span><br><span class="line">	html = htmlHead.replace(<span class="string">"&#123;&#123;BODY&#125;&#125;"</span>, htmlBody)</span><br><span class="line">	f = open(<span class="string">"pic.html"</span>, <span class="string">"w"</span>)</span><br><span class="line">	f.write(html)</span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/27/bootstrap-node建一个网站/" itemprop="url">
+                  bootstrap+node一天快速建一个网站
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-04-27T14:27:51+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/27/bootstrap-node建一个网站/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/bootstrap-node建一个网站/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>最近下载了好几个 bootstrap 的模版， 用nodejs跑起来。<br>一般用express框架。<br>结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- lib</span><br><span class="line">-- views</span><br><span class="line">   + -- index.html</span><br><span class="line">   + -- about.html</span><br><span class="line">   + -- contact.html</span><br><span class="line">   + -- <span class="number">404</span>.html</span><br><span class="line">-- node_modules</span><br><span class="line">   + -- express</span><br><span class="line">package.json</span><br></pre></td></tr></table></figure>
+<p>先配置 Package.json(类似ruby rails 中的Gem file)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"website-using-express"</span>,</span><br><span class="line">  <span class="string">"version"</span> : <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"scripts"</span> : &#123;</span><br><span class="line">    <span class="string">"start"</span> : <span class="string">"node Server.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span> : &#123;</span><br><span class="line">    <span class="string">"express"</span> : <span class="string">"latest"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后Switch to your project folder and type<br><figure class="highlight"><figcaption><span>install``` (类似gem install)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#25509;&#30528;&#24314;&#31435;Server.js&#10;express&#37324;&#38754;&#19968;&#33324;&#37117;&#26159; app.js&#10;&#10;```javascript&#10;var express = require(&#34;express&#34;);&#10;var app = express();&#10;var router = express.Router();&#10;var path = __dirname + &#39;/views/&#39;;&#10;&#10;router.use(function (req,res,next) &#123;&#10;  console.log(&#34;/&#34; + req.method);&#10;  next();&#10;&#125;);&#10;&#10;router.get(&#34;/&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;index.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/about&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;about.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/contact&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;contact.html&#34;);&#10;&#125;);&#10;&#10;app.use(&#34;/&#34;,router);&#10;&#10;app.use(&#34;*&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;404.html&#34;);&#10;&#125;);&#10;&#10;app.listen(3000,function()&#123;&#10;  console.log(&#34;Live at Port 3000&#34;);&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>各种配置和路由，express会把这放在router里面去做。<br>建一个views的文件夹，把html放里面，然后在这个里面相应的链接一下。<br>然后敲上<br><figure class="highlight"><figcaption><span>start``` (rails start)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#22312;&#27983;&#35272;&#22120;&#37324;&#38754;&#25970;&#19978; localhost:3000 (&#31471;&#21475;&#38752;js&#37324;&#38754;&#35774;&#32622;)&#10;&#10;&#32467;&#26524;&#27809;&#36215;&#26469;&#65292;&#22240;&#20026;&#25226; css, js, image&#31561;&#25918;&#21040;public &#19979;&#20102;&#12290;&#10;&#10;&#35299;&#20915;&#26041;&#27861;&#65306;&#10;&#27169;&#26495;&#25991;&#20214;&#40664;&#35748;&#23384;&#25918;&#22312;views&#23376;&#30446;&#24405;&#12290;&#36825;&#26102;&#65292;&#22914;&#26524;&#35201;&#22312;&#32593;&#39029;&#20013;&#21152;&#36733;&#38745;&#24577;&#25991;&#20214;&#65288;&#27604;&#22914;&#26679;&#24335;&#34920;&#12289;&#22270;&#29255;&#31561;&#65289;&#65292;&#23601;&#38656;&#35201;&#21478;&#22806;&#25351;&#23450;&#19968;&#20010;&#23384;&#25918;&#38745;&#24577;&#25991;&#20214;&#30340;&#30446;&#24405;&#12290;&#10;```app.use(express.static(&#39;public&#39;));</span><br></pre></td></tr></table></figure></p>
+<p>上面代码在文件app.js之中，指定静态文件存放的目录是public。于是，当浏览器发出非HTML文件请求时，服务器端就到public目录寻找这个文件。比如，浏览器发出如下的样式表请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">"/bootstrap/css/bootstrap.css"</span> rel=<span class="string">"stylesheet"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>服务器端就到public/bootstrap/css/目录中寻找bootstrap.css文件。</p>
+<p>然后就跑起来了。<br>后面研究下数据库等。</p>
+<p>参考：<br><a href="https://www.codementor.io/nodejs/tutorial/build-website-from-scratch-using-expressjs-and-bootstrap" target="_blank" rel="external">expressjs-and-bootstrap</a></p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express框架</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/12/算法/" itemprop="url">
                   算法 
                 </a>
@@ -990,406 +1332,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/人脉/" itemprop="url">
-                  人脉
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:17:26+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/人脉/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/人脉/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近有几个伙计回老家省城了。发现好久都没跟那些家伙联系。<br>电话号码也找不到了，就在QQ上留言。</p>
-<p>过了几天都没有人理我。</p>
-<p>以前一直只钻研技术。发现自己慢慢跟很多人疏远。<br>就算碰到一起，也没有什么话说，没啥共同话题。</p>
-<p>在这里这么久，也没啥聊的来的朋友。首先大家都会有戒心。人情也比较淡薄。</p>
-<p>那天跟他们几个讨论，其中菜就说了。（菜在一家公司做到了比较高的职位）</p>
-<p>“在技术眼里，业务不值钱，啥也不会，就一张嘴吹。”</p>
-<p>“在业务眼里，技术不值钱，只会写几行代码，除此之外，啥也不会。”</p>
-<p>聊到了情商，聊到了人脉。</p>
-<p>我发现自己很失败，最近一直在研究技术，除此之外，什么也没太关心。</p>
-<p>不能只能做技术，除了技术，还有很多值得去钻研的。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/webauto/" itemprop="url">
-                  chromedriver on mac
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:05:42+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/webauto/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/webauto/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近在Mac上折腾selenium, 一直都装不上chromedriver.<br>今天终于找到了一个方法：</p>
-<p><a href="http://bites.goodeggs.com/posts/selenium-webdriver-nodejs-tutorial/" target="_blank" rel="external">automationtest</a></p>
-<p>曾今尝试过用npm安装，但是速度极其慢。(换了淘宝镜像)<br><a href="https://www.npmjs.com/package/chromedriver" target="_blank" rel="external">chromedriver</a></p>
-<p>最后的步骤是：</p>
-<p>1.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save selenium-webdriver@<span class="number">2.44</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>2.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save chromedriver@<span class="number">2.12</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<p>然后实验了一个小程序，就可以了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"></span><br><span class="line">drivers = [<span class="string">'HtmlUnit'</span>]   </span><br><span class="line">  </span><br><span class="line">dervers_time = &#123;  </span><br><span class="line">    <span class="string">'HtmlUnit'</span> : <span class="number">0</span>,   </span><br><span class="line">&#125;</span><br><span class="line">times = <span class="number">50</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_with_Chrome</span><span class="params">()</span>:</span></span><br><span class="line">    common_step(webdriver.Chrome())</span><br><span class="line"><span class="string">'''</span><br><span class="line">def run_with_FF():  </span><br><span class="line">    common_step(webdriver.Firefox())  </span><br><span class="line">      </span><br><span class="line">def run_with_IE():  </span><br><span class="line">    common_step(webdriver.Ie())  </span><br><span class="line">  </span><br><span class="line">def run_with_PhantomJS():  </span><br><span class="line">    common_step(webdriver.PhantomJS(executable_path=r'C:\Python27\Scripts\phantomjs.exe'))  </span><br><span class="line"></span><br><span class="line">def run_with_HtmlUnit():  </span><br><span class="line">    driver = webdriver.Remote("http://localhost:4444/wd/hub",   </span><br><span class="line">                                desired_capabilities=webdriver.DesiredCapabilities.HTMLUNIT)  </span><br><span class="line">    common_step(driver)  </span><br><span class="line">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common_step</span><span class="params">(driver)</span>:</span>  </span><br><span class="line">    driver.get(<span class="string">'http://www.baidu.com'</span>)  </span><br><span class="line">    ele = driver.find_element_by_id(<span class="string">'su'</span>)  </span><br><span class="line">    <span class="keyword">print</span> ele.get_attribute(<span class="string">'value'</span>)  </span><br><span class="line">    driver.quit()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(times):  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'=============Times %s============'</span> % i  </span><br><span class="line">    <span class="keyword">for</span> driver <span class="keyword">in</span> drivers:  </span><br><span class="line">        start = time.time()   </span><br><span class="line">        <span class="keyword">print</span> start  </span><br><span class="line"><span class="comment">#        eval('run_with_%s()'%driver)</span></span><br><span class="line">        end = time.time()   </span><br><span class="line">        <span class="keyword">print</span> end  </span><br><span class="line">        elapse_time = end-start  </span><br><span class="line">        dervers_time[driver] += elapse_time  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">'elapse for %s:%s'</span> % (driver, elapse_time)  </span><br><span class="line">      </span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> dervers_time.items():  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'avg elapse for %s in %s times:%s'</span> % (k, times, v/times)</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/28/js-array/" itemprop="url">
-                  js_array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-28T22:18:22+08:00" content="2016-03-28">
-              2016-03-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/28/js-array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/js-array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><strong>创建数组</strong></p>
-<p>在实际生产中，创建数组的方式基本有两种。</p>
-<p><strong>使用Array构造函数</strong></p>
-<p>可以使用Array构造函数来创建数组，如下所示：</p>
-<figure class="highlight"><figcaption><span>arr = new Array();</span><a href="//">output: []```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19978;&#38754;&#30340;&#20195;&#30721;&#23601;&#26159;&#21019;&#24314;&#20102;&#19968;&#20010;&#31354;&#30340;&#25968;&#32452;[]&#12290;&#21487;&#20197;&#36890;&#36807;&#25968;&#32452;&#30340;length&#23646;&#24615;&#39564;&#35777;&#12290;&#10;&#10;```console.log(arr.length); //output: 0</span><br></pre></td></tr></table></figure>
-<p>如果预先知道要创建的数组的项目数量，可以在构造函数中传递该数量：</p>
-<figure class="highlight"><figcaption><span>arr = new Array(5);</span><a href="//">output: [undefined × 5]```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#36825;&#20010;&#26102;&#20505;&#65292;&#35813;&#25968;&#37327;&#20250;&#33258;&#21160;&#21464;&#25104;&#25968;&#32452;&#30340;length&#20540;&#65306;&#10;&#10;```console.log(arr.length); //output: 5</span><br></pre></td></tr></table></figure>
-<p>也可以向构造函数Array直接传入需要创建的数组中应该包含的数组项：</p>
-<figure class="highlight"><figcaption><span>arr = new Array('a', 'b', 'c');</span><a href="//">output: ["a", "b", "c"]```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20174;&#19978;&#38754;&#20960;&#20010;&#31616;&#21333;&#30340;&#31034;&#20363;&#65292;&#25105;&#20204;&#21487;&#20197;&#24471;&#30693;&#65292;&#36890;&#36807;Array&#26500;&#36896;&#20989;&#25968;&#21019;&#24314;&#25968;&#32452;&#65292;&#25105;&#20204;&#21487;&#20197;&#65306;&#10;&#10;&#21019;&#24314;&#19968;&#20010;&#31354;&#25968;&#32452;&#65306; ```new Array()</span><br></pre></td></tr></table></figure>
-<p>创建一定数量的数组： <figure class="highlight"><figcaption><span>Array(5)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#21019;&#24314;&#25351;&#23450;&#25968;&#32452;&#39033;&#30446;&#30340;&#25968;&#32452;&#65306; ```new Array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)</span><br></pre></td></tr></table></figure></p>
-<p>需要注意的是，当只给new Array()传递一个值创建数组时，问题会变得比较复杂。如果传递的是一个数值，则会按该数值创建包含给定项数的数组；如果传递的是其它类型的参数时，则会创建包含那个值的只有一项的数组。来看个简单的示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">// 创建一个包含3项的数组</span></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'3'</span>); <span class="comment">// 创建一个包含1项的数组，该项的值为字符串"3"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">//[undefined × 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// ["3"]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1.length); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2.length); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-<p>在实际生产中，使用Array构造函数创建数组时，还可以省略new操作符。如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = <span class="built_in">Array</span>(<span class="string">'china'</span>);  <span class="comment">// "china" arr1.length=1</span></span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'china'</span>); <span class="comment">// "china" arr2.length=1</span></span><br></pre></td></tr></table></figure>
-<p><strong>使用[]创建数组</strong></p>
-<p>除了使用Array构造函数创建数组之外，还可以直接使用[]（数组字面量表示法）创建数组。采用这种方式创建数组时，数组的每个数组项之间以逗号(,)分隔开，如下所示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>,<span class="string">'b'</span>]; <span class="comment">//创建一个包含两个字符串的数组</span></span><br><span class="line"><span class="keyword">var</span> arr2 = []; <span class="comment">//创建一个空数组</span></span><br></pre></td></tr></table></figure>
-<p><strong>数组元素的访问</strong><br>前面也说过，数组每一项都有对应的索引号，而且其索引号从0开始，到数组的length值结束。在实际生产中，总是需要访问数组的数组项，我们就可以通过数组的索引号来访问数组元素。如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'blue'</span>,<span class="string">'red'</span>,<span class="string">'green'</span>]; <span class="comment">//创建了一个字符串数组</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">0</span>]); <span class="comment">// output: "blue"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">1</span>]); <span class="comment">// output: "red"</span></span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>]); <span class="comment">// output: "green"</span></span><br><span class="line">colors[<span class="number">0</span>]方括号[]中的索引表示要访问的数组元素。</span><br></pre></td></tr></table></figure>
-<p>很多时候我们需要对JavaScript中数据类型(Function、String、Number、Undefined、Boolean和Object)做判断。在JavaScript中提供了typeof操作符可以对这些常用的数据类型做判断。</p>
-<p><strong>typeof操作符</strong></p>
-<p>typeof可以解决大部分数据类型的检测，如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span>;&#125;); <span class="comment">// function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">"a"</span>); <span class="comment">// string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="number">123</span>); <span class="comment">// number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">true</span>); <span class="comment">// boolean</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">NaN</span>); <span class="comment">// number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> !<span class="literal">NaN</span>); <span class="comment">//boolean</span></span><br></pre></td></tr></table></figure>
-<p>push()方法可以在数组的末属添加一个或多个元素</p>
-<p>shift()方法把数组中的第一个元素删除</p>
-<p>unshift()方法可以在数组的前端添加一个或多个元素</p>
-<p>pop()方法把数组中的最后一个元素删除</p>
-<p><strong>sort()方法</strong></p>
-<p>sort()方法对数组的元素做原地的排序，并返回这个数组。默认情况下，sort()方法是按升序排列数组项。即最小的值位于最前面，最大的值排列在最后面。为了实现排序，sort()方法会调用每个数组项的toString()转型方法，然后比较得到的字符串，以确定如何排序。</p>
-<p><strong>push()</strong></p>
-<p>使用push()方法可以给数组末尾添加一个或多个数组项。</p>
-<p>var arr = [];<br>arr.push(‘a’,’b’);<br>console.log(arr); // [‘a’,’b’]</p>
-<p><strong>unshift()</strong></p>
-<p>使用push()方法可以给数组末尾添加一个或多个数组项，那么使用unshift()方法可以在数组的前面添加一个或多个数组项：</p>
-<p>var arr = [‘a’,’b’];<br>arr.unshift(1,2);<br>console.log(arr); // [1, 2, “a”, “b”]<br>除了这两种方法之外，还可以使用splice()方法给数组添加数组项：</p>
-<p>var arr = [‘a’,’b’,’c’,1,2];<br>arr.splice(2,0,’d’,’c’,’e’);<br>console.log(arr); // [“a”, “b”, “d”, “c”, “e”, “c”, 1, 2]</p>
-<p>另外除了splice()方法之外还可以使用concat()方法可以给数组添加数组项，只不过使用这种方法不会改变原数组，会在原数组中创建一个新数组：</p>
-<p>var arr = [‘a’,’b’,’c’];<br>var arr2 = arr.concat(‘d’,1,2,[‘e’,3]);<br>console.log(arr); // [“a”, “b”, “c”]<br>console.log(arr2); // [“a”, “b”, “c”, “d”, 1, 2, “e”, 3]<br>删除数组项</p>
-<p>对于数组的操作，除了增加数组项，很多时候还需要对数组进行删除操作。删除数组项常用的方法有pop()和shift()两种方法。</p>
-<p><strong>pop()</strong></p>
-<p>pop()方法可以从数组的末尾删除一个数组项：</p>
-<p>var arr = [‘a’,’b’,’c’,’d’,1,2];<br>arr.pop();<br>console.log(arr); // [“a”, “b”, “c”, “d”, 1]</p>
-<p><strong>shift()</strong></p>
-<p>shift()方法和pop()方法刚好相反，它可以删除数组的第一项：</p>
-<p>var arr = [‘a’,’b’,’c’,’d’,1,2];<br>arr.shift();<br>console.log(arr); // [“b”, “c”, “d”, 1, 2]<br>不管是pop()或shift()方法每次只能给数组删除一个数组项，但很多时候这样删除数组项相对来说是比较麻烦的。在数组的操作中，除了这两种方法之外，还可以通过slice()和splice()方法来删除数组项。</p>
-<p><strong>slice()</strong></p>
-<p>slice()方法可以给一个数组中删除多个数组项，只不过不同的是，slice()不会影响原数组，只是会在原数组基础上创建一个数组副本：</p>
-<p>var arr = [1,2,3,4,’a’,’b’];<br>var arr2 = arr.slice(2);<br>console.log(arr); // [1, 2, 3, 4, “a”, “b”]<br>console.log(arr2); // [3, 4, “a”, “b”]<br>console.log(arr3); // [“a”, “b”]</p>
-<p><strong>splice()</strong></p>
-<p>splice()方法除了能给数组添加数组项之外，还可以给数组删除数组项：</p>
-<p>var arr = [1,2,3,4,’a’,’b’,’c’];<br>var arr2 = arr.splice(2,2);<br>console.log(arr); // [1, 2, “a”, “b”, “c”]<br>console.log(arr2); // [3, 4]<br>改变数组</p>
-<p>数组中splice()方法是数组中一个强大的方法，其除了可以给数组添加数组项、删除数组项之外，还可以改变一个数组：</p>
-<p>var arr = [1,2,3,4,5,6];<br>var arr2 = arr.splice(2,3,’a’,’b’,’c’);<br>console.log(arr); // [1, 2, “a”, “b”, “c”, 6]<br>console.log(arr2); // [3, 4, 5]</p>
-<p><strong>数组的查询</strong></p>
-<p>这里所说的数组查询其实指的是数组的查询提取。其使用的方法是slice()方法:</p>
-<p>var arr = [1,2,3,4,5,6];<br>var arr2 = arr.slice(-3);<br>console.log(arr); // [1, 2, 3, 4, 5, 6]<br>console.log(arr2); // [4, 5, 6]</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1436,21 +1378,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

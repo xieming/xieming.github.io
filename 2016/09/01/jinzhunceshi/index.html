@@ -1,0 +1,819 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="精准测试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="本文发表在公众号： 软件测试精品
+
+敏捷模式下迭代频繁，回归测试时总是不知道变动的范围。Dev 有的时候也不知道他改了哪些东西，影响到哪些节点，或者是很多人改的，彼此不知道。遇到有代码洁癖的，改了别人的代码，大家都不知道。通常情况是，要么测试范围定小了，遗漏了；要么测试范围过大，付出过多代价。每次回归，Tester 心里总没底，生怕漏了哪里。如何才能准确定位到变更范围呢？
+作者尝试通过对sourc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jinzhunceshi">
+<meta property="og:url" content="http://snake.me/2016/09/01/jinzhunceshi/index.html">
+<meta property="og:site_name" content="Snake's Home">
+<meta property="og:description" content="本文发表在公众号： 软件测试精品
+
+敏捷模式下迭代频繁，回归测试时总是不知道变动的范围。Dev 有的时候也不知道他改了哪些东西，影响到哪些节点，或者是很多人改的，彼此不知道。遇到有代码洁癖的，改了别人的代码，大家都不知道。通常情况是，要么测试范围定小了，遗漏了；要么测试范围过大，付出过多代价。每次回归，Tester 心里总没底，生怕漏了哪里。如何才能准确定位到变更范围呢？
+作者尝试通过对sourc">
+<meta property="og:updated_time" content="2016-10-19T06:56:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jinzhunceshi">
+<meta name="twitter:description" content="本文发表在公众号： 软件测试精品
+
+敏捷模式下迭代频繁，回归测试时总是不知道变动的范围。Dev 有的时候也不知道他改了哪些东西，影响到哪些节点，或者是很多人改的，彼此不知道。遇到有代码洁癖的，改了别人的代码，大家都不知道。通常情况是，要么测试范围定小了，遗漏了；要么测试范围过大，付出过多代价。每次回归，Tester 心里总没底，生怕漏了哪里。如何才能准确定位到变更范围呢？
+作者尝试通过对sourc">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> jinzhunceshi | Snake's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Snake's Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">snake</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jinzhunceshi
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-01T14:47:06+08:00" content="2016-09-01">
+              2016-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/01/jinzhunceshi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/01/jinzhunceshi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>本文发表在公众号： 软件测试精品</p>
+</blockquote>
+<p>敏捷模式下迭代频繁，回归测试时总是不知道变动的范围。Dev 有的时候也不知道他改了哪些东西，影响到哪些节点，或者是很多人改的，彼此不知道。遇到有代码洁癖的，改了别人的代码，大家都不知道。通常情况是，要么测试范围定小了，遗漏了；要么测试范围过大，付出过多代价。每次回归，Tester 心里总没底，生怕漏了哪里。如何才能准确定位到变更范围呢？</p>
+<p>作者尝试通过对source code 的变动，来达到了解应用的功能模块变化范围。从而制定回归范围和smoke范围。现在大多数公司用git， 本文就以git 为例。在git 中，用这条命令，就可以查看source change log.</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> whatchanged</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> whatchanged --since=<span class="string">'2 weeks ago'</span></span><br></pre></td></tr></table></figure>
+<p>就可以得到最近2周所有commit 的信息。<br>首先对comments 进行统计。进行词频分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_dict</span><span class="params">(target)</span>:</span>      </span><br><span class="line">table = &#123;&#125;      </span><br><span class="line">line, number = re.subn(<span class="string">r"\W"</span>, <span class="string">" "</span>, target)  </span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> line.split():  </span><br><span class="line">     <span class="keyword">if</span> table.has_key(word):                    </span><br><span class="line">       table[word] += <span class="number">1</span>    </span><br><span class="line">     <span class="keyword">else</span>:        </span><br><span class="line">       table[word] = <span class="number">1</span>  </span><br><span class="line">   <span class="keyword">return</span> table</span><br></pre></td></tr></table></figure>
+<p>去除无效的词，自己定义一个list:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">remove_words = [<span class="string">'the'</span>, <span class="string">'a'</span>, <span class="string">'bug'</span>, <span class="string">'to'</span>, <span class="string">'of'</span>, <span class="string">'so'</span>, <span class="string">'one'</span>, <span class="string">'more'</span>, <span class="string">'we'</span>, <span class="string">'Update'</span>, <span class="string">'app'</span>, <span class="string">'our'</span>, <span class="string">'issue'</span>,<span class="string">'want'</span>, <span class="string">'work'</span>]</span><br><span class="line">def <span class="function"><span class="title">remove_dict</span><span class="params">(obj, key)</span></span>:    </span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">in</span> obj.<span class="function"><span class="title">keys</span><span class="params">()</span></span>:       </span><br><span class="line"> obj.<span class="function"><span class="title">pop</span><span class="params">(key)</span><span class="title">for</span></span> word <span class="keyword">in</span> remove_words:      </span><br><span class="line"> <span class="function"><span class="title">remove_dict</span><span class="params">(words_number, word)</span></span></span><br><span class="line">这个词库可以根据需要增加。然后生成一张图表：</span><br><span class="line"></span><br><span class="line">def <span class="function"><span class="title">get_words_graphic</span><span class="params">(wordlist)</span></span>:    </span><br><span class="line">keylist = wordlist.<span class="function"><span class="title">keys</span><span class="params">()</span></span>    </span><br><span class="line">vallist = wordlist.<span class="function"><span class="title">values</span><span class="params">()</span></span>    </span><br><span class="line">barwidth = <span class="number">0.3</span>    </span><br><span class="line">xVal = numpy.<span class="function"><span class="title">arange</span><span class="params">(len(keylist)</span></span>)    </span><br><span class="line">plt.<span class="function"><span class="title">xticks</span><span class="params">(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">90</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(xVal, vallist, width=barwidth, color=<span class="string">'y'</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">title</span><span class="params">(u<span class="string">'词频分析图'</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>为了防止图片展示不清楚，同时还写一份log.<br>这样，就可以大概知道改动了。如果懂些代码，可以深入到代码里面去看。或者拉着Dev一起看，确定最终范围。当然如果Dev的comments 写得够清楚，文件命名很规范，那就更好了。还可以辅助sourcecode 界面工具辅助查看。<br>这样，每次回归就不会那么没有底了。</p>
+<p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">log_file = <span class="string">r'gitfiles.log'</span></span><br><span class="line">start_time_stamp = time.strftime(<span class="string">"%Y%m%d%H%M%S"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_log</span><span class="params">(file_name, content)</span>:</span></span><br><span class="line">    file_object = open(file_name, <span class="string">'a+'</span>)</span><br><span class="line">    file_object.write(content)</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_comments</span><span class="params">(obj)</span>:</span></span><br><span class="line">    sentence = obj[obj.index(<span class="string">" "</span>):].strip().rstrip(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> sentence</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file</span><span class="params">(obj)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> obj.rfind(<span class="string">"..."</span>):</span><br><span class="line">        file = obj[obj.rindex(<span class="string">"..."</span>) + <span class="number">4</span>:].strip().rstrip(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_git_info</span><span class="params">()</span>:</span></span><br><span class="line">    commit_comments = []</span><br><span class="line">    file_comments = []</span><br><span class="line">    commit_pattern = re.compile(<span class="string">r'^\d+\w+'</span>, re.IGNORECASE)</span><br><span class="line">    file_pattern = re.compile(<span class="string">r'^:\d+\w+'</span>, re.IGNORECASE)</span><br><span class="line">    cmd = <span class="string">"git whatchanged --since='2 weeks ago' --pretty=oneline"</span></span><br><span class="line">    lines = subprocess.Popen(cmd, shell=<span class="keyword">True</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> re.search(commit_pattern, line):</span><br><span class="line">            commit = get_comments(line)</span><br><span class="line">            commit_comments.append(commit)</span><br><span class="line">            write_log(log_file, commit)</span><br><span class="line">            write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line">        <span class="keyword">elif</span> re.search(file_pattern, line):</span><br><span class="line">            commit_file = get_file(line)</span><br><span class="line">            file_comments.append(commit_file)</span><br><span class="line">            write_log(log_file, commit_file)</span><br><span class="line">            write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> commit_comments, file_comments</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_statistic</span><span class="params">(target)</span>:</span></span><br><span class="line">    table = Counter(target)</span><br><span class="line">    <span class="keyword">return</span> table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_dict</span><span class="params">(target)</span>:</span></span><br><span class="line">    table = &#123;&#125;</span><br><span class="line">    line, number = re.subn(<span class="string">r"\W"</span>, <span class="string">" "</span>, target)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> line.split():</span><br><span class="line">        <span class="keyword">if</span> table.has_key(word):</span><br><span class="line">            table[word] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            table[word] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_graphic</span><span class="params">(wordlist)</span>:</span></span><br><span class="line">    keylist = wordlist.keys()</span><br><span class="line">    vallist = wordlist.values()</span><br><span class="line">    barwidth = <span class="number">0.3</span></span><br><span class="line">    xVal = numpy.arange(len(keylist))</span><br><span class="line">    plt.xticks(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">90</span>)</span><br><span class="line">    plt.bar(xVal, vallist, width=barwidth, color=<span class="string">'y'</span>)</span><br><span class="line">    plt.title(<span class="string">u'词频分析图'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_graphic</span><span class="params">(wordlist)</span>:</span></span><br><span class="line">    keylist = wordlist.keys()</span><br><span class="line">    vallist = wordlist.values()</span><br><span class="line">    barwidth = <span class="number">0.3</span></span><br><span class="line">    xVal = numpy.arange(len(keylist))</span><br><span class="line">    plt.yticks(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">0</span>)</span><br><span class="line">    plt.barh(xVal, vallist, height=barwidth, color=<span class="string">'b'</span>)</span><br><span class="line">    plt.title(<span class="string">u'文件分析图'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_dict</span><span class="params">(obj, key)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> obj.keys():</span><br><span class="line">        obj.pop(key)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    write_log(log_file, start_time_stamp)</span><br><span class="line">    write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">    comments, files = get_git_info()</span><br><span class="line"></span><br><span class="line">    remove_words = [<span class="string">'the'</span>, <span class="string">'a'</span>, <span class="string">'bug'</span>, <span class="string">'to'</span>, <span class="string">'of'</span>, <span class="string">'so'</span>, <span class="string">'one'</span>, <span class="string">'more'</span>, <span class="string">'we'</span>, <span class="string">'ME'</span>, <span class="string">'Update'</span>, <span class="string">'app'</span>, <span class="string">'our'</span>, <span class="string">'issue'</span>,</span><br><span class="line">                   <span class="string">'want'</span>, <span class="string">'t'</span>, <span class="string">'work'</span>]</span><br><span class="line"></span><br><span class="line">    commit_str = <span class="string">''</span>.join(comments)</span><br><span class="line">    words_number = get_words_dict(commit_str)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> remove_words:</span><br><span class="line">        remove_dict(words_number, word)</span><br><span class="line"></span><br><span class="line">    fine_number = get_file_statistic(files)</span><br><span class="line">    get_words_graphic(words_number)</span><br><span class="line">    get_file_graphic(fine_number)</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/精准测试/" rel="tag">#精准测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/matplotlib/" rel="next" title="matplotlib 画图">
+                <i class="fa fa-chevron-left"></i> matplotlib 画图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/flask之mysql数据库连接/" rel="prev" title="flask之mysql数据库连接">
+                flask之mysql数据库连接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <! -- 添加微信图标 -->
+    
+    
+
+    <div>
+
+    <span>
+    
+    欢迎大家关注：Snake's 微信
+    
+    <br>
+    </span>
+    <br>
+
+    
+    <a href="/images/weichat.jpg" title="snake's微信号" class="fancybox" rel="article0"       style="float:left;margin-left:25%;margin-right:2px;">
+    <img src="/images/weichat.jpg" title="snake's微信号" height="164px" width="164px">
+    </a>
+    
+    </div>
+
+    
+    
+
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/01/jinzhunceshi/"
+     data-title="jinzhunceshi"
+     data-content=""
+     data-url="http://snake.me/2016/09/01/jinzhunceshi/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/01/jinzhunceshi/"
+           data-title="jinzhunceshi" data-url="http://snake.me/2016/09/01/jinzhunceshi/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Snake</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xieming" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051745804351/home?from=page_100505&mod=TAB&is_all=1" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/52671329/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> douban
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/" target="_blank">简书</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://testerhome.com" target="_blank">Testerhome</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.imooc.com" target="_blank">幕客网</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Snake</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"snake"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+</body>
+</html>

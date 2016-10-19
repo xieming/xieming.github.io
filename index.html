@@ -197,6 +197,281 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/19/weichatapi/" itemprop="url">
+                  weichatapi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-10-19T14:41:45+08:00" content="2016-10-19">
+              2016-10-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/19/weichatapi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/weichatapi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <blockquote>
+<p>本文发布在 <a href="https://testerhome.com/topics/5598" target="_blank" rel="external">调用微信接口实现测试监控</a></p>
+</blockquote>
+<p>最近写了些东东，来监控各种异常。传统的发邮件时效性不太好，更何况每天那么多邮件。<br>想到用微信的企业号来发消息。最重要一点，它是免费的。</p>
+<p>首先要注册一个账号：<br><a href="https://qy.weixin.qq.com" target="_blank" rel="external">here</a></p>
+<p>选择企业号</p>
+<p>要填手机号，(微信需要绑定银行卡)，扫描一下。</p>
+<p>填写完公众号信息，就差不多看到曙光了。</p>
+<p>创建一个应用，本人选择的是消息型</p>
+<p>设置管理员：<br>指定应用的管理员。点击设置-&gt; 权限管理 -&gt; 管理 -&gt; 新建管理组 –&gt; 添加管理员和权限。然后就会获得corpid 和 sceret。记录下来，这个很重要。后面代码中用得到。</p>
+<p>然后就是敲代码了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">CORPID = <span class="string">"wx1817a90bedc96275"</span></span><br><span class="line">CORPSECRET = <span class="string">"cL30j1u2kuPvDo3QJuZCV6IOrBNKsUKRkI5Wo_3Aru_mkOIePs2Jso83BWzz93o-"</span></span><br><span class="line">BASEURL = <span class="string">'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=&#123;0&#125;&amp;corpsecret=&#123;1&#125;'</span>.format(CORPID, CORPSECRET)</span><br><span class="line">URL = <span class="string">"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Token</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># get token</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">        self.expire_time = sys.maxint</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_token</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.expire_time &gt; time.time():</span><br><span class="line">            request = urllib2.Request(BASEURL)</span><br><span class="line">            response = urllib2.urlopen(request)</span><br><span class="line">            result_string = response.read().strip()</span><br><span class="line">            result_json = json.loads(result_string)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">'errcode'</span> <span class="keyword">in</span> result_json.keys():</span><br><span class="line">                <span class="keyword">print</span> &gt;&gt; result_json[<span class="string">'errmsg'</span>], sys.stderr</span><br><span class="line">                sys.exit(<span class="number">1</span>)</span><br><span class="line">            self.expire_time = time.time() + result_json[<span class="string">'expires_in'</span>]</span><br><span class="line">            self.access_token = result_json[<span class="string">'access_token'</span>]</span><br><span class="line">        <span class="keyword">return</span> self.access_token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_message</span><span class="params">(title, content)</span>:</span></span><br><span class="line">    team_token = Token().get_token()</span><br><span class="line">    <span class="keyword">print</span> team_token</span><br><span class="line">    url = URL % (team_token)</span><br><span class="line">    wechat_json = &#123;</span><br><span class="line">        <span class="string">"toparty"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"msgtype"</span>: <span class="string">"text"</span>,</span><br><span class="line">        <span class="string">"agentid"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"text"</span>: &#123;</span><br><span class="line">            <span class="string">"content"</span>: <span class="string">"title:&#123;0&#125;\n content:&#123;1&#125;"</span>.format(title, content)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"safe"</span>: <span class="string">"0"</span></span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url, data=json.dumps(wechat_json, ensure_ascii=<span class="keyword">False</span>, encoding=<span class="string">'utf8'</span>))</span><br><span class="line">    <span class="keyword">print</span> response.json()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    send_message(<span class="string">"test"</span>, <span class="string">"just test"</span>)</span><br></pre></td></tr></table></figure>
+<p>运行一下，就可以收到消息了：</p>
+<p>可以设置各种群组，接收消息的人。<br>结合Jenkins, 灵活运用到测试中来</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/16/libimobiledevice/" itemprop="url">
+                  libimobiledevice
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-10-16T22:28:22+08:00" content="2016-10-16">
+              2016-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ios-test/" itemprop="url" rel="index">
+                    <span itemprop="name">ios_test</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/16/libimobiledevice/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/libimobiledevice/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="https://testerhome.com/topics/3766" target="_blank" rel="external">Android 及 iOS 常用操作命令</a></p>
+<p>最近做 iOS 相关的事情比较多，发现其实 iOS 下还是有很多和 android 可以对应的操作，所以在此记录一下。</p>
+<p>备注： iOS 用到的ideviceinstaller，idevicesyslog 等命令安装命令为：brew install libimobiledevice</p>
+<p>应用相关</p>
+<p>1、 安装应用（真机）</p>
+<p>Android</p>
+<p>adb install xxx.apk<br>iOS</p>
+<p>ideviceinstaller -i xxx.ipa<br>2、 卸载应用（真机）</p>
+<p>Android</p>
+<p>adb uninstall <packagename><br>iOS</packagename></p>
+<p>ideviceinstaller -U <bundleid><br>3、 获取应用唯一标识</bundleid></p>
+<p>其实也不算唯一标识了，只是大部分操作会用到。</p>
+<p>Android: packageName<br>获取方式很多，只举其中一个比较容易的：</p>
+<p>$ apktool d xxx.apk -o xxx<br>$ cd xxx<br>$ cat AndroidManifest.xml | grep -o “package=\”.*\”” | sed “s/package=\”//g” | sed “s/\”//g”<br>com.test<br>iOS：bundleId</p>
+<p>$ unzip xxx.ipa<br>$ cd Payload/xxx.app<br>$ defaults read <code>pwd</code>/Info CFBundleIdentifier<br>com.test<br>4、从源码构建应用安装包</p>
+<p>这里只举 debug 包</p>
+<p>android（现在 android studio 项目已经很流行了，所以就不说 ant 了）</p>
+<p>$ cd /source-folder/</p>
+<h1 id="u6CE8_u610F_uFF1A_u6CA1_u7FFB_u5899_u60C5_u51B5_u4E0B_u8C8C_u4F3C_u4E0D_u80FD_u81EA_u52A8_u4E0B_u8F7D_gradle__uFF0C_u90A3_u4E48_u53EF_u4EE5_u81EA_u884C_u4E0B_u8F7D_gradle__u540E_u7528_gradle__u7684_bin__u6587_u4EF6_u4EE3_u66FF_u6B64_u5904_u7684_gradlew__u3002"><a href="#u6CE8_u610F_uFF1A_u6CA1_u7FFB_u5899_u60C5_u51B5_u4E0B_u8C8C_u4F3C_u4E0D_u80FD_u81EA_u52A8_u4E0B_u8F7D_gradle__uFF0C_u90A3_u4E48_u53EF_u4EE5_u81EA_u884C_u4E0B_u8F7D_gradle__u540E_u7528_gradle__u7684_bin__u6587_u4EF6_u4EE3_u66FF_u6B64_u5904_u7684_gradlew__u3002" class="headerlink" title="注意：没翻墙情况下貌似不能自动下载 gradle ，那么可以自行下载 gradle 后用 gradle 的 bin 文件代替此处的 gradlew 。"></a>注意：没翻墙情况下貌似不能自动下载 gradle ，那么可以自行下载 gradle 后用 gradle 的 bin 文件代替此处的 gradlew 。</h1><p>$ ./gradlew build<br> build 完的 apk 包放在 Application/build/outputs/apk 中<br>iOS 真机</p>
+<p>$ cd /source-folder/<br>$ PROJECT=<your-project-name><br>$ xcodebuild clean -project $PROJECT.xcodeproj -configuration Debug -alltargets<br>$ xcodebuild archive -project $PROJECT.xcodeproj -scheme $PROJECT -archivePath $PROJECT.xcarchive<br> 注意，末尾的 exportProvisioningProfile 参数值是在 Xcode 的 Performance-&gt;Accounts-&gt;Apple ID-&gt;View Details 窗口的下半部分看到的名称。如 iOS Team Provisioning Profile: chj.ToDoList<br>$ xcodebuild -exportArchive -archivePath $PROJECT.xcarchive -exportPath $PROJECT -exportFormat ipa -exportProvisioningProfile “your provision profile”</your-project-name></p>
+<h1 id="build__u5B8C_u7684_ipa__u5305_u76F4_u63A5_u5C31_u653E_u5728_u5F53_u524D_u76EE_u5F55"><a href="#build__u5B8C_u7684_ipa__u5305_u76F4_u63A5_u5C31_u653E_u5728_u5F53_u524D_u76EE_u5F55" class="headerlink" title="build 完的 ipa 包直接就放在当前目录"></a>build 完的 ipa 包直接就放在当前目录</h1><p>设备相关</p>
+<p>1、查看设备中的应用列表</p>
+<p>Android</p>
+<p>$ adb shell pm list packages<br>package:com.miui.gallery<br>package:com.xiaomi.tv.gallerylockscreen<br>…<br>如果有 drozer 的话能显示得更清晰</p>
+<p>dz&gt; run app.package.list<br>com.miui.gallery (图库)<br>com.xiaomi.tv.gallerylockscreen (锁屏画报)<br>…<br>iOS</p>
+<p>$ ideviceinstaller [-u <device-udid>] -l<br>Total: 46 apps<br>com.xiaojukeji.didi - 滴滴出行 4.1.5.0<br>com.tencent.mqq - QQ 6.0.0.424<br>…<br>2、获取真机实时日志</device-udid></p>
+<p>Android</p>
+<p>adb [-s <device-name>] logcat<br>iOS</device-name></p>
+<p>idevicesyslog [-u <device-udid>]<br>3、获取当前连接的设备列表</device-udid></p>
+<p>Android</p>
+<p>$ adb devices<br>iOS</p>
+<p>注意：这里列出的设备包括模拟器及 mac 电脑本身<br>$ instruments -s devices<br>补充：<br>mac安装以下内容：</p>
+<p>brew install usbmuxd<br>brew install ideviceinstaller<br>可以获取ios手机的udid</p>
+<p>idevice_id -l<br>对于脚本中要使用默认设备的场景很方便。</p>
+<p>ideviceinfo 获取ios手机信息<br>ideviceinfo -x 获取ios手机信息，并以xml形式显示</p>
+<p>ideviceinfo -k ProductType 获取手机型号<br>ideviceinfo -k ProductVersion 获取系统版本<br>ideviceinfo -k DeviceName 获取手机名称</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
 
     
       
@@ -287,27 +562,26 @@
 <p>1.使用iTunes将iPa同步到手机中；</p>
 <p>2.使用itms-services协议进行下载分发；</p>
 <p>3.使用第三方工具进行下载分发，如：蒲公英，fir…</p>
-<p>现在就以2来说说。<br>原理是通过Safari解析链接中的”itms-services://“来实现的。</p>
-<p>例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.10.193/installIPA.plist"</span>&gt;</span></span><br><span class="line">Iphone Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Safari会去读取installIPA.plist中的信息，如：iOS应用的名称、版本、安装地址等。</p>
+<p>现在就以2来说说如何自己来实现分发。</p>
 <p>流程如下：</p>
-<ol>
-<li>用Xcode打包IPA版本</li>
-<li>搭建本地Web服务器</li>
-<li>开启HTTPS</li>
-<li>编写好对应的.plist文件</li>
-<li>上传ipa、.plist、ca证书到Web服务器，配置好index.html</li>
-<li>在手机上用Safari打开链接，完成下载</li>
-</ol>
-<p>首先，我们得解决证书的问题。可以参考<a href="http://www.jianshu.com/p/01224fc523d4" target="_blank" rel="external">iOS 证书申请和使用详解</a><br>如果搞不定，可以找开发帮忙。<br>把生成的证书放到server上。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/upload'</span>, methods=[<span class="string">'POST'</span>])</span></span></span><br><span class="line">def <span class="function"><span class="title">upload</span><span class="params">()</span></span>:</span><br><span class="line">  uploaded_files = request<span class="class">.files</span><span class="class">.getlist</span>(<span class="string">"file[]"</span>)</span><br><span class="line">  filenames = []</span><br><span class="line">  <span class="keyword">for</span> file <span class="keyword">in</span> uploaded_files:</span><br><span class="line">    <span class="keyword">if</span> file and <span class="function"><span class="title">allowed_file</span><span class="params">(file.filename)</span></span>:</span><br><span class="line">      filename = <span class="function"><span class="title">secure_filename</span><span class="params">(file.filename)</span></span></span><br><span class="line">      	   file.<span class="function"><span class="title">save</span><span class="params">(os.path.join(app.config[<span class="string">'UPLOAD_FOLDER'</span>],filename)</span></span>)</span><br><span class="line">      filenames.<span class="function"><span class="title">append</span><span class="params">(filename)</span></span></span><br><span class="line">  return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'upload.html'</span>, filenames=filenames)</span></span></span><br><span class="line">  </span><br><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/down_loads'</span>)</span></span></span><br><span class="line">def <span class="function"><span class="title">down_loads</span><span class="params">()</span></span>:</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">"GET"</span>:</span><br><span class="line">        <span class="keyword">if</span> os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>):</span><br><span class="line">            files = os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>)</span><br><span class="line">            return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'down_loads.html'</span>,files=files)</span></span></span><br><span class="line">        <span class="function"><span class="title">abort</span><span class="params">(<span class="number">404</span>)</span></span></span><br></pre></td></tr></table></figure>
-<p>编写plist文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>items<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>assets<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">string</span>&gt;</span>software-package<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">key</span>&gt;</span>url<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">string</span>&gt;</span>http://192.168.10.193/test.ipa<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>metadata<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-identifier<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>必须和打包的bundleidentifier一样<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-version<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>版本号<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>software<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>releaseNotes<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>v1(可以随意填)<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">key</span>&gt;</span>title<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">string</span>&gt;</span>App名称<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>添加配置信息<br>我们把刚刚建好的plist文件(这里取名为installIPA.plist)、ipa包、ca证书放到Web服务器的文件目录下，然后修改index.html中的内容。<br>(index.html内容)：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>应用名字<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span>iOS应用OTA安装<span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.10.193/installIPA.plist"</span>&gt;</span>Iphone Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"http://192.168.10.193/ca.crt"</span>&gt;</span>ssl 证书安装<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>到了最激动人心的时候了，我们用iphone打开浏览器，输入本地服务器的地址，首先选择ssl证书安装, 然后再点击Iphone Download，哈哈，是不是已经弹出对话框询问需要安装了？？</p>
-<p>没错，这时点击安装即可快速地实现OTA下安装App了！</p>
+<h6 id="u7528Xcode_u6253_u5305IPA_u7248_u672C"><a href="#u7528Xcode_u6253_u5305IPA_u7248_u672C" class="headerlink" title="用Xcode打包IPA版本"></a>用Xcode打包IPA版本</h6><h6 id="u642D_u5EFA_u672C_u5730Web_u670D_u52A1_u5668"><a href="#u642D_u5EFA_u672C_u5730Web_u670D_u52A1_u5668" class="headerlink" title="搭建本地Web服务器"></a>搭建本地Web服务器</h6><h6 id="u5F00_u542FHTTPS"><a href="#u5F00_u542FHTTPS" class="headerlink" title="开启HTTPS"></a>开启HTTPS</h6><h6 id="u7F16_u5199_u597D_u5BF9_u5E94_u7684-plist_u6587_u4EF6"><a href="#u7F16_u5199_u597D_u5BF9_u5E94_u7684-plist_u6587_u4EF6" class="headerlink" title="编写好对应的.plist文件"></a>编写好对应的.plist文件</h6><h6 id="u4E0A_u4F20ipa_u3001-plist_u3001ca_u8BC1_u4E66_u5230Web_u670D_u52A1_u5668_uFF0C_u914D_u7F6E_u597Dindex-html"><a href="#u4E0A_u4F20ipa_u3001-plist_u3001ca_u8BC1_u4E66_u5230Web_u670D_u52A1_u5668_uFF0C_u914D_u7F6E_u597Dindex-html" class="headerlink" title="上传ipa、.plist、ca证书到Web服务器，配置好index.html"></a>上传ipa、.plist、ca证书到Web服务器，配置好index.html</h6><h6 id="u5728_u624B_u673A_u4E0A_u7528Safari_u6253_u5F00_u94FE_u63A5_uFF0C_u5B8C_u6210_u4E0B_u8F7D"><a href="#u5728_u624B_u673A_u4E0A_u7528Safari_u6253_u5F00_u94FE_u63A5_uFF0C_u5B8C_u6210_u4E0B_u8F7D" class="headerlink" title="在手机上用Safari打开链接，完成下载"></a>在手机上用Safari打开链接，完成下载</h6><h3 id="u9996_u5148_u662F_u8981_u641E_u5B9A_u8BC1_u4E66_u3002"><a href="#u9996_u5148_u662F_u8981_u641E_u5B9A_u8BC1_u4E66_u3002" class="headerlink" title="首先是要搞定证书。"></a>首先是要搞定证书。</h3><p>我们得解决证书的问题。可以参考<a href="http://www.jianshu.com/p/01224fc523d4" target="_blank" rel="external">iOS 证书申请和使用详解</a><br>如果搞不定，可以找开发帮忙。<br>把生成的证书放到server上。</p>
+<p>用flask 搭建web service, 比较简单。<br>将证书放到upload中，添上如下代码，可以上传下载证书了。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/upload'</span>, methods=[<span class="string">'POST'</span>])</span></span></span><br><span class="line">def <span class="function"><span class="title">upload</span><span class="params">()</span></span>:</span><br><span class="line">uploaded_files = request<span class="class">.files</span><span class="class">.getlist</span>(<span class="string">"file[]"</span>)</span><br><span class="line">filenames = []</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> uploaded_files:</span><br><span class="line"><span class="keyword">if</span> file and <span class="function"><span class="title">allowed_file</span><span class="params">(file.filename)</span></span>:</span><br><span class="line">filename = <span class="function"><span class="title">secure_filename</span><span class="params">(file.filename)</span></span></span><br><span class="line">file.<span class="function"><span class="title">save</span><span class="params">(os.path.join(app.config[<span class="string">'UPLOAD_FOLDER'</span>],filename)</span></span>)</span><br><span class="line">filenames.<span class="function"><span class="title">append</span><span class="params">(filename)</span></span></span><br><span class="line">return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'upload.html'</span>, filenames=filenames)</span></span></span><br><span class="line"></span><br><span class="line">@app.<span class="function"><span class="title">route</span><span class="params">(<span class="string">'/down_loads'</span>)</span></span></span><br><span class="line">def <span class="function"><span class="title">down_loads</span><span class="params">()</span></span>:</span><br><span class="line"><span class="keyword">if</span> request.method==<span class="string">"GET"</span>:</span><br><span class="line"><span class="keyword">if</span> os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>):</span><br><span class="line">files = os.<span class="function"><span class="title">listdir</span><span class="params">(os.path.join(<span class="string">'uploads'</span>)</span></span>)</span><br><span class="line">return <span class="function"><span class="title">render_template</span><span class="params">(<span class="string">'down_loads.html'</span>,files=files)</span></span></span><br><span class="line"><span class="function"><span class="title">abort</span><span class="params">(<span class="number">404</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7F16_u5199plist_u6587_u4EF6"><a href="#u7F16_u5199plist_u6587_u4EF6" class="headerlink" title="编写plist文件"></a>编写plist文件</h3><p>原理是通过Safari解析链接中的”itms-services://“来实现的。<br>链接指向plist,plist指向IPA。<br>例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.**.***/install.plist"</span>&gt;</span>Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Safari会去读取install.plist中的信息，如：iOS应用的名称、版本、安装地址等.(这些信息，打包的时候就知道，如果不知道，可以把ipa解压，从解压的info.plist里面去获取，填到自己创建的install.plist里面)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>items<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>assets<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>software-package<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>url<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>http://192.168.**.***/test.ipa<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>metadata<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-identifier<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>必须和bundleidentifier一样<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>bundle-version<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>版本号<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>kind<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>software<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>releaseNotes<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>(可以随意填)<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>title<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">string</span>&gt;</span>App名称<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="u6DFB_u52A0_u914D_u7F6E_u4FE1_u606F"><a href="#u6DFB_u52A0_u914D_u7F6E_u4FE1_u606F" class="headerlink" title="添加配置信息"></a>添加配置信息</h3><p>我们把刚刚建好的plist文件(这里取名为install.plist)、ipa包、ca证书放到Web服务器的文件目录下，然后修改index.html中的内容。<br>(index.html内容)：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Content-Type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>应用名字<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span>iOS应用OTA安装<span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">style</span>=<span class="value">"font-size:40pt"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"itms-services://?action=download-manifest&amp;url=https://192.168.**.***/install.plist"</span>&gt;</span>Iphone Download<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"iPhone"</span> <span class="attribute">href</span>=<span class="value">"http://192.168.**.***/ca.crt"</span>&gt;</span>ssl 证书安装<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们用iphone打开浏览器，输入本地服务器的地址，然后再点击Download，哈哈，是不是已经弹出对话框询问需要安装了？？<br>Oops, 弹出的框是”Cannot connect to <em>*</em>“<br>怎么办？ 服务器没有配置https.<br>我们用openssl来生成</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.key -out <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.crt</span><br></pre></td></tr></table></figure>
+<p>代码中添加：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from OpenSSL import SSL</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">context = SSL.<span class="function"><span class="title">Context</span><span class="params">(SSL.SSLv23_METHOD)</span></span></span><br><span class="line">cer = os<span class="class">.path</span><span class="class">.join</span>(os<span class="class">.path</span><span class="class">.dirname</span>(__file__), <span class="string">'resources/***.crt'</span>)</span><br><span class="line">key = os<span class="class">.path</span><span class="class">.join</span>(os<span class="class">.path</span><span class="class">.dirname</span>(__file__), <span class="string">'resources/***.key'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">context = (cer, key)</span><br><span class="line">app.<span class="function"><span class="title">run</span><span class="params">( host=<span class="string">'0.0.0.0'</span>, port=<span class="number">5000</span>, debug = True, ssl_context=context)</span></span></span><br></pre></td></tr></table></figure>
+<p>解决了SSL问题，重新启动服务，就可以下载了。<br>然后扩展一下web service 功能(如二维码)，做美观一下。</p>
+<p>参考：</p>
+<p><a href="http://www.jianshu.com/p/01224fc523d4" target="_blank" rel="external">iOS 证书申请和使用详解</a></p>
+<p><a href="http://www.jianshu.com/p/35ca63ec0d8e" target="_blank" rel="external">内网安装</a></p>
+<p><a href="https://udaraliyanage.wordpress.com/2015/10/21/python-flask-api-in-https/" target="_blank" rel="external">Python Flask API in HTTPS</a></p>
 
             
           </span>
@@ -559,6 +833,129 @@
 <p>desc 表名;<br>show columns from 表名;<br>describe 表名;<br>show create table 表名;</p>
 <p>then run:</p>
 <p>➜  testdb python manage.py runserver</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/01/jinzhunceshi/" itemprop="url">
+                  jinzhunceshi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-01T14:47:06+08:00" content="2016-09-01">
+              2016-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/01/jinzhunceshi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/01/jinzhunceshi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <blockquote>
+<p>本文发表在公众号： 软件测试精品</p>
+</blockquote>
+<p>敏捷模式下迭代频繁，回归测试时总是不知道变动的范围。Dev 有的时候也不知道他改了哪些东西，影响到哪些节点，或者是很多人改的，彼此不知道。遇到有代码洁癖的，改了别人的代码，大家都不知道。通常情况是，要么测试范围定小了，遗漏了；要么测试范围过大，付出过多代价。每次回归，Tester 心里总没底，生怕漏了哪里。如何才能准确定位到变更范围呢？</p>
+<p>作者尝试通过对source code 的变动，来达到了解应用的功能模块变化范围。从而制定回归范围和smoke范围。现在大多数公司用git， 本文就以git 为例。在git 中，用这条命令，就可以查看source change log.</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> whatchanged</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> whatchanged --since=<span class="string">'2 weeks ago'</span></span><br></pre></td></tr></table></figure>
+<p>就可以得到最近2周所有commit 的信息。<br>首先对comments 进行统计。进行词频分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_dict</span><span class="params">(target)</span>:</span>      </span><br><span class="line">table = &#123;&#125;      </span><br><span class="line">line, number = re.subn(<span class="string">r"\W"</span>, <span class="string">" "</span>, target)  </span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> line.split():  </span><br><span class="line">     <span class="keyword">if</span> table.has_key(word):                    </span><br><span class="line">       table[word] += <span class="number">1</span>    </span><br><span class="line">     <span class="keyword">else</span>:        </span><br><span class="line">       table[word] = <span class="number">1</span>  </span><br><span class="line">   <span class="keyword">return</span> table</span><br></pre></td></tr></table></figure>
+<p>去除无效的词，自己定义一个list:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">remove_words = [<span class="string">'the'</span>, <span class="string">'a'</span>, <span class="string">'bug'</span>, <span class="string">'to'</span>, <span class="string">'of'</span>, <span class="string">'so'</span>, <span class="string">'one'</span>, <span class="string">'more'</span>, <span class="string">'we'</span>, <span class="string">'Update'</span>, <span class="string">'app'</span>, <span class="string">'our'</span>, <span class="string">'issue'</span>,<span class="string">'want'</span>, <span class="string">'work'</span>]</span><br><span class="line">def <span class="function"><span class="title">remove_dict</span><span class="params">(obj, key)</span></span>:    </span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">in</span> obj.<span class="function"><span class="title">keys</span><span class="params">()</span></span>:       </span><br><span class="line"> obj.<span class="function"><span class="title">pop</span><span class="params">(key)</span><span class="title">for</span></span> word <span class="keyword">in</span> remove_words:      </span><br><span class="line"> <span class="function"><span class="title">remove_dict</span><span class="params">(words_number, word)</span></span></span><br><span class="line">这个词库可以根据需要增加。然后生成一张图表：</span><br><span class="line"></span><br><span class="line">def <span class="function"><span class="title">get_words_graphic</span><span class="params">(wordlist)</span></span>:    </span><br><span class="line">keylist = wordlist.<span class="function"><span class="title">keys</span><span class="params">()</span></span>    </span><br><span class="line">vallist = wordlist.<span class="function"><span class="title">values</span><span class="params">()</span></span>    </span><br><span class="line">barwidth = <span class="number">0.3</span>    </span><br><span class="line">xVal = numpy.<span class="function"><span class="title">arange</span><span class="params">(len(keylist)</span></span>)    </span><br><span class="line">plt.<span class="function"><span class="title">xticks</span><span class="params">(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">90</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">bar</span><span class="params">(xVal, vallist, width=barwidth, color=<span class="string">'y'</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">title</span><span class="params">(u<span class="string">'词频分析图'</span>)</span></span>    </span><br><span class="line">plt.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>为了防止图片展示不清楚，同时还写一份log.<br>这样，就可以大概知道改动了。如果懂些代码，可以深入到代码里面去看。或者拉着Dev一起看，确定最终范围。当然如果Dev的comments 写得够清楚，文件命名很规范，那就更好了。还可以辅助sourcecode 界面工具辅助查看。<br>这样，每次回归就不会那么没有底了。</p>
+<p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">log_file = <span class="string">r'gitfiles.log'</span></span><br><span class="line">start_time_stamp = time.strftime(<span class="string">"%Y%m%d%H%M%S"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_log</span><span class="params">(file_name, content)</span>:</span></span><br><span class="line">    file_object = open(file_name, <span class="string">'a+'</span>)</span><br><span class="line">    file_object.write(content)</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_comments</span><span class="params">(obj)</span>:</span></span><br><span class="line">    sentence = obj[obj.index(<span class="string">" "</span>):].strip().rstrip(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> sentence</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file</span><span class="params">(obj)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> obj.rfind(<span class="string">"..."</span>):</span><br><span class="line">        file = obj[obj.rindex(<span class="string">"..."</span>) + <span class="number">4</span>:].strip().rstrip(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_git_info</span><span class="params">()</span>:</span></span><br><span class="line">    commit_comments = []</span><br><span class="line">    file_comments = []</span><br><span class="line">    commit_pattern = re.compile(<span class="string">r'^\d+\w+'</span>, re.IGNORECASE)</span><br><span class="line">    file_pattern = re.compile(<span class="string">r'^:\d+\w+'</span>, re.IGNORECASE)</span><br><span class="line">    cmd = <span class="string">"git whatchanged --since='2 weeks ago' --pretty=oneline"</span></span><br><span class="line">    lines = subprocess.Popen(cmd, shell=<span class="keyword">True</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> re.search(commit_pattern, line):</span><br><span class="line">            commit = get_comments(line)</span><br><span class="line">            commit_comments.append(commit)</span><br><span class="line">            write_log(log_file, commit)</span><br><span class="line">            write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line">        <span class="keyword">elif</span> re.search(file_pattern, line):</span><br><span class="line">            commit_file = get_file(line)</span><br><span class="line">            file_comments.append(commit_file)</span><br><span class="line">            write_log(log_file, commit_file)</span><br><span class="line">            write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> commit_comments, file_comments</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_statistic</span><span class="params">(target)</span>:</span></span><br><span class="line">    table = Counter(target)</span><br><span class="line">    <span class="keyword">return</span> table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_dict</span><span class="params">(target)</span>:</span></span><br><span class="line">    table = &#123;&#125;</span><br><span class="line">    line, number = re.subn(<span class="string">r"\W"</span>, <span class="string">" "</span>, target)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> line.split():</span><br><span class="line">        <span class="keyword">if</span> table.has_key(word):</span><br><span class="line">            table[word] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            table[word] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_words_graphic</span><span class="params">(wordlist)</span>:</span></span><br><span class="line">    keylist = wordlist.keys()</span><br><span class="line">    vallist = wordlist.values()</span><br><span class="line">    barwidth = <span class="number">0.3</span></span><br><span class="line">    xVal = numpy.arange(len(keylist))</span><br><span class="line">    plt.xticks(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">90</span>)</span><br><span class="line">    plt.bar(xVal, vallist, width=barwidth, color=<span class="string">'y'</span>)</span><br><span class="line">    plt.title(<span class="string">u'词频分析图'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_file_graphic</span><span class="params">(wordlist)</span>:</span></span><br><span class="line">    keylist = wordlist.keys()</span><br><span class="line">    vallist = wordlist.values()</span><br><span class="line">    barwidth = <span class="number">0.3</span></span><br><span class="line">    xVal = numpy.arange(len(keylist))</span><br><span class="line">    plt.yticks(xVal + barwidth / <span class="number">2.0</span>, keylist, rotation=<span class="number">0</span>)</span><br><span class="line">    plt.barh(xVal, vallist, height=barwidth, color=<span class="string">'b'</span>)</span><br><span class="line">    plt.title(<span class="string">u'文件分析图'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_dict</span><span class="params">(obj, key)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> obj.keys():</span><br><span class="line">        obj.pop(key)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    write_log(log_file, start_time_stamp)</span><br><span class="line">    write_log(log_file, <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">    comments, files = get_git_info()</span><br><span class="line"></span><br><span class="line">    remove_words = [<span class="string">'the'</span>, <span class="string">'a'</span>, <span class="string">'bug'</span>, <span class="string">'to'</span>, <span class="string">'of'</span>, <span class="string">'so'</span>, <span class="string">'one'</span>, <span class="string">'more'</span>, <span class="string">'we'</span>, <span class="string">'ME'</span>, <span class="string">'Update'</span>, <span class="string">'app'</span>, <span class="string">'our'</span>, <span class="string">'issue'</span>,</span><br><span class="line">                   <span class="string">'want'</span>, <span class="string">'t'</span>, <span class="string">'work'</span>]</span><br><span class="line"></span><br><span class="line">    commit_str = <span class="string">''</span>.join(comments)</span><br><span class="line">    words_number = get_words_dict(commit_str)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> remove_words:</span><br><span class="line">        remove_dict(words_number, word)</span><br><span class="line"></span><br><span class="line">    fine_number = get_file_statistic(files)</span><br><span class="line">    get_words_graphic(words_number)</span><br><span class="line">    get_file_graphic(fine_number)</span><br></pre></td></tr></table></figure>
 
             
           </span>
@@ -1183,348 +1580,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/04/nodejswritefile/" itemprop="url">
-                  nodejswritefile
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-04T11:47:23+08:00" content="2016-06-04">
-              2016-06-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/04/nodejswritefile/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nodejswritefile/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近在搞一个网站，用 javascript 写东西，发现用js来读写本地文件不是很方便， 用nodejs效果更佳。</p>
-<p>网上找的例子。</p>
-<p><a href="http://qianduanblog.com/post/nodejs-learning-4-filestream-read-write-local-file.html" target="_blank" rel="external">filestream读写本地文件</a></p>
-<h2 id="1_u3001filestream_API"><a href="#1_u3001filestream_API" class="headerlink" title="1、filestream API"></a>1、filestream API</h2><ul>
-<li>读文件：fs.readFile（异步）</li>
-<li>写文件：fs.writeFile（异步）</li>
-<li>追加内容：fs.appendFile（异步）</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 fs（filestream） 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 1、读文件</span></span><br><span class="line">fs.readFile(<span class="string">"text.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 操作fileData</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 2、写文件</span></span><br><span class="line">fs.writeFiel(<span class="string">"text.txt"</span>, <span class="string">"new fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 3、追加内容</span></span><br><span class="line">fs.appendFile(<span class="string">"text.txt"</span>, <span class="string">"append fileData"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="comment">// 出现错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 继续操作</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="2_u3001_u96C6_u6210_u4F8B_u5B50"><a href="#2_u3001_u96C6_u6210_u4F8B_u5B50" class="headerlink" title="2、集成例子"></a>2、集成例子</h2><p>通过访问不同的querystring来操作不同的API：</p>
-<ul>
-<li>localhost:2014?read =&gt; 读文件</li>
-<li>localhost:2014?write =&gt; 写文件</li>
-<li>localhost:2014?append =&gt; 追加内容</li>
-</ul>
-<p>例子如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模块</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 filestream 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 url 模块</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 querystring 模块</span></span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">"querystring"</span>)</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> objQuery = querystring.parse(url.parse(request.url).query);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// 读取文件</span></span><br><span class="line">	<span class="keyword">if</span> (objQuery.type == <span class="string">"read"</span>) &#123;</span><br><span class="line">		<span class="comment">// 为什么不是 fs.read</span></span><br><span class="line">		fs.readFile(<span class="string">"./tmp/file.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取内容为：&lt;/h1&gt;"</span> + fileData);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写入文件</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"write"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> writeString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.writeFile(<span class="string">"./tmp/file.txt"</span>, writeString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入内容为：&lt;/h1&gt;"</span> + writeString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 追加内容</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"append"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> appendString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.appendFile(<span class="string">"./tmp/file.txt"</span>, appendString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加内容为：&lt;/h1&gt;"</span> + appendString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		write(response, <span class="string">"&lt;h1&gt;请在网址上输入参数&lt;/h1&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).listen(<span class="number">2014</span>);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params">response, content</span>) </span>&#123;</span><br><span class="line">	response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">		<span class="string">"content-type"</span>: <span class="string">"text/html"</span></span><br><span class="line">	&#125;);</span><br><span class="line">	response.write(content);</span><br><span class="line">	response.end();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6"><a href="#3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6" class="headerlink" title="3. node.js里面怎么创建和解析JSON格式的文件"></a>3. node.js里面怎么创建和解析JSON格式的文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> writlog = &#123;<span class="string">"rows"</span>:[     &#123;<span class="string">"buildid"</span>:<span class="string">"data.number"</span>,<span class="string">"product"</span>:<span class="string">"englishtown"</span>,<span class="string">"env"</span>:<span class="string">"live"</span>,<span class="string">"version"</span>:<span class="string">"ver"</span>&#125;</span><br><span class="line">    ]&#125;</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(<span class="string">'./output.json'</span>,<span class="built_in">JSON</span>.stringify(writlog));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> JsonObj=<span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./output.json'</span>));<span class="built_in">console</span>.log(JsonObj);</span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/04/stock/" itemprop="url">
-                  stock
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-05-04T10:25:18+08:00" content="2016-05-04">
-              2016-05-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/04/stock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/stock/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>get information:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding:utf8</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文件中读取股票代码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readCode</span><span class="params">(filename, codes)</span>:</span></span><br><span class="line">	f = open(filename, <span class="string">"r"</span>)</span><br><span class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">		line.strip()</span><br><span class="line">		codes.append(line)</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据股票代码获取股票的当日信息，信息格式为</span></span><br><span class="line"><span class="comment"># 0：”大秦铁路”，股票名字；</span></span><br><span class="line"><span class="comment"># 1：”27.55″，今日开盘价；</span></span><br><span class="line"><span class="comment"># 2：”27.25″，昨日收盘价；</span></span><br><span class="line"><span class="comment"># 3：”26.91″，当前价格；</span></span><br><span class="line"><span class="comment"># 4：”27.55″，今日最高价；</span></span><br><span class="line"><span class="comment"># 5：”26.20″，今日最低价；</span></span><br><span class="line"><span class="comment"># 6：”26.91″，竞买价，即“买一”报价；</span></span><br><span class="line"><span class="comment"># 7：”26.92″，竞卖价，即“卖一”报价；</span></span><br><span class="line"><span class="comment"># 8：”22114263″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；</span></span><br><span class="line"><span class="comment"># 9：”589824680″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；</span></span><br><span class="line"><span class="comment"># 10：”4695″，“买一”申请4695股，即47手；</span></span><br><span class="line"><span class="comment"># 11：”26.91″，“买一”报价；</span></span><br><span class="line"><span class="comment"># 12：”57590″，“买二”</span></span><br><span class="line"><span class="comment"># 13：”26.90″，“买二”</span></span><br><span class="line"><span class="comment"># 14：”14700″，“买三”</span></span><br><span class="line"><span class="comment"># 15：”26.89″，“买三”</span></span><br><span class="line"><span class="comment"># 16：”14300″，“买四”</span></span><br><span class="line"><span class="comment"># 17：”26.88″，“买四”</span></span><br><span class="line"><span class="comment"># 18：”15100″，“买五”</span></span><br><span class="line"><span class="comment"># 19：”26.87″，“买五”</span></span><br><span class="line"><span class="comment"># 20：”3100″，“卖一”申报3100股，即31手；</span></span><br><span class="line"><span class="comment"># 21：”26.92″，“卖一”报价</span></span><br><span class="line"><span class="comment"># (22, 23), (24, 25), (26,27), (28, 29)分别为“卖二”至“卖四的情况”</span></span><br><span class="line"><span class="comment"># 30：”2008-01-11″，日期；</span></span><br><span class="line"><span class="comment"># 31：”15:05:32″，时间；</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getComInfo</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># 抓取股票信息</span></span><br><span class="line">	url = <span class="string">"http://hq.sinajs.cn/list=%s"</span> % code</span><br><span class="line">	response = urllib2.urlopen(url)</span><br><span class="line">	javascriptInfo = response.read()</span><br><span class="line">	<span class="comment"># 解析成python可识别的信息</span></span><br><span class="line">	pythonInfo = javascriptInfo[<span class="number">4</span>:]</span><br><span class="line">	exec(pythonInfo)</span><br><span class="line">	company = <span class="string">"hq_str_"</span> + code</span><br><span class="line">	companyInfo = eval(company)</span><br><span class="line">	companyInfo = companyInfo.split(<span class="string">","</span>)</span><br><span class="line">	<span class="comment"># 部分股票由于特殊情况没有相应信息</span></span><br><span class="line">	<span class="keyword">if</span> len(companyInfo) &lt; <span class="number">3</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	currentPrice = companyInfo[<span class="number">3</span>]</span><br><span class="line">	<span class="comment"># 当前票价小于5元时保存</span></span><br><span class="line">	<span class="keyword">if</span> float(currentPrice) &lt; <span class="number">5.0</span>:</span><br><span class="line">		saveGoodTicket(code)</span><br><span class="line">		<span class="keyword">print</span> code, companyInfo[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存好的股票日K线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveGoodTicket</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># # 日K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/daily/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># # 周K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/weekly/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># 月K线</span></span><br><span class="line">	url = <span class="string">"http://image.sinajs.cn/newchart/monthly/n/%s.gif"</span> % code</span><br><span class="line">	<span class="comment"># 分时线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/min/n/%s.gif" % code</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		response = urllib2.urlopen(url)</span><br><span class="line">		data = response.read()</span><br><span class="line">		f = open(<span class="string">"goodTicket/"</span> + code +<span class="string">'.gif'</span>, <span class="string">"wb"</span>)</span><br><span class="line">		f.write(data)</span><br><span class="line">		f.close()</span><br><span class="line">	<span class="keyword">except</span> Exception, e:</span><br><span class="line">		<span class="keyword">print</span> e</span><br><span class="line">	<span class="keyword">finally</span>:</span><br><span class="line">		<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 单个线程进行的工作</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleHandle</span><span class="params">(codes, test)</span>:</span></span><br><span class="line">	<span class="keyword">print</span> test</span><br><span class="line">	<span class="keyword">for</span> code <span class="keyword">in</span> codes:</span><br><span class="line">		<span class="comment"># 去除code中的空白字符</span></span><br><span class="line">		code = code.strip()</span><br><span class="line">		<span class="comment"># 获取信息</span></span><br><span class="line">		getComInfo(code)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次四个线程获取股票信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiHandle</span><span class="params">(fourcodes, test)</span>:</span></span><br><span class="line">	threads = [threading.Thread(target=singleHandle, args=(codes, test)) <span class="keyword">for</span> codes <span class="keyword">in</span> fourcodes]</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.start()</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.join()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	codes = []</span><br><span class="line">	readCode(<span class="string">"codes.txt"</span>, codes)</span><br><span class="line">	num = len(codes)</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">"goodTicket"</span>):</span><br><span class="line">		os.mkdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">		<span class="keyword">print</span> <span class="string">"make dir pic"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 设置4个线程</span></span><br><span class="line">	threadLen = num / <span class="number">4</span></span><br><span class="line"></span><br><span class="line">	t1 = codes[<span class="number">0</span>: threadLen]</span><br><span class="line">	t2 = codes[threadLen : threadLen*<span class="number">2</span>]</span><br><span class="line">	t3 = codes[threadLen*<span class="number">2</span> : threadLen *<span class="number">3</span>]</span><br><span class="line">	t4 = codes[threadLen*<span class="number">3</span> : ]</span><br><span class="line">	t = [t1, t2, t3, t4]</span><br><span class="line">	multiHandle(t, <span class="string">"To Beautiful You"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"success"</span></span><br></pre></td></tr></table></figure>
-<p>generatehtml.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding=utf8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">htmlHead = <span class="string">'''</span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;&#123;BODY&#125;&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	files = os.listdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">	htmlBody = <span class="string">"&lt;ul&gt;"</span></span><br><span class="line">	<span class="keyword">for</span> filename <span class="keyword">in</span> files:</span><br><span class="line">		htmlBody = htmlBody  + <span class="string">"&lt;li&gt;&lt;img src=\"%s\"&gt;&lt;/li&gt;"</span> % (<span class="string">"goodTicket/"</span> + filename)</span><br><span class="line"></span><br><span class="line">	htmlBody = htmlBody + <span class="string">"&lt;/ul&gt;"</span></span><br><span class="line"></span><br><span class="line">	html = htmlHead.replace(<span class="string">"&#123;&#123;BODY&#125;&#125;"</span>, htmlBody)</span><br><span class="line">	f = open(<span class="string">"pic.html"</span>, <span class="string">"w"</span>)</span><br><span class="line">	f.write(html)</span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/27/bootstrap-node建一个网站/" itemprop="url">
-                  bootstrap+node一天快速建一个网站
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-27T14:27:51+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/27/bootstrap-node建一个网站/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/bootstrap-node建一个网站/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近下载了好几个 bootstrap 的模版， 用nodejs跑起来。<br>一般用express框架。<br>结构如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- lib</span><br><span class="line">-- views</span><br><span class="line">   + -- index.html</span><br><span class="line">   + -- about.html</span><br><span class="line">   + -- contact.html</span><br><span class="line">   + -- <span class="number">404</span>.html</span><br><span class="line">-- node_modules</span><br><span class="line">   + -- express</span><br><span class="line">package.json</span><br></pre></td></tr></table></figure>
-<p>先配置 Package.json(类似ruby rails 中的Gem file)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"website-using-express"</span>,</span><br><span class="line">  <span class="string">"version"</span> : <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"scripts"</span> : &#123;</span><br><span class="line">    <span class="string">"start"</span> : <span class="string">"node Server.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span> : &#123;</span><br><span class="line">    <span class="string">"express"</span> : <span class="string">"latest"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后Switch to your project folder and type<br><figure class="highlight"><figcaption><span>install``` (类似gem install)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#25509;&#30528;&#24314;&#31435;Server.js&#10;express&#37324;&#38754;&#19968;&#33324;&#37117;&#26159; app.js&#10;&#10;```javascript&#10;var express = require(&#34;express&#34;);&#10;var app = express();&#10;var router = express.Router();&#10;var path = __dirname + &#39;/views/&#39;;&#10;&#10;router.use(function (req,res,next) &#123;&#10;  console.log(&#34;/&#34; + req.method);&#10;  next();&#10;&#125;);&#10;&#10;router.get(&#34;/&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;index.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/about&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;about.html&#34;);&#10;&#125;);&#10;&#10;router.get(&#34;/contact&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;contact.html&#34;);&#10;&#125;);&#10;&#10;app.use(&#34;/&#34;,router);&#10;&#10;app.use(&#34;*&#34;,function(req,res)&#123;&#10;  res.sendFile(path + &#34;404.html&#34;);&#10;&#125;);&#10;&#10;app.listen(3000,function()&#123;&#10;  console.log(&#34;Live at Port 3000&#34;);&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>各种配置和路由，express会把这放在router里面去做。<br>建一个views的文件夹，把html放里面，然后在这个里面相应的链接一下。<br>然后敲上<br><figure class="highlight"><figcaption><span>start``` (rails start)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#22312;&#27983;&#35272;&#22120;&#37324;&#38754;&#25970;&#19978; localhost:3000 (&#31471;&#21475;&#38752;js&#37324;&#38754;&#35774;&#32622;)&#10;&#10;&#32467;&#26524;&#27809;&#36215;&#26469;&#65292;&#22240;&#20026;&#25226; css, js, image&#31561;&#25918;&#21040;public &#19979;&#20102;&#12290;&#10;&#10;&#35299;&#20915;&#26041;&#27861;&#65306;&#10;&#27169;&#26495;&#25991;&#20214;&#40664;&#35748;&#23384;&#25918;&#22312;views&#23376;&#30446;&#24405;&#12290;&#36825;&#26102;&#65292;&#22914;&#26524;&#35201;&#22312;&#32593;&#39029;&#20013;&#21152;&#36733;&#38745;&#24577;&#25991;&#20214;&#65288;&#27604;&#22914;&#26679;&#24335;&#34920;&#12289;&#22270;&#29255;&#31561;&#65289;&#65292;&#23601;&#38656;&#35201;&#21478;&#22806;&#25351;&#23450;&#19968;&#20010;&#23384;&#25918;&#38745;&#24577;&#25991;&#20214;&#30340;&#30446;&#24405;&#12290;&#10;```app.use(express.static(&#39;public&#39;));</span><br></pre></td></tr></table></figure></p>
-<p>上面代码在文件app.js之中，指定静态文件存放的目录是public。于是，当浏览器发出非HTML文件请求时，服务器端就到public目录寻找这个文件。比如，浏览器发出如下的样式表请求：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">"/bootstrap/css/bootstrap.css"</span> rel=<span class="string">"stylesheet"</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>服务器端就到public/bootstrap/css/目录中寻找bootstrap.css文件。</p>
-<p>然后就跑起来了。<br>后面研究下数据库等。</p>
-<p>参考：<br><a href="https://www.codementor.io/nodejs/tutorial/build-website-from-scratch-using-expressjs-and-bootstrap" target="_blank" rel="external">expressjs-and-bootstrap</a></p>
-<p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express框架</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1571,21 +1626,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
