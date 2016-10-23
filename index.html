@@ -220,6 +220,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/23/PIL/" itemprop="url">
+                  PIL
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-10-23T22:11:50+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/23/PIL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/23/PIL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>首先得温习一些命令：</p>
+<p>执行系统命令</p>
+<blockquote>
+<p>主流的有4种os.system()、os.popen()、commands.getstatusoutput()、subprocess.Popen()</p>
+</blockquote>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">os.<span class="keyword">system</span>() 这种是最简单的，但是只能执行，不能获取返回值</span><br><span class="line">os.popen() 这种能拿到返回值，但是不能拿到返回状态</span><br><span class="line">commands.getstatusoutput() 这种在Windows上会出现兼容性问题，无法执行（亲测），但是在Linux平台上还是挺好用的</span><br><span class="line">subprocess.Popen() 目前我采用的是这种方式，给一个这种方式的demo</span><br><span class="line">import subprocess  <span class="comment"># 导入subprocess模块</span></span><br><span class="line">cmd = <span class="string">'ls -al'</span>  <span class="comment"># 定义需要执行的cmd</span></span><br><span class="line">child = subprocess.Popen(cmd, <span class="built_in">shell</span>=True, <span class="keyword">stdout</span>=subprocess.PIPE, <span class="keyword">stderr</span>=subprocess.STDOUT) <span class="comment"># 执行系统命令</span></span><br><span class="line"><span class="comment"># child.wait() # 等待系统命令返回后再执行后续命令，看需要可加可不加</span></span><br><span class="line">(stdoutdata, stderrdata) = child.communicate() <span class="comment"># 获取返回数据</span></span><br><span class="line">print child.returncode <span class="comment"># 打印查看命令的returncode</span></span><br><span class="line">print(<span class="string">"stderrdata:%s"</span>) % stderrdata <span class="comment"># 打印查看</span></span><br></pre></td></tr></table></figure>
+<p>log记录</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="header"># util.py</span></span><br><span class="line"><span class="header">#! /usr/bin/env python</span></span><br><span class="line"><span class="header"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">import logging # 导入logging模块</span><br><span class="line"></span><br><span class="line"><span class="header"># 创建一个handler，用于写入日志文件</span></span><br><span class="line">fh = logging.FileHandler('./test.log')</span><br><span class="line"></span><br><span class="line"><span class="header"># 再创建一个handler，用于输出到控制台</span></span><br><span class="line">ch = logging.StreamHandler()</span><br><span class="line"></span><br><span class="line"><span class="header"># 定义handler的输出格式formatter</span></span><br><span class="line">formatter = logging.Formatter('[<span class="link_label">%(asctime)s</span>][<span class="link_reference">%(filename)s</span>][<span class="link_label">%(levelname)s</span>]:%(message)s')</span><br><span class="line">fh.setFormatter(formatter)</span><br><span class="line">ch.setFormatter(formatter)</span><br><span class="line"></span><br><span class="line"><span class="header"># 创建一个logger</span></span><br><span class="line">logger = logging.getLogger()</span><br><span class="line">logger.setLevel(logging.DEBUG)</span><br><span class="line">logger.addHandler(fh)</span><br><span class="line">logger.addHandler(ch)</span><br><span class="line"></span><br><span class="line"><span class="header"># test.py</span></span><br><span class="line">import util</span><br><span class="line"></span><br><span class="line">util.logger.debug("i am debug")</span><br><span class="line"></span><br><span class="line"><span class="header"># console输出</span></span><br><span class="line">[<span class="link_label">2016-10-17 11:19:36,999</span>][<span class="link_reference">monkey.py</span>][<span class="link_label">DEBUG</span>]:i am debug</span><br><span class="line">先记录到这里，之后补充</span><br></pre></td></tr></table></figure>
+<p>每次安装PIL出错， 最近找到一篇文章<br><a href="http://www.cnblogs.com/Yellow0-0River/p/5541817.html" target="_blank" rel="external">Mac安装PIL模块</a></p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install -f <span class="symbol">http:</span>/<span class="regexp">/www.pythonware.com/products</span><span class="regexp">/pil/</span> <span class="constant">Imaging</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://www.pythonware.com/products/pil/index.htm" target="_blank" rel="external">Windows安装PIL</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/16/libimobiledevice/" itemprop="url">
                   libimobiledevice
                 </a>
@@ -285,38 +404,34 @@
 <p>备注： iOS 用到的ideviceinstaller，idevicesyslog 等命令安装命令为：brew install libimobiledevice</p>
 <p>应用相关</p>
 <p>1、 安装应用（真机）</p>
-<p>Android</p>
-<p>adb install xxx.apk<br>iOS</p>
-<p>ideviceinstaller -i xxx.ipa<br>2、 卸载应用（真机）</p>
-<p>Android</p>
-<p>adb uninstall <packagename><br>iOS</packagename></p>
-<p>ideviceinstaller -U <bundleid><br>3、 获取应用唯一标识</bundleid></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Android</span><br><span class="line"></span><br><span class="line">adb install xxx<span class="class">.apk</span></span><br><span class="line">iOS</span><br><span class="line"></span><br><span class="line">ideviceinstaller -<span class="tag">i</span> xxx.ipa</span><br></pre></td></tr></table></figure>
+<p>2、 卸载应用（真机）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Android</span><br><span class="line"></span><br><span class="line">adb uninstall <span class="tag">&lt;<span class="title">packageName</span>&gt;</span></span><br><span class="line">iOS</span><br><span class="line"></span><br><span class="line">ideviceinstaller -U <span class="tag">&lt;<span class="title">bundleId</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3、 获取应用唯一标识</p>
 <p>其实也不算唯一标识了，只是大部分操作会用到。</p>
 <p>Android: packageName<br>获取方式很多，只举其中一个比较容易的：</p>
-<p>$ apktool d xxx.apk -o xxx<br>$ cd xxx<br>$ cat AndroidManifest.xml | grep -o “package=\”.*\”” | sed “s/package=\”//g” | sed “s/\”//g”<br>com.test<br>iOS：bundleId</p>
-<p>$ unzip xxx.ipa<br>$ cd Payload/xxx.app<br>$ defaults read <code>pwd</code>/Info CFBundleIdentifier<br>com.test<br>4、从源码构建应用安装包</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ apktool <span class="keyword">d</span> xxx.apk -o xxx</span><br><span class="line">$ <span class="keyword">cd</span> xxx</span><br><span class="line">$ <span class="keyword">cat</span> AndroidManifest.xml | grep -o <span class="string">"package=\"</span>.*\<span class="string">""</span> | sed <span class="string">"s/package=\"</span><span class="comment">//g" | sed "s/\"//g"</span></span><br><span class="line">com.<span class="keyword">test</span></span><br><span class="line">iOS：bundleId</span><br><span class="line"></span><br><span class="line">$ unzip xxx.ipa</span><br><span class="line">$ <span class="keyword">cd</span> Payload/xxx.<span class="keyword">app</span></span><br><span class="line">$ defaults <span class="keyword">read</span> `<span class="keyword">pwd</span>`/Info CFBundleIdentifier</span><br><span class="line">com.<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
+<p>4、从源码构建应用安装包</p>
 <p>这里只举 debug 包</p>
 <p>android（现在 android studio 项目已经很流行了，所以就不说 ant 了）</p>
-<p>$ cd /source-folder/</p>
-<h1 id="u6CE8_u610F_uFF1A_u6CA1_u7FFB_u5899_u60C5_u51B5_u4E0B_u8C8C_u4F3C_u4E0D_u80FD_u81EA_u52A8_u4E0B_u8F7D_gradle__uFF0C_u90A3_u4E48_u53EF_u4EE5_u81EA_u884C_u4E0B_u8F7D_gradle__u540E_u7528_gradle__u7684_bin__u6587_u4EF6_u4EE3_u66FF_u6B64_u5904_u7684_gradlew__u3002"><a href="#u6CE8_u610F_uFF1A_u6CA1_u7FFB_u5899_u60C5_u51B5_u4E0B_u8C8C_u4F3C_u4E0D_u80FD_u81EA_u52A8_u4E0B_u8F7D_gradle__uFF0C_u90A3_u4E48_u53EF_u4EE5_u81EA_u884C_u4E0B_u8F7D_gradle__u540E_u7528_gradle__u7684_bin__u6587_u4EF6_u4EE3_u66FF_u6B64_u5904_u7684_gradlew__u3002" class="headerlink" title="注意：没翻墙情况下貌似不能自动下载 gradle ，那么可以自行下载 gradle 后用 gradle 的 bin 文件代替此处的 gradlew 。"></a>注意：没翻墙情况下貌似不能自动下载 gradle ，那么可以自行下载 gradle 后用 gradle 的 bin 文件代替此处的 gradlew 。</h1><p>$ ./gradlew build<br> build 完的 apk 包放在 Application/build/outputs/apk 中<br>iOS 真机</p>
-<p>$ cd /source-folder/<br>$ PROJECT=<your-project-name><br>$ xcodebuild clean -project $PROJECT.xcodeproj -configuration Debug -alltargets<br>$ xcodebuild archive -project $PROJECT.xcodeproj -scheme $PROJECT -archivePath $PROJECT.xcarchive<br> 注意，末尾的 exportProvisioningProfile 参数值是在 Xcode 的 Performance-&gt;Accounts-&gt;Apple ID-&gt;View Details 窗口的下半部分看到的名称。如 iOS Team Provisioning Profile: chj.ToDoList<br>$ xcodebuild -exportArchive -archivePath $PROJECT.xcarchive -exportPath $PROJECT -exportFormat ipa -exportProvisioningProfile “your provision profile”</your-project-name></p>
-<h1 id="build__u5B8C_u7684_ipa__u5305_u76F4_u63A5_u5C31_u653E_u5728_u5F53_u524D_u76EE_u5F55"><a href="#build__u5B8C_u7684_ipa__u5305_u76F4_u63A5_u5C31_u653E_u5728_u5F53_u524D_u76EE_u5F55" class="headerlink" title="build 完的 ipa 包直接就放在当前目录"></a>build 完的 ipa 包直接就放在当前目录</h1><p>设备相关</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /<span class="built_in">source</span>-folder/</span><br></pre></td></tr></table></figure>
+<p> 注意：没翻墙情况下貌似不能自动下载 gradle ，那么可以自行下载 gradle 后用 gradle 的 bin 文件代替此处的 gradlew 。</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>./gradlew build</span><br></pre></td></tr></table></figure>
+<p> build 完的 apk 包放在 Application/build/outputs/apk 中<br>iOS 真机</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd /source-folder/</span><br><span class="line">$ PROJECT=&lt;your-project-name&gt;</span><br><span class="line">$ xcodebuild clean -project <span class="variable">$PROJECT</span>.xcodeproj -configuration Debug -alltargets</span><br><span class="line">$ xcodebuild archive -project <span class="variable">$PROJECT</span>.xcodeproj -scheme <span class="variable">$PROJECT</span> -archivePath <span class="variable">$PROJECT</span>.xcarchive</span><br></pre></td></tr></table></figure>
+<p> 注意，末尾的 exportProvisioningProfile 参数值是在 Xcode 的 Performance-&gt;Accounts-&gt;Apple ID-&gt;View Details 窗口的下半部分看到的名称。如 iOS Team Provisioning Profile: chj.ToDoList</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>xcodebuild -exportArchive -archivePath </span><br><span class="line"></span><br><span class="line"><span class="variable">$PROJECT</span>.xcarchive -exportPath <span class="variable">$PROJECT</span> -exportFormat ipa -exportProvisioningProfile <span class="string">"your provision profile"</span></span><br><span class="line"><span class="comment"># build 完的 ipa 包直接就放在当前目录</span></span><br></pre></td></tr></table></figure>
+<p>设备相关</p>
 <p>1、查看设备中的应用列表</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Android</span><br><span class="line"></span><br><span class="line">$ adb shell pm list packages</span><br><span class="line">package:com<span class="class">.miui</span><span class="class">.gallery</span></span><br><span class="line">package:com<span class="class">.xiaomi</span><span class="class">.tv</span><span class="class">.gallerylockscreen</span></span><br><span class="line">...</span><br><span class="line">如果有 drozer 的话能显示得更清晰</span><br><span class="line"></span><br><span class="line">dz&gt; run app<span class="class">.package</span><span class="class">.list</span></span><br><span class="line">com<span class="class">.miui</span><span class="class">.gallery</span> (图库)</span><br><span class="line">com<span class="class">.xiaomi</span><span class="class">.tv</span><span class="class">.gallerylockscreen</span> (锁屏画报)</span><br><span class="line">...</span><br><span class="line">iOS</span><br><span class="line"></span><br><span class="line">$ ideviceinstaller [-u &lt;device-udid&gt;] -l</span><br><span class="line">Total: <span class="number">46</span> apps</span><br><span class="line">com<span class="class">.xiaojukeji</span><span class="class">.didi</span> - 滴滴出行 <span class="number">4.1</span>.<span class="number">5.0</span></span><br><span class="line">com<span class="class">.tencent</span><span class="class">.mqq</span> - QQ <span class="number">6.0</span>.<span class="number">0.424</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>2、获取真机实时日志</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Android</span><br><span class="line"></span><br><span class="line">adb <span class="string">[-s &lt;device-name&gt;]</span> logcat</span><br><span class="line">iOS</span><br><span class="line"></span><br><span class="line">idevicesyslog <span class="string">[-u &lt;device-udid&gt;]</span></span><br></pre></td></tr></table></figure>
+<p>3、获取当前连接的设备列表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Android</span><br><span class="line"></span><br><span class="line">$ adb devices</span><br><span class="line">iOS</span><br><span class="line"></span><br><span class="line">注意：这里列出的设备包括模拟器及 mac 电脑本身</span><br><span class="line">$ instruments -s devices</span><br><span class="line">补充：</span><br><span class="line">mac安装以下内容：</span><br><span class="line"></span><br><span class="line">brew <span class="operator"><span class="keyword">install</span> usbmuxd</span><br><span class="line">brew <span class="keyword">install</span> ideviceinstaller</span><br><span class="line">可以获取ios手机的udid</span><br><span class="line"></span><br><span class="line">idevice_id -<span class="keyword">l</span></span><br><span class="line">对于脚本中要使用默认设备的场景很方便。</span><br><span class="line"></span><br><span class="line">ideviceinfo 获取ios手机信息</span><br><span class="line">ideviceinfo -x 获取ios手机信息，并以<span class="keyword">xml</span>形式显示</span><br><span class="line"></span><br><span class="line">ideviceinfo -<span class="keyword">k</span> ProductType 获取手机型号</span><br><span class="line">ideviceinfo -<span class="keyword">k</span> ProductVersion 获取系统版本</span><br><span class="line">ideviceinfo -<span class="keyword">k</span> DeviceName 获取手机名称</span></span><br></pre></td></tr></table></figure>
 <p>Android</p>
-<p>$ adb shell pm list packages<br>package:com.miui.gallery<br>package:com.xiaomi.tv.gallerylockscreen<br>…<br>如果有 drozer 的话能显示得更清晰</p>
-<p>dz&gt; run app.package.list<br>com.miui.gallery (图库)<br>com.xiaomi.tv.gallerylockscreen (锁屏画报)<br>…<br>iOS</p>
-<p>$ ideviceinstaller [-u <device-udid>] -l<br>Total: 46 apps<br>com.xiaojukeji.didi - 滴滴出行 4.1.5.0<br>com.tencent.mqq - QQ 6.0.0.424<br>…<br>2、获取真机实时日志</device-udid></p>
-<p>Android</p>
-<p>adb [-s <device-name>] logcat<br>iOS</device-name></p>
-<p>idevicesyslog [-u <device-udid>]<br>3、获取当前连接的设备列表</device-udid></p>
-<p>Android</p>
-<p>$ adb devices<br>iOS</p>
-<p>注意：这里列出的设备包括模拟器及 mac 电脑本身<br>$ instruments -s devices<br>补充：<br>mac安装以下内容：</p>
-<p>brew install usbmuxd<br>brew install ideviceinstaller<br>可以获取ios手机的udid</p>
-<p>idevice_id -l<br>对于脚本中要使用默认设备的场景很方便。</p>
-<p>ideviceinfo 获取ios手机信息<br>ideviceinfo -x 获取ios手机信息，并以xml形式显示</p>
-<p>ideviceinfo -k ProductType 获取手机型号<br>ideviceinfo -k ProductVersion 获取系统版本<br>ideviceinfo -k DeviceName 获取手机名称</p>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">englishtown_url = <span class="string">"http://10.128.42.155:8080/view/Engage/job/engage-android-release/&#123;0&#125;/artifact/engage/build/outputs/apk/engage-englishtown-live-release.apk"</span></span><br><span class="line">corporate_url = <span class="string">"http://10.128.42.155:8080/view/Engage/job/engage-android-release/&#123;0&#125;/artifact/engage/build/outputs/apk/engage-corporate-live-release.apk"</span></span><br><span class="line"></span><br><span class="line">current_dir = os.path.split(os.path.realpath(__file__))[<span class="number">0</span>]</span><br><span class="line">report_path = current_dir + <span class="string">"/apk/"</span></span><br><span class="line">old_path = current_dir + <span class="string">"/old/"</span></span><br><span class="line">new_path = current_dir + <span class="string">"/new/"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exec_command</span><span class="params">(cmd)</span>:</span></span><br><span class="line">    result = subprocess.Popen(cmd, shell=<span class="keyword">True</span>, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)</span><br><span class="line">    (stdoutdata, stderrdata) = result.communicate()</span><br><span class="line">    <span class="keyword">if</span> (re.search(<span class="string">"error"</span>, str(stdoutdata))):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"error occur!"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> stdoutdata</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_folder</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(name):</span><br><span class="line">        <span class="comment"># os.removedirs(report_path)</span></span><br><span class="line">        shutil.rmtree(name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    os.makedirs(name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_url</span><span class="params">(url,folder_name)</span>:</span></span><br><span class="line">    cmd = <span class="string">'curl -O &#123;0&#125;'</span>.format(url)</span><br><span class="line">    os.chdir(folder_name)</span><br><span class="line">    exec_command(cmd)</span><br><span class="line">    os.chdir(current_dir)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_md5</span><span class="params">(file)</span>:</span></span><br><span class="line">    cmd = <span class="string">'md5 &#123;0&#125;'</span>.format(file)</span><br><span class="line">    md5_id = exec_command(cmd)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"&#123;0&#125; md5 value is &#123;1&#125;"</span>.format(file, md5_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_devices</span><span class="params">()</span>:</span></span><br><span class="line">    rst = os.popen(<span class="string">'adb devices'</span>).read()</span><br><span class="line">    devices = re.findall(<span class="string">r'(.*?)\s+device'</span>,rst)</span><br><span class="line">    <span class="keyword">if</span> len(devices) &gt; <span class="number">1</span>:</span><br><span class="line">        Ids = devices[<span class="number">1</span>:]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        Ids = []</span><br><span class="line">    <span class="keyword">return</span> Ids</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_apks</span><span class="params">()</span>:</span></span><br><span class="line">    apks = []</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> os.listdir(os.getcwd()):</span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(c) <span class="keyword">and</span> c.endswith(<span class="string">'.apk'</span>):</span><br><span class="line">            apks.append(c)</span><br><span class="line">    <span class="keyword">return</span> apks</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upgrade_englishtown</span><span class="params">(old_folder,new_folder)</span>:</span></span><br><span class="line">    old_version = raw_input(<span class="string">"please input the old build number"</span>)</span><br><span class="line">    new_version = raw_input(<span class="string">"please input the new build number"</span>)</span><br><span class="line">    old_apk_name = englishtown_url.format(old_version).split(<span class="string">"/"</span>)[-<span class="number">1</span>]</span><br><span class="line">    get_url(englishtown_url.format(old_version),old_folder)</span><br><span class="line">    new_apk_name = englishtown_url.format(new_version).split(<span class="string">"/"</span>)[-<span class="number">1</span>]</span><br><span class="line">    get_url(englishtown_url.format(new_version),new_folder)</span><br><span class="line">    <span class="keyword">return</span> old_apk_name, new_apk_name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upgrade_corporate</span><span class="params">(old_folder,new_folder)</span>:</span></span><br><span class="line">    old_version = raw_input(<span class="string">"please input the old build number"</span>)</span><br><span class="line">    new_version = raw_input(<span class="string">"please input the new build number"</span>)</span><br><span class="line">    old_apk_name = corporate_url.format(old_version).split(<span class="string">"/"</span>)[-<span class="number">1</span>]</span><br><span class="line">    get_url(corporate_url.format(old_version),old_folder)</span><br><span class="line">    new_apk_name = corporate_url.format(new_version).split(<span class="string">"/"</span>)[-<span class="number">1</span>]</span><br><span class="line">    get_url(corporate_url.format(new_version),new_folder)</span><br><span class="line">    <span class="keyword">return</span> old_apk_name, new_apk_name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">install_apks</span><span class="params">(apk_name)</span>:</span></span><br><span class="line">    cmd = <span class="string">'adb install &#123;0&#125;'</span>.format(apk_name)</span><br><span class="line">    <span class="keyword">print</span> cmd</span><br><span class="line">    result = exec_command(cmd)</span><br><span class="line">    <span class="keyword">print</span> result</span><br><span class="line">    <span class="keyword">if</span> (re.search(<span class="string">"success"</span>, result)):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"install success!"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"install fail!"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    choose = raw_input(<span class="string">"please select the type you want: 1:md5,2:upgrade_englishtown,3:upgrade_corporate"</span>)</span><br><span class="line">    <span class="keyword">if</span> choose == <span class="string">'1'</span>:</span><br><span class="line">        build_id = raw_input(<span class="string">"please input the build number"</span>)</span><br><span class="line">        check_folder(report_path)</span><br><span class="line">        get_url(englishtown_url.format(build_id),report_path)</span><br><span class="line">        get_url(corporate_url.format(build_id),report_path)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(report_path):</span><br><span class="line">            <span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(report_path):</span><br><span class="line">                check_md5(report_path  + file)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="string">"please check your network!"</span></span><br><span class="line">    <span class="keyword">elif</span> choose == <span class="string">'2'</span>:</span><br><span class="line">        check_folder(old_path)</span><br><span class="line">        check_folder(new_path)</span><br><span class="line">        (old_apk,new_apk) =upgrade_englishtown(old_path,new_path)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"old apk is : %s"</span> % old_apk</span><br><span class="line">        install_apks(old_path + old_apk)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"new apk is : %s"</span> % new_apk</span><br><span class="line">        install_apks(new_path+new_apk)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> choose == <span class="string">'3'</span>:</span><br><span class="line">        check_folder(old_path)</span><br><span class="line">        check_folder(new_path)</span><br><span class="line">        (old_apk, new_apk) = upgrade_corporate(old_path,new_path)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"old apk is : %s"</span> % old_apk</span><br><span class="line">        install_apks(old_path + old_apk)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"new apk is : %s"</span> % new_apk</span><br><span class="line">        install_apks(new_path+new_apk)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"please select again"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>IOS</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">current_time = time.strftime(<span class="string">'%Y-%m-%d-%H-%M-%S'</span>, time.localtime(time.time()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">iosinformation</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">exec_command</span><span class="params">(self, cmd)</span>:</span></span><br><span class="line">        result = subprocess.Popen(cmd, shell=<span class="keyword">True</span>, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)</span><br><span class="line">        (stdoutdata, stderrdata) = result.communicate()</span><br><span class="line">        <span class="comment"># print("Result is:%s") % stdoutdata</span></span><br><span class="line">        <span class="keyword">if</span> (re.search(<span class="string">"No device found"</span>, str(stdoutdata)) <span class="keyword">or</span> re.search(<span class="string">"Could not connect"</span>, str(stdoutdata))):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"Please connet it agian, or add permission like: brew install libimobiledevice --HEAD,sudo chmod -R 777 /var/db/lockdown/"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> stdoutdata</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Get_UUID</span><span class="params">(self)</span>:</span></span><br><span class="line">        cmd = <span class="string">'idevice_id -l'</span></span><br><span class="line">        uuid = self.exec_command(cmd)</span><br><span class="line">        <span class="keyword">return</span> uuid</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Get_Device_Name</span><span class="params">(self)</span>:</span></span><br><span class="line">        cmd = <span class="string">'ideviceinfo -k DeviceName'</span></span><br><span class="line">        device_name = self.exec_command(cmd)</span><br><span class="line">        <span class="keyword">return</span> device_name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Get_Device_information</span><span class="params">(self)</span>:</span></span><br><span class="line">        cmd = <span class="string">'ideviceinfo -k ProductVersion'</span></span><br><span class="line">        device_information = self.exec_command(cmd)</span><br><span class="line">        <span class="keyword">return</span> device_information</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Get_Device_Product_type</span><span class="params">(self)</span>:</span></span><br><span class="line">        cmd = <span class="string">'ideviceinfo -k ProductType'</span></span><br><span class="line">        product_type = self.exec_command(cmd)</span><br><span class="line">        <span class="keyword">return</span> product_type</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">List_All_Pakages</span><span class="params">(self, uuid)</span>:</span></span><br><span class="line">        cmd = <span class="string">'ideviceinstaller -u &#123;0&#125;'</span>.format(uuid)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> cmd</span><br><span class="line">        all_pakages = self.exec_command(cmd)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> all_pakages</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">List_All_Logs</span><span class="params">(self, uuid)</span>:</span></span><br><span class="line">        all_logs = <span class="string">"idevicesyslog -u &#123;0&#125;"</span>.format(uuid)</span><br><span class="line">        <span class="keyword">return</span> all_logs</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Take_Screenshot</span><span class="params">(self)</span>:</span></span><br><span class="line">        current_dir = os.path.split(os.path.realpath(__file__))[<span class="number">0</span>]</span><br><span class="line">        cmd1 = <span class="string">"idevicescreenshot &#123;0&#125; + '/' + screenshot-DATE.tiff"</span>.format(current_dir)</span><br><span class="line">        cmd2 = <span class="string">"sips - s format png &#123;0&#125;.tiff - -out &#123;1&#125;.png"</span>.format(current_time, current_time)</span><br><span class="line">        self.exec_command(cmd1)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ok"</span></span><br><span class="line">        <span class="comment"># self.exec_command(cmd2)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Install_Ipa</span><span class="params">(self, ipa)</span>:</span></span><br><span class="line">        cmd = <span class="string">'ideviceinstaller -i &#123;0&#125;'</span>.format(ipa)</span><br><span class="line">        result = self.exec_command(cmd)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Uninstall_Ipa</span><span class="params">(self, appid)</span>:</span></span><br><span class="line">        cmd1 = <span class="string">'ideviceinstaller -l'</span></span><br><span class="line">        cmd2 = <span class="string">'ideviceinstaller -U &#123;0&#125;'</span>.format(appid)</span><br><span class="line">        result = self.exec_command(cmd1)</span><br><span class="line">        appids=[]</span><br><span class="line">        <span class="keyword">for</span> id <span class="keyword">in</span> result.split(<span class="string">'\n'</span>):</span><br><span class="line">            <span class="keyword">if</span> re.search(<span class="string">'-'</span>,id):</span><br><span class="line">                str = id[<span class="number">0</span>:id.find(<span class="string">"-"</span>)].strip()</span><br><span class="line">                appids.append(str)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">print</span> appids</span><br><span class="line">        <span class="keyword">if</span> appid <span class="keyword">in</span> appids:</span><br><span class="line">            result = self.exec_command(cmd2)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"The appid dosen't exit in the devices"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># cmd2 = 'ideviceinstaller -u appid'.format(appid)</span></span><br><span class="line">        <span class="comment"># result = self.exec_command(cmd)</span></span><br><span class="line">        <span class="comment"># return result</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    ios = iosinformation()</span><br><span class="line"></span><br><span class="line">    uuid = ios.Get_UUID()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">" uuid is &#123;0&#125;"</span>.format(uuid)</span><br><span class="line">    device = ios.Get_Device_Name()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">" device is &#123;0&#125;"</span>.format(device)</span><br><span class="line">    device_info = ios.Get_Device_information()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">" device_info is &#123;0&#125;"</span>.format(device_info)</span><br><span class="line">    product_type = ios.Get_Device_Product_type()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">" product_type is &#123;0&#125;"</span>.format(product_type)</span><br><span class="line">    <span class="comment"># all_pakagas = ios.List_All_Pakages(uuid)</span></span><br><span class="line">    <span class="comment"># print " all_pakagas is &#123;0&#125;".format(all_pakagas)</span></span><br><span class="line">    ios.Take_Screenshot()</span><br><span class="line">    ios.Install_Ipa(<span class="string">'/Users/anderson/testcode/python/flask/uploads/englishtown_corporate_daily-190-2016.07.15.ipa'</span>)</span><br><span class="line">    <span class="comment">#ios.Uninstall_Ipa("com.ef.engage.englishtown.uat.dailydebug")</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
             
           </span>
         
@@ -1461,116 +1576,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/04/changehost/" itemprop="url">
-                  changehost
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-04T15:49:49+08:00" content="2016-06-04">
-              2016-06-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/04/changehost/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/changehost/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>最近写了一个自动修改host文件的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">host_window = <span class="string">r"C:\Windows\System32\drivers\etc\hosts"</span></span><br><span class="line">host_mac = <span class="string">r"/etc/hosts"</span></span><br><span class="line">B2B_UAT_HOST = [<span class="string">"#B2B uat deepblue2"</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat-cache.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2cn.englishtown.com'</span>]</span><br><span class="line"></span><br><span class="line">HOST_LIVE = [<span class="string">"#LIVE"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       englishlive.ef.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com.br"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       services.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       etvt.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       axis.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       secure.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accenture.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accounts.ef.com"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"> hostfile = open(host_path,<span class="string">'r'</span>)</span><br><span class="line"> each_line = hostfile.readlines()</span><br><span class="line"> hostfile.close()</span><br><span class="line"> findresult = re.findall(hostvalue,<span class="string">''</span>.join(each_line))</span><br><span class="line"> <span class="keyword">return</span> findresult</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"></span><br><span class="line">    output = open(host_path, <span class="string">'a'</span>)</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> insid <span class="keyword">in</span> hostvalue:</span><br><span class="line">        <span class="keyword">print</span> insid</span><br><span class="line">        output.write(insid)</span><br><span class="line">        output.write(<span class="string">"\n"</span>)</span><br><span class="line">    output.close()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#inside_test()</span></span><br><span class="line">    <span class="keyword">if</span> platform.system <span class="keyword">is</span> <span class="string">"Windows"</span>:</span><br><span class="line">        host_path = host_window</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        host_path = host_mac</span><br><span class="line">        os.popen(<span class="string">"sudo chmod 777 %s"</span> %host_path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> host_path</span><br><span class="line">    <span class="keyword">if</span> search_host(HOST_LIVE[<span class="number">0</span>],host_path):</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"Already exist"</span>)</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        write_host(HOST_LIVE,host_path)</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1617,7 +1622,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-count">66</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1631,7 +1636,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
