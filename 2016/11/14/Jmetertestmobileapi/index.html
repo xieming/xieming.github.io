@@ -61,13 +61,13 @@ Apache JMeter features include:">
 <meta property="og:description" content="The Apache JMeter™ application is open source software, a 100% pure Java application designed to load test functional behavior and measure performance.
 What does it do?
 Apache JMeter features include:">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/1.png">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/2.png">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/3.png">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/4.png">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/5.png">
-<meta property="og:image" content="http://snake.me/Users/anderson/Downloads/6.png">
-<meta property="og:updated_time" content="2016-11-14T06:23:19.000Z">
+<meta property="og:image" content="http://snake.me/images/1.png">
+<meta property="og:image" content="http://snake.me/images/2.png">
+<meta property="og:image" content="http://snake.me/images/3.png">
+<meta property="og:image" content="http://snake.me/images/4.png">
+<meta property="og:image" content="http://snake.me/images/5.png">
+<meta property="og:image" content="http://snake.me/images/6.png">
+<meta property="og:updated_time" content="2016-11-14T06:31:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jmetertestmobileapi">
 <meta name="twitter:description" content="The Apache JMeter™ application is open source software, a 100% pure Java application designed to load test functional behavior and measure performance.
@@ -294,14 +294,14 @@ TCP
 Complete portability and 100% Java purity.
 </code></pre><p><strong>How to build a test plan?</strong></p>
 <p>Add “Test Plan” –&gt;”Threads”–&gt;”Thread Group”.</p>
-<p>Add “Thread”–&gt;”Sampler”–&gt;”HTTP Request”.<br>Then configure the request.<br><img src="/Users/anderson/Downloads/1.png" alt="request"></p>
+<p>Add “Thread”–&gt;”Sampler”–&gt;”HTTP Request”.<br>Then configure the request.<br><img src="/images/1.png" alt="image"></p>
 <p>Add “User Defined Variables” and define global variables.</p>
 <p>Add “HTTP Header Manager” to define Json type:<br>Content-Type : application/json; charset=utf-8</p>
 <p><strong>How to get Token and sessionId:</strong></p>
-<p>Add “Post Processors”–&gt;”Regular Expression Extractor”<br>configure like this:<br><img src="/Users/anderson/Downloads/2.png" alt="request"></p>
+<p>Add “Post Processors”–&gt;”Regular Expression Extractor”<br>configure like this:<br><img src="/images/2.png" alt="image"></p>
 <p><strong>How to add stress</strong></p>
-<p>configure like this:<br>stress = threads * loop count<br><img src="/Users/anderson/Downloads/3.png" alt="request"></p>
-<p><strong>Check Result: Under listener</strong><br><img src="/Users/anderson/Downloads/4.png" alt="request"><br><img src="/Users/anderson/Downloads/5.png" alt="request"><br><img src="/Users/anderson/Downloads/6.png" alt="request"></p>
+<p>configure like this:<br>stress = threads * loop count<br><img src="/images/3.png" alt="image"></p>
+<p><strong>Check Result: Under listener</strong><br><img src="/images/4.png" alt="image"><br><img src="/images/5.png" alt="image"><br><img src="/images/6.png" alt="image"></p>
 <p>Run as command:<br>jmeter -n -t test.jmx -l test.jtl</p>
 <p>So can run in Jenkins.<br><a href="https://testerhome.com/topics/2580" target="_blank" rel="external">Run Jmeter on Jenkins</a></p>
 </span>
