@@ -220,6 +220,120 @@
             
               
                 
+                <a class="post-title-link" href="/2014/12/01/python-unit/" itemprop="url">
+                  python unit test 的顺序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-12-01T11:06:29+08:00" content="2014-12-01">
+              2014-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/12/01/python-unit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/01/python-unit/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>之前在IOS上，用python和appium 写case时，发现执行顺序是乱的。</p>
+<p>后面用了个程序来测试这个顺序：</p>
+<p>发现它是按照case的名字的，而不是按照先后顺序的。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> HTMLTestRunner</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test_class</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"开始测试"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_ie</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.driver = webdriver.Ie()</span><br><span class="line">        self.url=<span class="string">"http://www.baidu.com"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"ie"</span></span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_chrome</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.163.com"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"chrome"</span></span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_print1</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"1什么玩意"</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.sina.com.cn"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_print2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"2我到！"</span></span><br><span class="line">        self.driver = webdriver.Chrome()</span><br><span class="line">        self.url=<span class="string">"http://www.tianya.cn"</span></span><br><span class="line">        self.driver.get(self.url)</span><br><span class="line">        self.driver.quit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"结束测试"</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    testsuite=unittest.TestSuite()</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_ie"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_chrome"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_print2"</span>))</span><br><span class="line">    testsuite.addTest(test_class(<span class="string">"test_print1"</span>))</span><br><span class="line">    filename=<span class="string">"D:\\test\\result.html"</span></span><br><span class="line">    fp=file(filename,<span class="string">'wb'</span>)</span><br><span class="line">    runner=HTMLTestRunner.HTMLTestRunner(stream=fp,title=<span class="string">'Result'</span>,description=<span class="string">'Test_Report'</span>)</span><br><span class="line">    runner.run(testsuite)</span><br></pre></td></tr></table></figure>
+<p>总算解决了个问题。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/10/19/git/" itemprop="url">
                   git
                 </a>
@@ -1416,124 +1530,6 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/03/22/python-report/" itemprop="url">
-                  ReportLab 实践
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-03-22T00:07:32+08:00" content="2014-03-22">
-              2014-03-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/03/22/python-report/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/22/python-report/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>python 生成报告， ReportLab 实践，网上找的例子，自己实践了一把。</p>
-<p><a href="http://www.reportlab.com/docs/reportlab-userguide.pdf" target="_blank" rel="external">文档</a></p>
-<p>然后照着文档，<a href="http://blog.csdn.net/youyudehexie/article/details/7918402" target="_blank" rel="external">例子</a></p>
-<p>写成了一个：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> Drawing  </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.barcharts <span class="keyword">import</span> VerticalBarChart  </span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlopen    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.shapes <span class="keyword">import</span> *    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.lineplots <span class="keyword">import</span> LinePlot    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics.charts.textlabels <span class="keyword">import</span> Label    </span><br><span class="line"><span class="keyword">from</span> reportlab.graphics <span class="keyword">import</span> renderPDF  </span><br><span class="line">drawing = Drawing(<span class="number">400</span>, <span class="number">200</span>)  </span><br><span class="line">data = [(<span class="number">13</span>, <span class="number">5</span>, <span class="number">20</span>),(<span class="number">14</span>, <span class="number">6</span>, <span class="number">21</span>)]  </span><br><span class="line">bc = VerticalBarChart()  </span><br><span class="line">bc.x = <span class="number">50</span>  </span><br><span class="line">bc.y = <span class="number">50</span>  </span><br><span class="line">bc.height = <span class="number">125</span>  </span><br><span class="line">bc.width = <span class="number">300</span>  </span><br><span class="line">bc.data = data  </span><br><span class="line">bc.strokeColor = colors.black  </span><br><span class="line">bc.valueAxis.valueMin = <span class="number">0</span>  </span><br><span class="line">bc.valueAxis.valueMax = <span class="number">50</span>  </span><br><span class="line">bc.valueAxis.valueStep = <span class="number">10</span>  </span><br><span class="line">bc.categoryAxis.labels.boxAnchor =<span class="string">'ne'</span>  </span><br><span class="line">bc.categoryAxis.labels.dx = <span class="number">8</span>  </span><br><span class="line">bc.categoryAxis.labels.dy = -<span class="number">2</span>  </span><br><span class="line">bc.categoryAxis.labels.angle = <span class="number">30</span>  </span><br><span class="line">bc.categoryAxis.categoryNames = [<span class="string">'Jan-99'</span>,<span class="string">'Feb-99'</span>,<span class="string">'Mar-99'</span>]  </span><br><span class="line">drawing.add(bc)  </span><br><span class="line">  </span><br><span class="line">drawing.add(String(<span class="number">250</span>,<span class="number">150</span>,<span class="string">"ss"</span>, fontSize=<span class="number">14</span>,fillColor=colors.red))        </span><br><span class="line">renderPDF.drawToFile(drawing,<span class="string">'report2.pdf'</span>,<span class="string">'API'</span>)</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.jb51.net/article/53233.htm" target="_blank" rel="external">然后按照</a></p>
-<p>学习了下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python  </span></span><br><span class="line"><span class="keyword">import</span> subprocess  </span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="keyword">from</span> reportlab.lib.units <span class="keyword">import</span> inch  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_report</span><span class="params">()</span>:</span>  </span><br><span class="line">    p = os.popen(<span class="string">"df -h"</span>)  </span><br><span class="line"><span class="comment">#   print p.stdout.readlines()  </span></span><br><span class="line">    <span class="keyword">return</span> p.readlines()  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_pdf</span><span class="params">(input, output=<span class="string">"disk_report.pdf"</span>)</span>:</span>  </span><br><span class="line">    now = datetime.datetime.today()  </span><br><span class="line">    date = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)  </span><br><span class="line">    c = canvas.Canvas(output)  </span><br><span class="line">    textobject = c.beginText()  </span><br><span class="line">    textobject.setTextOrigin(inch, <span class="number">11</span>*inch)  </span><br><span class="line">    textobject.textLines(<span class="string">'''''Disk Capcity Report: %s'''</span> %date)  </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> input:  </span><br><span class="line">        textobject.textLine(line.strip())  </span><br><span class="line">    c.drawText(textobject)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">report = disk_report()  </span><br><span class="line">create_pdf(report)</span><br></pre></td></tr></table></figure>
-<p>再练习：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python  </span></span><br><span class="line"><span class="keyword">from</span> reportlab.pdfgen <span class="keyword">import</span> canvas  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span>  </span><br><span class="line">    c = canvas.Canvas(<span class="string">"helloworld.pdf"</span>)  </span><br><span class="line">    c.drawString(<span class="number">100</span>,<span class="number">100</span>,<span class="string">"Hello,World"</span>)  </span><br><span class="line">    c.showPage()  </span><br><span class="line">    c.save()  </span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1580,7 +1576,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1594,7 +1590,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

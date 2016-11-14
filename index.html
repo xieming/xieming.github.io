@@ -220,6 +220,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/14/Jmetertestmobileapi/" itemprop="url">
+                  Jmetertestmobileapi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-11-14T14:11:03+08:00" content="2016-11-14">
+              2016-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/14/Jmetertestmobileapi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/14/Jmetertestmobileapi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>The Apache JMeter™ application is open source software, a 100% pure Java application designed to load test functional behavior and measure performance.</p>
+<p><strong>What does it do?</strong></p>
+<p>Apache JMeter features include:<br>Ability to load and performance test many different server/protocol types:</p>
+<pre><code>Web - HTTP, HTTPS
+SOAP / REST
+FTP
+Database via JDBC
+LDAP
+Message-oriented middleware (MOM) via JMS
+Mail - SMTP(S), POP3(S) and IMAP(S)
+Native commands or shell scripts
+TCP
+Complete portability and 100% Java purity.
+</code></pre><p><strong>How to build a test plan?</strong></p>
+<p>Add “Test Plan” –&gt;”Threads”–&gt;”Thread Group”.</p>
+<p>Add “Thread”–&gt;”Sampler”–&gt;”HTTP Request”.<br>Then configure the request.<br><img src="/Users/anderson/Downloads/1.png" alt="request"></p>
+<p>Add “User Defined Variables” and define global variables.</p>
+<p>Add “HTTP Header Manager” to define Json type:<br>Content-Type : application/json; charset=utf-8</p>
+<p><strong>How to get Token and sessionId:</strong></p>
+<p>Add “Post Processors”–&gt;”Regular Expression Extractor”<br>configure like this:<br><img src="/Users/anderson/Downloads/2.png" alt="request"></p>
+<p><strong>How to add stress</strong></p>
+<p>configure like this:<br>stress = threads * loop count<br><img src="/Users/anderson/Downloads/3.png" alt="request"></p>
+<p><strong>Check Result: Under listener</strong><br><img src="/Users/anderson/Downloads/4.png" alt="request"><br><img src="/Users/anderson/Downloads/5.png" alt="request"><br><img src="/Users/anderson/Downloads/6.png" alt="request"></p>
+<p>Run as command:<br>jmeter -n -t test.jmx -l test.jtl</p>
+<p>So can run in Jenkins.<br><a href="https://testerhome.com/topics/2580" target="_blank" rel="external">Run Jmeter on Jenkins</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+      <! -- 添加微信图标 -->
+    
+    
+    
+    
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/23/PIL/" itemprop="url">
                   PIL
                 </a>
@@ -1429,157 +1562,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/28/python-encode-decode/" itemprop="url">
-                  PYTHON-编码处理小结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-07-28T23:41:39+08:00" content="2016-07-28">
-              2016-07-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/28/python-encode-decode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/python-encode-decode/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">原文</a></p>
-<p>用python处理中文时，读取文件或消息，http参数等等</p>
-<p>一运行，发现乱码(字符串处理，读写文件，print)</p>
-<p>然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码</p>
-<p>所以调试时最常出现的错误</p>
-<p>错误1</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe6 in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
-<p>错误2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">File <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> decode</span><br><span class="line">    <span class="built_in">return</span> codecs.utf_8_decode(input, errors, True)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-1: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
-<p>首先</p>
-<blockquote>
-<p>必须有大体概念，了解下字符集，字符编码</p>
-<p>ASCII | Unicode | UTF-8 | 等等</p>
-</blockquote>
-<p>str 和 unicode</p>
-<blockquote>
-<p>str和unicode都是basestring的子类</p>
-</blockquote>
-<p>所以有判断是否是字符串的方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_str</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> isinstance(s, basestring)</span><br></pre></td></tr></table></figure>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str<span class="function">  -&gt;</span> decode<span class="function"><span class="params">(<span class="string">'the_coding_of_str'</span>)</span> -&gt;</span> unicode</span><br><span class="line">unicode<span class="function"> -&gt;</span> encode<span class="function"><span class="params">(<span class="string">'the_coding_you_want'</span>)</span> -&gt;</span> str</span><br></pre></td></tr></table></figure>
-<p>str是字节串，由unicode经过编码(encode)后的字节组成的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'中文'</span></span><br><span class="line">s = <span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="string">'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>求长度(返回字节数)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="string">'\xe4\xb8\xad\xe6\x96\x87'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
-<p>unicode才是真正意义上的字符串，由字符组成</p>
-<p>声明方式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">u'中文'</span></span><br><span class="line">s = <span class="string">'中文'</span>.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">s = unicode(<span class="string">'中文'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">type(<span class="string">u'中文'</span>)</span><br><span class="line">&lt;type <span class="string">'unicode'</span>&gt;</span><br><span class="line">求长度(返回字符数),在逻辑中真正想要用的</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'中文'</span></span><br><span class="line"><span class="string">u'\u4e2d\u6587'</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>len(<span class="string">u'中文'</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p><strong>结论:</strong><br>搞明白要处理的是str还是unicode, 使用对的处理方法(str.decode/unicode.encode)</p>
-<p>下面是判断是否为unicode/str的方法</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', unicode)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance('中文', unicode)</span><br><span class="line">False</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; isinstance('中文', str)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance(<span class="keyword">u</span>'中文', str)</span><br><span class="line">False</span><br><span class="line">简单原则：不要对str使用<span class="keyword">encode</span>，不要对unicode使用<span class="keyword">decode</span> (事实上可以对str进行<span class="keyword">encode</span>的，具体见最后，为了保证简单，不建议)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; '中文'.<span class="keyword">encode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">UnicodeDecodeError: 'ascii' codec can't <span class="keyword">decode</span> byte 0xe4 <span class="keyword">in</span> position 0: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; <span class="keyword">u</span>'中文'.<span class="keyword">decode</span>('utf-8')</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line"><span class="keyword">File</span> <span class="string">"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/encodings/utf_8.py"</span>, <span class="keyword">line</span> 16, <span class="keyword">in</span> <span class="keyword">decode</span></span><br><span class="line">    <span class="keyword">return</span> codecs.utf_8_decode(<span class="keyword">input</span>, errors, True)</span><br><span class="line">UnicodeEncodeError: 'ascii' codec can't <span class="keyword">encode</span> characters <span class="keyword">in</span> position 0-1: ordinal not <span class="keyword">in</span> <span class="keyword">range</span>(128)</span><br></pre></td></tr></table></figure>
-<p>不同编码转换,使用unicode作为中间编码</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#s是code_A的str</span><br><span class="line">s.<span class="function"><span class="title">decode</span><span class="params">(<span class="string">'code_A'</span>)</span></span>.<span class="function"><span class="title">encode</span><span class="params">(<span class="string">'code_B'</span>)</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>总结总结，本文仅适用于python2.x</strong></p>
-<p>默认编码与开头声明<br>首先是开头的地方声明编码</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># coding: utf8</span></span><br></pre></td></tr></table></figure>
-<p>这个东西的用处是声明文件编码为utf8(要写在前两行内)，不然文件里如果有中文，比如</p>
-<p>a = ‘美丽’<br>b = u’美丽’<br>中任何一种，运行前就会提示你SyntaxError，Non-ASCII character… 之类，因为python2.x的文件编码默认使用万恶的ascii<br>开头加上那句默认编码声明就会变成utf8，获取当前的默认编码</p>
-<p>sys.getdefaultencoding()<br>unicode与utf8<br>在python中，使用unicode类型作为编码的基础类型，编解码要以其为中间形式过渡，即进行str和unicode之间的转换。<br>解码然后再编码的过程，即str-&gt;unicode-&gt;str的过程。中间得到的叫做unicode对象</p>
-<p>这里需要强调的是unicode是一种字符编码方法，是 “与存储无关的表示”，而utf8是一种以unicode进行编码的计算机二进制表示，或者说传输规范。gbk，gb2312，gb18030, utf8等属于不同的字符集，转换编码就是在它们中的任意两者间进行。</p>
-<p><strong>控制台的编码</strong></p>
-<p>这又是另一个让人困惑的地方——控制台的编码导致的乱码问题甚至是报错。一般个人用的电脑上控制台基本上都是utf8编码的</p>
-<p>一般submine保存时需要选择“utf-8 with Bom”.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#encode=utf-8</span></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">data1 = &#123;<span class="string">'b'</span>: <span class="number">789</span>, <span class="string">'c'</span>: <span class="number">456</span>, <span class="string">'a'</span>: <span class="number">123</span>&#125;</span><br><span class="line">encode_json = json.dumps(data1)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(encode_json), encode_json</span><br><span class="line"></span><br><span class="line">decode_json = json.loads(encode_json)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(decode_json)</span><br><span class="line"><span class="built_in">print</span> decode_json[<span class="string">'a'</span>]</span><br><span class="line"><span class="built_in">print</span> decode_json</span><br><span class="line"><span class="built_in">print</span> json.dumps(decode_json)</span><br><span class="line"></span><br><span class="line">s=<span class="string">'中国'</span></span><br><span class="line"><span class="comment">#s.encode('gbk')</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> s</span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1626,7 +1608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1640,7 +1622,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
