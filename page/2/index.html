@@ -1,8 +1,14 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -21,30 +27,57 @@
 
 
 
-  <link href="//fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="//font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Test" />
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -63,28 +96,41 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'always',
-    motion: true
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://snake.me/page/2/"/>
+
+
+
+
 
   <title> Snake's Home </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
@@ -92,9 +138,18 @@
 
 
 
-  <div class="container one-column 
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
    page-home 
-">
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -108,7 +163,9 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">snake</p>
+    
+      <p class="site-subtitle">snake</p>
+    
 </div>
 
 <div class="site-nav-toggle">
@@ -123,25 +180,15 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
+            首頁
           </a>
         </li>
       
@@ -149,19 +196,9 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/About" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
+            歸檔
           </a>
         </li>
       
@@ -169,14 +206,13 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            標籤
           </a>
         </li>
       
 
-      
       
     </ul>
   
@@ -184,24 +220,20 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
   <section id="posts" class="posts-expand">
-
-    
-
-    
-    
-
     
       
 
-  
   
 
   
@@ -209,6 +241,20 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/07/29/json-load-dump/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -230,17 +276,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-07-29T00:14:30+08:00" content="2016-07-29">
-              2016-07-29
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-07-29T00:14:30+08:00">
+                2016-07-29
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/python/" itemprop="url" rel="index">
                     <span itemprop="name">python</span>
                   </a>
@@ -248,20 +313,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/29/json-load-dump/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/29/json-load-dump/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -271,16 +335,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>在程序运行的过程中，所有的变量都是在内存中，比如，定义一个dict：</p>
+          
+            <p>在程序运行的过程中，所有的变量都是在内存中，比如，定义一个dict：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = <span class="function"><span class="title">dict</span><span class="params">(name=<span class="string">'Bob'</span>, age=<span class="number">20</span>, score=<span class="number">88</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>首先，我们尝试把一个对象序列化并写入文件：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = dict(name='Bob', age=20, score=88)</span><br><span class="line">&gt;&gt;&gt; pickle.dumps(d)</span><br><span class="line">"(dp0<span class="command">\nS</span>'age'<span class="command">\np</span>1<span class="command">\nI</span>20<span class="command">\nsS</span>'score'<span class="command">\np</span>2<span class="command">\nI</span>88<span class="command">\nsS</span>'name'<span class="command">\np</span>3<span class="command">\nS</span>'Bob'<span class="command">\np</span>4<span class="command">\ns</span>."</span><br></pre></td></tr></table></figure>
@@ -302,11 +365,19 @@
 <p><strong>总结：</strong></p>
 <p>dumps()方法返回一个str，内容就是标准的JSON。<br>loads()把JSON反序列化为Python对象</p>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -317,12 +388,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -331,13 +396,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/07/28/python-encode-decode/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -359,17 +437,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-07-28T23:41:39+08:00" content="2016-07-28">
-              2016-07-28
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-07-28T23:41:39+08:00">
+                2016-07-28
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/python/" itemprop="url" rel="index">
                     <span itemprop="name">python</span>
                   </a>
@@ -377,20 +474,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/28/python-encode-decode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/python-encode-decode/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -400,16 +496,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p><a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">原文</a></p>
+          
+            <p><a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">原文</a></p>
 <p>用python处理中文时，读取文件或消息，http参数等等</p>
 <p>一运行，发现乱码(字符串处理，读写文件，print)</p>
 <p>然后，大多数人的做法是，调用encode/decode进行调试，并没有明确思考为何出现乱码</p>
@@ -453,11 +548,19 @@
 <p>这又是另一个让人困惑的地方——控制台的编码导致的乱码问题甚至是报错。一般个人用的电脑上控制台基本上都是utf8编码的</p>
 <p>一般submine保存时需要选择“utf-8 with Bom”.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#encode=utf-8</span></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">data1 = &#123;<span class="string">'b'</span>: <span class="number">789</span>, <span class="string">'c'</span>: <span class="number">456</span>, <span class="string">'a'</span>: <span class="number">123</span>&#125;</span><br><span class="line">encode_json = json.dumps(data1)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(encode_json), encode_json</span><br><span class="line"></span><br><span class="line">decode_json = json.loads(encode_json)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">type</span>(decode_json)</span><br><span class="line"><span class="built_in">print</span> decode_json[<span class="string">'a'</span>]</span><br><span class="line"><span class="built_in">print</span> decode_json</span><br><span class="line"><span class="built_in">print</span> json.dumps(decode_json)</span><br><span class="line"></span><br><span class="line">s=<span class="string">'中国'</span></span><br><span class="line"><span class="comment">#s.encode('gbk')</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> s</span><br></pre></td></tr></table></figure>
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -468,12 +571,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -482,13 +579,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/06/04/changehost/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -510,17 +620,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-04T15:49:49+08:00" content="2016-06-04">
-              2016-06-04
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-06-04T15:49:49+08:00">
+                2016-06-04
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/python/" itemprop="url" rel="index">
                     <span itemprop="name">python</span>
                   </a>
@@ -528,20 +657,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/04/changehost/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/changehost/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -551,23 +679,30 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>最近写了一个自动修改host文件的代码：</p>
+          
+            <p>最近写了一个自动修改host文件的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">host_window = <span class="string">r"C:\Windows\System32\drivers\etc\hosts"</span></span><br><span class="line">host_mac = <span class="string">r"/etc/hosts"</span></span><br><span class="line">B2B_UAT_HOST = [<span class="string">"#B2B uat deepblue2"</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.183 uat-cache.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2.englishtown.com'</span>,</span><br><span class="line"><span class="string">'10.128.34.233 uatdeepblue2cn.englishtown.com'</span>]</span><br><span class="line"></span><br><span class="line">HOST_LIVE = [<span class="string">"#LIVE"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       englishlive.ef.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       www.englishtown.com.br"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       services.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       etvt.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       axis.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       secure.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accenture.englishtown.com"</span>,</span><br><span class="line"><span class="string">"104.20.43.137       accounts.ef.com"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"> hostfile = open(host_path,<span class="string">'r'</span>)</span><br><span class="line"> each_line = hostfile.readlines()</span><br><span class="line"> hostfile.close()</span><br><span class="line"> findresult = re.findall(hostvalue,<span class="string">''</span>.join(each_line))</span><br><span class="line"> <span class="keyword">return</span> findresult</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_host</span><span class="params">(hostvalue,host_path)</span>:</span></span><br><span class="line"></span><br><span class="line">    output = open(host_path, <span class="string">'a'</span>)</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> insid <span class="keyword">in</span> hostvalue:</span><br><span class="line">        <span class="keyword">print</span> insid</span><br><span class="line">        output.write(insid)</span><br><span class="line">        output.write(<span class="string">"\n"</span>)</span><br><span class="line">    output.close()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#inside_test()</span></span><br><span class="line">    <span class="keyword">if</span> platform.system <span class="keyword">is</span> <span class="string">"Windows"</span>:</span><br><span class="line">        host_path = host_window</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        host_path = host_mac</span><br><span class="line">        os.popen(<span class="string">"sudo chmod 777 %s"</span> %host_path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> host_path</span><br><span class="line">    <span class="keyword">if</span> search_host(HOST_LIVE[<span class="number">0</span>],host_path):</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"Already exist"</span>)</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        write_host(HOST_LIVE,host_path)</span><br></pre></td></tr></table></figure>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -578,12 +713,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -592,13 +721,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/06/04/nodejswritefile/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -620,17 +762,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-04T11:47:23+08:00" content="2016-06-04">
-              2016-06-04
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-06-04T11:47:23+08:00">
+                2016-06-04
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/js/" itemprop="url" rel="index">
                     <span itemprop="name">js</span>
                   </a>
@@ -638,20 +799,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/04/nodejswritefile/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/nodejswritefile/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -661,16 +821,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>最近在搞一个网站，用 javascript 写东西，发现用js来读写本地文件不是很方便， 用nodejs效果更佳。</p>
+          
+            <p>最近在搞一个网站，用 javascript 写东西，发现用js来读写本地文件不是很方便， 用nodejs效果更佳。</p>
 <p>网上找的例子。</p>
 <p><a href="http://qianduanblog.com/post/nodejs-learning-4-filestream-read-write-local-file.html" target="_blank" rel="external">filestream读写本地文件</a></p>
 <h2 id="1_u3001filestream_API"><a href="#1_u3001filestream_API" class="headerlink" title="1、filestream API"></a>1、filestream API</h2><ul>
@@ -688,11 +847,19 @@
 <p>例子如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模块</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 filestream 模块</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 url 模块</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 引用 querystring 模块</span></span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">"querystring"</span>)</span><br><span class="line"> </span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> objQuery = querystring.parse(url.parse(request.url).query);</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// 读取文件</span></span><br><span class="line">	<span class="keyword">if</span> (objQuery.type == <span class="string">"read"</span>) &#123;</span><br><span class="line">		<span class="comment">// 为什么不是 fs.read</span></span><br><span class="line">		fs.readFile(<span class="string">"./tmp/file.txt"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, fileData</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;读取内容为：&lt;/h1&gt;"</span> + fileData);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 写入文件</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"write"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> writeString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.writeFile(<span class="string">"./tmp/file.txt"</span>, writeString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;写入内容为：&lt;/h1&gt;"</span> + writeString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 追加内容</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (objQuery.type == <span class="string">"append"</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> appendString = <span class="string">"\n"</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">		fs.appendFile(<span class="string">"./tmp/file.txt"</span>, appendString, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (error) &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加出现错误&lt;/h1&gt;"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				write(response, <span class="string">"&lt;h1&gt;追加内容为：&lt;/h1&gt;"</span> + appendString);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		write(response, <span class="string">"&lt;h1&gt;请在网址上输入参数&lt;/h1&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).listen(<span class="number">2014</span>);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params">response, content</span>) </span>&#123;</span><br><span class="line">	response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">		<span class="string">"content-type"</span>: <span class="string">"text/html"</span></span><br><span class="line">	&#125;);</span><br><span class="line">	response.write(content);</span><br><span class="line">	response.end();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6"><a href="#3-_node-js_u91CC_u9762_u600E_u4E48_u521B_u5EFA_u548C_u89E3_u6790JSON_u683C_u5F0F_u7684_u6587_u4EF6" class="headerlink" title="3. node.js里面怎么创建和解析JSON格式的文件"></a>3. node.js里面怎么创建和解析JSON格式的文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> writlog = &#123;<span class="string">"rows"</span>:[     &#123;<span class="string">"buildid"</span>:<span class="string">"data.number"</span>,<span class="string">"product"</span>:<span class="string">"englishtown"</span>,<span class="string">"env"</span>:<span class="string">"live"</span>,<span class="string">"version"</span>:<span class="string">"ver"</span>&#125;</span><br><span class="line">    ]&#125;</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(<span class="string">'./output.json'</span>,<span class="built_in">JSON</span>.stringify(writlog));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> JsonObj=<span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./output.json'</span>));<span class="built_in">console</span>.log(JsonObj);</span><br></pre></td></tr></table></figure>
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -703,12 +870,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -717,13 +878,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/05/04/stock/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -745,23 +919,34 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-05-04T10:25:18+08:00" content="2016-05-04">
-              2016-05-04
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-05-04T10:25:18+08:00">
+                2016-05-04
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/04/stock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/stock/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -771,25 +956,32 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>get information:</p>
+          
+            <p>get information:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding:utf8</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文件中读取股票代码</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readCode</span><span class="params">(filename, codes)</span>:</span></span><br><span class="line">	f = open(filename, <span class="string">"r"</span>)</span><br><span class="line">	<span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">		line.strip()</span><br><span class="line">		codes.append(line)</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据股票代码获取股票的当日信息，信息格式为</span></span><br><span class="line"><span class="comment"># 0：”大秦铁路”，股票名字；</span></span><br><span class="line"><span class="comment"># 1：”27.55″，今日开盘价；</span></span><br><span class="line"><span class="comment"># 2：”27.25″，昨日收盘价；</span></span><br><span class="line"><span class="comment"># 3：”26.91″，当前价格；</span></span><br><span class="line"><span class="comment"># 4：”27.55″，今日最高价；</span></span><br><span class="line"><span class="comment"># 5：”26.20″，今日最低价；</span></span><br><span class="line"><span class="comment"># 6：”26.91″，竞买价，即“买一”报价；</span></span><br><span class="line"><span class="comment"># 7：”26.92″，竞卖价，即“卖一”报价；</span></span><br><span class="line"><span class="comment"># 8：”22114263″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；</span></span><br><span class="line"><span class="comment"># 9：”589824680″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；</span></span><br><span class="line"><span class="comment"># 10：”4695″，“买一”申请4695股，即47手；</span></span><br><span class="line"><span class="comment"># 11：”26.91″，“买一”报价；</span></span><br><span class="line"><span class="comment"># 12：”57590″，“买二”</span></span><br><span class="line"><span class="comment"># 13：”26.90″，“买二”</span></span><br><span class="line"><span class="comment"># 14：”14700″，“买三”</span></span><br><span class="line"><span class="comment"># 15：”26.89″，“买三”</span></span><br><span class="line"><span class="comment"># 16：”14300″，“买四”</span></span><br><span class="line"><span class="comment"># 17：”26.88″，“买四”</span></span><br><span class="line"><span class="comment"># 18：”15100″，“买五”</span></span><br><span class="line"><span class="comment"># 19：”26.87″，“买五”</span></span><br><span class="line"><span class="comment"># 20：”3100″，“卖一”申报3100股，即31手；</span></span><br><span class="line"><span class="comment"># 21：”26.92″，“卖一”报价</span></span><br><span class="line"><span class="comment"># (22, 23), (24, 25), (26,27), (28, 29)分别为“卖二”至“卖四的情况”</span></span><br><span class="line"><span class="comment"># 30：”2008-01-11″，日期；</span></span><br><span class="line"><span class="comment"># 31：”15:05:32″，时间；</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getComInfo</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># 抓取股票信息</span></span><br><span class="line">	url = <span class="string">"http://hq.sinajs.cn/list=%s"</span> % code</span><br><span class="line">	response = urllib2.urlopen(url)</span><br><span class="line">	javascriptInfo = response.read()</span><br><span class="line">	<span class="comment"># 解析成python可识别的信息</span></span><br><span class="line">	pythonInfo = javascriptInfo[<span class="number">4</span>:]</span><br><span class="line">	exec(pythonInfo)</span><br><span class="line">	company = <span class="string">"hq_str_"</span> + code</span><br><span class="line">	companyInfo = eval(company)</span><br><span class="line">	companyInfo = companyInfo.split(<span class="string">","</span>)</span><br><span class="line">	<span class="comment"># 部分股票由于特殊情况没有相应信息</span></span><br><span class="line">	<span class="keyword">if</span> len(companyInfo) &lt; <span class="number">3</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	currentPrice = companyInfo[<span class="number">3</span>]</span><br><span class="line">	<span class="comment"># 当前票价小于5元时保存</span></span><br><span class="line">	<span class="keyword">if</span> float(currentPrice) &lt; <span class="number">5.0</span>:</span><br><span class="line">		saveGoodTicket(code)</span><br><span class="line">		<span class="keyword">print</span> code, companyInfo[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存好的股票日K线</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveGoodTicket</span><span class="params">(code)</span>:</span></span><br><span class="line">	<span class="comment"># # 日K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/daily/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># # 周K线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/weekly/n/%s.gif" % code</span></span><br><span class="line">	<span class="comment"># 月K线</span></span><br><span class="line">	url = <span class="string">"http://image.sinajs.cn/newchart/monthly/n/%s.gif"</span> % code</span><br><span class="line">	<span class="comment"># 分时线</span></span><br><span class="line">	<span class="comment"># url = "http://image.sinajs.cn/newchart/min/n/%s.gif" % code</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		response = urllib2.urlopen(url)</span><br><span class="line">		data = response.read()</span><br><span class="line">		f = open(<span class="string">"goodTicket/"</span> + code +<span class="string">'.gif'</span>, <span class="string">"wb"</span>)</span><br><span class="line">		f.write(data)</span><br><span class="line">		f.close()</span><br><span class="line">	<span class="keyword">except</span> Exception, e:</span><br><span class="line">		<span class="keyword">print</span> e</span><br><span class="line">	<span class="keyword">finally</span>:</span><br><span class="line">		<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 单个线程进行的工作</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleHandle</span><span class="params">(codes, test)</span>:</span></span><br><span class="line">	<span class="keyword">print</span> test</span><br><span class="line">	<span class="keyword">for</span> code <span class="keyword">in</span> codes:</span><br><span class="line">		<span class="comment"># 去除code中的空白字符</span></span><br><span class="line">		code = code.strip()</span><br><span class="line">		<span class="comment"># 获取信息</span></span><br><span class="line">		getComInfo(code)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次四个线程获取股票信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiHandle</span><span class="params">(fourcodes, test)</span>:</span></span><br><span class="line">	threads = [threading.Thread(target=singleHandle, args=(codes, test)) <span class="keyword">for</span> codes <span class="keyword">in</span> fourcodes]</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.start()</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">		t.join()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	codes = []</span><br><span class="line">	readCode(<span class="string">"codes.txt"</span>, codes)</span><br><span class="line">	num = len(codes)</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">"goodTicket"</span>):</span><br><span class="line">		os.mkdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">		<span class="keyword">print</span> <span class="string">"make dir pic"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 设置4个线程</span></span><br><span class="line">	threadLen = num / <span class="number">4</span></span><br><span class="line"></span><br><span class="line">	t1 = codes[<span class="number">0</span>: threadLen]</span><br><span class="line">	t2 = codes[threadLen : threadLen*<span class="number">2</span>]</span><br><span class="line">	t3 = codes[threadLen*<span class="number">2</span> : threadLen *<span class="number">3</span>]</span><br><span class="line">	t4 = codes[threadLen*<span class="number">3</span> : ]</span><br><span class="line">	t = [t1, t2, t3, t4]</span><br><span class="line">	multiHandle(t, <span class="string">"To Beautiful You"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"success"</span></span><br></pre></td></tr></table></figure>
 <p>generatehtml.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding=utf8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">htmlHead = <span class="string">'''</span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;&#123;BODY&#125;&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">'''</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	files = os.listdir(<span class="string">"goodTicket"</span>)</span><br><span class="line">	htmlBody = <span class="string">"&lt;ul&gt;"</span></span><br><span class="line">	<span class="keyword">for</span> filename <span class="keyword">in</span> files:</span><br><span class="line">		htmlBody = htmlBody  + <span class="string">"&lt;li&gt;&lt;img src=\"%s\"&gt;&lt;/li&gt;"</span> % (<span class="string">"goodTicket/"</span> + filename)</span><br><span class="line"></span><br><span class="line">	htmlBody = htmlBody + <span class="string">"&lt;/ul&gt;"</span></span><br><span class="line"></span><br><span class="line">	html = htmlHead.replace(<span class="string">"&#123;&#123;BODY&#125;&#125;"</span>, htmlBody)</span><br><span class="line">	f = open(<span class="string">"pic.html"</span>, <span class="string">"w"</span>)</span><br><span class="line">	f.write(html)</span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -800,12 +992,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -814,13 +1000,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/04/27/bootstrap-node建一个网站/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -842,17 +1041,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-27T14:27:51+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-04-27T14:27:51+08:00">
+                2016-04-27
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/nodejs/" itemprop="url" rel="index">
                     <span itemprop="name">nodejs</span>
                   </a>
@@ -860,20 +1078,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/27/bootstrap-node建一个网站/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/bootstrap-node建一个网站/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -883,16 +1100,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>最近下载了好几个 bootstrap 的模版， 用nodejs跑起来。<br>一般用express框架。<br>结构如下：</p>
+          
+            <p>最近下载了好几个 bootstrap 的模版， 用nodejs跑起来。<br>一般用express框架。<br>结构如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- lib</span><br><span class="line">-- views</span><br><span class="line">   + -- index.html</span><br><span class="line">   + -- about.html</span><br><span class="line">   + -- contact.html</span><br><span class="line">   + -- <span class="number">404</span>.html</span><br><span class="line">-- node_modules</span><br><span class="line">   + -- express</span><br><span class="line">package.json</span><br></pre></td></tr></table></figure>
 <p>先配置 Package.json(类似ruby rails 中的Gem file)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"website-using-express"</span>,</span><br><span class="line">  <span class="string">"version"</span> : <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"scripts"</span> : &#123;</span><br><span class="line">    <span class="string">"start"</span> : <span class="string">"node Server.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span> : &#123;</span><br><span class="line">    <span class="string">"express"</span> : <span class="string">"latest"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -905,11 +1121,19 @@
 <p>参考：<br><a href="https://www.codementor.io/nodejs/tutorial/build-website-from-scratch-using-expressjs-and-bootstrap" target="_blank" rel="external">expressjs-and-bootstrap</a></p>
 <p><a href="http://javascript.ruanyifeng.com/nodejs/express.html" target="_blank" rel="external">Express框架</a></p>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -920,12 +1144,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -934,13 +1152,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/04/12/算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -962,17 +1193,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T18:39:33+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-04-12T18:39:33+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/python/" itemprop="url" rel="index">
                     <span itemprop="name">python</span>
                   </a>
@@ -980,20 +1230,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/算法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -1003,21 +1252,28 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""节点类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, elem=-<span class="number">1</span>, lchild=None, rchild=None)</span>:</span></span><br><span class="line">        self.elem = elem</span><br><span class="line">        self.lchild = lchild</span><br><span class="line">        self.rchild = rchild</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""树类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.root = Node()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, elem)</span>:</span></span><br><span class="line">        <span class="string">"""为树添加节点"""</span></span><br><span class="line">        node = Node(elem)</span><br><span class="line">        <span class="keyword">if</span> self.root.elem == -<span class="number">1</span>:            <span class="comment">#如果树是空的，则对根节点赋值</span></span><br><span class="line">            self.root = node</span><br><span class="line">        <span class="keyword">else</span>:                     </span><br><span class="line">            myQueue = []</span><br><span class="line">            treeNode = self.root</span><br><span class="line">            myQueue.append(treeNode)</span><br><span class="line">            <span class="keyword">while</span> myQueue:                      <span class="comment">#对已有的节点进行层次遍历</span></span><br><span class="line">                treeNode = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> treeNode.lchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.lchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">elif</span> treeNode.rchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.rchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    myQueue.append(treeNode.lchild)</span><br><span class="line">                    myQueue.append(treeNode.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.front_digui(root.lchild)</span><br><span class="line">        self.front_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.middle_digui(root.lchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.middle_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.later_digui(root.lchild)</span><br><span class="line">        self.later_digui(root.rchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                <span class="keyword">print</span> node.elem,</span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack1 = []</span><br><span class="line">        myStack2 = []</span><br><span class="line">        node = root</span><br><span class="line">        myStack1.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack1:                   <span class="comment">#这个while循环的功能是找出后序遍历的逆序，存在myStack2里面</span></span><br><span class="line">            node = myStack1.pop()</span><br><span class="line">            <span class="keyword">if</span> node.lchild:</span><br><span class="line">                myStack1.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild:</span><br><span class="line">                myStack1.append(node.rchild)</span><br><span class="line">            myStack2.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack2:                         <span class="comment">#将myStack2中的元素出栈，即为后序遍历次序</span></span><br><span class="line">            <span class="keyword">print</span> myStack2.pop().elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">level_queue</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用队列实现树的层次遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myQueue = []</span><br><span class="line">        node = root</span><br><span class="line">        myQueue.append(node)</span><br><span class="line">        <span class="keyword">while</span> myQueue:</span><br><span class="line">            node = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            <span class="keyword">if</span> node.lchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="string">"""主函数"""</span></span><br><span class="line">    elems = range(<span class="number">10</span>)           <span class="comment">#生成十个数据作为树节点</span></span><br><span class="line">    tree = Tree()          <span class="comment">#新建一个树对象</span></span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> elems:                  </span><br><span class="line">        tree.add(elem)           <span class="comment">#逐个添加树的节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'队列实现层次遍历:'</span></span><br><span class="line">    tree.level_queue(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n递归实现先序遍历:'</span></span><br><span class="line">    tree.front_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现中序遍历:'</span> </span><br><span class="line">    tree.middle_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现后序遍历:'</span></span><br><span class="line">    tree.later_digui(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n堆栈实现先序遍历:'</span></span><br><span class="line">    tree.front_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现中序遍历:'</span></span><br><span class="line">    tree.middle_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现后序遍历:'</span></span><br><span class="line">    tree.later_stack(tree.root)</span><br></pre></td></tr></table></figure>
-            
-          </span>
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""节点类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, elem=-<span class="number">1</span>, lchild=None, rchild=None)</span>:</span></span><br><span class="line">        self.elem = elem</span><br><span class="line">        self.lchild = lchild</span><br><span class="line">        self.rchild = rchild</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""树类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.root = Node()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, elem)</span>:</span></span><br><span class="line">        <span class="string">"""为树添加节点"""</span></span><br><span class="line">        node = Node(elem)</span><br><span class="line">        <span class="keyword">if</span> self.root.elem == -<span class="number">1</span>:            <span class="comment">#如果树是空的，则对根节点赋值</span></span><br><span class="line">            self.root = node</span><br><span class="line">        <span class="keyword">else</span>:                     </span><br><span class="line">            myQueue = []</span><br><span class="line">            treeNode = self.root</span><br><span class="line">            myQueue.append(treeNode)</span><br><span class="line">            <span class="keyword">while</span> myQueue:                      <span class="comment">#对已有的节点进行层次遍历</span></span><br><span class="line">                treeNode = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> treeNode.lchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.lchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">elif</span> treeNode.rchild == <span class="keyword">None</span>:</span><br><span class="line">                    treeNode.rchild = node</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    myQueue.append(treeNode.lchild)</span><br><span class="line">                    myQueue.append(treeNode.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.front_digui(root.lchild)</span><br><span class="line">        self.front_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.middle_digui(root.lchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line">        self.middle_digui(root.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_digui</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用递归实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.later_digui(root.lchild)</span><br><span class="line">        self.later_digui(root.rchild)</span><br><span class="line">        <span class="keyword">print</span> root.elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">front_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的先序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                <span class="keyword">print</span> node.elem,</span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middle_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的中序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">or</span> myStack:</span><br><span class="line">            <span class="keyword">while</span> node:                     <span class="comment">#从根节点开始，一直找它的左子树</span></span><br><span class="line">                myStack.append(node)</span><br><span class="line">                node = node.lchild</span><br><span class="line">            node = myStack.pop()            <span class="comment">#while结束表示当前节点node为空，即前一个节点没有左子树了</span></span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            node = node.rchild                  <span class="comment">#开始查看它的右子树</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">later_stack</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用堆栈实现树的后序遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myStack1 = []</span><br><span class="line">        myStack2 = []</span><br><span class="line">        node = root</span><br><span class="line">        myStack1.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack1:                   <span class="comment">#这个while循环的功能是找出后序遍历的逆序，存在myStack2里面</span></span><br><span class="line">            node = myStack1.pop()</span><br><span class="line">            <span class="keyword">if</span> node.lchild:</span><br><span class="line">                myStack1.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild:</span><br><span class="line">                myStack1.append(node.rchild)</span><br><span class="line">            myStack2.append(node)</span><br><span class="line">        <span class="keyword">while</span> myStack2:                         <span class="comment">#将myStack2中的元素出栈，即为后序遍历次序</span></span><br><span class="line">            <span class="keyword">print</span> myStack2.pop().elem,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">level_queue</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""利用队列实现树的层次遍历"""</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        myQueue = []</span><br><span class="line">        node = root</span><br><span class="line">        myQueue.append(node)</span><br><span class="line">        <span class="keyword">while</span> myQueue:</span><br><span class="line">            node = myQueue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">print</span> node.elem,</span><br><span class="line">            <span class="keyword">if</span> node.lchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.lchild)</span><br><span class="line">            <span class="keyword">if</span> node.rchild != <span class="keyword">None</span>:</span><br><span class="line">                myQueue.append(node.rchild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="string">"""主函数"""</span></span><br><span class="line">    elems = range(<span class="number">10</span>)           <span class="comment">#生成十个数据作为树节点</span></span><br><span class="line">    tree = Tree()          <span class="comment">#新建一个树对象</span></span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> elems:                  </span><br><span class="line">        tree.add(elem)           <span class="comment">#逐个添加树的节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'队列实现层次遍历:'</span></span><br><span class="line">    tree.level_queue(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n递归实现先序遍历:'</span></span><br><span class="line">    tree.front_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现中序遍历:'</span> </span><br><span class="line">    tree.middle_digui(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n递归实现后序遍历:'</span></span><br><span class="line">    tree.later_digui(tree.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n\n堆栈实现先序遍历:'</span></span><br><span class="line">    tree.front_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现中序遍历:'</span></span><br><span class="line">    tree.middle_stack(tree.root)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'\n堆栈实现后序遍历:'</span></span><br><span class="line">    tree.later_stack(tree.root)</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -1028,12 +1284,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -1042,13 +1292,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/04/12/所谓管理/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -1070,17 +1333,36 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T13:08:58+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-04-12T13:08:58+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/职业/" itemprop="url" rel="index">
                     <span itemprop="name">职业</span>
                   </a>
@@ -1088,20 +1370,19 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/所谓管理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/所谓管理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -1111,25 +1392,32 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>最近心比较累。</p>
+          
+            <p>最近心比较累。</p>
 <p>突然明白了：</p>
 <p>大公司所谓的管理，</p>
 <p>管理，就是培植自己的嫡系，打击别人的亲信，关键岗位能放自己的人。每个人都会被各个圈子争取，面临站队。就看你是否站错队。风水也是轮流转的。当你对任何人都不构成威胁时，你就有独善其身的机会，也就意味着你难以出头。只有你领导上去你，才有可能带你玩。有人的地方就有江湖，江湖险恶，没有人会无缘无故对你好，就看你有无利用价值，或者对手是否在争夺你。每个人都是伪装者，开始各种表演，时间长了，情商再低的人也能看出来。斗争越激烈，说明你位置越高，或者你对手情商高。没有赢家，也没有结局，要么出局，要么有小弟替你背锅出局。可悲的是有些出局的小弟，被你当枪使了仍对你感激。影帝啊!</p>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -1140,12 +1428,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -1154,13 +1436,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/04/12/看美剧/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -1182,23 +1477,34 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T13:00:02+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-04-12T13:00:02+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/看美剧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/看美剧/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -1208,16 +1514,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>工作是英文环境。要跟老外交流。</p>
+          
+            <p>工作是英文环境。要跟老外交流。</p>
 <p>自己蹩脚的口语，总是阻碍了表达。然后很难理解外国人的幽默。</p>
 <p>上次看到有人发帖说去苹果面试，口语要求很高。然后他的经验是看美剧来提高。</p>
 <p>于是我也开始看美剧“摩登家庭”。</p>
@@ -1228,11 +1533,19 @@
 <p>听了几次后，我有那种想说英语的欲望了。</p>
 <p>坚持！加油！</p>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -1243,12 +1556,6 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
@@ -1257,13 +1564,26 @@
       
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2016/04/12/喝酒/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -1285,23 +1605,34 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-04-12T12:50:40+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2016-04-12T12:50:40+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/喝酒/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/喝酒/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+          
+
+          
+
+          
+          
+
           
 
           
@@ -1311,16 +1642,15 @@
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>每次回老家，最怕喝酒和打牌。被拉着灌，我很不爽。</p>
+          
+            <p>每次回老家，最怕喝酒和打牌。被拉着灌，我很不爽。</p>
 <p>但是老家的风俗如此。每次都是很应付。</p>
 <p>清明节前回去搬了个家。</p>
 <p>把老头子从山沟沟里接到省城生活。后面顿顿都是酒局，不管在家，还是外面吃。总被拉着喝酒，都逃不掉。</p>
@@ -1334,11 +1664,19 @@
 </ol>
 <p>思想观念真的是太不一样了。</p>
 
-            
-          </span>
+          
         
       
     </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
 
     <footer class="post-footer">
       
@@ -1349,18 +1687,11 @@
       
         <div class="post-eof"></div>
       
-      <! -- 添加微信图标 -->
-    
-    
-    
-    
-
     </footer>
   </article>
 
 
     
-
   </section>
 
   
@@ -1370,17 +1701,15 @@
 
 
 
+          </div>
+          
+
+
+          
+
         </div>
-
         
-
-
-        
-
-      </div>
-
-      
-        
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -1397,33 +1726,42 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/uploads/snake.jpg" alt="Snake" itemprop="image"/>
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Snake" />
           <p class="site-author-name" itemprop="name">Snake</p>
+          <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
         </div>
-        <p class="site-description motion-element" itemprop="description">不要被困难击倒，除非你躺着睡大觉</p>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">68</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">分类</span>
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">文章</span>
               </a>
-          </div>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">57</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">標籤</span>
               </a>
-          </div>
+            </div>
+          
 
         </nav>
 
@@ -1431,59 +1769,16 @@
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/xieming" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> github
-                  
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/p/1005051745804351/home?from=page_100505&mod=TAB&is_all=1" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> weibo
-                  
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://douban.com/people/52671329/" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> douban
-                  
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
-        <div class="links-of-author motion-element">
-          
-            <p class="site-author-name">Links</p>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/" target="_blank">简书</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://testerhome.com" target="_blank">Testerhome</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://ruby-china.org" target="_blank">ruby-china</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.imooc.com" target="_blank">幕客网</a>
-              </span>
-            
-          
-        </div>
+        
+        
+
+        
+
 
       </section>
 
@@ -1493,119 +1788,137 @@
   </aside>
 
 
-      
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Snake</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
 </div>
 
 <div class="theme-info">
-  主题 -
+  主題 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
-  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
 
   
   
 
   
-    
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"snake"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-    
-     
-
-
-    
-  
-
-  
-  <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="//velocity/velocity.min.js"></script>
-<script type="text/javascript" src="//velocity/velocity.ui.min.js"></script>
-
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
-
-
-  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
+
 
   
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
+
+
 
 
   
   
+
+  
+
+  
+
+  
+
+  
+
 
 </body>
 </html>
