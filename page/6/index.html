@@ -241,6 +241,169 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://snake.me/2015/03/06/dockeronubumtu/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Snake">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Snake's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/06/dockeronubumtu/" itemprop="url">
+                  Docker 之 ubuntu 上实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2015-03-06T12:02:35+08:00">
+                2015-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-__u73AF_u5883_u3002"><a href="#1-__u73AF_u5883_u3002" class="headerlink" title="1. 环境。"></a>1. 环境。</h1><p>我是用13.04 升级上来的。<br>先用命令看： <figure class="highlight"><figcaption><span>/etc/issue```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29256;&#26412;&#20026; 13.2&#10;&#10;&#28982;&#21518;&#29992;&#21629;&#20196;&#65306;&#10;```sudo apt-get update&#10;sudo apt-getdist-upgrade</span><br></pre></td></tr></table></figure></p>
+<p>升级好后，更改ubuntu的源， 原因你懂的。<br><a href="http://jingyan.baidu.com/article/7f41ecec1b7a2e593d095ce6.html" target="_blank" rel="external">Ubuntu14.04更新源</a><br><a href="http://chenrongya.blog.163.com/blog/static/8747419620143185103297/" target="_blank" rel="external">Ubuntu14.04 LTS更新源</a><br>用的阿里的源，最后成功了。</p>
+<p>在Windows 7 下使用 VirtualBox 安装了一个 Ubuntu 14.10 后，碰到了一个 640×480屏幕分辨率的问题。在 ‘DisplaySettings’设置界面的 ‘Detect Displays’按钮无法点击到，因为 640x480的分辨率的确太小了。<br>解决办法<br>你需要安装一个 VirtualBox的额外组件到你的 Ubuntu-Guest 中，可运行如下命令：<br><figure class="highlight"><figcaption><span>apt-get install virtualbox-guest-dkms```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#23433;&#35013;&#23436;&#27605;&#38656;&#35201;&#37325;&#21551;&#34394;&#25311;&#26426;&#23601;&#21487;&#20197;&#12290;&#10;[&#20462;&#22797; VirtualBox &#19979; Ubuntu 14.10 &#23631;&#24149;&#20998;&#36776;&#29575;&#38382;&#39064;](http://www.oschina.net/question/12_178184?fromerr=HU30mmgo)&#10;&#10;# 2. &#20351;&#29992;&#65306;&#10;&#21442;&#29031;&#65306;&#10;[Docker&#23454;&#36341;](http://blog.csdn.net/lincyang/article/details/43055061)&#10;&#10;&#23454;&#36341;&#20102;&#19968;&#25226;&#65306;&#10;&#19979;&#38754;&#35828;&#35828;&#25105;&#22312;Ubuntu14.04&#19979;&#30340;&#23433;&#35013;&#12290;        &#10;1.&#23558;&#38236;&#20687;&#21152;&#20837;&#21040;&#31243;&#24207;&#28304;&#20013;&#65306;&#10;```~$ sudo sh -c &#34;echo deb http://mirror.yandex.ru/mirrors/docker/ docker main &#62; /etc/apt/sources.list.d/docker.list&#34; ``` &#10;2.&#25509;&#30528;update&#10;```$ sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>3.如果报错就fix掉它：<br><figure class="highlight"><figcaption><span>GPG error:</span><a href="http://mirror.yandex.ru" target="_blank" rel="external">docker Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY D8576A8BA88D21E9```  </a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#35299;&#20915;&#27492;&#38169;&#35823;&#65306;&#10;```$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D8576A8BA88D21E9``` &#10;4.&#19979;&#36733;docker&#65306;&#10;```$ sudo apt-get install lxc-docker``` &#10;&#38745;&#38745;&#30340;&#31561;&#24453;&#23427;&#19979;&#36733;&#23436;&#25104;&#21543;&#12290;&#10;&#21478;&#22806;&#65292;&#36825;&#20010;&#21629;&#20196;&#20063;&#35768;&#20250;&#26377;&#24110;&#21161;&#65306;&#10;```$ curl sSL https//get.docker.com/ubuntu/ | sudo sh</span><br></pre></td></tr></table></figure></p>
+<p>然后Docker 还顺利安装成功了。 虽然有点慢。</p>
+<p>实践：<br>搜索仓库中是否有wordpress这个博客镜像，如下：<figure class="highlight"><figcaption><span>docker search wordpress```  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;2.&#19979;&#36733;&#36825;&#20010;&#38236;&#20687;&#10;```$ docker pull wordpress```  &#10;&#10;&#19979;&#36733;&#38236;&#20687;&#30340;&#26102;&#20505;&#65292;&#20960;&#20046;&#26159;&#19979;&#36733;&#19981;&#19979;&#26469;&#12290;&#10;&#28982;&#21518;&#22312;pull image&#30340;&#26102;&#20505;&#65292;&#32769;&#19981;&#25104;&#21151;&#65292;&#31561;&#20102;&#21322;&#22825;&#65292;&#24635;&#26159;&#20986;&#36825;&#26679;&#30340;&#38169;&#35823;&#65306;&#10;```Error pulling image(latest) from mysql, Server error: Status 0 while fetching image laye</span><br></pre></td></tr></table></figure></p>
+<p>百度搜索：<br>Error in pulling down images indocker: Status 0<br>找到的解决方案是关防火墙，关了也没起到作用。<br>然后找到了解决方案：<br>更改了docker 的镜像源，用国内的了。<br><figure class="highlight"><figcaption><span>"DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=http://f2d6cb40.m.daocloud.io\"" | sudo tee -a</span><a href="/etc/default/docker```">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```sudo service docker restart</span><br></pre></td></tr></table></figure></p>
+<p>然后下载都成功了：<br><figure class="highlight"><figcaption><span>docker pull mysql```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```Sudo docker pull wordpress</span><br></pre></td></tr></table></figure></p>
+<p>启动：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> docker run --name mysql_wordpress -e MYSQL_ROOT_PASSWORD=wordpress  -d  mysql </span><br><span class="line"><span class="variable">$sudo</span> docker run --name docker_wordpress --link mysql_wordpress:mysql -p <span class="number">8080</span>:<span class="number">80</span> -d wordpress</span><br></pre></td></tr></table></figure></p>
+<p>接下来就可以在浏览器中输入<a href="http://localhost:8080进行wordpress的配置了，" target="_blank" rel="external">http://localhost:8080进行wordpress的配置了，</a> 结果真的成功了。</p>
+<ol>
+<li>Jenkins:</li>
+</ol>
+<p>因为wordpress 将8080 给占用了， 后面找到命令杀掉。</p>
+<p><a href="http://blog.csdn.net/we_shell/article/details/38368137" target="_blank" rel="external">Docker常用命令</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins</span><br><span class="line"></span><br><span class="line">docker run -p <span class="number">8080</span>:<span class="number">8080</span> jenkins</span><br></pre></td></tr></table></figure>
+<p>然后敲入：<a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a></p>
+<p>Jenkins 也启动起来了。</p>
+<p>参考：<br><a href="http://www.catosplace.net/blog/2015/02/11/running-jenkins-in-docker-containers/" target="_blank" rel="external">jenkins-in-docker</a></p>
+<p><a href="http://www.nuxeo.com/blog/docker-jenkins-cloud-provider/" target="_blank" rel="external">jenkins-cloud-provider</a></p>
+<p><a href="http://container-solutions.com/running-docker-in-jenkins-in-docker/" target="_blank" rel="external">container-solutions</a></p>
+<p><a href="https://dantehranian.wordpress.com/2014/09/08/docker-jenkins-dynamically-provisioning-sles-11-build-containers/" target="_blank" rel="external">docker-jenkins</a></p>
+<p><a href="http://blog.csdn.net/we_shell/article/details/38445979" target="_blank" rel="external">如何使用Dockerfile构建镜像</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://snake.me/2014/12/06/Jmetertest/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1722,158 +1885,6 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://snake.me/2014/06/05/python-csv/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Snake">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Snake's Home">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Snake's Home" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/06/05/python-csv/" itemprop="url">
-                  python csv模块介绍
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="Дата создания записи" itemprop="dateCreated datePublished" datetime="2014-06-05T11:44:19+08:00">
-                2014-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>csv，即逗号分隔值（Comma-Separated Values，CSV），有时也称为字符分割值（因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。</p>
-<p>csv是一种很常用也非常简洁方便的对大量数据存储的方式，python里面也有csv模块来对这部分内容进行处理。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reader(csvfile[, dialect=<span class="string">'excel'</span>][, fmtparam])</span><br></pre></td></tr></table></figure></p>
-<p>参数：</p>
-<p>csvfile 需要是支持迭代(Iterator)的对象，并且每次调用next方法的返回值是字符串(string)，通常的文件(file)对象，或者列表(list)对象都是适用的，如果是文件对象，打开是需要加”b”标志参数。</p>
-<p>dialect 为分隔的风格，默认为excel风格，即逗号分隔。也支持excel-tab风格，即tab分隔。</p>
-<p>使用例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"> </span><br><span class="line">reader = csv.reader(file(<span class="string">'my.csv'</span>, <span class="string">'rb'</span>))</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">    <span class="keyword">print</span> line</span><br></pre></td></tr></table></figure>
-<p>writer:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = csv.writer(open(targetFile,<span class="string">"wb"</span>),quoting=csv.QUOTE_ALL)</span><br></pre></td></tr></table></figure>
-<p>第一个参数表示要写入的文件对象，具体的写入可以通过writerow和writerows函数实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">writer.writerow([<span class="string">"hello"</span>,<span class="string">"anderson"</span>])</span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">__author__ = <span class="string">'anderson'</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(file)</span>:</span></span><br><span class="line"></span><br><span class="line">    yourtype = raw_input(<span class="string">"please choose the type: "</span>)</span><br><span class="line">    rule = re.compile(yourtype)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">        spamreader = csv.reader(readfile)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(row)):</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writecsv</span><span class="params">(self, data)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (<span class="string">'jsonfile.csv'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    	spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</span><br><span class="line">            spamwriter.writerow(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readcsv</span><span class="params">(self, file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open (file, <span class="string">'rb'</span>) <span class="keyword">as</span> readfile:</span><br><span class="line">       spamreader = csv.reader(readfile)</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> spamreader:</span><br><span class="line">                line = row.split(<span class="string">','</span>)</span><br><span class="line">                <span class="keyword">for</span> each_line <span class="keyword">in</span> line:</span><br><span class="line">                    <span class="keyword">if</span> each_line != <span class="string">" "</span>:</span><br><span class="line">                        <span class="keyword">print</span> each_line</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1921,7 +1932,7 @@ deviceName = textList[<span class="number">1</span>].split()[<span class="number
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
